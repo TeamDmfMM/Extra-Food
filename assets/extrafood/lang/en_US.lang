@@ -1,0 +1,17 @@
+#Tab Name
+itemGroup.ExtraFood=Extra Food
+
+#Item Names
+item.Cheese_Wheel.name=Cheese Wheel
+item.Banana.name=Banana
+item.Knife.name=Cooking Knife
+
+#Block Names
+tile.Banana_Bunch.name=Banana Bunch
+tile.CheesePress.name=Cheese Press
+
+#--Cook Book Names
+cookbook.Title=Cookbook
+cookbook.pizza=Pizza is a extremely yummy meal, and it can provide, when eaten whole, up to 5 hunger points. To make pizza, you need to make pizza dough. Pizza dough can be made with two type of bread, whole wheat and regular.
+cookbook.cheesepress=The Cheese Press is used to convert buckets of milk to cheese wheels. Cheese is a base for most foods in this mod. Cheese wheels can be split into slices with a cooking knife.
+cookbook.cheesepress1=This is testing the multi-page functionality of the cookbook.
