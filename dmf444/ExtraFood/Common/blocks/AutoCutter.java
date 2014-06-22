@@ -26,7 +26,7 @@ public class AutoCutter extends BlockContainer  {
     public AutoCutter(int id) {
             super(id, Material.iron);
             this.setCreativeTab(EFTabs.INSTANCE);
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.8F, 1.0F);
+            //this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.8F, 1.0F);
     }
     
     @Override
@@ -66,7 +66,7 @@ public class AutoCutter extends BlockContainer  {
     
     //This is the icon to use for showing the block in your hand.
     public void registerIcons(IconRegister icon) {
-            this.blockIcon = icon.registerIcon("extrafood:Zycrafted");
+            this.blockIcon = icon.registerIcon("extrafood:AutoCutterItem");
     }
             
             private void setDefaultDirection(World world, int x, int y, int z, EntityLivingBase entity) {

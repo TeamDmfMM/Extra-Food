@@ -17,5 +17,8 @@ public class ItemLib {
 	
 	public static int idCB = 22193;
 	public static String iCB = "Cookbook";
+	
+	public static int idS = 22194;
+	public static String iS = "Sausage";
 
 }

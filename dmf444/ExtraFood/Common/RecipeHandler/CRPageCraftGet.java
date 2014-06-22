@@ -8,7 +8,9 @@ import java.util.Hashtable;
 import java.util.List;
 
 
+
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,6 +29,8 @@ public class CRPageCraftGet {
 		this.recipesShaped = new Hashtable();
 		this.recipesShapeless = new Hashtable();
 		this.putRecipe("cheesepress", new Object[] {"ipi", "ibi", "sss", 'i', Item.ingotIron, 'p', Block.planks, 'b', Item.bucketEmpty, 's', new ItemStack(Block.stoneSingleSlab, 1, 0)}, new ItemStack(BlockLoader.cheesePress));
+		this.putRecipe("knife", new Object[] {"ii ", "ii ", " j ", 'i', Item.ingotIron, 'j', Item.stick}, new ItemStack(ItemLoader.knife, 1));
+		this.putRecipe("cheeseslice", new ItemStack(ItemLoader.cheeseSlice, 8), new ItemStack(ItemLoader.knife, 1, 32767), new ItemStack(ItemLoader.cheeseWheel, 1));
 		//TODO place the things in here
 		// TODO Auto-generated constructor stub
 	}
@@ -41,7 +45,7 @@ public class CRPageCraftGet {
 			items[9] = this.recipesShaped.get(itemname).getRecipeOutput();
 			return items;
 		}
-		else if (recipesShaped.get(itemname) != null){
+		else if (recipesShapeless.get(itemname) != null){
 			ItemStack[] items = new ItemStack[10];
 			int co = 0;
 			for (Object i : this.recipesShapeless.get(itemname).recipeItems.toArray()){
@@ -139,7 +143,7 @@ public class CRPageCraftGet {
 
 
 	}
-	public void putRecipe(String itemname, ItemStack out, Object[] par2ArrayOfObj){
+	public void putRecipe(String itemname, ItemStack out, ItemStack... par2ArrayOfObj){
 		ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;
         int i = par2ArrayOfObj.length;

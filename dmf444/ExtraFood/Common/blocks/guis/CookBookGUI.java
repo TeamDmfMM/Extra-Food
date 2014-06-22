@@ -20,6 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.AchievementPage;
+import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 
 import org.lwjgl.input.Mouse;
@@ -81,13 +82,12 @@ public class CookBookGUI extends GuiScreen {
     public static final int GUI_ID = 10;
     
    public static CookBookGUI currentOpenBook = new CookBookGUI();
+   //public static CookbookButtonLoader bookButton = new CookbookButtonLoader();
 
    public CookBookGUI() {
 	   System.out.println("HERE");
-	   this.buttons = new ArrayList<ClickTab>();
-	   buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 1, 1, new ItemStack(ItemLoader.cookBook), "cheesepress"));
-	   buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 6, 5, new ItemStack(ItemLoader.cheeseSlice), "cheesepress"));
-	   buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 1, 4, new ItemStack(ItemLoader.knife), "cheesepress"));
+	   this.buttons = CookbookButtonLoader.bookButton.buttons;
+
 
    }
 
@@ -99,7 +99,6 @@ public class CookBookGUI extends GuiScreen {
     	{
             if (Mouse.isButtonDown(0))
             {
-            		
     			iox += -Mouse.getDX();
     			yox += Mouse.getDY();
     			if (iox < 0){
@@ -108,12 +107,13 @@ public class CookBookGUI extends GuiScreen {
     			if (yox < 0){
     				yox = 0;
     			}
-    			if (iox > 250){
+    			if (iox > 350){
     				iox = 350;
     			}
-    			if (yox > 250){
+    			if (yox > 550){
     				yox = 550;
     			}
+    	
 
     			//System.out.println(iox + " " + yox);
 
@@ -139,7 +139,9 @@ public class CookBookGUI extends GuiScreen {
 		String mainGUI = StatCollector.translateToLocal("cookbook.Title");
         int i = (this.width - this.achievementsPaneWidth) / 2;
         int j = (this.height - this.achievementsPaneHeight) / 2;
+        GL11.glDisable(GL11.GL_LIGHTING);
         this.fontRenderer.drawString(mainGUI, i + 6, j + 5, 0xFFFFFFFF); //i + 15 original
+        GL11.glEnable(GL11.GL_LIGHTING);
     }
     
     
@@ -259,6 +261,24 @@ public class CookBookGUI extends GuiScreen {
         	}	
     	}
     }
+    
+    private void plotCurve(double startX, double startY, int bezierX, int bezierY, double endX, double endY){
+    	for(double t=0.0;t<=1;t+=0.01)  
+    	{  
+    	    int x = (int) (  (1-t)*(1-t)*startX + 2*(1-t)*t*bezierX+t*t*endX);  
+    	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);  
+    	  
+    	    //plot something @  x,y coordinate here...  
+    	    this.drawRect(x, y, x + 1, y + 1, 0xFFFFFFF);
+    	}
+    }
+        
+    private int cosineint(int x, int y, int z){
+    	double w = (1-Math.cos(z*Math.PI))/2;
+    	return (int) (x*(1-w)+y*w);
+    	
+    }
+    
 
 
 }

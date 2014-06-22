@@ -167,7 +167,8 @@ public class AutoCutterModel extends ModelBase
     	float rotation = (float) ((float) Math.sin(degrees) * 10);
     	if (rotation < 0){rotation = -rotation;}
     	this.knifeANIMATE.rotateAngleX = rotation;
-    	this.KnifehandleANIMATE.rotateAngleX = rotation;}
+    	this.KnifehandleANIMATE.rotateAngleX = rotation;
+    	}
     	
     }
     Back_base.render(f5);

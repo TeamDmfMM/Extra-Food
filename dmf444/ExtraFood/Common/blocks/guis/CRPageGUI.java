@@ -1,14 +1,15 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
-import org.lwjgl.opengl.GL11;
-
-import dmf444.ExtraFood.Core.ExtraFood;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
+import org.lwjgl.opengl.GL11;
+
+import dmf444.ExtraFood.Core.ExtraFood;
 
 public class CRPageGUI extends GuiScreen {
 
@@ -18,7 +19,7 @@ String pageTextFrom;
 private ItemStack[] items;
 RenderItem irender;
 GuiButton next;
-int page = 1;
+int page = 0;
 String pagen;
 GuiButton back;
 
@@ -58,8 +59,8 @@ GuiButton back;
      int i = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
      if (StatCollector.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
-	 this.buttonList.add(next = new GuiButton(0, i + 180, j + 150, 40, 20, "-->"));
-	 this.buttonList.add(back = new GuiButton(1, i + 130, j + 150, 40, 20, "<--"));
+     this.buttonList.add(this.next = new ButtonNextPageGUI(0, i + 221, j + 160, true));
+	 this.buttonList.add(back = new ButtonNextPageGUI(1, i + 13, j + 160, false));
      }
  }
 

@@ -12,15 +12,18 @@ public class ItemLoader {
 	public static Item knife;
 	public static Item cheeseSlice;
 	public static Item cookBook;
+	public static Item sausage;
 	
 	
 	public static boolean Register=false;
+	
 	public static void initiateItems() {
 		cheeseWheel = new CheeseWheel(ItemLib.idCheeseWheel, 8, 0.6F, false).setUnlocalizedName(ItemLib.iCW);
 		banana = new Banana(ItemLib.idBanana, 1, 0.8F, false).setUnlocalizedName(ItemLib.iBan);
 		knife = new Knife(ItemLib.idKnife).setUnlocalizedName(ItemLib.iK);	
 		cheeseSlice = new CheeseSlice(ItemLib.idCS).setUnlocalizedName(ItemLib.iCS);
 		cookBook = new Cookbook(ItemLib.idCB).setUnlocalizedName(ItemLib.iCB);
+		sausage = new Sausage(ItemLib.idS).setUnlocalizedName(ItemLib.iS);
 		
 		
 		knife.setContainerItem(knife);
@@ -35,6 +38,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(knife, ItemLib.iK);
 			GameRegistry.registerItem(cheeseSlice, ItemLib.iCS);
 			GameRegistry.registerItem(cookBook, ItemLib.iCB);
+			GameRegistry.registerItem(sausage, ItemLib.iS);
 		}
 		Register=true;
 	}
