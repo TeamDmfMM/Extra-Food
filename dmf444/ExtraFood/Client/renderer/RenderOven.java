@@ -62,7 +62,7 @@ public class RenderOven extends TileEntitySpecialRenderer {
             GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
    //Use in 1.6.2  this
    //Use in 1.6.2  this
-            ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/Oven1.png")); 
+            ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/BlockOven.png")); 
     //the ':' is very important
     //binding the textures
             Minecraft.getMinecraft().renderEngine.bindTexture(textures);

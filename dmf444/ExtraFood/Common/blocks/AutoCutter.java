@@ -66,7 +66,7 @@ public class AutoCutter extends BlockContainer  {
     
     //This is the icon to use for showing the block in your hand.
     public void registerIcons(IconRegister icon) {
-            this.blockIcon = icon.registerIcon("extrafood:AutoCutterItem");
+            this.blockIcon = icon.registerIcon("extrafood:ItemAutoCutter");
     }
             
             private void setDefaultDirection(World world, int x, int y, int z, EntityLivingBase entity) {

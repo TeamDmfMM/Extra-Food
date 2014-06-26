@@ -17,6 +17,7 @@ public class BlockLoader {
 	public static Block autoCutter;
 	public static Block juiceBlender;
 	public static Block oven;
+	public static Block whiteout;
 	
 	public static boolean Register=false;
 	public static void initiateBlocks() {
@@ -26,6 +27,7 @@ public class BlockLoader {
 		autoCutter = new AutoCutter(BlockLib.idAutoCutter).setUnlocalizedName(BlockLib.bAC);
 		juiceBlender = new BlockJuiceBlender(BlockLib.idJuiceBlender, Material.anvil).setUnlocalizedName(BlockLib.bJB);
 		oven = new Oven(BlockLib.idOven).setUnlocalizedName(BlockLib.bO);
+		whiteout = new Whiteout(590).setUnlocalizedName("TheWhiteBlock");
 		
 		
 		registerBlocks();
@@ -38,6 +40,7 @@ public class BlockLoader {
 			GameRegistry.registerBlock(autoCutter, BlockLib.bAC);
 			GameRegistry.registerBlock(juiceBlender, BlockLib.bJB);
 			GameRegistry.registerBlock(oven, BlockLib.bO);
+			GameRegistry.registerBlock(whiteout, "TheWhiteBlock");
 			
 		}
 		Register=true;

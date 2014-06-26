@@ -39,7 +39,7 @@ public boolean renderAsNormalBlock() {
         return false;
 }
 	public void registerIcons(IconRegister icon) {
-        this.blockIcon = icon.registerIcon("extrafood:juiceblenderitem");
+        this.blockIcon = icon.registerIcon("extrafood:ItemJuiceBlender");
 }
     private void setDefaultDirection(World world, int x, int y, int z, EntityLivingBase entity) {
     	int rotation = MathHelper.floor_double((double)(entity.rotationYaw * 4F / 360F) + 0.5D) & 3;

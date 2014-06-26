@@ -58,7 +58,7 @@ public class CookBookGUI extends GuiScreen {
     /** The right y coordinate of the achievement map */
     private static final int guiMapRight = maxDisplayRow * 24 - 77;
     ResourceLocation r = new ResourceLocation("extrafood", "textures/gui/cookbookgui.png");
-    ResourceLocation back = new ResourceLocation("extrafood", "textures/gui/cookbook_background.png");
+    ResourceLocation back = new ResourceLocation("extrafood", "textures/gui/cookbook_background1.png");
     protected static int achievementsPaneWidth = 256;
     protected static int achievementsPaneHeight = 202;
     
@@ -85,7 +85,7 @@ public class CookBookGUI extends GuiScreen {
    //public static CookbookButtonLoader bookButton = new CookbookButtonLoader();
 
    public CookBookGUI() {
-	   System.out.println("HERE");
+	  // System.out.println("HERE");
 	   this.buttons = CookbookButtonLoader.bookButton.buttons;
 
 
@@ -107,8 +107,8 @@ public class CookBookGUI extends GuiScreen {
     			if (yox < 0){
     				yox = 0;
     			}
-    			if (iox > 350){
-    				iox = 350;
+    			if (iox > 150){
+    				iox = 150; //350
     			}
     			if (yox > 550){
     				yox = 550;

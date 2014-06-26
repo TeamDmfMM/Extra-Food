@@ -21,7 +21,8 @@ RenderItem irender;
 GuiButton next;
 int page = 0;
 String pagen;
-GuiButton back;
+GuiButton backpage;
+GuiButton backGUI;
 
 
 
@@ -60,7 +61,8 @@ GuiButton back;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
      if (StatCollector.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
      this.buttonList.add(this.next = new ButtonNextPageGUI(0, i + 221, j + 160, true));
-	 this.buttonList.add(back = new ButtonNextPageGUI(1, i + 13, j + 160, false));
+	 this.buttonList.add(this.backpage = new ButtonNextPageGUI(1, i + 13, j + 160, false));
+	 this.buttonList.add(this.backGUI = new ButtonBackGUI(2, i + 6, j + 2, false));
      }
  }
 
@@ -186,9 +188,15 @@ public void renderItems() {
 			this.pageTextFrom = StatCollector.translateToLocal("cookbook." + pagen);
 			page = 0;
 		}
+	}	
+	if (button.id == 2){
 
+		this.mc.displayGuiScreen(new CookBookGUI());
 
 	}
+
+	}
+ 
 }
 
-}
+

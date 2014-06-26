@@ -22,7 +22,7 @@ import dmf444.ExtraFood.Core.lib.ModInfo;
 
 
 @Mod(modid = ModInfo.MId,name = ModInfo.Mname, version = ModInfo.Vers)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels={"ExtraFoodRC"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false) // channels={"ExtraFoodRC"}, packetHandler = PacketHandler.class)
 public class ExtraFood {
 	@Instance(value = "ExtraFood")
 	public static ExtraFood instance;

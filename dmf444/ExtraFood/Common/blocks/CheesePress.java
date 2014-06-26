@@ -54,7 +54,7 @@ public class CheesePress extends BlockContainer {
     
     //This is the icon to use for showing the block in your hand.
     public void registerIcons(IconRegister icon) {
-            this.blockIcon = icon.registerIcon("extrafood:BlockCheesePress");
+            this.blockIcon = icon.registerIcon("extrafood:ItemCheesePress");
     }
 
     @Override

@@ -210,10 +210,11 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 				this.complete += 1;
 				if (this.complete == 5){
 					System.out.println("ko");
+					this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 					this.do_();
 					this.complete = 0;
 					this.ttime = 0;
-					this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+					
 				}
 			}
 		}
@@ -230,7 +231,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 		}
 		this.decrStackSize(0, 1);
 	}
-	
+	/*
 	public Packet getDescriptionPacket(){
 		NBTTagCompound tags = new NBTTagCompound();
 		this.writeToNBT(tags);
@@ -243,7 +244,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 		this.readFromNBT(pkt.data);
 	}
-	
+	*/
     public boolean canInsertItem(int slot, ItemStack item, int side)
     {
         return this.isItemValidForSlot(slot, item);
