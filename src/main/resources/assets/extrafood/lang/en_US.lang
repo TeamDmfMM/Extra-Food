@@ -5,14 +5,33 @@ itemGroup.ExtraFood=Extra Food
 item.Cheese_Wheel.name=Cheese Wheel
 item.Banana.name=Banana
 item.Knife.name=Cooking Knife
+item.Cheese_Slice.name=Cheese Slice
+item.Cookbook.name=Cookbook
+item.Sausage.name=Sausage
+item.Strawberry.name=Strawberry
+item.bucketstrawberry.name=Strawberry Bucket
+item.bucketbanana.name=Banana Bucket
+item.Bacon.name=Bacon
+item.CookedBacon.name=Cooked Bacon
 
 #Block Names
 tile.Banana_Bunch.name=Banana Bunch
 tile.CheesePress.name=Cheese Press
+tile.Bannana_Sapling.name=Banana Sapling
+fluid.strawberryjuice.name=Strawberry Juice
 
 #--Cook Book Names
 cookbook.Title=Cookbook
+
 cookbook.pizza=Pizza is a extremely yummy meal, and it can provide, when eaten whole, up to 5 hunger points. To make pizza, you need to make pizza dough. Pizza dough can be made with two type of bread, whole wheat and regular.
 cookbook.cheesepress=The Cheese Press is used to convert buckets of milk to cheese wheels. Cheese is a base for most foods in this mod. Cheese wheels can be split into slices with a cooking knife.
-cookbook.cheesepress1=This is testing the multi-page functionality of the cookbook.
-cookbook.cheeseslice=Cheese slices are used in many recipes throughout ExtraFood. They are mainly used in pizza, and they are also used in sandwiches (notably, the grilled cheese ones.) Their other use is to be a lighter meal than an entire cheese wheel.
+cookbook.cheeseslice=Cheese slices are used in many recipes throughout Extra Food. They are mainly used in pizza, and they are also used in sandwiches (notably, the grilled cheese ones.) Their other use is to be a snack, healthier than an entire cheese wheel.
+cookbook.knife=The cutting knife, a staple of any good kitchen, is used for many cutting tasks. These range from cutting meats, fruits and other foods. When killing entities, such as the pig, rare drops may occur, such as bacon or in the case of young cows, veal.
+
+cookbookL.SeaWater=Upon living in this world of Minecraftia, you discover that sometimes the foods you find or make just are not enough to satisfy your hunger. You've plotted different ways of solving this, but have ended up with only failiure. As you see an animal drinking at a river, an idea hits you. By combining the ability to pickup liquids through a bucket 
+cookbookR.SeaWater=with the lake water, you discover Sea Water, a salty, but drinkable fluid. In order to get rid of that horrible taste, you can place the sea water into a furnace, creating purified water. You note the fact that placing this water down will recreate "water" and cannot naturally be found.
+
+#--GUI's
+gui.JB=Juice Blender
+gui.AC=Auto Cutter
+gui.CP=Cheese Press

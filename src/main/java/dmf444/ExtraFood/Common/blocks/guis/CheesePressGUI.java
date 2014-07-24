@@ -23,7 +23,7 @@ CheesePressTileEntity te;
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
             //draw text and stuff here
             //the parameters for drawString are: string, x, y, color
-            fontRendererObj.drawString("Cheese Press", 8, 6, 4210752);
+            fontRendererObj.drawString(StatCollector.translateToLocal("gui.CP"), 8, 6, 4210752);
             //draws "Inventory" or your regional equivalent
             fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }

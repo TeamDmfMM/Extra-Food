@@ -5,10 +5,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import dmf444.ExtraFood.ExtraFood;
+import dmf444.ExtraFood.Client.renderer.AutoCutterModel;
+import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 
 
@@ -83,13 +86,6 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     }
 
 
-
-    public void openChest() {}
-
-
-
-    public void closeChest() {}
-    
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
             super.readFromNBT(tagCompound);
@@ -159,73 +155,91 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 	
 	public boolean ok(){
 
+		/*
+		 * With seven checks, this function returns true if the autocutter is in an ok state to continue/start cutting!
+		 */
 
-		if (this.inv[0] != null){
-			System.out.println("1");					
-			if (this.inv[2] != null){
-			if(this.inv[2].getItem() == ItemLoader.knife){
-				System.out.println("2.5");		
-			if (ExtraFood.registryCutter.getItemOutput(this.inv[0]) != null){
-				System.out.println("2");		
-				ItemStack l = ExtraFood.registryCutter.getItemOutput(this.inv[0]);
-				if (this.inv[1] != null){
-					if (this.inv[1].getItem() != l.getItem()){
-						return false;
+
+		if (this.inv[0] != null){//1
+			System.out.println("1-out");					
+			if (this.inv[2] != null){//2
+				if(this.inv[2].getItem() == ItemLoader.knife){//3
+					System.out.println("2.5-out");		
+					if (ExtraFood.registryCutter.getItemOutput(this.inv[0]) != null){//4
+						System.out.println("2-out");		
+						ItemStack l = ExtraFood.registryCutter.getItemOutput(this.inv[0]);
+						if (this.inv[1] != null){//5
+							System.out.println("3-in");
+							if (this.inv[1].getItem() == l.getItem()){//6
+								System.out.println("4-donein");
+
+
+								return true;//6}
+							}
+								else {
+									return false;
+								}
+						}
+						System.out.println("3-doneout");
+						return true;//3
 					}
-					if (this.inv[1].stackSize >= 64 - l.stackSize + 1){
-						return false;
-					}
-					return false;
-				}
-				}
+					System.out.println("Why am I tracking4");
+					return false;//2
 				}
 				System.out.println("3");
-				return true;
-
-
-
-
-			}
-			else {
+				return false;//1
+			} else {
 				return false;
 			}
-		}
-		else {
+		} else {
 			return false;
-
-
 		}
-	}	
+	}
+
+	
 	public void updateEntity(){
 
-		if (this.ok()){
+	if (this.ok()){
+		//if (!this.worldObj.isRemote){
 			this.ttime += 1;
 			if (this.ttime == 20){
 				this.ttime = 0;
 				this.complete += 1;
 				if (this.complete == 5){
 					System.out.println("ko");
-					this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+					
 					this.do_();
 					this.complete = 0;
 					this.ttime = 0;
+					//markDirty();
+					//updateContainingBlockInfo();
 					
 				}
 			}
 		}
+	  //}
 	}
 
 
 	private void do_() {
 		ItemStack l = ExtraFood.registryCutter.getItemOutput(this.inv[0]);
 		if (this.inv[1] == null){
-			this.inv[1] = l;
+			System.out.println("followin' 1");
+			this.inv[1] = l.copy();
 		}
-		else {
+		else if(this.inv[1].getItem() == l.getItem()) {
+			System.out.println("followin' 2");
 			this.inv[1].stackSize += l.stackSize;
+			//this.inv[1].stackSize += l.stackSize;
 		}
-		this.decrStackSize(0, 1);
+		--this.inv[0].stackSize;
+		//this.decrStackSize(0, 1);
+		 if (this.inv[0].stackSize <= 0)
+         {
+             this.inv[0] = null;
+         }
 	}
+	
 	/*
 	public Packet getDescriptionPacket(){
 		NBTTagCompound tags = new NBTTagCompound();

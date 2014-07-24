@@ -14,7 +14,7 @@ public class ExtraFood_EventBonemeal {
             {
                     if (!event.world.isRemote)
                     {
-                            ((BananaTreeSapling)BlockLoader.saplingBanana).growTree(event.world, event.x, event.y, event.z, event.world.rand);
+                            ((BananaTreeSapling)BlockLoader.saplingBanana).func_149878_d(event.world, event.x, event.y, event.z, event.world.rand);
                     }
                     event.setResult(Result.ALLOW);  //allow the bonemeal consumption and prevent other possible effects
             }

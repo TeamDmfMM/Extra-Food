@@ -30,11 +30,13 @@ public class CRPageCraftGet {
 
 
 	public CRPageCraftGet() {
-		this.recipesShaped = new Hashtable();
-		this.recipesShapeless = new Hashtable();
+		this.recipesShaped = new Hashtable<String, ShapedRecipes>();
+		this.recipesShapeless = new Hashtable<String, ShapelessRecipes>();
 		this.putRecipe("cheesepress", new Object[] {"ipi", "ibi", "sss", 'i', Items.iron_ingot, 'p', Blocks.planks, 'b', Items.bucket, 's', new ItemStack(Blocks.stone_slab, 0)}, new ItemStack(BlockLoader.cheesePress));
 		this.putRecipe("knife", new Object[] {"ii ", "ii ", " j ", 'i', Items.iron_ingot, 'j', Items.stick}, new ItemStack(ItemLoader.knife, 1));
-		this.putRecipe("cheeseslice", new ItemStack(ItemLoader.cheeseSlice, 8), new ItemStack(ItemLoader.knife, 1, 32767), new ItemStack(ItemLoader.cheeseWheel, 1));
+		this.putRecipe("cheeseslice", new Object[] {"ik ", "   ", "   ", 'i', ItemLoader.cheeseWheel, 'k',  ItemLoader.knife}, new ItemStack(ItemLoader.cheeseSlice, 8));
+		this.putRecipe("sausage", new Object[] {"ik ", "   ", "   ", 'i', Items.porkchop, 'k',  ItemLoader.knife}, new ItemStack(ItemLoader.sausage, 2));
+		this.putRecipe("Bread", new Object[] {"ik ", "   ", "   ", 'i', Items.bread, 'k',  ItemLoader.knife}, new ItemStack(ItemLoader.slicedBread, 6));
 		//TODO place the things in here
 		// TODO Auto-generated constructor stub
 	}
@@ -95,10 +97,10 @@ public class CRPageCraftGet {
         }
 
 
-        HashMap hashmap;
+        HashMap<Character, ItemStack> hashmap;
 
 
-        for (hashmap = new HashMap(); i < par2ArrayOfObj.length; i += 2)
+        for (hashmap = new HashMap<Character, ItemStack>(); i < par2ArrayOfObj.length; i += 2)
         {
             Character character = (Character)par2ArrayOfObj[i];
             ItemStack itemstack1 = null;
@@ -148,7 +150,7 @@ public class CRPageCraftGet {
 
 	}
 	public void putRecipe(String itemname, ItemStack out, ItemStack... par2ArrayOfObj){
-		ArrayList arraylist = new ArrayList();
+		ArrayList<ItemStack> arraylist = new ArrayList<ItemStack>();
         Object[] aobject = par2ArrayOfObj;
         int i = par2ArrayOfObj.length;
 

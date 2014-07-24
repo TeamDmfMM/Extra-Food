@@ -6,29 +6,39 @@ import java.util.Random;
 import javax.swing.Icon;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockSapling;
+import net.minecraft.block.IGrowable;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenCanopyTree;
+import net.minecraft.world.gen.feature.WorldGenForest;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
+import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
+import net.minecraft.world.gen.feature.WorldGenSavannaTree;
+import net.minecraft.world.gen.feature.WorldGenTaiga2;
+import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dmf444.ExtraFood.Core.BananaWorldGenTrees;
+import dmf444.ExtraFood.Common.WorldGen.BananaWorldGenTrees;
 import dmf444.ExtraFood.Core.EFTabs;
 
-public class BananaTreeSapling extends BlockSapling
+public class BananaTreeSapling extends BlockBush implements IGrowable
 {
     public static final String[] WOOD_TYPES = new String[] {"banana"};
-    @SideOnly(Side.CLIENT)
-    private IIcon[] saplingIcon;
+    private static IIcon[] saplingIcon;
+    //private static final String __OBFID = "CL_00000305";
 
-    public BananaTreeSapling()
+    protected BananaTreeSapling()
     {
-        super();
         float f = 0.4F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setCreativeTab(EFTabs.INSTANCE);
@@ -37,101 +47,209 @@ public class BananaTreeSapling extends BlockSapling
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        if (!par1World.isRemote)
+        if (!p_149674_1_.isRemote)
         {
-            super.updateTick(par1World, par2, par3, par4, par5Random);
+            super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
 
-            if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0)
+            if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 9 && p_149674_5_.nextInt(7) == 0)
             {
-                this.markOrGrowMarked(par1World, par2, par3, par4, par5Random);
+                this.func_149879_c(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
             }
         }
     }
 
-    @SideOnly(Side.CLIENT)
-
     /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+     * Gets the block's texture. Args: side, meta
      */
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int par1, int par2)
     {
-        p_149691_2_ &= 7;
-        return saplingIcon[MathHelper.clamp_int(p_149691_2_, 0, 5)];
+    	par2 &= 3;
+        return this.saplingIcon[par2];
     }
-    public void markOrGrowMarked(World par1World, int par2, int par3, int par4, Random par5Random)
+
+    public void func_149879_c(World p_149879_1_, int p_149879_2_, int p_149879_3_, int p_149879_4_, Random p_149879_5_)
     {
-        int l = par1World.getBlockMetadata(par2, par3, par4);
+        int l = p_149879_1_.getBlockMetadata(p_149879_2_, p_149879_3_, p_149879_4_);
 
         if ((l & 8) == 0)
         {
-            par1World.setBlockMetadataWithNotify(par2, par3, par4, l | 8, 4);
+            p_149879_1_.setBlockMetadataWithNotify(p_149879_2_, p_149879_3_, p_149879_4_, l | 8, 4);
         }
         else
         {
-            this.growTree(par1World, par2, par3, par4, par5Random);
+            this.func_149878_d(p_149879_1_, p_149879_2_, p_149879_3_, p_149879_4_, p_149879_5_);
         }
     }
 
-    /**
-     * Attempts to grow a sapling into a tree
-     */
-    public void growTree (World world, int x, int y, int z, Random random)
+    public void func_149878_d(World p_149878_1_, int p_149878_2_, int p_149878_3_, int p_149878_4_, Random p_149878_5_)
     {
-        int md = world.getBlockMetadata(x, y, z) % 8;
-        world.setBlock(x, y, z, Blocks.air);
-        WorldGenerator obj = null;
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(p_149878_1_, p_149878_5_, p_149878_2_, p_149878_3_, p_149878_4_)) return;
+        int l = p_149878_1_.getBlockMetadata(p_149878_2_, p_149878_3_, p_149878_4_) & 7;
+        Object object = p_149878_5_.nextInt(10) == 0 ? new WorldGenBigTree(true) : new BananaWorldGenTrees(false, 6, 3, 3, true);
+        int i1 = 0;
+        int j1 = 0;
+        boolean flag = false;
 
+        switch (l)
+        {
+            case 0:
+            default:
+                break;
+            case 1:
+                label78:
 
-        obj = new BananaWorldGenTrees(false, 6, 3, 3, true);
+                for (i1 = 0; i1 >= -1; --i1)
+                {
+                    for (j1 = 0; j1 >= -1; --j1)
+                    {
+                        if (this.func_149880_a(p_149878_1_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1, 1) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1, 1) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1 + 1, 1) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1 + 1, 1))
+                        {
+                            object = new WorldGenMegaPineTree(false, p_149878_5_.nextBoolean());
+                            flag = true;
+                            break label78;
+                        }
+                    }
+                }
 
+                if (!flag)
+                {
+                    j1 = 0;
+                    i1 = 0;
+                    object = new WorldGenTaiga2(true);
+                }
 
-        if (!(obj.generate(world, random, x, y, z)))
-            world.setBlock(x, y, z, this, md + 8, 3);
+                break;
+            case 2:
+                object = new BananaWorldGenTrees(false, 6, 3, 3, true);
+                break;
+            case 3:
+                label93:
+
+                for (i1 = 0; i1 >= -1; --i1)
+                {
+                    for (j1 = 0; j1 >= -1; --j1)
+                    {
+                        if (this.func_149880_a(p_149878_1_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1, 3) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1, 3) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1 + 1, 3) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1 + 1, 3))
+                        {
+                            object = new WorldGenMegaJungle(true, 10, 20, 3, 3);
+                            flag = true;
+                            break label93;
+                        }
+                    }
+                }
+
+                if (!flag)
+                {
+                    j1 = 0;
+                    i1 = 0;
+                    object = new BananaWorldGenTrees(false, 6, 3, 3, true);
+                }
+
+                break;
+            case 4:
+                object = new BananaWorldGenTrees(true);
+                break;
+            case 5:
+                label108:
+
+                for (i1 = 0; i1 >= -1; --i1)
+                {
+                    for (j1 = 0; j1 >= -1; --j1)
+                    {
+                        if (this.func_149880_a(p_149878_1_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1, 5) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1, 5) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1 + 1, 5) && this.func_149880_a(p_149878_1_, p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1 + 1, 5))
+                        {
+                            object = new WorldGenCanopyTree(true);
+                            flag = true;
+                            break label108;
+                        }
+                    }
+                }
+
+                if (!flag)
+                {
+                    return;
+                }
+        }
+
+        Block block = Blocks.air;
+
+        if (flag)
+        {
+            p_149878_1_.setBlock(p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1, block, 0, 4);
+            p_149878_1_.setBlock(p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1, block, 0, 4);
+            p_149878_1_.setBlock(p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1 + 1, block, 0, 4);
+            p_149878_1_.setBlock(p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1 + 1, block, 0, 4);
+        }
+        else
+        {
+            p_149878_1_.setBlock(p_149878_2_, p_149878_3_, p_149878_4_, block, 0, 4);
+        }
+
+        if (!((WorldGenerator)object).generate(p_149878_1_, p_149878_5_, p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1))
+        {
+            if (flag)
+            {
+                p_149878_1_.setBlock(p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1, this, l, 4);
+                p_149878_1_.setBlock(p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1, this, l, 4);
+                p_149878_1_.setBlock(p_149878_2_ + i1, p_149878_3_, p_149878_4_ + j1 + 1, this, l, 4);
+                p_149878_1_.setBlock(p_149878_2_ + i1 + 1, p_149878_3_, p_149878_4_ + j1 + 1, this, l, 4);
+            }
+            else
+            {
+                p_149878_1_.setBlock(p_149878_2_, p_149878_3_, p_149878_4_, this, l, 4);
+            }
+        }
     }
 
+    public boolean func_149880_a(World p_149880_1_, int p_149880_2_, int p_149880_3_, int p_149880_4_, int p_149880_5_)
+    {
+        return p_149880_1_.getBlock(p_149880_2_, p_149880_3_, p_149880_4_) == this && (p_149880_1_.getBlockMetadata(p_149880_2_, p_149880_3_, p_149880_4_) & 7) == p_149880_5_;
+    }
 
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
-    public int damageDropped(int par1)
+    public int damageDropped(int p_149692_1_)
     {
-        return par1 & 3;
+        return MathHelper.clamp_int(p_149692_1_ & 7, 0, 5);
     }
-
-    @SideOnly(Side.CLIENT)
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks(Block par1, CreativeTabs par2CreativeTabs, List par3List)
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs par2, List par3)
     {
-        par3List.add(new ItemStack(par1, 1, 0));
+        par3.add(new ItemStack(item, 1, 0));
+
     }
 
-    //@SideOnly(Side.CLIENT)
-
-    /**
-     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
-     * is the only chance you get to register icons.
-     */
-    /*public void registerIcons(IIconRegister par1IconRegister)
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister par1)
     {
-        this.saplingIcon = new IIcon[WOOD_TYPES.length];
+    	this.saplingIcon = new IIcon[WOOD_TYPES.length];
 
         for (int i = 0; i < this.saplingIcon.length; ++i)
         {
-            this.saplingIcon[i] = par1IconRegister.registerIcon("extrafood:ban_" + WOOD_TYPES[i]);
-        }
-    }*/
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister p_149651_1_)
-    {
-        for (int i = 0; i < saplingIcon.length; ++i)
-        {
-        	saplingIcon[i] = p_149651_1_.registerIcon(this.getTextureName() + "_" + WOOD_TYPES[i]);
+            this.saplingIcon[i] = par1.registerIcon("extrafood:Sapling_" + WOOD_TYPES[i]);
         }
     }
 
+    public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
+    {
+        return true;
+    }
+
+    public boolean func_149852_a(World world, Random rand, int x, int y, int z)
+    {
+        return (double)world.rand.nextFloat() < 0.45D;
+    }
+
+    public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
+    {
+        this.func_149879_c(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, p_149853_2_);
+    }
 }

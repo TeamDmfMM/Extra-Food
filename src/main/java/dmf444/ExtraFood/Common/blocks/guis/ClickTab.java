@@ -22,15 +22,17 @@ public int y;
 
 public String pagename;
 public String[] pre;
+public int type = 0;
 
-	public ClickTab(int par1, int par2, int par3, int par4, int par5, String par6Str, int par7, int par8, ItemStack is, String name) {
+	public ClickTab(int par1, int par2, int par3, int par4, int par5, String par6Str, int par7, int par8, ItemStack is, String name, int t, String... pre) {
 		super(par1, par2, par3, par4, par5, par6Str);
 		x = par7;
 		y = par8;
 		item = is;
 		this.rinder = new RenderItem();
 		this.pagename = name;
-		this.pre = null;
+		this.pre = pre;
+		this.type = t;
 
 	}
 

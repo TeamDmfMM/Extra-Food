@@ -1,4 +1,4 @@
-package dmf444.ExtraFood.Core;
+package dmf444.ExtraFood.Common.WorldGen;
 
 import java.util.Random;
 
@@ -30,7 +30,7 @@ private void generateSurface(World world, Random random, int x, int z) {
 		int Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
 		int Zcoord1 = z + random.nextInt(16); //where in chunk it generates
 		
-		new BananaWorldGenTrees(false, 6, 3, 3, true).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
+		new BananaWorldGenTrees(false, 6, 3, 0, true).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
 		
 	}
 	

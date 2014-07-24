@@ -1,11 +1,13 @@
 package dmf444.ExtraFood.Common.blocks;
 
+import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.EFTabs;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -18,6 +20,14 @@ public class BlockJuiceBlender extends BlockContainer{
 		this.setCreativeTab(EFTabs.INSTANCE);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z,
+	        EntityPlayer player, int metadata, float what, float these, float are) {
+		player.openGui(ExtraFood.instance, 3, world, x, y, z);
+		return true;
+	}
+
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
@@ -67,5 +77,6 @@ public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase e
  super.onBlockAdded(world, x, y, z);
  this.setDefaultDirection(world, x, y, z, entity);
 }
+
 
 }

@@ -3,6 +3,7 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,9 +11,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 
-public class CheesePressTileEntity extends TileEntity implements IInventory {
+public class CheesePressTileEntity extends TileEntity implements ISidedInventory {
 
     private ItemStack[] inv;
+    private static final int[] slots_top = new int[] {0, 1, 2};
+    private static final int[] slots_bottom = new int[] {0, 1, 2, 3};
+    private static final int[] slots_sides = new int[] {0, 1, 2};
     public int complete = -1;
 	public int ttime;
     
@@ -117,8 +121,10 @@ public class CheesePressTileEntity extends TileEntity implements IInventory {
 
 			@Override
 			public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-				// TODO Auto-generated method stub
-				return false;
+				if(itemstack.getItem() == Items.milk_bucket){
+		        	return true;
+		        }
+		        return false;
 			}
 			public boolean areItemsCorrect(){
 					for (int i = 0; i < 3; i++){
@@ -173,7 +179,6 @@ public class CheesePressTileEntity extends TileEntity implements IInventory {
 			}
 
 		
-
 			@Override
 			public boolean hasCustomInventoryName() {
 				// TODO Auto-generated method stub
@@ -181,15 +186,26 @@ public class CheesePressTileEntity extends TileEntity implements IInventory {
 			}
 
 			@Override
-			public void openInventory() {
-				// TODO Auto-generated method stub
-				
+			public void openInventory() {}
+
+			@Override
+			public void closeInventory() {}
+
+			@Override
+			public int[] getAccessibleSlotsFromSide(int par1) {
+				return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
 			}
 
 			@Override
-			public void closeInventory() {
-				// TODO Auto-generated method stub
-				
+			public boolean canInsertItem(int slot, ItemStack item, int side)
+		    {
+				return this.isItemValidForSlot(slot, item);
+		        
+		    }
+
+			@Override
+			public boolean canExtractItem(int slot, ItemStack item, int side) {
+				return item.getItem() == ItemLoader.cheeseWheel || item.getItem() == Items.bucket;
 			}
 			
 }

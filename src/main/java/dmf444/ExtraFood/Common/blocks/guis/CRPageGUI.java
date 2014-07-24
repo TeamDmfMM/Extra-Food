@@ -23,17 +23,21 @@ int page = 0;
 String pagen;
 GuiButton backpage;
 GuiButton backGUI;
+boolean Morethanone;
+int pagesAllowed;
 
 
 
 
- public CRPageGUI(String pagename) {
+ public CRPageGUI(String pagename, Boolean multipg, int multiplePG) {
 
 	 //This will be used to call the name of the page from the .lang file
 	pageTextFrom = StatCollector.translateToLocal("cookbook." + pagename);
 	this.items = ExtraFood.crafterPage.getArray(pagename);
 	this.irender = new RenderItem();
 	pagen = pagename;
+	this.Morethanone = multipg;
+	this.pagesAllowed = multiplePG;
 }
 
  public void drawScreen(int par1, int par2, float par3) {
@@ -62,8 +66,10 @@ GuiButton backGUI;
      int i = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
      if (StatCollector.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
+    	 if(Morethanone){
      this.buttonList.add(this.next = new ButtonNextPageGUI(0, i + 221, j + 160, true));
 	 this.buttonList.add(this.backpage = new ButtonNextPageGUI(1, i + 13, j + 160, false));
+    	}
 	 this.buttonList.add(this.backGUI = new ButtonBackGUI(2, i + 6, j + 2, false));
      }
  }
@@ -149,23 +155,13 @@ public void renderItems() {
 			}
 			   //Itemstack 9 is the output slot
 			if (items[9] != null){
-				GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x + 19, y - 44);
+				GL11.glDisable(GL11.GL_LIGHTING);
+				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x + 19, y - 44);
+				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x + 19, y - 44);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 
 			GL11.glEnable(GL11.GL_LIGHTING);
-/*
-			GL11.glDisable(GL11.GL_LIGHTING);
-			int a;
-			for(a = 0; a < 1; a++){
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), i, x - 4, y);
-			x += 22;
-			}
-			
-			GL11.glEnable(GL11.GL_LIGHTING);
-
-*/
 		}
 
 	}
@@ -173,13 +169,14 @@ public void renderItems() {
 	}
  public void actionPerformed(GuiButton button){
 	if (button.id == 0){
+		if(page < pagesAllowed){
 		page++;
-		if (StatCollector.translateToLocal("cookbook." + pagen + page) != "cookbook." + pagen + page){
+		//if (StatCollector.translateToLocal("cookbook." + pagen + page) != "cookbook." + pagen + page){
 		this.pageTextFrom = StatCollector.translateToLocal(StatCollector.translateToLocal("cookbook." + pagen + page));
 		}
-		else {
-			page--;
-		}
+		//else {
+		//	page--;
+		//}
 	}
 	if (button.id == 1){
 		page--;

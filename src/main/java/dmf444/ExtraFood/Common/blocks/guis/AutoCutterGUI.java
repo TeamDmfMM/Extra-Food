@@ -11,7 +11,6 @@ import org.lwjgl.opengl.GL11;
 
 import dmf444.ExtraFood.Common.blocks.container.AutoCutterContainer;
 import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
-import dmf444.ExtraFood.Core.FontLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 
 
@@ -29,7 +28,7 @@ AutoCutterTileEntity te;
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
             //draw text and stuff here
             //the parameters for drawString are: string, x, y, color
-            fontRendererObj.drawString("Auto Cutter", 8, 6, 4210752);
+            fontRendererObj.drawString(StatCollector.translateToLocal("gui.AC"), 8, 6, 4210752);
             //draws "Inventory" or your regional equivalent
             fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
@@ -38,7 +37,6 @@ AutoCutterTileEntity te;
     protected void drawGuiContainerBackgroundLayer(float par1, int par2,
                     int par3) {
             //draw your Gui here, only thing you need to change is the path
-    	ResourceLocation r = new ResourceLocation("extrafood", "textures/gui/Auto_Cutter.png");
     	GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     		this.mc.renderEngine.bindTexture(GuiLib.ACgui);            
     		int x = (width - xSize) / 2;

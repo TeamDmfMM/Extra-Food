@@ -12,4 +12,5 @@ public class GuiLib {
     public static final ResourceLocation CBback = new ResourceLocation(i, "textures/gui/cookbook_background1.png");
     public static final ResourceLocation CBopen = new ResourceLocation(i, "textures/gui/book_texture.png");
     public static final ResourceLocation CBcraftgrid = new ResourceLocation(i, "textures/gui/craftingbookGUI1.png");
+    public static final ResourceLocation JBgui = new ResourceLocation(i, "textures/gui/Juice_Blender.png");
 }
