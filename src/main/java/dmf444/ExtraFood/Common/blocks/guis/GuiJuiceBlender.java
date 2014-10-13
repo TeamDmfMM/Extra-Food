@@ -104,7 +104,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		
 		if (this.shouldShowToolTip()){
 			List<String> list = new ArrayList<String>();
-			list.add("Fluid: " + this.te.tank.getFluid().getFluid().getName());
+			list.add("Fluid: " + this.te.tank.getFluid().getFluid().getLocalizedName(this.te.tank.getFluid()));
 			list.add("Amount: " + te.tank.getFluidAmount() + "mB");
 			this.drawHoveringText(list, x + this.mousex, y + this.mousey, fontRendererObj);
 		}

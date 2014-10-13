@@ -4,6 +4,7 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,10 +24,13 @@ import dmf444.ExtraFood.util.EFLog;
 
 
 
-public class TileEntityJuiceBlender extends TileEntity implements IInventory, IFluidHandler {
+public class TileEntityJuiceBlender extends TileEntity implements ISidedInventory, IFluidHandler {
 
 
 	public FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 5);
+    private static final int[] slots_top = new int[] {0};
+    private static final int[] slots_bottom = new int[] {2};
+    private static final int[] slots_sides = new int[] {1};
 
 
 	public ItemStack[] items;
@@ -151,18 +155,14 @@ public class TileEntityJuiceBlender extends TileEntity implements IInventory, IF
 
 
 	@Override
-	public boolean isItemValidForSlot(int par1_, ItemStack par2_) {
-		// TODO Auto-generated method stub
-		return true;
+	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
+		if (slot == 0 && itemstack.getItem() != Items.bucket){
+			return true;
+		} else if (slot == 1 && itemstack.getItem() == Items.bucket){
+			return true;
+		}
+		return false;
 	}
-
-
-
-
-
-
-
-
 
 
 	  @Override
@@ -178,7 +178,7 @@ public class TileEntityJuiceBlender extends TileEntity implements IInventory, IF
 	    }
 	  public boolean ok(){
 		  if (JuiceRegistry.instance.getJuiceFromItemStack(this.items[0]) != null){
-			  if (this.juice != null){
+			  if (this.tank.getFluid() != null){
 				  if (this.tank.getFluid().getFluid() == JuiceRegistry.instance.getJuiceFromItemStack(this.items[0])){
 					  return true;
 				  }
@@ -238,6 +238,9 @@ public class TileEntityJuiceBlender extends TileEntity implements IInventory, IF
 						  this.items[2] = new ItemStack(ItemLoader.bucketcarrot, 1);
 						  this.tank.drain(1000, true);
 					  }
+					  if (items[1].stackSize == 0){
+					        this.items[1] = null;
+					  }
 				  }
 			  }
 		  }
@@ -267,6 +270,7 @@ public class TileEntityJuiceBlender extends TileEntity implements IInventory, IF
 
 
 	}
+
 	 public void writeToNBT(NBTTagCompound tag){
 		NBTTagList t = new NBTTagList();
 		int s = 0;
@@ -316,8 +320,8 @@ public class TileEntityJuiceBlender extends TileEntity implements IInventory, IF
 		}
         super.readFromNBT(tag);
         this.tank.readFromNBT(tag);
-        this.amountin = tank.getFluidAmount();
-        this.myjuice = tank.getFluid();
+        //this.amountin = tank.getFluidAmount();
+        //this.myjuice = tank.getFluid();
 	    //EFLog.error(tank.getFluidAmount());
 	}
 
@@ -370,6 +374,28 @@ public class TileEntityJuiceBlender extends TileEntity implements IInventory, IF
         return new FluidTankInfo[] { tank.getInfo() };
 	}
 
+
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int par1) {
+		return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
+	}
+
+
+
+	@Override
+	public boolean canInsertItem(int slot, ItemStack item, int side){
+		
+		return this.isItemValidForSlot(slot, item);
+	}
+
+
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack item, int side)
+    {
+        return side != 0 || slot != 1 || item.getItem() == ItemLoader.bucketcarrot ||item.getItem() == ItemLoader.bucketbanana || item.getItem() == ItemLoader.bucketstrawberry;
+    }
 
 
 }

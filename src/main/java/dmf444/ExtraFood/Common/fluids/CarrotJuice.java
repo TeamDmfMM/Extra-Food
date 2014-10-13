@@ -10,30 +10,28 @@ import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.lib.ModInfo;
+import dmf444.ExtraFood.util.RenderIcon;
 
 public class CarrotJuice extends BlockFluidClassic {
 
-    @SideOnly(Side.CLIENT)
-    protected IIcon stillIcon;
-    @SideOnly(Side.CLIENT)
-    protected IIcon flowingIcon;
     
     public CarrotJuice(Fluid fluid, Material material) {
             super(fluid, material);
-            this.setCreativeTab(EFTabs.INSTANCE);
+            
             
     }
     
     @Override
     public IIcon getIcon(int side, int meta) {
-            return (side == 0 || side == 1)? stillIcon : flowingIcon;
+    	return side <= 1 ? RenderIcon.getIcon("Fluid" + "CarrotJuice") : RenderIcon.getIcon("Fluid" + "CarrotJuice", 1);
     }
     
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-            stillIcon = register.registerIcon("extrafood:CarrotJuice_still");
-            flowingIcon = register.registerIcon("extrafood:CarrotJuice_flow");
+    	RenderIcon.addIcon("Fluid" + "CarrotJuice",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "CarrotJuice" + "_Still"));
+    	RenderIcon.addIcon("Fluid" + "CarrotJuice" + "1",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "CarrotJuice" + "_Flow"));
     }
     
     @Override

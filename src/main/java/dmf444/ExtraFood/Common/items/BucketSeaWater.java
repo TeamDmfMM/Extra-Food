@@ -18,7 +18,7 @@ public class BucketSeaWater extends ItemBucket{
 	private float SaturationLvl;
 
 	public BucketSeaWater(int foodBar, float saturation) {
-		super(Blocks.water);
+		super(Blocks.flowing_water);
 		this.setCreativeTab(EFTabs.INSTANCE);
 		this.setTextureName("minecraft:bucket_water");
 		this.setUnlocalizedName(ItemLib.iBSW);

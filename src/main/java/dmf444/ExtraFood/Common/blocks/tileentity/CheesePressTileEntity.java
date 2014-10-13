@@ -144,22 +144,27 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
 					return true;
 			}
 			public void makeCheese(){
-				if (!this.worldObj.isRemote){
-				this.decrStackSize(0, 1);
-				this.decrStackSize(1, 1);
-				this.decrStackSize(2, 1);
+				//if (!this.worldObj.isRemote){
+				//this.decrStackSize(0, 1);
+				//this.decrStackSize(1, 1);
+				//this.decrStackSize(2, 1);
+				this.inv[0] = null;
+				this.inv[1] = null;
+				this.inv[2] = null;
+				if(inv[0] == null && inv[1] == null && inv[2] == null){
 				ItemStack ist = new ItemStack(Items.bucket, 1);
-				for (int i = 0; i< 3; i++){
-					this.setInventorySlotContents(i, ist);
+					for (int i = 0; i< 3; i++){
+						this.inv[i] = ist.copy();
+					}
 				}
-				if (this.getStackInSlot(3) != null){
-					this.getStackInSlot(3).stackSize += 1;
+				if (this.inv[3] != null){
+					this.inv[3].stackSize += 1;
 				}
 				else {
 					ItemStack is = new ItemStack(ItemLoader.cheeseWheel, 1);
-					this.setInventorySlotContents(3, is);
+					this.inv[3] = is.copy();
 					}
-				}
+				//}
 			}
 			@Override
 			public void updateEntity(){

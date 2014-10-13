@@ -16,7 +16,10 @@ public class StanFood extends ItemFood {
 		super(foodBar, saturation, WolfFood);
 		this.setCreativeTab(EFTabs.INSTANCE);
 	}
-	
+	public StanFood(int foodBar, float saturation){
+		super(foodBar, saturation, false);
+		this.setCreativeTab(EFTabs.INSTANCE);
+	}
 
 
     @Override

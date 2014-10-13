@@ -25,6 +25,7 @@ import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
 import dmf444.ExtraFood.Common.RecipeHandler.CookbookTab;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
+import dmf444.ExtraFood.Common.blocks.guis.cookbook.BTPageGUI;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -40,12 +41,12 @@ public class CookBookGUI extends GuiScreen {
 	    private int px;
 	    private int py;
 	    private int x;
-	    public String tab = "generic";
+	    public String tab = "GettingStarted";
 	    private int y;
 
 	    private int iox = 15;
-	    private int yox = 50;
-	    
+	    private int yox = 30;//50
+	   
 	    //mincrmatt12 button vars
 	    private ArrayList<ClickTab> buttons;
 	    
@@ -60,8 +61,8 @@ public class CookBookGUI extends GuiScreen {
 
     /** The right y coordinate of the achievement map */
     private static final int guiMapRight = maxDisplayRow * 24 - 77;
-    protected static int achievementsPaneWidth = 256;
-    protected static int achievementsPaneHeight = 202;
+    private static int achievementsPaneWidth = 256;
+    public static int achievementsPaneHeight = 202;
     
     private int isMouseButtonDown;
     /** The x position of the achievement map */
@@ -79,6 +80,8 @@ public class CookBookGUI extends GuiScreen {
     protected int mouseY;
     protected double field_74117_m;
     protected double field_74115_n;
+    private int mousey;
+	private int mousex;
     
     public static final int GUI_ID = 10;
     
@@ -124,17 +127,76 @@ public class CookBookGUI extends GuiScreen {
             }
             
             this.drawDefaultBackground();
-            this.genDasBookBackground(par1, par2, par3);     
+            this.genDasBookBackground(par1, par2, par3);    
+            this.genDasButtons(par1, par2, par3);
             this.genDasBorder(par1, par2, par3);
             this.drawTitle();
+            this.drawHoverers();
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_DEPTH_TEST);
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
+           
     	}
 
 
     }
+    private void drawHoverers() {
+    	int i1 = (this.width - this.achievementsPaneWidth) / 2;
+	    int j1 = (this.height - this.achievementsPaneHeight) / 2;
+	    int sx = -26;
+    	int sy = 0;
+		// TODO Auto-generated method stub
+    	/*for (ClickTab tab : CookbookButtonLoader.bookButton.getButtons(this.tab)){
+        	if (tab.x * 22 > iox && tab.x * 22 < this.achievementsPaneWidth - 2 + iox){
+        		if (tab.y * 22 > yox && tab.y * 22 < this.achievementsPaneHeight - 2 + yox){
+        			if (tab.mousePressed(mc, mousex, mousey)){
+        				List lines = new ArrayList<String>();
+        				String pagename;
+        				if (StatCollector.canTranslate("cookbook.tabname." + tab.pagename)){
+        					pagename = StatCollector.translateToLocal("cookbook.tabname." + tab.pagename);
+        				}
+        				else {
+        					pagename = tab.pagename;
+        				}
+        				
+        				
+        				lines.add(pagename);
+        				this.drawHoveringText(lines, mousex, mousey, fontRendererObj);
+        			}
+        				
+        				
+        				
+        	}
+        	}
+    	}*/
+    
+    		for (CookbookTab cookbooktab : CookbookButtonLoader.bookButton.buttons){
+        		int cx = i1 + sx;
+        		int cy = j1 + sy;
+        		if (mousex >= cx && mousex <= cx + 26){
+        			if (mousey >= cy && mousey <= cy + 26){
+        				List lines = new ArrayList<String>();
+        				String pagename;
+        				if (StatCollector.canTranslate("cookbook.tabname." + cookbooktab.name)){
+        					pagename = StatCollector.translateToLocal("cookbook.tabname." + cookbooktab.name);
+        				}
+        				else {
+        					pagename = cookbooktab.name;
+        				}
+        				
+        				
+        				lines.add(pagename);
+        				this.drawHoveringText(lines, mousex, mousey, fontRendererObj);
+        			}
+        		}
+        		sy += 27;
+        	}
+    	
+	}
+
+
+
     
     protected void drawTitle()
     {
@@ -157,6 +219,34 @@ public class CookBookGUI extends GuiScreen {
         this.drawTexturedModalRect(i1, j1, 0, 0, this.achievementsPaneWidth, this.achievementsPaneHeight);
         GL11.glEnable(GL11.GL_LIGHTING);      
         GL11.glDisable(GL11.GL_BLEND);
+    }
+    public void handleMouseInput(){
+    	int x = Mouse.getEventX() * width / mc.displayWidth;
+    	int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
+    	this.mousex = x;
+    	this.mousey = y;
+    	super.handleMouseInput();
+    }
+    protected void genDasButtons(int par1, int par2, float par3){
+        int i1 = (this.width - this.achievementsPaneWidth) / 2;
+        int j1 = (this.height - this.achievementsPaneHeight) / 2;  
+    	for (ClickTab tab : CookbookButtonLoader.bookButton.getButtons(this.tab)){
+        	if (tab.x * 22 > iox - 4 /*LEFT*/ && tab.x * 22 < this.achievementsPaneWidth - 23 /*RIGHT*/ + iox){
+        		if (tab.y * 22 > yox - 4 /*TOP*/  && tab.y * 22 < this.achievementsPaneHeight - 23 /*BOTTOM*/ + yox){ //2
+        			tab.xPosition = i1 + 2 + (tab.x * 22) + -iox;
+        			tab.yPosition = j1 + 2 + (tab.y * 22) + -yox;
+        			
+        			tab.drawButton(mc, 0, 0);
+        			}
+        		}
+    	  }
+    		int sy = 0;
+            int sx = -28;
+            for (CookbookTab cookbooktab : CookbookButtonLoader.bookButton.buttons){
+            	cookbooktab.drawButton(mc, i1 + sx, j1 + sy, this);
+            	sy += 28;
+            
+        }
     }
     
     protected void genDasBookBackground(int par1, int par2, float par3)
@@ -183,7 +273,7 @@ public class CookBookGUI extends GuiScreen {
         {
             l = guiMapRight - 1;
         }
-
+        GL11.glColor4d(1, 1, 1, 1);
         int i1 = (this.width - this.achievementsPaneWidth) / 2;
         int j1 = (this.height - this.achievementsPaneHeight) / 2;
         int k1 = i1 + 16;
@@ -230,11 +320,7 @@ public class CookBookGUI extends GuiScreen {
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         for (ClickTab tab : CookbookButtonLoader.bookButton.getButtons(this.tab)){
-        	if (tab.x * 22 > iox && tab.x * 22 < this.achievementsPaneWidth - 30 + iox){
-        		if (tab.y * 22 > yox - 2  && tab.y * 22 < this.achievementsPaneHeight - 22 + yox){ //2
-        			tab.xPosition = i1 + 2 + (tab.x * 22) + -iox;
-        			tab.yPosition = j1 + 2 + (tab.y * 22) + -yox;
-        			for (ArrayList<int[]> xps : CookbookButtonLoader.bookButton.getXYCoordsOfLineForButton(tab.pagename, this.tab)){
+        	for (ArrayList<int[]> xps : CookbookButtonLoader.bookButton.getXYCoordsOfLineForButton(tab.pagename, this.tab)){
         				float x1 = xps.get(0)[0] + 0.1F;
         				float y1 = xps.get(0)[1] + 0.1F;
         				float x2 = xps.get(1)[0];
@@ -244,31 +330,35 @@ public class CookBookGUI extends GuiScreen {
         				if (x1 < x2){
         		             bx = (int) (i1 + 2 + (x2 * 22) + -iox + 30);
         		             x1 += 0.85F;
-        		             x2 += 0.6;
+        		             x2 += 0.2;
         		             y2 -= 0.1F;
         		             
         		            } else if(x1 == x2 + 0.1F){
         		            	bx = (int) (i1 + 2 + (x2 * 22) + -iox - 30);
         		            	x2 += 0.1F;
-        		            	y1 -= 0.1F;
+        		            	y1 -= 0.0F;
         		            }
         		            else {
         		             bx = (int) (i1 + 2 + (x1 * 22) + -iox + - 30);
-        		             y2 -= 0.1F;
-        		             x2 += 1F;
+        		             y2 -= 0.2F;
+        		             x2 += 0.9F;
         		            }
         		            if (y1 < y2){
         		             by = (int) (j1 + 2 + (y2 * 22) + -yox + 30);
-        		             y1 += 0.9F;
-        		             y2 += 0.6;
+        		             y1 += 0.5F;
+        		             y2 += 0.4;
         		             
         		            }
         		            else {
         		             by = (int) (j1 + 2 + (y1 * 22) + -yox + 15);
-        		             y2 += 1;
+        		             y2 += 0.8;
         		            }
-        				if (x1 * 22 > iox && x1 * 22 < this.achievementsPaneWidth - 2 + iox && x2 * 22 > iox && x2 * 22 < this.achievementsPaneWidth - 17 + iox){ //2
-        	        		if (y1 * 22 > yox && y1 * 22 < this.achievementsPaneHeight - 20 + yox && y2 * 22 > yox && y2 * 22 < this.achievementsPaneHeight - 20 + yox){
+        		            /*
+        		             * CHANGE THIS TO MAKE ALL THE LINES WORK!!!!!!
+        		             * 
+        		             */
+        				if (x1 * 22 > iox && x1 * 22 < this.achievementsPaneWidth - 1 + iox && x2 * 22 > iox && x2 * 22 < this.achievementsPaneWidth - 4/*RIGHT*/ + iox){ //2
+        	        		if (y1 * 22 > yox && y1 * 22 < this.achievementsPaneHeight - 1 /*BOTTOM*/ + yox && y2 * 22 > yox && y2 * 22 < this.achievementsPaneHeight - 15 /*LEFT*/ + yox){
         	        			x1 = i1 + 2 + (x1 * 22) + -iox;
         	        			x2 = i1 + 2 + (x2 * 22) + -iox;
         	        			y1 = j1 + 2 + (y1 * 22) + -yox;
@@ -278,19 +368,11 @@ public class CookBookGUI extends GuiScreen {
         				}
         				
         			}
-        			tab.drawButton(mc, 0, 0);
-        			}
-        		}
         	}
-            int sy = 0;
-            int sx = -28;
-            for (CookbookTab cookbooktab : CookbookButtonLoader.bookButton.buttons){
-            	cookbooktab.drawButton(mc, i1 + sx, j1 + sy, this);
-            	sy += 28;
-            
-        }
         super.drawScreen(par1, par2, par3);
     }
+
+       
 
 
     
@@ -327,62 +409,61 @@ public class CookBookGUI extends GuiScreen {
         	if (tab.x * 22 > iox && tab.x * 22 < this.achievementsPaneWidth - 2 + iox){
         		if (tab.y * 22 > yox && tab.y * 22 < this.achievementsPaneHeight - 2 + yox){
         			if (tab.mousePressed(mc, par1, par2)){
-        				if (tab.type == 0){
-        				this.mc.displayGuiScreen(new CRPageGUI(tab.pagename, CookbookButtonLoader.bookButton.DoesHaveMultiPage(tab.pagename), CookbookButtonLoader.bookButton.NumOfPages(tab.pagename)));
-        				} else if (tab.type == 1){
         					this.mc.displayGuiScreen(new BTPageGUI(tab.pagename, CookbookButtonLoader.bookButton.DoesHaveMultiPage(tab.pagename), CookbookButtonLoader.bookButton.NumOfPages(tab.pagename)));
         				}
-        			}
-        		}
         	}
     	}
-        	int sx = -22;
+        	int sx = -26;
         	int sy = 0;
         	for (CookbookTab tabby : CookbookButtonLoader.bookButton.buttons){
         		int cx = i1 + sx;
         		int cy = j1 + sy;
-        		if (par1 >= cx && par1 <= cx + 22){
-        			if (par2 >= cy && par2 <= cy + 22){
+        		if (par1 >= cx && par1 <= cx + 26){
+        			if (par2 >= cy && par2 <= cy + 26){
         				this.tab = tabby.name;
         			}
         		}
-        		sy += 23;
-
-    	}
+        		sy += 27;
+        	}
+        }
+    	
     }
     
     private void plotCurve(double startX, double startY, int bezierX, int bezierY, double endX, double endY){
     	Tessellator tess = Tessellator.instance;
     	GL11.glPushMatrix();
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);//516
+        //GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);//516
         GL11.glDisable(GL11.GL_TEXTURE_2D);//3553
         GL11.glEnable(GL11.GL_BLEND);//3042
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);//770,771
-        GL11.glLineWidth(3F);
+        //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770,771
+        GL11.glLineWidth(3.6F);
         GL11.glEnable(GL11.GL_LINE_SMOOTH);//2848
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST); //3154, 4354
         GL11.glDisable(GL11.GL_LIGHTING);
-        tess.startDrawing(3);
-    	for(double t=0.0;t<=1;t+=0.01)  
+        tess.startDrawing(GL11.GL_LINE_STRIP);
+        tess.setColorRGBA_F(1f, 1f, 1f, 1f);
+    	for(double t=0.0;t<=1;t+=0.09)  
     	{  
     	    int x = (int) (  (1-t)*(1-t)*startX + 2*(1-t)*t*bezierX+t*t*endX);  
     	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);  
     	  
     	    //plot something @  x,y coordinate here...
-    	    tess.setColorRGBA_F(0f, 0f, 0f, 1.0f);
-    	    tess.addVertex(x, y, 0.0d + t * 10);
+    	    tess.setColorRGBA_F(0.0f, 0.0f, 0.3f, 1.0f);
+    	    tess.addVertex(x, y, t);
     	    tess.setBrightness(100);
     	    
     	    
     	}
+    	GL11.glColor4d(1, 1, 1, 1);
+    	tess.setColorRGBA_F(1f, 1f, 1f, 1f);
     	tess.draw();
-    	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);//770, 771
+    	//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770, 771
         GL11.glDisable(GL11.GL_LINE_SMOOTH);//2848
         GL11.glDisable(GL11.GL_BLEND);//3042
-        GL11.glDisable(32826 /*GL_RESCALE_NORMAL_EXT*/);
+        //GL11.glDisable(32826/*GL_RESCALE_NORMAL_EXT*/);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_TEXTURE_2D);//3553
-        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);//516
+        //GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);//516
         GL11.glPopMatrix();
     }
         
@@ -390,6 +471,12 @@ public class CookBookGUI extends GuiScreen {
     	double w = (1-Math.cos(z*Math.PI))/2;
     	return (int) (x*(1-w)+y*w);
     	
+    }
+    public static int getAchievementsPaneWidth(){
+    	return achievementsPaneWidth;
+    }
+    public static void setAchievementsPaneWidth(int achievementsPaneWidth) {
+    	CookBookGUI.achievementsPaneWidth = achievementsPaneWidth;
     }
     
 }

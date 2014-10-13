@@ -14,6 +14,7 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.util.ConfigHandler;
 
 /*
  * @authour SpaceToad
@@ -34,7 +35,9 @@ public class BucketHandler {
     	buckets.put(BlockLoader.Bbananajuice, ItemLoader.bucketbanana);
     	buckets.put(BlockLoader.Bstrawberryjuice, ItemLoader.bucketstrawberry);
     	buckets.put(BlockLoader.Bcarrotjuice, ItemLoader.bucketcarrot);
-    	buckets.put(Blocks.water, ItemLoader.bucketseaWater);
+    	if(ConfigHandler.overrideWater){
+    		buckets.put(Blocks.water, ItemLoader.bucketseaWater);
+    	}
     }
 
 

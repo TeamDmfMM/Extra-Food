@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Core.EFTabs;
 import dmf444.ExtraFood.Core.lib.ModInfo;
-import dmf444.ExtraFood.util.FluidIcon;
+import dmf444.ExtraFood.util.RenderIcon;
 
 public class BananaJuice extends BlockFluidClassic {
 
@@ -27,15 +27,15 @@ public class BananaJuice extends BlockFluidClassic {
     
     @Override
     public IIcon getIcon(int side, int meta) {
-    return side <= 1 ? FluidIcon.getIcon("Fluid" + "BananaJuice") : FluidIcon.getIcon("Fluid" + "BananaJuice", 1);
+    return side <= 1 ? RenderIcon.getIcon("Fluid" + "BananaJuice") : RenderIcon.getIcon("Fluid" + "BananaJuice", 1);
     }
     
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
 
-    	FluidIcon.addIcon("Fluid" + "BananaJuice",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "BananaJuice" + "_Still"));
-    	FluidIcon.addIcon("Fluid" + "BananaJuice" + "1",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "BananaJuice" + "_Flow"));
+    	RenderIcon.addIcon("Fluid" + "BananaJuice",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "BananaJuice" + "_Still"));
+    	RenderIcon.addIcon("Fluid" + "BananaJuice" + "1",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "BananaJuice" + "_Flow"));
 
     }
     

@@ -55,7 +55,7 @@ int pagesAllowed;
 
  protected void drawTextSide() {
 	 //parts = string.split("-")
-     int i = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
+     int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
      this.fontRendererObj.setUnicodeFlag(true);
 	 this.fontRendererObj.drawSplitString(pageTextFrom, i + 28, j + 19, 93, 0x0000000);
@@ -63,7 +63,7 @@ int pagesAllowed;
 	 }
 
  public void initGui(){
-     int i = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
+     int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
      if (StatCollector.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
     	 if(Morethanone){
@@ -76,26 +76,26 @@ int pagesAllowed;
 
 protected void drawBookBackground() {
 	//I decided to use the achivement size, because it kinda just worked!
-	int i1 = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
+	int i1 = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
     int j1 = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
     
     int k1 = j1 - 32;
 	
     GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	this.mc.getTextureManager().bindTexture(GuiLib.CBopen);
-    this.drawTexturedModalRect(i1, j1, 0, 0, CookBookGUI.achievementsPaneWidth, CookBookGUI.achievementsPaneHeight + 50);
+    this.drawTexturedModalRect(i1, j1, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight + 50);
 
 
     this.mc.getTextureManager().bindTexture(GuiLib.CBcraftgrid);
     GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     GL11.glEnable(GL11.GL_BLEND);
-    this.drawTexturedModalRect(i1 + 145, j1 + 26, 0, 0, CookBookGUI.achievementsPaneWidth, CookBookGUI.achievementsPaneHeight);
+    this.drawTexturedModalRect(i1 + 145, j1 + 26, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
     GL11.glDisable(GL11.GL_BLEND);
  }
 
 public void renderItems() {
 	// Render code: this.irender.renderItemAndEffectIntoGUI(fontRendererObj, this.mc.getTextureManager(), items[0], 100, 100);
-	int x = ((this.width - CookBookGUI.achievementsPaneWidth) / 2) + 155 + 4;
+	int x = ((this.width - CookBookGUI.getAchievementsPaneWidth()) / 2) + 155 + 4;
     int y = ((this.height - CookBookGUI.achievementsPaneHeight) / 2) + 35 + 43;
     
 	

@@ -1,7 +1,12 @@
 package dmf444.ExtraFood.Common.blocks;
 
 
+import java.util.ArrayList;
 import java.util.Random;
+
+
+
+
 
 
 import cpw.mods.fml.relauncher.Side;
@@ -10,6 +15,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -24,13 +31,13 @@ import net.minecraftforge.common.util.ForgeDirection;
 import dmf444.ExtraFood.Client.ClientProxy;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.util.RenderIcon;
 
 
 public class StrawberryBush extends Block implements IGrowable {
 
-
-	private static IIcon[] growingTextures;
 
 
 	public StrawberryBush(Material material){
@@ -49,15 +56,15 @@ public class StrawberryBush extends Block implements IGrowable {
 	            if (meta >= 4 && meta < 7)
 	            {
 	                meta = 5;
-	                return this.growingTextures[1];
+	                return RenderIcon.getIcon("Strawberries", 1);
 	            }
 
 
-	            return this.growingTextures[0];
+	            return RenderIcon.getIcon("Strawberries");
 	        }
 	        else
 	        {
-	            return this.growingTextures[2];
+	            return RenderIcon.getIcon("Strawberries", 2);
 	        }
 	}
 
@@ -118,7 +125,39 @@ public class StrawberryBush extends Block implements IGrowable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float what, float these, float are) {
     	int meta = world.getBlockMetadata(x, y, z);
-    	EFLog.info("Current Meta:" + meta);
+    	if (player.inventory.getCurrentItem() != null){
+    		ItemStack is = player.inventory.getCurrentItem();
+    		if (is.getItem() == Items.dye){
+    			if (is.getItemDamage() == 15){
+    				return false;
+    			}
+    		}
+    	}
+    	switch (meta) {
+    	case -1:
+    		return false;
+    	
+    	case 4: case 5: case 6:
+    		if(!world.isRemote){
+    		ItemStack item = new ItemStack(ItemLoader.strawberry, 2);
+    		Entity Ientity = new EntityItem(world, x, y, z, item);
+			world.spawnEntityInWorld(Ientity);
+			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+			return true;
+    		}
+    	case 7: case 8:
+    		if(!world.isRemote){
+    		ItemStack item1 = new ItemStack(ItemLoader.strawberry, 4);
+    		Entity Ientity1 = new EntityItem(world, x, y, z, item1);
+			world.spawnEntityInWorld(Ientity1);
+			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+    		return true;
+    		}
+    	}
+    	return false;
+    }
+    	/*
+    	//EFLog.info("Current Meta:" + meta);
     	if (player.inventory.getCurrentItem() != null){
     		ItemStack is = player.inventory.getCurrentItem();
     		if (is.getItem() == Items.dye){
@@ -130,51 +169,86 @@ public class StrawberryBush extends Block implements IGrowable {
     	switch (meta) {
     	case -1:
     			return false;
-    	case 4: 
-			this.placeDuoInInv(player);
-			world.setBlockMetadataWithNotify(x, y, z, 0, 2);   		
+    			
+    	case 4: case 5: case 6:
+			if(this.isSpaceInInv(player, 2) == true){
+				player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 2));
+				world.setBlockMetadataWithNotify(x, y, z, 0, 2);   		
     			return true;
-    	case 5:
-    		this.placeDuoInInv(player);
-			world.setBlockMetadataWithNotify(x, y, z, 0, 2);   		
-    			return true;
-    	case 6:
-    		this.placeDuoInInv(player);
-			world.setBlockMetadataWithNotify(x, y, z, 0, 2);   		
-    			return true;
-    	case 7:
-    			this.placeInInv(player);
+			} else {
+				return false;
+			}
+
+    	case 7: case 8:
+    		if(this.isSpaceInInv(player, 4) == true){
+    			player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 4));
     			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
     			return true;
+    		} else {
+				return false;
+			}
+
     	}
 		return false;
-    }
+    }*/
 
-
-	private void placeDuoInInv(EntityPlayer player) {
-		if (player.inventory.getFirstEmptyStack() == -1){
-			player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 2));
-		} else {
-			player.inventory.setInventorySlotContents(player.inventory.getFirstEmptyStack(), new ItemStack(ItemLoader.strawberry, 2));
-		}	
+    private ArrayList<Integer> SlotsWithItem = new ArrayList<Integer>();
+    
+	private boolean isSpaceInInv(EntityPlayer player, int numberIn) {
+		if(player.inventory.getFirstEmptyStack() == -1 && !player.inventory.hasItem(ItemLoader.strawberry)){
+			return false; //Player has no empty inventory and has no strawberry
+		} else if(player.inventory.getFirstEmptyStack() != -1){
+				return true;
+		} else if(player.inventory.hasItem(ItemLoader.strawberry)){
+			this.getItemStacks(player);
+			if (SlotsWithItem.isEmpty()){
+				return false;
+			}
+			for(int i = 0; i <= SlotsWithItem.size() - 1; ++i){
+				//ItemStack item = player.inventory.getStackInSlot(SlotsWithItem.get(i));
+				//EFLog.error(SlotsWithItem.get(i));
+				if(player.inventory.getStackInSlot(SlotsWithItem.get(i)).stackSize < 32 && player.inventory.getStackInSlot(SlotsWithItem.get(i)).stackSize + numberIn <= 32){
+					return true;
+				}		//player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 2));
+			}
+			return false;
+		}
+		return true;
+	}
+	private void getItemStacks(EntityPlayer player){
+		SlotsWithItem.clear();
+		for(int i = 0; i < player.inventory.mainInventory.length; ++i){
+			if(player.inventory.mainInventory[i].isItemEqual(new ItemStack(ItemLoader.strawberry))){
+				SlotsWithItem.add(i);
+			}
+		}
 	}
 
-
-	private void placeInInv(EntityPlayer player) {
-		player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 4));	
+	//private void placeInInv(EntityPlayer player) {
+	//	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 4));	
+	//}
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
+		boolean drop = false; //False don't drop. True break
+		
+		if(!world.isSideSolid(x, y - 1, z, ForgeDirection.UP)){
+			drop = true;
+		}
+		if(drop == true){
+			this.dropBlockAsItem(world, x, y, z, 0, 0);
+			world.setBlockToAir(x, y, z);
+		}
 	}
+	
 	 @SideOnly(Side.CLIENT)
 	    public void registerBlockIcons(IIconRegister iiconr)
 	    {
-	        this.growingTextures = new IIcon[3];
 
-
-	            this.growingTextures[0] = iiconr.registerIcon("extrafood:berries_stage_0");
-	            this.growingTextures[1] = iiconr.registerIcon("extrafood:strawberry_stage_1");
-	            this.growingTextures[2] = iiconr.registerIcon("extrafood:strawberry_stage_2");
-
+	        	RenderIcon.addIcon("Strawberries", ModInfo.MId.toLowerCase() + ":Plants/berries_stage_0", iiconr);
+	        	RenderIcon.addIcon("Strawberries" + "1", ModInfo.MId.toLowerCase() + ":Plants/strawberry_stage_1", iiconr);
+	        	RenderIcon.addIcon("Strawberries" + "2", ModInfo.MId.toLowerCase() + ":Plants/strawberry_stage_2", iiconr);
 
 	    }
+	 @SideOnly(Side.CLIENT)
 	    public int getRenderType()
 	    {
 	        return  ClientProxy.bushrender.getRenderId();

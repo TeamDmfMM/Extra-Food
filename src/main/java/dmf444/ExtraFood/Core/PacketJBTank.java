@@ -6,6 +6,8 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.util.EFLog;
 import net.minecraft.client.Minecraft;
@@ -68,11 +70,12 @@ public class PacketJBTank implements IMessage{
 
 	}
 
-
+	
 	public static class Handler implements IMessageHandler<PacketJBTank, IMessage> {
 
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public IMessage onMessage(PacketJBTank message, MessageContext ctx) {
 
 

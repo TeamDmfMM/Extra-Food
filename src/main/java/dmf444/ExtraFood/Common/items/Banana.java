@@ -8,7 +8,7 @@ public class Banana extends ItemFood {
 	public Banana(int foodBar, float saturation, boolean WolfFood) {
 		
 		super(foodBar, saturation, WolfFood);
-		this.setMaxStackSize(8);
+		this.setMaxStackSize(10);
 		this.setTextureName("extrafood:Bananas");
 		this.setCreativeTab(EFTabs.INSTANCE);
 		this.setAlwaysEdible();

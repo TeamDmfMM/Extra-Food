@@ -9,7 +9,7 @@ import java.util.Random;
 
 import dmf444.ExtraFood.Core.EFTabs;
 import dmf444.ExtraFood.Core.lib.ModInfo;
-import dmf444.ExtraFood.util.FluidIcon;
+import dmf444.ExtraFood.util.RenderIcon;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;

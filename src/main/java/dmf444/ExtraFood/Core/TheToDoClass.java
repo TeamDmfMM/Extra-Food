@@ -8,11 +8,11 @@ package dmf444.ExtraFood.Core;
 [] Add in other Recipes
 [x] Fix the sapling
 [x] Add in knife utils
-[] Add in "Photo Page"
-[] Food Spam
+[x] Add in "Photo Page"
+[x] Food Spam
 [] Refactor
 
-[] Add in MULTI-tab //REV -2
+[x] Add in MULTI-tab //REV -2
 
 
 

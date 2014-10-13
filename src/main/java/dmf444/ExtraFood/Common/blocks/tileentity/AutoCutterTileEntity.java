@@ -161,17 +161,17 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
 		if (this.inv[0] != null){//1
-			System.out.println("1-out");					
+			//System.out.println("1-out");					
 			if (this.inv[2] != null){//2
 				if(this.inv[2].getItem() == ItemLoader.knife){//3
-					System.out.println("2.5-out");		
+					//System.out.println("2.5-out");		
 					if (ExtraFood.registryCutter.getItemOutput(this.inv[0]) != null){//4
-						System.out.println("2-out");		
+						//System.out.println("2-out");		
 						ItemStack l = ExtraFood.registryCutter.getItemOutput(this.inv[0]);
 						if (this.inv[1] != null){//5
-							System.out.println("3-in");
+							//System.out.println("3-in");
 							if (this.inv[1].getItem() == l.getItem()){//6
-								System.out.println("4-donein");
+								//System.out.println("4-donein");
 
 
 								return true;//6}
@@ -180,13 +180,13 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 									return false;
 								}
 						}
-						System.out.println("3-doneout");
+						//System.out.println("3-doneout");
 						return true;//3
 					}
-					System.out.println("Why am I tracking4");
+					//System.out.println("Why am I tracking4");
 					return false;//2
 				}
-				System.out.println("3");
+				//System.out.println("3");
 				return false;//1
 			} else {
 				return false;
@@ -206,13 +206,11 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 				this.ttime = 0;
 				this.complete += 1;
 				if (this.complete == 5){
-					System.out.println("ko");
+					//System.out.println("ko");
 					
 					this.do_();
 					this.complete = 0;
 					this.ttime = 0;
-					//markDirty();
-					//updateContainingBlockInfo();
 					
 				}
 			}
@@ -224,11 +222,11 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 	private void do_() {
 		ItemStack l = ExtraFood.registryCutter.getItemOutput(this.inv[0]);
 		if (this.inv[1] == null){
-			System.out.println("followin' 1");
+			//System.out.println("followin' 1");
 			this.inv[1] = l.copy();
 		}
 		else if(this.inv[1].getItem() == l.getItem()) {
-			System.out.println("followin' 2");
+			//System.out.println("followin' 2");
 			this.inv[1].stackSize += l.stackSize;
 			//this.inv[1].stackSize += l.stackSize;
 		}

@@ -10,6 +10,8 @@ import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.lib.ModInfo;
+import dmf444.ExtraFood.util.RenderIcon;
 
 public class StrawberryJuice extends BlockFluidClassic {
 
@@ -25,14 +27,14 @@ public class StrawberryJuice extends BlockFluidClassic {
     
     @Override
     public IIcon getIcon(int side, int meta) {
-            return (side == 0 || side == 1)? stillIcon : flowingIcon;
+    	return side <= 1 ? RenderIcon.getIcon("Fluid" + "StrawberryJuice") : RenderIcon.getIcon("Fluid" + "StrawberryJuice", 1);
     }
     
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-            stillIcon = register.registerIcon("extrafood:StrawberryJuice_still");
-            flowingIcon = register.registerIcon("extrafood:StrawberryJuice_flow");
+    	RenderIcon.addIcon("Fluid" + "StrawberryJuice",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "StrawberryJuice" + "_Still"));
+    	RenderIcon.addIcon("Fluid" + "StrawberryJuice" + "1",register.registerIcon(ModInfo.MId.toLowerCase() + ":fluid/Fluid_" + "StrawberryJuice" + "_Flow"));
     }
     
     @Override

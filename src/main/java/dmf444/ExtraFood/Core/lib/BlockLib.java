@@ -10,5 +10,8 @@ public class BlockLib {
 	public static String bJB = "Juice_Blender";
 	public static String bO = "Oven";
 	public static String bSB = "StrawberryBush";
+	public static String bPB = "PeanutBush";
+	public static String bCT = "CropTomato";
+	public static String bCL = "CropLettuce";
 
 }

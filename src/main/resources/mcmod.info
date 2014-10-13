@@ -1,15 +1,17 @@
 [
 {
-  "modid": "extrafood",
+  "modid": "ExtraFood",
   "name": "Extra Food",
-  "description": "Extra Food by mincrmatt12 and dmf444.",
   "version": "${mod_version}",
   "mcversion": "${minecraft_version}",
-  "url": "",
+  "description": "Extra Food by mincrmatt12 and dmf444. This mod will extend the amount of food that is in minecraft. We don't want you to starve yet, and we've added new midgame-lategame content.",
+  "credits": "Dmf444, Mincrmatt12 and thanks to all those who helped on IRC and MCForge Forums",
+  "logoFile": "assets/extrafood/EFlogo.png",
+  "url": "https://github.com/TeamDmfMM/Extra-Food",
   "updateUrl": "",
-  "authorList": ["mincrmatt12","dmf444"],
-  "credits": "Dmf444, Mincrmatt12 and thanks to all those who helped on IRC and MCForge Forums"
+  "authorList": ["mincrmatt12", "dmf444"],
+  "parent": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["mod_MinecraftForge"]
 }
 ]

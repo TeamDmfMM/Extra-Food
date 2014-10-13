@@ -59,8 +59,6 @@ public class CheesePressRenderer extends TileEntitySpecialRenderer {
             if (i == 5)
             {
                 short1 = 360; //90
-            } else{
-            	short1 = 90;
             }
             GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
    //Use in 1.6.2  this

@@ -24,9 +24,9 @@ public class CheesePress extends BlockContainer {
     //Treat it like a normal block here. The Block Bounds are a good idea - the first three are X Y and Z of the botton-left corner,
     //And the second three are the top-right corner.
     public CheesePress() {
-            super(Material.wood);
+            super(Material.rock);
             this.setCreativeTab(EFTabs.INSTANCE);
-            this.setHardness(2.0F);
+            
             
     }
 

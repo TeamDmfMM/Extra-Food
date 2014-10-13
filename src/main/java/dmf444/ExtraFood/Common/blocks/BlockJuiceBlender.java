@@ -15,10 +15,9 @@ import net.minecraft.world.World;
 
 public class BlockJuiceBlender extends BlockContainer{
 
-	protected BlockJuiceBlender(Material par2Material) {
-		super(par2Material);
+	protected BlockJuiceBlender() {
+		super(Material.rock);
 		this.setCreativeTab(EFTabs.INSTANCE);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
