@@ -1,0 +1,3 @@
+[submodule "src/main/resources/assets/extrafood/lang"]
+	path = src/main/resources/assets/extrafood/lang
+	url = http://github.com/TeamDmfMM/lang.git
