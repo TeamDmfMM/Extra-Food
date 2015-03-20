@@ -37,9 +37,9 @@ public class AutoCutterModel extends ModelBase
     ModelRenderer Cornera;
     ModelRenderer cornerb;
     ModelRenderer cuttingboard;
-    ModelRenderer KnifehandleANIMATE;
+    public ModelRenderer KnifehandleANIMATE;
     ModelRenderer knifebar;
-    ModelRenderer knifeANIMATE;
+    public ModelRenderer knifeANIMATE;
   
   public AutoCutterModel()
   {
@@ -166,7 +166,7 @@ public class AutoCutterModel extends ModelBase
   {
     super.render(null, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, null);
-    if (entity.complete > 0){
+  /*  if (entity.complete > 0){
     	ArrayList<Float> bob = Lists.newArrayList(5.0F,5.1F,5.2F,5.3F,5.4F,5.5F,5.6F,5.7F,5.8F,5.9F,18.0F,18.1F,18.2F,18.3F,18.4F,18.5F,6.0F,6.1F,6.2F,0.0F);
     	EFLog.error(entity.ttime);
     	//int ticks = entity.complete * 20 + entity.ttime;
@@ -181,7 +181,7 @@ public class AutoCutterModel extends ModelBase
     	//this.knifeANIMATE.rotateAngleX = -rotation -4.48F;
     	//this.KnifehandleANIMATE.rotateAngleX = -rotation -4.48F;
 
-    }
+    }*/
     //this.knifeANIMATE.rotateAngleX = 0F;
     //this.KnifehandleANIMATE.rotateAngleX = 0F;
     Back_base.render(f5);

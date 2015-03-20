@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
 
+import dmf444.ExtraFood.util.EFLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -22,6 +23,10 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     private static final int[] slots_top = new int[] {0};
     private static final int[] slots_bottom = new int[] {2, 1};
     private static final int[] slots_sides = new int[] {1};
+    private int numOfPlayers;
+
+    public float knifeAngle;
+    public float prevknifeAngle;
 
 
     public AutoCutterTileEntity(){
@@ -198,12 +203,24 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 	
 	public void updateEntity(){
+        //EFLog.error(this.knifeAngle);
+	    if (this.ok()){
+            this.ttime += 1;
 
-	if (this.ok()){
-		//if (!this.worldObj.isRemote){
-			this.ttime += 1;
+             if(this.complete >= 0) {
+                if(this.ttime <= 9){
+                    this.knifeAngle += 0.25F;
+                } else if(this.ttime >= 10){
+                    this.knifeAngle += 0.25F;
+                }
+                 float f1 = 1.0F - this.knifeAngle;
+                 f1 = 1.0F - f1 * f1 * f1;
+                 this.knifeAngle = -(f1 * (float)Math.PI / 2.0F);
+
+             }
+
 			if (this.ttime == 20){
-				this.ttime = 0;
+                this.ttime = 0;
 				this.complete += 1;
 				if (this.complete == 5){
 					//System.out.println("ko");
@@ -211,11 +228,13 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 					this.do_();
 					this.complete = 0;
 					this.ttime = 0;
+                    if(this.knifeAngle != 0.0F){
+                        this.knifeAngle = 0.0F;
+                    }
 					
 				}
 			}
 		}
-	  //}
 	}
 
 
@@ -236,6 +255,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
          {
              this.inv[0] = null;
          }
+        this.markDirty();
 	}
 	
 	/*
@@ -268,15 +288,29 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 	@Override
 	public void openInventory() {
-		// TODO Auto-generated method stub
-		
-	}
+        if (this.numOfPlayers < 0){
+            this.numOfPlayers = 0;
+        }
+        ++this.numOfPlayers;
+    }
 
 
 	@Override
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
-	}
+        --this.numOfPlayers;
+    }
 
+    @Override
+    public boolean receiveClientEvent(int eventNum, int arg)
+    {
+        if (eventNum == 1)
+        {
+            this.numOfPlayers = arg;
+            return true;
+        }
+        else
+        {
+            return super.receiveClientEvent(eventNum, arg);
+        }
+    }
 }
