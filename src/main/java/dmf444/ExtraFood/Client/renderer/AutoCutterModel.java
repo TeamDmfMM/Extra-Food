@@ -6,10 +6,17 @@
 
 package dmf444.ExtraFood.Client.renderer;
 
+import java.awt.List;
+import java.util.ArrayList;
+
+import com.google.common.collect.Lists;
+
+import scala.actors.threadpool.Arrays;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
+import dmf444.ExtraFood.util.EFLog;
 
 public class AutoCutterModel extends ModelBase
 {
@@ -160,17 +167,23 @@ public class AutoCutterModel extends ModelBase
     super.render(null, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, null);
     if (entity.complete > 0){
-    	int ticks = entity.complete * 20 + entity.ttime;
-    	if (ticks % 2 == 0){
-    	float degrees = (float) (ticks * 3.6);
+    	ArrayList<Float> bob = Lists.newArrayList(5.0F,5.1F,5.2F,5.3F,5.4F,5.5F,5.6F,5.7F,5.8F,5.9F,18.0F,18.1F,18.2F,18.3F,18.4F,18.5F,6.0F,6.1F,6.2F,0.0F);
+    	EFLog.error(entity.ttime);
+    	//int ticks = entity.complete * 20 + entity.ttime;
+    	//if (ticks % 2 == 0){
+    	//float degrees = (float) (ticks * 3.6);
     	
-    	float rotation = (float) ((float) Math.sin(degrees) * 10);
-    	if (rotation < 0){rotation = -rotation;}
-    	this.knifeANIMATE.rotateAngleX = -rotation;
-    	this.KnifehandleANIMATE.rotateAngleX = -rotation;
-    	}
-    	
+    	//float rotation = (float) ((float) Math.sin(degrees) * 10);
+    	//EFLog.fatal(rotation);
+    	//if (rotation < 0){rotation = -rotation;}
+    	this.knifeANIMATE.rotateAngleX =  bob.get(entity.ttime);
+        this.KnifehandleANIMATE.rotateAngleX = bob.get(entity.ttime);
+    	//this.knifeANIMATE.rotateAngleX = -rotation -4.48F;
+    	//this.KnifehandleANIMATE.rotateAngleX = -rotation -4.48F;
+
     }
+    //this.knifeANIMATE.rotateAngleX = 0F;
+    //this.KnifehandleANIMATE.rotateAngleX = 0F;
     Back_base.render(f5);
     Front_Base.render(f5);
     Leg_1.render(f5);

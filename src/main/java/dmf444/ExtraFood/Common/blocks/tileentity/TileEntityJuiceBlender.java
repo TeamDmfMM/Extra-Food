@@ -3,11 +3,13 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
@@ -19,7 +21,6 @@ import net.minecraftforge.fluids.IFluidHandler;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.util.EFLog;
 
 
 
@@ -83,12 +84,6 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
         }
         return stack;
 }
-
-
-
-
-
-
 
 
 	 @Override

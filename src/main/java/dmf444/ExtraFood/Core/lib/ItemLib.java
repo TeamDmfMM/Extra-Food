@@ -85,6 +85,12 @@ public class ItemLib {
 	public static String iStrawYogurt = "strawberryYogurt";
 	public static String iButterMilk = "ButterMilk";
 	public static String iFrenchToast = "FrenchToast";
+	public static String iShortB = "shortbread";
+	public static String iFC = "FruitCake";
+	public static String iGB = "gingerbread";
+	public static String Chestnut = "chestnuts";
+	public static String Cake = "ChocolateCake";
+	public static String iMuffPan = "MuffinPan";
 	
 
 

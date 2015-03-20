@@ -18,6 +18,7 @@ public class FluidLoader {
 	public static Fluid Fbananajuice;
 	public static Fluid Fstrawberryjuice;
 	public static Fluid Fcarrotjuice;
+	public static Fluid FEggnog;
 
 	
 	public static boolean Registate=false;
@@ -26,6 +27,7 @@ public class FluidLoader {
 		Fbananajuice = new Fluid("bananajuice").setViscosity(3000);
 		Fstrawberryjuice = new Fluid("strawberryjuice");
 		Fcarrotjuice = new Fluid("carrotjuice");
+		FEggnog = new Fluid("Eggnog").setViscosity(2000);
 		
 		
 		
@@ -36,6 +38,7 @@ public class FluidLoader {
 		FluidRegistry.registerFluid(Fbananajuice);
 		FluidRegistry.registerFluid(Fstrawberryjuice);
 		FluidRegistry.registerFluid(Fcarrotjuice);
+		FluidRegistry.registerFluid(FEggnog);
 
 		}
 		Registate = true;

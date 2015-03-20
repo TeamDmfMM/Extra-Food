@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -113,7 +115,6 @@ public class PeanutBush extends Block implements IGrowable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float what, float these, float are) {
     	int meta = world.getBlockMetadata(x, y, z);
-    	//EFLog.info("Current Meta:" + meta);
     	if (player.inventory.getCurrentItem() != null){
     		ItemStack is = player.inventory.getCurrentItem();
     		if (is.getItem() == Items.dye){
@@ -124,21 +125,20 @@ public class PeanutBush extends Block implements IGrowable {
     	}
     	switch (meta) {
     	case -1:
-    			return false;
-
+    		return false;
+    	
     	case 7: case 8:
-    		if(this.isSpaceInInv(player, 5) == true){
-    			player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.peanut, 5));
-    			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
-    			return true;
-    		} else {
-				return false;
-			}
-
+    		if(!world.isRemote){
+    		ItemStack item1 = new ItemStack(ItemLoader.peanut, 4);
+    		Entity Ientity1 = new EntityItem(world, x, y, z, item1);
+			world.spawnEntityInWorld(Ientity1);
+			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+    		return true;
+    		}
     	}
-		return false;
+    	return false;
     }
-
+    /*
     private ArrayList<Integer> SlotsWithItem = new ArrayList<Integer>();
     
 	private boolean isSpaceInInv(EntityPlayer player, int numberIn) {
@@ -169,7 +169,8 @@ public class PeanutBush extends Block implements IGrowable {
 				SlotsWithItem.add(i);
 			}
 		}
-	}
+	}	*/
+    @Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
 		boolean drop = false; //False don't drop. True break
 		
@@ -185,7 +186,7 @@ public class PeanutBush extends Block implements IGrowable {
 	//private void placeInInv(EntityPlayer player) {
 	//	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.peanut, 4));	
 	//}
-	
+
 	 @SideOnly(Side.CLIENT)
 	    public void registerBlockIcons(IIconRegister iiconr)
 	    {

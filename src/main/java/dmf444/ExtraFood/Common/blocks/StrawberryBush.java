@@ -190,7 +190,7 @@ public class StrawberryBush extends Block implements IGrowable {
 
     	}
 		return false;
-    }*/
+    }
 
     private ArrayList<Integer> SlotsWithItem = new ArrayList<Integer>();
     
@@ -222,7 +222,7 @@ public class StrawberryBush extends Block implements IGrowable {
 				SlotsWithItem.add(i);
 			}
 		}
-	}
+	}*/
 
 	//private void placeInInv(EntityPlayer player) {
 	//	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 4));	

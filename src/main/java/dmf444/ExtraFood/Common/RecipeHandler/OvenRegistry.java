@@ -1,76 +1,89 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
-
 import java.util.ArrayList;
 
-
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-
-/**
- * @author mincramatt12
- *
- * 7/16/14, Written
- *
- *
- *
- *
- */
 public class OvenRegistry {
-	ArrayList<OvenRegistryItem> ovenitems = new ArrayList<OvenRegistryItem>();
+	
+	public static OvenRegistry instance;
+	
+	public ArrayList<OvenRegistryRecipe> recipes = new ArrayList<OvenRegistryRecipe>();
+	
 	public OvenRegistry(){
-
-
+		addRecipet("pizza", 3, is(Items.bread, 1), is(ItemLoader.tomato, 2));
+		addRecipe("muffin", 3, is(ItemLoader.muffinPan, 1), is(Items.bread, 1));
 	}
-	public ItemStack getItem(ArrayList<ItemStack> itemsinoven){
-		for (OvenRegistryItem i : ovenitems){
-			if (this.containsAllItemsIgnoreExcess(itemsinoven, i.baseRecipe)){
-				if (this.checkIfItemsAreEqualIngoreMissing(itemsinoven, i.getItemsAdditive())){
-					return i.createItemStack(itemsinoven);
-
-
-				}
+	
+	public void addRecipet(String foodname, int time, ItemStack... st){
+		addRecipe(foodname, time, null, st);
+	}
+	
+	public void addRecipe(String foodname, int time, ItemStack pan, ItemStack... st){
+		ArrayList<ItemStack> is = new ArrayList<ItemStack>();
+		for (ItemStack istacker : st){
+			is.add(istacker);
+		}
+		
+		OvenRegistryRecipe recipe = new OvenRegistryRecipe(foodname, time, pan, is);
+		recipes.add(recipe);
+	}
+	public ItemStack is(Item i, int amount){
+		return new ItemStack(i, amount);
+	}
+	public boolean ok(ItemStack[] items){
+		ArrayList<ItemStack> twit = new ArrayList<ItemStack>();
+		int i = 0;
+		for (ItemStack thingy : items){
+			if (i == 4){
+				break;
+			}
+			twit.add(thingy);
+			i++;
+		}
+		ItemStack pan = items[4];
+		for (OvenRegistryRecipe recipe : recipes){
+			if (recipe.isRecipePossible(twit, pan)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public ArrayList<ItemStack> getArrayList(ItemStack[] items){
+		ArrayList<ItemStack> twit = new ArrayList<ItemStack>();
+		int i = 0;
+		for (ItemStack thingy : items){
+			if (i == 4){
+				break;
+			}
+			twit.add(thingy);
+			i++;
+		}
+		return twit;
+	}
+	
+	public OvenRegistryRecipe getRecipe(ItemStack[] items){
+		ArrayList<ItemStack> twit = new ArrayList<ItemStack>();
+		int i = 0;
+		for (ItemStack thingy : items){
+			if (i == 4){
+				break;
+			}
+			twit.add(thingy);
+			i++;
+		}
+		ItemStack pan = items[4];
+		for (OvenRegistryRecipe recipe : recipes){
+			if (recipe.isRecipePossible(twit, pan)){
+				return recipe;
 			}
 		}
 		return null;
 	}
-	public boolean containsAllItemsIgnoreExcess(ArrayList<ItemStack> i1, ArrayList<ItemStack> i2){
-		boolean truth = false;
-		for (ItemStack it : i2){
-			for (ItemStack itt : i1){
-				if (itt == it){
-					truth = true;
-				}
-			if (truth == false){
-				return false;
-			}
-			else {
-				truth = false;
-			}
-			}
-		}
-		return true;
-	}
-	public boolean checkIfItemsAreEqualIngoreMissing(ArrayList<ItemStack> i1, ArrayList<Item> i2){
-		boolean truth = false;
-		for (ItemStack it : i1){
-			for (Item itt : i2){
-				if (it.getItem() == itt){
-					truth = true;
-				}
-
-
-			}
-			if (truth == false){
-				return false;
-			}
-			else {
-				truth = false;
-			}
-
-
-		}
-		return true;
-	}
+	
 }
+

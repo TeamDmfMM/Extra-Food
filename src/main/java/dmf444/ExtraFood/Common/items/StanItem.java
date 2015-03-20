@@ -9,8 +9,5 @@ public class StanItem extends Item {
 		super();
 		this.setCreativeTab(EFTabs.INSTANCE);
 	}
-	@Override
-	public boolean isRepairable() {
-		return true;
-	}
+
 }

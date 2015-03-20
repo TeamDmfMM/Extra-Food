@@ -12,6 +12,9 @@ import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.guis.ClickTab;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFood;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
 import dmf444.ExtraFood.util.ConfigHandler;
 
 public class CookbookButtonLoader {
@@ -91,6 +94,12 @@ public class CookbookButtonLoader {
 			t.buttons.add(new ClickTab(2, 4, ItemLoader.bucketseaWater, "SeaWater"));
 			t.buttons.add(new ClickTab(2, 8, ItemLoader.bucketpurifiedwater, "purifiedWater", "SeaWater"));}
 		t.display = new ItemStack(BlockLoader.juiceBlender);
+		this.buttons.add(t);
+		
+		t = new CookbookTab("oven");
+			t.buttons.add(new ClickTab(6, 6, new ItemStack(BlockLoader.oven), "oven"));
+			t.buttons.add(new ClickTab(6, 8, NBTFoodRegistry.getPizzaDisplay(), "pizza"));
+		t.display = new ItemStack(BlockLoader.oven);
 		this.buttons.add(t);
 
 		//TODO on add book page, add multi buttons

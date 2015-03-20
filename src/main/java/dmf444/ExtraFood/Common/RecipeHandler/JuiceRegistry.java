@@ -32,12 +32,12 @@ public class JuiceRegistry {
 	public JuiceRegistry(){
 		//TODO Registry jucies here
 		juices = new Hashtable<Item, Fluid>();
-		juicenames = new Hashtable<Fluid, String>();
+		//juicenames = new Hashtable<Fluid, String>();
 		juicecolors = new Hashtable<Fluid, float[]>();
 		
-		registerJuice(FluidLoader.Fstrawberryjuice, ItemLoader.strawberry, "extrafood:textures/blocks/fluid/Fluid_StrawberryJuice_flow.png");
-		registerJuice(FluidLoader.Fbananajuice, ItemLoader.banana, "extrafood:textures/blocks/fluid/Fluid_BananaJuice_flow.png");
-		registerJuice(FluidLoader.Fcarrotjuice, Items.carrot, "extrafood:textures/blocks/fluid/Fluid_CarrotJuice_flow.png");
+		registerJuice(FluidLoader.Fstrawberryjuice, ItemLoader.strawberry);
+		registerJuice(FluidLoader.Fbananajuice, ItemLoader.banana);
+		registerJuice(FluidLoader.Fcarrotjuice, Items.carrot);
 
 		registerColor(FluidLoader.Fbananajuice, 211, 230, 78);
 		registerColor(FluidLoader.Fstrawberryjuice, 199, 0, 4);
@@ -52,9 +52,9 @@ public class JuiceRegistry {
 		return this.juicecolors.get(this.getJuiceFromItemStack(i));
 	}
 
-	public void registerJuice(Fluid fluid, Item item, String texture){
+	public void registerJuice(Fluid fluid, Item item){
 		juices.put(item, fluid);
-		juicenames.put(fluid, texture);
+		//juicenames.put(fluid, texture);
 	}
 	public Fluid getJuiceFromItemStack(ItemStack is){
 		try {
@@ -63,13 +63,13 @@ public class JuiceRegistry {
 			return null;
 		}
 	}
-	public String getTextureFromJuice(Fluid juice){
+/*	public String getTextureFromJuice(Fluid juice){
 		try {
 			return this.juicenames.get(juice);}
 			catch (Exception e) {
 				return null;
 			}
-	}
+	}*/
 
 
 
