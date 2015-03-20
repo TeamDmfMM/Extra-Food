@@ -1,6 +1,13 @@
 #Minecraft Others
 /bin
 /build
+/out
+/lib/old
+/src2
+/run
+*.iml
+*.ipr
+*.iws
 /.gradle
 /.settings
 /eclipse
@@ -35,7 +42,8 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
+Icon
+
 
 # Thumbnails
 ._*
