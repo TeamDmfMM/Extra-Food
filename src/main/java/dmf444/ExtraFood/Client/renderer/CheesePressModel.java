@@ -128,7 +128,7 @@ public class CheesePressModel extends ModelBase
   }
   
   public void renderEnt(CheesePressTileEntity entity, float f, float f1, float f2, float f3, float f4, float f5){
-	  	if (entity.complete > 0){
+	  	/*if (entity.complete > 0){
 	  		int ticks = entity.complete * 10 + entity.ttime;
 	  		if (ticks % 2 == 0){
 	  		int degrees = (int) (ticks * 1.5);
@@ -143,7 +143,7 @@ public class CheesePressModel extends ModelBase
 	  	else {
 	  		this.Shape4.offsetY = 0;
 	  		this.Shape4dot1.offsetY = 0;
-	  	}
+	  	}*/
 	    super.render(null, f, f1, f2, f3, f4, f5);
 	    setRotationAngles(f, f1, f2, f3, f4, f5, null);
 	    Shape1.render(f5);

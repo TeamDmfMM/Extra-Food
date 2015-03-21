@@ -74,6 +74,7 @@ public class AutoCutterRenderer extends TileEntitySpecialRenderer {
     //A reference to your Model file. Again, very important.
 
             this.model.knifeANIMATE.rotateAngleX = autoCutterTileEntity.knifeAngle;
+            this.model.KnifehandleANIMATE.rotateAngleX = autoCutterTileEntity.knifeAngle;
             this.model.renderEnt((AutoCutterTileEntity)te, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
     //Tell it to stop rendering for both the PushMatrix's
         

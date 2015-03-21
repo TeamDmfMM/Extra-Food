@@ -1,5 +1,7 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -19,6 +21,8 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     private static final int[] slots_sides = new int[] {0, 1, 2};
     public int complete = -1;
 	public int ttime;
+    private int totalTime;
+    public float AnimationAngle;
     
     public CheesePressTileEntity(){
             inv = new ItemStack[4];
@@ -169,12 +173,25 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
 			@Override
 			public void updateEntity(){
 				if (this.areItemsCorrect() == true){
+                    int ticks = this.complete * 10 + this.ttime;
+                    if (ticks % 2 == 0){
+                        int degrees = (int) (ticks * 1.5);
+                        float trans = (float) ((float) Math.sin(degrees) * 0.25);
+                        if (trans < 0){trans = -trans;}
+                        this.AnimationAngle =trans;
+                    }
+
 					this.ttime += 1;
 					if (this.ttime == 10){
 						this.ttime = 0;
 						this.complete += 1;
+                        this.totalTime += 1;
 						if (this.complete == 24){
 							makeCheese();
+                            this.totalTime = 0;
+                            if(this.AnimationAngle != 0.0F){
+                                this.AnimationAngle = 0.0F;
+                            }
 						}
 					}
 				}
@@ -182,7 +199,15 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
 					this.complete = -1;
 				}
 			}
+            public int getTotalTime(){
+                return this.totalTime;
+            }
 
+            @SideOnly(Side.CLIENT)
+            public void ResetTiming(int newTime)
+    {
+        this.totalTime = newTime;
+    }
 		
 			@Override
 			public boolean hasCustomInventoryName() {

@@ -1,6 +1,9 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
 
+import com.google.common.collect.Lists;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.util.EFLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -15,6 +18,9 @@ import dmf444.ExtraFood.Client.renderer.AutoCutterModel;
 import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class AutoCutterTileEntity extends TileEntity implements ISidedInventory {
 
@@ -26,7 +32,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     private int numOfPlayers;
 
     public float knifeAngle;
-    public float prevknifeAngle;
+    private int totalTime;
 
 
     public AutoCutterTileEntity(){
@@ -208,26 +214,27 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
             this.ttime += 1;
 
              if(this.complete >= 0) {
-                if(this.ttime <= 9){
+               /* if(this.ttime <= 9){
                     this.knifeAngle += 0.25F;
                 } else if(this.ttime >= 10){
                     this.knifeAngle += 0.25F;
-                }
-                 float f1 = 1.0F - this.knifeAngle;
-                 f1 = 1.0F - f1 * f1 * f1;
-                 this.knifeAngle = -(f1 * (float)Math.PI / 2.0F);
+                }*/
+                 ArrayList<Float> bob = Lists.newArrayList(5.0F, 5.1F, 5.2F, 5.3F, 5.4F, 5.5F, 5.6F, 5.7F, 5.8F, 5.9F, 18.5F, 6.0F, 6.1F, 6.2F, 0.0F, 6.2F, 6.0F, 18.4F, 5.8F, 5.6F);
+                 this.knifeAngle = bob.get(this.ttime - 1);
 
              }
 
 			if (this.ttime == 20){
                 this.ttime = 0;
 				this.complete += 1;
+                this.totalTime += 1;
 				if (this.complete == 5){
 					//System.out.println("ko");
 					
 					this.do_();
 					this.complete = 0;
 					this.ttime = 0;
+                    this.totalTime = 0;
                     if(this.knifeAngle != 0.0F){
                         this.knifeAngle = 0.0F;
                     }
@@ -236,6 +243,15 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 			}
 		}
 	}
+    public int getTotalTime(){
+        return this.totalTime;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void ResetTiming(int newTime)
+    {
+        this.totalTime = newTime;
+    }
 
 
 	private void do_() {
