@@ -4,22 +4,17 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.Client.renderer.AutoCutterModel;
-import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
-import dmf444.ExtraFood.Common.items.ItemLoader;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class AutoCutterTileEntity extends TileEntity implements ISidedInventory {
@@ -228,6 +223,10 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
                 this.ttime = 0;
 				this.complete += 1;
                 this.totalTime += 1;
+                if(this.totalTime == 0 && this.complete >= 1){
+                    this.ttime = 0;
+                    this.complete = 0;
+                }
 				if (this.complete == 5){
 					//System.out.println("ko");
 					

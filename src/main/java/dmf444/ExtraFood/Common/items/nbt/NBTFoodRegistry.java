@@ -1,14 +1,14 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Hashtable;
-
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class NBTFoodRegistry {
 	
@@ -212,6 +212,11 @@ public class NBTFoodRegistry {
 		bob.setTagCompound(((NBTFood) NBTFoodLoader.getItem("pizza")).getNBT("pepperoni", "cheese"));
 		return bob;
 	}
+    public static ItemStack getMuffinDisplay(){
+        ItemStack bob = new ItemStack(NBTFoodLoader.getItem("muffin"));
+        bob.setTagCompound(((NBTFood) NBTFoodLoader.getItem("muffin")).getNBT("Doublechocolate"));
+        return bob;
+    }
 	
 }
 

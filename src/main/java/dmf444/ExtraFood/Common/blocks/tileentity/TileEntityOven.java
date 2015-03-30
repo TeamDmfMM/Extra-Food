@@ -1,20 +1,19 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
-import java.util.ArrayList;
-
+import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
+import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistryRecipe;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
-import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistryRecipe;
 
-public class TileEntityOven extends TileEntity implements IInventory{
+public class TileEntityOven extends TileEntity implements ISidedInventory{
 		//TODO Constructors
 	
 	public ItemStack[] items;
+    private static final int[] slots_bottom = new int[] {5};
 	
 	private int time = 0; //Current place
 	int maxtime = 12000; //Max recipe time
@@ -239,5 +238,20 @@ public class TileEntityOven extends TileEntity implements IInventory{
 		public void setTime(int time) {
 			this.time = time;
 		}
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int side) {
+        return side == 0 ? slots_bottom : null;
+    }
+
+    @Override
+    public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack item, int side) {
+        return slot == 5;
+    }
 }
 

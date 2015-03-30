@@ -1,20 +1,16 @@
 package dmf444.ExtraFood.Core;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
-import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.RecipeHandler.RecipeAutoCutter;
-import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.util.DateUtil;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 
 public class CraftingRecipies {
@@ -61,6 +57,7 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.yogurt), new ItemStack(Items.milk_bucket), new ItemStack(Items.sugar), new ItemStack(Items.wheat)));
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.stawberryYogurt), new ItemStack(Items.milk_bucket), new ItemStack(Items.sugar), new ItemStack(Items.wheat), "foodStrawberry"));	
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.frenchToast), "foodButter", "foodToast", "foodEgg"));
+	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.dough), new ItemStack(Items.wheat), new ItemStack(Items.water_bucket));
 	//Sandwiches
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.sandwichPBN), new Object[] {" t ", " cp", " t ", 't', "foodToast", 'c', "foodChocolateSpread", 'p', "foodPeanutButter"}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.sandwichBLT),new Object[] {" t ", "blo", " t ", 't', "foodToast", 'b', "foodCookedBacon", 'l', "cropLettuce", 'o', "cropTomato"}));

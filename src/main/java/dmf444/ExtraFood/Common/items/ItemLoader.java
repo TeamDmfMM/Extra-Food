@@ -4,14 +4,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.EFTabs;
 import dmf444.ExtraFood.Core.lib.ItemLib;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemReed;
-import net.minecraft.item.ItemSeeds;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -21,7 +16,7 @@ public class ItemLoader {
 
 	public static Item cheeseWheel;
 	public static Item banana;
-	public static Item knife, grater, muffinPan;
+	public static Item knife, grater, muffinPan, dough;
 	public static Item cheeseSlice;
 	public static Item cookBook;
 	public static Item sausage;
@@ -79,7 +74,7 @@ public class ItemLoader {
 		uselettuceSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iCLS).setTextureName("extrafood:coatedLettuceSeeds").setCreativeTab(EFTabs.INSTANCE);
 		grater = new Grater().setUnlocalizedName(ItemLib.iGrater);
 		muffinPan = new StanItem().setUnlocalizedName(ItemLib.iMuffPan).setTextureName("extrafood:" + ItemLib.iMuffPan);
-		
+		dough = new StanItem().setUnlocalizedName(ItemLib.iDough).setTextureName("extrafood:" + ItemLib.iDough);
 		
 		registerItems();
 	}
@@ -156,6 +151,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(cookBook, ItemLib.iCB);
 			GameRegistry.registerItem(grater, ItemLib.iGrater);
 			GameRegistry.registerItem(muffinPan, ItemLib.iMuffPan);
+            GameRegistry.registerItem(dough, ItemLib.iDough);
 			GameRegistry.registerItem(tomatoSeeds, ItemLib.iTS);
 			GameRegistry.registerItem(uselettuceSeeds, ItemLib.iCLS);
 			GameRegistry.registerItem(rawlettuceSeeds, ItemLib.iULS);
@@ -285,6 +281,7 @@ public class ItemLoader {
 			OreDictionary.registerOre("foodCheeseburger", ItemLoader.sandwichCheeseburger);
 			OreDictionary.registerOre("foodSupremeBurger", ItemLoader.sandwichSupremeBurger);
 			OreDictionary.registerOre("foodFrenchToast", ItemLoader.frenchToast);
+            OreDictionary.registerOre("foodDough", ItemLoader.dough);
 			
 		}
 		FRegister=true;

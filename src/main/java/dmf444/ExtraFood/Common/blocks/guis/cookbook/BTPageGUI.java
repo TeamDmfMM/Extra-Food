@@ -2,41 +2,28 @@ package dmf444.ExtraFood.Common.blocks.guis.cookbook;
 
 
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.print.attribute.standard.Sides;
-
-import net.minecraft.client.Minecraft;
+import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
+import dmf444.ExtraFood.Common.blocks.guis.ButtonBackGUI;
+import dmf444.ExtraFood.Common.blocks.guis.ButtonNextPageGUI;
+import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
+import dmf444.ExtraFood.Core.lib.GuiLib;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
-import dmf444.ExtraFood.Common.blocks.guis.ButtonBackGUI;
-import dmf444.ExtraFood.Common.blocks.guis.ButtonNextPageGUI;
-import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.lib.GuiLib;
-import dmf444.ExtraFood.Core.lib.ItemLib;
-import dmf444.ExtraFood.util.EFLog;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BTPageGUI extends GuiScreen {
 
@@ -249,8 +236,25 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     }
     return -150;
 }
-
-public int drawElementCrafting(ArrayList<Object> args, int x, int y, int flag){
+    public int drawElementOven(ArrayList<Object> args, int x, int y, int flag) {
+        int j1 = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
+        int i1 = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
+        if (args.size() > 1) {
+            return 1;
+        }
+        int x1 = x + 20;
+        int y1 = y + 50;
+        this.fontRendererObj.setUnicodeFlag(false);
+        this.mc.getTextureManager().bindTexture(GuiLib.CBfurnace);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        this.drawTexturedModalRect(x1 + 7, y1 - 40, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_LIGHTING);
+        return -150;
+    }
+    public int drawElementCrafting(ArrayList<Object> args, int x, int y, int flag){
 	int j1 = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
 	int i1 = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
 	//EFLog.fatal("y : " + y + " j1 : " + j1 + " check : " +(j1 +19));
@@ -561,6 +565,7 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 	 types.add("Crafting");
 	 types.add("HungerStats");
 	 types.add("Furnace");
+     types.add("Oven");
 	 return types;
  }
  public Map<String, Integer> acount(){
@@ -571,6 +576,7 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 	 types.put("Crafting", 4);
 	 types.put("HungerStats", 7);
 	 types.put("Furnace", 4);
+     types.put("Oven", 4);
 	 return types;
  }
  
@@ -818,22 +824,7 @@ private CBElement packElement(String t, ArrayList<Object> argst){
  }
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  public void drawl(){
 	 int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;

@@ -1,11 +1,10 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
-import java.util.ArrayList;
-
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
 
 public class OvenRegistry {
 	
@@ -14,8 +13,8 @@ public class OvenRegistry {
 	public ArrayList<OvenRegistryRecipe> recipes = new ArrayList<OvenRegistryRecipe>();
 	
 	public OvenRegistry(){
-		addRecipet("pizza", 3, is(Items.bread, 1), is(ItemLoader.tomato, 2));
-		addRecipe("muffin", 3, is(ItemLoader.muffinPan, 1), is(Items.bread, 1));
+		addRecipet("pizza", 3, is(ItemLoader.dough, 1), is(ItemLoader.tomato, 2));
+		addRecipe("muffin", 3, is(ItemLoader.muffinPan, 1), is(ItemLoader.dough, 1));
 	}
 	
 	public void addRecipet(String foodname, int time, ItemStack... st){
