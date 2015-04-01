@@ -123,6 +123,8 @@ public class CookbookButtonLoader {
 		AddPage("pasta", 5);
 		AddPage("plants", 2);
         AddPage("oven", 2);
+        AddPage("muffin", 6);
+        AddPage("pizza", 2);
 
 	}
 

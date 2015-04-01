@@ -33,7 +33,7 @@ public class CrossModModules{
 		versionCheck = true;
 		NBTTagCompound info = new NBTTagCompound();
 		info.setString("curseProjectName", "222348-extra-food");
-		info.setString("curseFilenameParser", "ExtraFood[].jar");
+		info.setString("curseFilenameParser", "ExtraFood-[].jar");
 		info.setString("modDisplayName", "Extra Food");
 		FMLInterModComms.sendRuntimeMessage(ModInfo.MId, "VersionChecker", "addCurseCheck", info);
 	}

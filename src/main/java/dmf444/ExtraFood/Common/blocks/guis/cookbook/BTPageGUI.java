@@ -12,7 +12,9 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -245,15 +247,66 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
         int x1 = x + 20;
         int y1 = y + 50;
         this.fontRendererObj.setUnicodeFlag(false);
-        this.mc.getTextureManager().bindTexture(GuiLib.CBfurnace);
+        this.mc.getTextureManager().bindTexture(GuiLib.CBoven);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_LIGHTING);
-        this.drawTexturedModalRect(x1 + 7, y1 - 40, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
+        this.drawTexturedModalRect(x1 - 25, y1 - 52, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_LIGHTING);
+        ItemStack[] items = ExtraFood.instance.crafterPage.getArray((String) args.get(0).toString());//(String) args.get(0).toString()
+        for (ItemStack i : ExtraFood.instance.crafterPage.getArray((String) args.get(0).toString())) {
+            if (i != null) {
+                /*Item 9 is outputBase, 0 is base itemI, 1 is base itemII,
+                 *2 is optional item(pan), 4-8 are additives
+                 */
+            	
+            	//Base Item
+            	this.renderItem(this.conversioncheck(items[0]), x1 - 6, y1 + 73);
+            	//Base Item II
+            	this.renderItem(this.conversioncheck(items[1]), x1 + 9, y1 + 73);
+            	//Pan Item
+            	this.renderItem(this.conversioncheck(items[2]), x1+ 37, y1 + 73);
+            	//Top-Left Item
+            	this.renderItem(this.conversioncheck(items[3]), x1 - 18, y1 - 24);
+            	//Top-Right Item
+            	this.renderItem(this.conversioncheck(items[4]), x1 + 51, y1 - 23);
+            	//Center Item
+            	this.renderItem(this.conversioncheck(items[5]), x1 + 16, y1 - 45);
+            	//Bottom-Left
+            	this.renderItem(this.conversioncheck(items[6]), x1 - 18, y1 + 9);
+            	//Bottom-Right
+            	this.renderItem(this.conversioncheck(items[7]), x1 + 51, y1 + 9);
+            	//Bottom
+            	this.renderItem(this.conversioncheck(items[8]), x1 + 16, y1 + 32);
+            	//Output
+            	this.renderItem(this.conversioncheck(items[9]), x1 + 16, y1 - 7);
+
+
+                GL11.glEnable(GL11.GL_LIGHTING);
+
+
+            }
+        }
         return -150;
     }
+    
+    private void renderItem(ItemStack i, int x, int y){
+        if(i != null){
+        	GL11.glDisable(GL11.GL_LIGHTING);
+        	this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), i, x, y);
+        	this.irender.renderItemOverlayIntoGUI(fontRendererObj, this.mc.getTextureManager(), i, x, y);
+        	GL11.glEnable(GL11.GL_LIGHTING);
+        }
+    }
+    private ItemStack conversioncheck(ItemStack i){
+    	//EFLog.fatal(i);
+    		if(i.getItem() == Item.getItemFromBlock(Blocks.carrots)){
+    			return null;
+    		}
+    	return i;
+    }
+    
     public int drawElementCrafting(ArrayList<Object> args, int x, int y, int flag){
 	int j1 = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
 	int i1 = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
@@ -451,7 +504,7 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 			 
 			 case 3:
 				 
-				 if (type.equals( "TextBlock") || type.equals("Crafting") || type.equals("Furnace")){
+				 if (type.equals( "TextBlock") || type.equals("Crafting") || type.equals("Furnace") || type.equals("Oven")){
 					 typeargs.add(currword);
 				 }
 				 else if (type.equals("Image")){
@@ -476,7 +529,9 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 					 }
 				 else if (type.equals("HungerStats")){
 					 typeargs.add(currword);
-				 }
+				 } else if(type.equals("Oven")){
+                     typeargs.add(currword);
+                 }
 				 break;
 			 case 6:
 				 typeargs.add(Integer.parseInt(currword));
@@ -506,7 +561,7 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 			 
 			 case 3:
 				 
-				 if (type.equals( "TextBlock") || type.equals("Crafting") || type.equals("Furnace")){
+				 if (type.equals( "TextBlock") || type.equals("Crafting") || type.equals("Furnace") || type.equals("Oven")){
 					 typeargs.add(currword);
 				 }
 				 else if (type.equals("Image")){

@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

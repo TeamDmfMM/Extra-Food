@@ -3,6 +3,8 @@ package dmf444.ExtraFood.Common.RecipeHandler;
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -98,6 +100,10 @@ public class CRPageCraftGet {
 		this.putRecipe("cookedHamburger", new ItemStack(ItemLoader.cookedHamburger), new ItemStack(ItemLoader.rawHamburger));
 		this.putRecipe("butterMilk", new ItemStack(ItemLoader.butterMilk), new ItemStack(Items.milk_bucket));
         this.putRecipe("dough", new ItemStack(ItemLoader.dough), new ItemStack(Items.wheat), new ItemStack(Items.water_bucket));
+
+        //Oven Ones - Blocks.Carrots is removed in rendering
+        this.putRecipe("muffin",new ItemStack(NBTFoodLoader.getItem("muffin")), new ItemStack(ItemLoader.dough), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.muffinPan), new ItemStack(ItemLoader.chocolate), new ItemStack(ItemLoader.strawberry), new ItemStack(ItemLoader.banana), new ItemStack(Items.apple), new ItemStack(ItemLoader.chocolate, 2), new ItemStack(Blocks.carrots));
+        this.putRecipe("pizza", new ItemStack(NBTFoodLoader.getItem("pizza")), new ItemStack(ItemLoader.dough), new ItemStack(ItemLoader.tomato, 2), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.sausage), new ItemStack(Items.cooked_fished), new ItemStack(ItemLoader.cheeseSlice, 2), new ItemStack(ItemLoader.peanut, 3), new ItemStack(Blocks.carrots), new ItemStack(Blocks.carrots));
 		//TODO place the things in here
 	}
 	public ItemStack[] getArray(String itemname){

@@ -28,10 +28,7 @@ public class NBTFoodRegistry {
 	public NBTFoodRegistry(){
 		// TODO Place food registries in here
 		foods = new ArrayList<NBTFoodSpecs>();
-		addFoods("pizza", Pizza_ADD, 				
-				p +"pizzaBase",
-				new float[] {10, 9},
-				lst(ar("pepperoni","fish")));
+		addFoods("pizza", Pizza_ADD, p +"pizzaBase", new float[] {10, 9}, lst(ar("pepperoni","fish")));
 		addFood("muffin", Muffin_ADD, Muffin_Type, p +"muffinBase", new float[]{6, 3}, lst(ar()));
 				
 
@@ -40,11 +37,11 @@ public class NBTFoodRegistry {
 						
 	}
 	private String p = "extrafood:oven/";
-	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(Items.apple), "fish", p +"pizzaFish", is(Items.cooked_fished), "olives", p +"pizzaOlive", is(Items.golden_apple), "cheese", p +"pizzaCheese", is(ItemLoader.cheeseWheel));
+	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(ItemLoader.sausage), "fish", p +"pizzaFish", is(Items.cooked_fished), "olives", p +"pizzaOlive", new ItemStack(ItemLoader.peanut, 3), "cheese", p +"pizzaCheese", new ItemStack(ItemLoader.cheeseSlice, 2));
 	private Dictionary<String, ArrayList<Object>> Muffin_ADD = dict("chocolate_chip", p +"muffinChocolate", is(ItemLoader.chocolate), "strawberry", p +"muffinStrawberry", is(ItemLoader.strawberry), "banana", p +"muffinBanana", is(ItemLoader.banana), "apple", p +"muffinApple", is(Items.apple), "Doublechocolate", p +"muffinDoubleChocolate", new ItemStack(ItemLoader.chocolate, 2));
 	
 	
-	private Dictionary<ArrayList<String>, ArrayList<Object>> Muffin_Type = createInfo("chocolate_chip", 8, 4, "strawberry", 10, 4,"Doublechocolate", 12, 2, "apple", 10, 5, "banana", 10, 6, "banana", "chocolate_chip", 15, 6);
+	private Dictionary<ArrayList<String>, ArrayList<Object>> Muffin_Type = createInfo("chocolate_chip", 8, 4, "strawberry", 10, 4,"Doublechocolate", 12, 2, "apple", 10, 5, "banana", 10, 6);//, "banana", "chocolate_chip", 15, 6
 	
 	
 	
