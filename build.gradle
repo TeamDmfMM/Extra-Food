@@ -84,11 +84,12 @@ curse {
     apiKey = System.getenv("APIKEY") // saved in the build environment vars
     projectId = "222348" // my project url is http://minecraft.curseforge.com/mc-mods/222348-extra-food
     changelog = """
-    Added in Curse direct uploading
-    Fixed textures not showing up (I hope)
-    This (knock on wood) should be final beta [again]
+    Version 0.7:
+    Introduction to the oven
+    several bug fixes
+    all the last beta releases together in a release!
     """
-    releaseType = "beta"
+    releaseType = "release"
 
     // the default obfuscated jar is uploaded by default
     // artifact = project.file("some/jar/to/upload.jar")
