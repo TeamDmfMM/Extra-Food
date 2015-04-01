@@ -1,13 +1,7 @@
 package dmf444.ExtraFood.Core.lib;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.util.ConfigHandler;
-import dmf444.ExtraFood.util.EFLog;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
 
 public class ItemLib {
 	static EntityPlayer entityplayer;
@@ -50,7 +44,8 @@ public class ItemLib {
 	public static String iSKeb = "steakKebab";
 	public static String iVKeb = "vealKebab";
 	public static String iCho = "chocolate";
-	public static String iPC = "pancake";	
+	public static String iPC = "pancake";
+    public static String iDough = "dough";
 	
 	
 	
@@ -85,6 +80,12 @@ public class ItemLib {
 	public static String iStrawYogurt = "strawberryYogurt";
 	public static String iButterMilk = "ButterMilk";
 	public static String iFrenchToast = "FrenchToast";
+	public static String iShortB = "shortbread";
+	public static String iFC = "FruitCake";
+	public static String iGB = "gingerbread";
+	public static String Chestnut = "chestnuts";
+	public static String Cake = "ChocolateCake";
+	public static String iMuffPan = "MuffinPan";
 	
 
 

@@ -42,27 +42,27 @@ public class RenderOven extends TileEntitySpecialRenderer {
     		
     		if (i == 2)
             {
-                short1 = 180;
+                short1 = 360;
             }
 
             if (i == 3)
             {
-                short1 = 360;
+                short1 = 180;
             }
 
             if (i == 4)
             {
-                short1 = -90; //-90
+                short1 = 90; //-90
             }
 
             if (i == 5)
             {
-                short1 = 90; //90
+                short1 = -90; //90
             }
             GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
    //Use in 1.6.2  this
    //Use in 1.6.2  this
-            ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/BlockOven.png")); 
+            ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/BlockOven4.png")); 
     //the ':' is very important
     //binding the textures
             Minecraft.getMinecraft().renderEngine.bindTexture(textures);

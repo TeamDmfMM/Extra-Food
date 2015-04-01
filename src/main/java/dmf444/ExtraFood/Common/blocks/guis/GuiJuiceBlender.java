@@ -5,26 +5,23 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-
-
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-
-
-
+import codechicken.lib.render.RenderUtils;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.lib.GuiLib;
-import dmf444.ExtraFood.util.EFLog;
 
 
 public class GuiJuiceBlender extends GuiContainer {
@@ -41,7 +38,6 @@ public class GuiJuiceBlender extends GuiContainer {
 		te = tilentity;
 
 
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -54,8 +50,8 @@ public class GuiJuiceBlender extends GuiContainer {
 		//System.out.println("drawing rebbryrbtwckut");
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);
-		this.mc.renderEngine.bindTexture(new ResourceLocation(JuiceRegistry.instance.getTextureFromJuice(te.tank.getFluid().getFluid())));
-		this.drawTexturedModalRect(x + 147, (int)(y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), 0, 0, 16, (int)(te.tank.getFluidAmount() * 0.012));
+		this.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
+		this.drawTexturedModelRectFromIcon(x + 147, (int)(y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false),  16, (int)(te.tank.getFluidAmount() * 0.012));
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
@@ -110,40 +106,50 @@ public class GuiJuiceBlender extends GuiContainer {
 		}
 
 
-		// TODO Auto-generated method stub
-
 
 	}
-private boolean shouldShowToolTip(){
-	int x = (width - xSize) / 2;
-	int y = (height - ySize) / 2;
-	//System.out.println("X: " + this.mousex + " X:X: " + x + 146 + " Y: " + this.mousey + " Y:Y: " + y + 11);
-	Rectangle rect = new Rectangle(146, 11, 16, 61);
-
-
-	if (rect.contains(this.mousex, this.mousey) && te.tank.getFluid() != null){
-		return true;
+	private boolean shouldShowToolTip(){
+		int x = (width - xSize) / 2;
+		int y = (height - ySize) / 2;
+		//System.out.println("X: " + this.mousex + " X:X: " + x + 146 + " Y: " + this.mousey + " Y:Y: " + y + 11);
+		Rectangle rect = new Rectangle(146, 11, 16, 61);
+	
+	
+		if (rect.contains(this.mousex, this.mousey) && te.tank.getFluid() != null){
+			return true;
+		}
+		return false;
 	}
-	return false;
-}
 
 
-public void updateScreen(){
-
-
-}
-protected void mouseMovedOrUp(int par1, int par2, int par3){
-	super.mouseMovedOrUp(par1, par2, par3);
-	if (par3 == 0){
-		this.mousex = par1;
-		this.mousey = par2;
+	public void updateScreen(){
+	
+	
 	}
-}
-public void handleMouseInput(){
-	int x = Mouse.getEventX() * width / mc.displayWidth;
-	int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
-	this.mousex = x - guiLeft;
-	this.mousey = y - guiTop;
-	super.handleMouseInput();
-}
+	protected void mouseMovedOrUp(int par1, int par2, int par3){
+		super.mouseMovedOrUp(par1, par2, par3);
+		if (par3 == 0){
+			this.mousex = par1;
+			this.mousey = par2;
+		}
+	}
+	public void handleMouseInput(){
+		int x = Mouse.getEventX() * width / mc.displayWidth;
+		int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
+		this.mousex = x - guiLeft;
+		this.mousey = y - guiTop;
+		super.handleMouseInput();
+	}
+	
+	//Taken from BuildCraft... If you own it, ask and I'll remove it
+	public static IIcon getFluidTexture(Fluid fluid, boolean flowing) {
+		if (fluid == null) {
+			return null;
+		}
+		IIcon icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
+		if (icon == null) {
+			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
+		}
+		return icon;
+	}
 }

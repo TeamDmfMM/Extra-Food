@@ -1,5 +1,7 @@
 package dmf444.ExtraFood.Core.Crossmod;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
@@ -30,8 +32,19 @@ public class ThaumcraftAspects {
 		ThaumcraftApi.registerObjectTag(new ItemStack(BlockLoader.Bbananajuice), (new AspectList()).add(Aspect.CROP, 1).add(Aspect.HUNGER, 1).add(Aspect.ORDER, 2).add(Aspect.WATER, 4));
 		ThaumcraftApi.registerObjectTag(new ItemStack(ItemLoader.tomato), (new AspectList()).add(Aspect.CROP, 1).add(Aspect.HUNGER, 1).add(Aspect.LIFE, 1));
 		ThaumcraftApi.registerObjectTag(new ItemStack(ItemLoader.lettuce), (new AspectList()).add(Aspect.CROP, 1).add(Aspect.HUNGER, 1).add(Aspect.HEAL, 1));
-		
+		regTC(is(BlockLoader.Beggnog), new AspectList().add(Aspect.HUNGER, 2).add(Aspect.LIFE, 1));
+		regTC(is(ItemLoader.ChocolateCake), new AspectList().add(Aspect.HUNGER, 3).add(Aspect.ENERGY, 1));
 		
 	}
-
+	
+	private static void regTC(ItemStack itemScanned, AspectList asplist){
+		ThaumcraftApi.registerObjectTag(itemScanned, asplist);
+	}
+	
+	private static ItemStack is(Item item){
+		return new ItemStack(item, 1);
+	}
+	private static ItemStack is(Block block){
+		return new ItemStack(block, 1);
+	}
 }

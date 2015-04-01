@@ -1,19 +1,16 @@
 package dmf444.ExtraFood.Core;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
-import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.RecipeHandler.RecipeAutoCutter;
-import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.ExtraFood;
+import dmf444.ExtraFood.util.DateUtil;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 
 public class CraftingRecipies {
@@ -26,6 +23,8 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.autoCutter, 1), new Object[] {"pki", "psp", "p p", 'p', "plankWood", 'k', ItemLoader.knife, 'i', "ingotIron", 's', "slabWood"}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.juiceBlender, 1), new Object[] {"sss", " ws", "sss", 's', new ItemStack(Blocks.stone_slab, 1, 0), 'w', "plankWood"}));
 	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.whiteout), new Object[] {"bbb", "bbb", "bbb", 'b', new ItemStack(Items.dye, 1, 15)});
+	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.oven), new Object[] {"iii", "irg", "sss", 'i', new ItemStack(Blocks.iron_block), 'r', new ItemStack(Blocks.iron_bars), 'g', new ItemStack(Blocks.glass_pane), 's', new ItemStack(Blocks.stone_slab, 1, 0)});
+	
 	//CookBook Recipies
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.cookBook, 1), new Object[] {" b ", " l ", " f ", 'b', Items.book, 'l', Items.leather, 'f', Items.apple}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.cookBook, 1), new Object[] {" b ", " l ", " f ", 'b', Items.book, 'l', Items.leather, 'f', Items.porkchop}));
@@ -58,6 +57,7 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.yogurt), new ItemStack(Items.milk_bucket), new ItemStack(Items.sugar), new ItemStack(Items.wheat)));
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.stawberryYogurt), new ItemStack(Items.milk_bucket), new ItemStack(Items.sugar), new ItemStack(Items.wheat), "foodStrawberry"));	
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.frenchToast), "foodButter", "foodToast", "foodEgg"));
+	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.dough), new ItemStack(Items.wheat), new ItemStack(Items.water_bucket));
 	//Sandwiches
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.sandwichPBN), new Object[] {" t ", " cp", " t ", 't', "foodToast", 'c', "foodChocolateSpread", 'p', "foodPeanutButter"}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.sandwichBLT),new Object[] {" t ", "blo", " t ", 't', "foodToast", 'b', "foodCookedBacon", 'l', "cropLettuce", 'o', "cropTomato"}));
@@ -79,7 +79,19 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.meatballpasta), new ItemStack(Items.bowl), "foodMeatballs", "itemKnife", "itemKnife", "cropWheat", "cropTomato"));	
 	//Seed Recipes
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.tomatoSeeds, 2), "cropTomato"));
-	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.uselettuceSeeds, 2), new Object[] { " c ", "csc", " c ", 'c', new ItemStack(Items.clay_ball, 1), 's', new ItemStack(ItemLoader.rawlettuceSeeds)});
+	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.uselettuceSeeds, 2), new Object[] {"cs", 'c', new ItemStack(Items.clay_ball, 1), 's', new ItemStack(ItemLoader.rawlettuceSeeds)});
+	
+	//Seasonal
+	if(DateUtil.isChristmas()){
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.fruitcake), Items.bread, ItemLoader.strawberry, Items.carrot, Items.apple);
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.shortbread, 2), Items.sugar, Items.wheat, ItemLoader.butter);
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.gingerbread, 2), Items.sugar, Items.wheat, ItemLoader.butter, Items.egg);
+		GameRegistry.addSmelting(ItemLoader.peanut, new ItemStack(ItemLoader.chestnuts), 1F);
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.bucketeggnog), ItemLoader.egg, Items.milk_bucket, ItemLoader.egg);
+	}
+	if(DateUtil.isBirthDay()){
+		GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.ChocolateCake), Items.cake, ItemLoader.chocolate);
+	}
 	
 	Cutting(new ItemStack(Items.fish, 1), new ItemStack(ItemLoader.fishpieces, 1));
 	Cutting(new ItemStack(ItemLoader.cookedHamburger, 1), new ItemStack(ItemLoader.meatballs, 3));

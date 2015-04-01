@@ -2,6 +2,7 @@ package dmf444.ExtraFood;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +28,7 @@ import dmf444.ExtraFood.Common.EventHandler.ExtraFood_EventBonemeal;
 import dmf444.ExtraFood.Common.EventHandler.ExtraFood_eventTextureHook;
 import dmf444.ExtraFood.Common.RecipeHandler.CRPageCraftGet;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
+import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
 import dmf444.ExtraFood.Common.WorldGen.PeanutWorldGen;
 import dmf444.ExtraFood.Common.WorldGen.StrawberryWorldGen;
@@ -34,13 +36,16 @@ import dmf444.ExtraFood.Common.WorldGen.TreeManager;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import dmf444.ExtraFood.Core.AchieveLoad;
 import dmf444.ExtraFood.Core.CraftingRecipies;
 import dmf444.ExtraFood.Core.GuiHandler;
 import dmf444.ExtraFood.Core.PacketJBTank;
-import dmf444.ExtraFood.Core.Crossmod.NEIAutoCutterHandler.AutoCutterRecipe;
+import dmf444.ExtraFood.Core.Crossmod.CrossModModules;
+import dmf444.ExtraFood.Core.Crossmod.NEI.NEIAutoCutterHandler.AutoCutterRecipe;
+import dmf444.ExtraFood.Core.Crossmod.Waila.WailaConfig;
+import dmf444.ExtraFood.Core.Crossmod.forestry.ForestryFarming;
 import dmf444.ExtraFood.Core.Crossmod.ThaumcraftAspects;
-import dmf444.ExtraFood.Core.Crossmod.WailaConfig;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.util.ConfigHandler;
 import dmf444.ExtraFood.util.EFLog;
@@ -74,7 +79,8 @@ public class ExtraFood {
 		BlockLoader.initiateBlocks();
 		ItemLoader.initiateItems();
 		ItemLoader.initiateFoods();
-
+		NBTFoodLoader.initiateItems();
+		NBTFoodLoader.register();
 		
 		if (ConfigHandler.GenBananaTrees){
 		GameRegistry.registerWorldGenerator(treeManager, 0);
@@ -82,14 +88,13 @@ public class ExtraFood {
 		}
 		
 		EventsLoader.loadEvents();
-
 		//Gui Handler Registration
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		//Init the packet Handler
 		JBTanknet = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MId);
 		JBTanknet.registerMessage(PacketJBTank.Handler.class, PacketJBTank.class, 1,Side.CLIENT);
 
-		
+		CrossModModules.preInit();
 		
 			EFLog.info("Cleared EF's Registry");
 		
@@ -98,16 +103,18 @@ public class ExtraFood {
 
 	@EventHandler
 	public void load(FMLInitializationEvent event){
+		EFLog.info("Extra Food is in Init, loading stuff");
+			BlockLoader.initTileEntity();
 		
-		BlockLoader.initTileEntity();
+			proxy.registerRenderers();
+			this.registryCutter = new RegistryAutoCutter();
+			CraftingRecipies.craftering();
+			CraftingRecipies.furnacing();
 		
-		proxy.registerRenderers();
-		this.registryCutter = new RegistryAutoCutter();
-		CraftingRecipies.craftering();
-		CraftingRecipies.furnacing();
-		
-		proxy.registerKeybinds();
-		proxy.intermodComm();
+			proxy.registerKeybinds();
+			proxy.intermodComm();
+			CrossModModules.load();
+		EFLog.info("Finished all INIT!");
 	}
 	
 	@EventHandler
@@ -115,6 +122,7 @@ public class ExtraFood {
 		
 		crafterPage = new CRPageCraftGet();
 		JuiceRegistry.instance = new JuiceRegistry();
+		OvenRegistry.instance = new OvenRegistry();
 
 
 

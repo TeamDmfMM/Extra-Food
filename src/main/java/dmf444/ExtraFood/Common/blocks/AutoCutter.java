@@ -2,6 +2,7 @@ package dmf444.ExtraFood.Common.blocks;
 
 import java.util.Random;
 
+import dmf444.ExtraFood.Client.renderer.AutoCutterModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -28,17 +29,15 @@ public class AutoCutter extends BlockContainer  {
             this.setCreativeTab(EFTabs.INSTANCE);
             //this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.8F, 1.0F);
     }
-    
+
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z,
-                    EntityPlayer player, int metadata, float what, float these, float are) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float what, float these, float are) {
             TileEntity tileEntity = world.getTileEntity(x, y, z);
-            if (tileEntity == null || player.isSneaking()) {
+            if (tileEntity == null || player.isSneaking())
                     return false;
-            }
-    //code to open gui explained later
-    player.openGui(ExtraFood.instance, 1, world, x, y, z);
-            return true;
+            else
+                player.openGui(ExtraFood.instance, 1, world, x, y, z);
+                 return true;
     }
     
    //Make sure you set this as your TileEntity class relevant for the block!

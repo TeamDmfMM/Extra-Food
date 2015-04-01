@@ -33,6 +33,7 @@ public class CheesePressRenderer extends TileEntitySpecialRenderer {
     
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
+        CheesePressTileEntity cheesePressTileEntity = (CheesePressTileEntity) te;
     //The PushMatrix tells the renderer to "start" doing something.
             GL11.glPushMatrix();
     //This is setting the initial location.
@@ -71,6 +72,8 @@ public class CheesePressRenderer extends TileEntitySpecialRenderer {
             GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
     //A reference to your Model file. Again, very important.
+            this.model.Shape4.offsetY = cheesePressTileEntity.AnimationAngle;
+            this.model.Shape4dot1.offsetY = cheesePressTileEntity.AnimationAngle;
             this.model.renderEnt((CheesePressTileEntity) te, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
     //Tell it to stop rendering for both the PushMatrix's
             GL11.glPopMatrix();

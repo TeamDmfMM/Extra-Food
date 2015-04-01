@@ -29,9 +29,9 @@ public class Whiteout extends Block {
 	}
 	@Override
 	 public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess world, int x, int y, int z){
-		if(world.getBiomeGenForCoords(x, z) == BiomeGenBase.sky){
+		//if(world.getBlock(x, y, z) == 1){
 			return false;
-		}
-		return true;
+		//}
+		//return true;
 	}
 }

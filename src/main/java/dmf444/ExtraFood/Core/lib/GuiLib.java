@@ -13,5 +13,11 @@ public class GuiLib {
     public static final ResourceLocation CBopen = new ResourceLocation(i, "textures/gui/book_texture.png");
     public static final ResourceLocation CBfurnace = new ResourceLocation(i, "textures/gui/FurnaceBookGUI.png");
     public static final ResourceLocation CBcraftgrid = new ResourceLocation(i, "textures/gui/craftingbookGUI1.png");
+    public static final ResourceLocation CBoven = new ResourceLocation(i, "textures/gui/ovenbookGUI.png");
     public static final ResourceLocation JBgui = new ResourceLocation(i, "textures/gui/Juice_Blender.png");
+    public static final ResourceLocation OVgui = new ResourceLocation(i, "textures/gui/Oven.png");
+    
+    public static final ResourceLocation ModelJM = new ResourceLocation(i, "models/juiceMixer.obj");
+    public static final ResourceLocation TextureJM = new ResourceLocation(i, "textures/models/JuiceMixer1.png");
 }
+      
