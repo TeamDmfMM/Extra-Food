@@ -1,0 +1,197 @@
+#Tab Name
+itemGroup.ExtraFood=Extra Food
+itemGroup.ExtraFood.OvenFood=Oven Baked Food
+
+#Item Names
+item.Cheese_Wheel.name=Cheese Wheel
+item.Banana.name=Banana
+item.Knife.name=Cooking Knife
+item.Cheeseslice.name=Cheese Slice
+item.Cookbook.name=Cookbook
+item.Sausage.name=Sausage
+item.Strawberry.name=Strawberry
+item.strawberrybucket.name=Strawberry Juice Bucket
+item.bucketbanana.name=Banana Juice Bucket
+item.BucketCarrot.name=Carrot Juice Bucket
+item.BucketSeaWater.name=Bucket of Sea Water
+item.Veal.name=Veal
+item.Toast.name=Toast
+item.BreadSlice.name=Sliced Bread
+item.BucketPurifiedWater.name=Bucket of Purified Water
+item.RawLettuceSeeds.name=Uncoated Lettuce Seeds
+item.TomatoSeeds.name=Tomato Seeds
+item.Egg.name=Cooked Egg
+item.Pasta.name=Plain Pasta
+item.CoatedLettuceSeeds.name=Coated Lettuce Seeds
+item.BaconCheeseSandwhich.name=Bacon-Cheese Sandwich
+item.GrilledCheeseSandwhich.name=Grilled Cheese Sandwich
+item.RawHamburger.name=Uncooked Hamburger
+item.CookedHamburger.name=Cooked Hamburger
+item.HamburgerSandwhich.name=Hamburger
+item.Peanut.name=Peanut
+item.Tomato.name=Tomato
+item.Lettuce.name=Lettuce
+item.PastaWithSauce.name=Tomato Sauce Pasta
+item.meatballs.name=Meatballs
+item.pastaMeatballs.name=Pasta with Meatballs
+item.sushi.name=Sushi
+item.pancake.name=Pancakes
+item.FishPieces.name=Pieces of Fish
+item.porkKebab.name=Pork Shish Kebob
+item.vealKebab.name=Veal Shish Kebob
+item.steakKebab.name=Steak Shish Kebob
+item.chocolate.name=Chocolate
+item.SausageSandwhich.name=Sausage Sandwich
+item.Bacon.name=Bacon
+item.CookedBacon.name=Cooked Bacon
+item.FrenchFries.name=French Fries
+item.PotatoLava.name=Potato Lava
+item.Grater.name=Grater
+item.butter.name=Butter
+item.peanutButter.name=Peanut Butter
+item.vanillaIceCream.name=Vanilla Ice Cream
+item.chocolateIceCream.name=Chocolate Ice Cream
+item.strawberryIceCream.name=Strawberry Ice Cream
+item.icePopcicle.name=Popsicle
+item.neopolitanIceCream.name=Neopolitan Ice Cream
+item.chineseFood.name=Chinese Food
+item.chocolateSpread.name=Chocolate Spread
+item.PB&NSandwich.name=Peanut Butter & Chocolate Sandwich
+item.BLTSandwich.name=BLT Sandwich
+item.ChocolateSandwich.name=Chocolate Sandwich
+item.PeanutButterSandwich.name=Peanut Butter Sandwich
+item.jelly.name=Strawberry Jelly
+item.PB&JSandwich.name=Peanut Butter & Jelly Sandwich
+item.strawberryYogurt.name=Strawberry Yogurt
+item.yogurt.name=Plain Yogurt
+item.FrenchToast.name=French Toast
+item.ButterMilk.name=Butter Milk
+item.CheeseburgerSandwhich.name=Cheeseburger
+item.SupremeHamburgerSandwhich.name=Deluxe Hamburger
+item.pizza.name=Pizza
+item.muffin.name=Muffin
+item.MuffinPan.name=Muffin Pan
+item.dough.name=Dough
+
+## Additive names
+add.pizza.pepperoni=Pepperoni
+add.pizza.fish=Fish
+add.pizza.olives=Olives
+add.pizza.cheese=Cheese
+add.muffin.chocolate_chip=Chocolate Chip
+add.muffin.strawberry=Strawberry
+add.muffin.Doublechocolate=Double Chocolate
+add.muffin.apple=Apple
+add.muffin.banana=Banana
+
+#Seasonal
+item.shortbread.name=Shortbread Cookie
+item.FruitCake.name=Fruit Cake
+item.chestnuts.name=Chestnuts
+item.gingerbread.name=Gingerbread Cookie
+item.eggnog.name=Bucket of Eggnog
+item.ChocolateCake.name=Chocolate Cake
+
+#Block Names
+tile.Banana_Bunch.name=Banana Bunch
+tile.CheesePress.name=Cheese Press
+tile.Bannana_Sapling.name=Banana Sapling
+tile.Auto_Cutter.name=Auto Cutter
+tile.Juice_Blender.name=Juice Blender
+tile.StrawberryBush.name=Strawberry Bush
+tile.BananaLeaf.name=Banana Leaf
+tile.PeanutBush.name=Peanut Bush
+tile.TheWhiteBlock.name=Block of Pure White
+tile.CropLettuce.name=Lettuce Crop
+tile.CropTomato.name=Tomato Crop
+tile.StrawberryJuice.name=Strawberry Juice
+tile.Fcarrotjuice.name=Carrot Juice
+tile.Fbananajuice.name=Banana Juice
+tile.FEggnog.name=Eggnog
+tile.Oven.name=Oven
+tile.Cake.name=Chocolate Cake
+
+#Fluid Names ---This is for mod Compatibility
+fluid.strawberryjuice=Strawberry Juice
+fluid.carrotjuice=Carrot Juice
+fluid.bananajuice=Banana Juice
+
+#FORESTRY Intergration Names
+circuit.managedBush=Bush Farm
+managedBush=Managed Bush Farm
+for.circuit.managedBush=Bush Farm
+
+#--GUI's
+gui.JB=Juice Blender
+gui.AC=Auto Cutter
+gui.CP=Cheese Press
+gui.OV=Oven
+
+#--Cook Book Names
+cookbook.Title=Cookbook
+cookbook.tabname.GettingStarted=Getting Started
+cookbook.tabname.HomeCookedFood=Home Cooked Food
+cookbook.tabname.CheesePress=Cheese Press
+cookbook.tabname.autocutter=Auto Cutter
+cookbook.tabname.juiceBlender=Juice Blender
+cookbook.tabname.oven=Oven
+
+
+#--Page Name Conventions
+# To h
+#Text on page = <TextBlock|-1|-1|0|*USER SEEN TEXT*>
+#<Crafting|-1|-1|PAGE BY HALFS|pgNameInCRPageCraftGet>
+#<HungerStats|-1|-1|PAGE BY HALFS|HungerBar|Saturation>
+#<Image|-1|-1|PAGE BY HALFS|RecourseLocation|x|y|u|v>
+
+#cookbook.pizza=Pizza is a extremely yummy meal, and it can provide, when eaten whole, up to 5 hunger points. To make pizza, you need to make pizza dough. Pizza dough can be made with two type of bread, whole wheat and regular.
+
+cookbook.cheesewheel=<TextBlock|-1|-1|0|By pressurizing milk repetitively, one's ability to create new foods such as cheese is formed. Cheese wheels are your first steps to healthy food, and an introduction into the food world. This is made in the Cheese Press.><HungerStats|-1|-1|1|4|5.6|Cheese Wheel>
+cookbook.cheeseslice=<TextBlock|-1|-1|0|Cheese slices are used in many recipes throughout Extra Food. They are mainly used in pizza, and they are also used in sandwiches (notably, the grilled cheese ones.) Their other use is to be a snack, healthier than an entire cheese wheel.><Crafting|-1|-1|1|cheeseslice><HungerStats|-1|-1|2|1|3.0|Cheese Slice>
+cookbook.knife=<TextBlock|-1|-1|0|The cutting knife, a staple of any good kitchen, is used for many cutting tasks. These range from cutting meats, fruits and other foods. When killing entities, such as the pig, rare drops may occur, such as bacon or in the case of young cows, veal.><Crafting|-1|-1|1|knife>
+cookbook.bacon=<TextBlock|-1|-1|0|You've decided that pigs are a great source of alternative meat. Despite your love for AntVenom (Anti-pig killing) and OhaiIchun, you see the usefulness of pigs: BACON. Using the knife you made earlier, you can kill pigs and get bacon as a drop. This can be eaten in it's raw form (although not recommended) and can also be cooked into the><TextBlock|-1|-1|1|perfect delectable slice of meat.><HungerStats|-1|-1|2|0.5|0.6|Bacon><HungerStats|-1|-1|3|1|5.2|Cooked Bacon>
+cookbook.cheesepress=<TextBlock|-1|-1|0|The cheese press is the first simple machine from Extra Foods. Requiring no power, it will convert milk buckets into cheese wheels. This will be your first steps into the "new age", where you can eat more foods of different types and not be stuck with Pork, Steak and carrots!><Crafting|-1|-1|1|cheesepress><TextBlock|-1|-1|2|To use this block, you must put 3 milk buckets into the top slots (1). This can also be done with hoppers and any form of automation from the top/all sides of the block. Cheese Wheels will appear in the bottom slot (2), and can be pulled out with hoppers or automation from the bottom of the block. Empty buckets can also be pulled out from the><TextBlock|-1|-1|3|bottom of the block.><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/CheesePressGUIHelper.png|105|79|0|0>
+cookbook.spread=<TextBlock|-1|-1|0|You have decided to use the fruits and nuts you've found in order to make spreads. These "spreads" taste very good in a sandwich, but you've questioned the safety of eating them alone. They seem to give you weird effects, and your not sure if that is good or bad!><HungerStats|-1|-1|2|2.5|5.0|Jelly><Crafting|-1|-1|3|jelly><HungerStats|-1|-1|4|4.0|4.5|Chocolate Spread><Crafting|-1|-1|5|chocolateSpread><HungerStats|-1|-1|6|1.5|4.5|Peanut Butter><Crafting|-1|-1|7|peanutButter>
+cookbook.grater=<TextBlock|-1|-1|0|To cut all your food finer than your knife does, you've invented a grater. This has been very useful in refining natural foods to a more spreadable kind. You feel like one day, this will become even more useful><Crafting|-1|-1|1|grater>
+cookbook.worldGen=<TextBlock|-1|-1|0|As you start to wander a new world, you see different types of blocks that you've never seen before.><Image|-1|-1|0|extrafood:textures/gui/cookbookimages/WorldGen.png|75|40|0|0><Image|28|108|0|extrafood:textures/gui/cookbookimages/WorldGen.png|75|40|75|0><TextBlock|-1|-1|1|When right clicking on these blocks, they seem to bear food, which you have named strawberries and peanuts. These seem to have a low health value, but combinding them other foods may fix that.><TextBlock|-1|-1|2|You have also seen some nice yellow fruits hanging off trees. When you break the block, you've notice you can get anywhere from 4 - 6 edible bananas! The leaves also drop saplings to regrow the trees.><Image|-1|-1|2|extrafood:textures/gui/cookbookimages/WorldGen.png|75|40|150|0><HungerStats|-1|-1|3|2|0.8|Banana>
+cookbook.plants=<TextBlock|-1|-1|0|In order to fully expand your tastebuds, you started to hit grass. Though unexciting, while you hit it, different seeds dropped. You've found two extra types: Tomato and raw lettuce seeds. To make lettuce seeds usable, you must coat them in clay.><Crafting|-1|-1|1|uselettuceSeeds><TextBlock|-1|-1|2|You can also extract seeds from tomato's in order to get more tomato seeds.><Crafting|-1|-1|3|tomatoSeeds>
+cookbook.boneBlock=<TextBlock|-1|-1|0|In an effort to be more compact, you've smashed together the broken bits of bone and created a block. This block is so pure white, that it contains a clear texture, no extra colors. PURE WHITE!! Now what can you do with that?><Crafting|-1|-1|1|whiteout>
+cookbook.basicKnowlege=<TextBlock|-1|-1|0|This book will act as your source for knowledge in the cooking realm. It will give you all the information you need, including hunger stats (sybolized by this):><Image|-1|-1|0|extrafood:textures/gui/cookbookimages/BookIcons.png|12|13|0|0><TextBlock|-1|-1|0|All of the foods listed in this book will also show their saturation value, by using this symbol:><Image|-1|-1|0|extrafood:textures/gui/cookbookimages/BookIcons.png|13|13|12|0><TextBlock|-1|-1|1|The crafting recipes in this book are all made in a standard crafting table. When a custom block is needed, there will be a page of instructions for that block. Each of the cookbook's tabs are different methods to prepare food.>
+cookbook.butter=<TextBlock|-1|-1|0|Once you realized that heating milk would produce a thicker substance, you started to test things. You later realized that if you molded the butter milk, you could made butter! Let your taste-buds enjoy.><Crafting|-1|-1|1|butter><HungerStats|-1|-1|2|0.5|1.0|Butter>
+cookbook.yogurt=<HungerStats|-1|-1|0|2.5|6.3|Yogurt><Crafting|-1|-1|1|yogurt><HungerStats|-1|-1|2|2.5|6.8|Strawberry Yogurt><Crafting|-1|-1|3|stawberryYogurt>
+cookbook.Bread=<TextBlock|-1|-1|0|In order to lessen the amount of starvation, you have cut the loaf of bread you made into slices. These will be very useful for other food, such as the sandwich and can be put into a furnace to be lightly  toasted, thus making toast.><Crafting|-1|-1|1|Bread><HungerStats|-1|-1|2|2|3.0|Sliced Bread><HungerStats|-1|-1|3|3|0.8|Toast>
+cookbook.sausage=<HungerStats|-1|-1|0|1.5|0.9|Sausage><Crafting|-1|-1|1|sausage>
+cookbook.fishpieces=<HungerStats|-1|-1|0|2|0.5|Fish Pieces><Crafting|-1|-1|1|Fishpieces>
+cookbook.meatballs=<HungerStats|-1|-1|0|1.5|0.4|Meatballs><Crafting|-1|-1|1|meatballs>
+cookbook.fries=<HungerStats|-1|-1|0|4|0.7|French Fries><Crafting|-1|-1|1|frenchFries>
+cookbook.butterMilk=<HungerStats|-1|-1|0|4|3.6|Butter Milk><Furnace|-1|-1|1|butterMilk>
+cookbook.burger=<HungerStats|-1|-1|0|2.5|0.6|Raw Burger><Crafting|-1|-1|1|BugerRaw><HungerStats|-1|-1|2|3.5|1.6|Cooked Burger><Crafting|-1|-1|3|BurgerCooked><Furnace|-1|-1|4|cookedHamburger>
+cookbook.sandwichBurger=<HungerStats|-1|-1|0|4.5|1.0|Hamburger><Crafting|-1|-1|1|sandwhichHamburger><HungerStats|-1|-1|2|5|12.0|Cheeseburger><Crafting|-1|-1|3|sandwichCheeseburger1><HungerStats|-1|-1|4|7.5|11.2|Supreme Burger><Crafting|-1|-1|5|sandwichSupremeBurger>
+cookbook.autocutter=<TextBlock|-1|-1|0|Realizing the cutting potential of the knife caused you to have a spontaneous good idea! You seem to have automated the knife, and compressed the entire contraption into the size of a block. It seems a little stange to have a knife cut by itself, but eveything will be good if you keep your hands away from it!><Crafting|-1|-1|1|autoCutter><TextBlock|-1|-1|2|In order to use the Autocutter, you must place a knife, with any durability, into the slot furthest to the right. Any item you want to cut, goes into the top slot and once cut, it will output into the bottom slot. This block can be automated with hoppers, input into the top of the block and export from the bottom of the block.><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/AutoCutterGUI1.png|75|65|0|0>
+cookbook.StrawberryJuice=<TextBlock|-1|-1|0|Made in the juice blender, this drink is the perfect blend of Strawberry. It's even better than the bannana one! It's recommended recipe is 10 strawberries, and put it all into a bucket. If you really want, you can also make it into block and place it on the ground.><HungerStats|-1|-1|1|3|0.8|Strawberry Juice>
+cookbook.CarrotJuice=<TextBlock|-1|-1|0|Like the other juice's this one is also made in the juice blender. It is a strange medly of carrots. As you drink it down, you try to forget it was taken from a zombie. The recommended recipe is 10 carrots in the juice blender, for maximum taste!><HungerStats|-1|-1|1|3|0.9|Carrot Juice>
+cookbook.BananaJuice=<TextBlock|-1|-1|0|Why do you do this to yourself? Crushing bananas sounded like a good idea. Then you drank it. It tasted funny. REALLY funny. And yet you consumed it. You've experimented enough to know that you should only put 10 bananas in one bucket at a time.><HungerStats|-1|-1|1|3|0.6|Banana Juice>
+cookbook.SeaWater=<TextBlock|-1|-1|0|As you travel from island to island and your food runs dry, you feel you could eat anything. Seeing animals drink from the rivers, you grab a trusty bucket and drink as well. The water is salty and disgusting but enough to satisfy your hunger.><HungerStats|-1|-1|1|1|0.5>
+cookbook.purifiedWater=<TextBlock|-1|-1|0|The salty water started to bother you. But your creativity helped to find a nice solution! If you put the Sea Water into a furnace, you can get Purified water, wich removes that horrible taste!><HungerStats|-1|-1|1|2|0.5>
+cookbook.juiceblender=<TextBlock|-1|-1|0|The Juice blender was intended to quench your thirst, and it seems to work! You've added in different fruits and have formulated a list of drinkable substances. Maybe you'll find more soon. This block makes all liquid liquids in the game.><Crafting|-1|-1|1|juiceBlender><TextBlock|-1|-1|2|Any item you want to blend goes into the blender (1). Once the blender is done processing the fruit, it will automatically output to the tank. Once the tank has 1000mb of any fluid, you can place a bucket in the top slot (2). The juice blender will automatically remove 1000ml from the tank and put it in a bucket which output to the ><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/JuiceBlenderGUI.png|68|47|0|0><TextBlock|-1|-1|3|bottom slot(3). Automation for this block is top inputs to Fruit blending slot, sides input buckets and bottom pulls out the juices.>
+cookbook.sandwiches=<TextBlock|-1|-1|0|By mixing different foods together, you have created a new array of things to eat. In this newest creation of yours, you've slapped some different items between bread, and created a "Sandwich". These will light up your taste buds and are very easy to craft. You've written down some of the better tasting sandwiches in the><TextBlock|-1|-1|1|following pages.><HungerStats|-1|-1|2|4|9.0|PB&C Sandwich><Crafting|-1|-1|3|sandwichPBN><HungerStats|-1|-1|4|4|9.5|PB&J Sandwich><Crafting|-1|-1|5|sandwichPBJ><HungerStats|-1|-1|6|4|10.0|BLT><Crafting|-1|-1|7|sandwichBLT><HungerStats|-1|-1|8|4.5|5.5|Chocolate><Crafting|-1|-1|9|sandwichC><HungerStats|-1|-1|10|3|3.5|PB Sandwich><Crafting|-1|-1|11|sandwichPB><HungerStats|-1|-1|12|3|1.9|Grilled Cheese><Crafting|-1|-1|13|sandwhichGC><HungerStats|-1|-1|14|3.5|1.0|Sausage Sandwich><Crafting|-1|-1|15|sandwhichS><HungerStats|-1|-1|16|3|1.9|Grilled Cheese Sandwich><Crafting|-1|-1|17|sandwhichGC><HungerStats|-1|-1|18|3|1.4|Bacon Cheese><Crafting|-1|-1|19|sandwhichCB>
+cookbook.ChoIC=<HungerStats|-1|-1|0|4|0.8|Cho. Ice Cream><Crafting|-1|-1|1|chocolateIceCream>
+cookbook.StrawIC=<HungerStats|-1|-1|0|4.5|2.5|Straw. Ice Cream><Crafting|-1|-1|1|strawberryIceCream>
+cookbook.VanIC=<HungerStats|-1|-1|0|2|0.8|Vanilla Ice Cream><Crafting|-1|-1|1|vanillaIceCream>
+cookbook.ipop=<HungerStats|-1|-1|0|2.5|3.3|Ice Pop><Crafting|-1|-1|1|icePop>
+cookbook.NeoIC=<TextBlock|-1|-1|0|Those other ice creams were so good. You wanted more. SO MUCH MORE! Now you've smashed them all together, and it seems, Heavenly. You will not share this with anyone. NEVER!!!!><Crafting|-1|-1|1|neoIceCream><HungerStats|-1|-1|2|4|4.5|Neopolitan>
+cookbook.sushi=<HungerStats|-1|-1|0|4|2.6|Sushi><Crafting|-1|-1|1|sushi>
+cookbook.chinese=<HungerStats|-1|-1|0|3.5|5.0|Chinese Food><Crafting|-1|-1|1|chineseFood>
+cookbook.pasta=<HungerStats|-1|-1|0|1.5|0.3|Raw Pasta><Crafting|-1|-1|1|rawpasta><HungerStats|-1|-1|2|3|1.3|Cooked Pasta><Crafting|-1|-1|3|cookedpasta><HungerStats|-1|-1|4|6|1.4|Meatball Pasta><Crafting|-1|-1|5|meatballpasta1><Crafting|-1|-1|6|meatballpasta3>
+cookbook.chocolate=<HungerStats|-1|-1|0|2|1.8|Chocolate><Crafting|-1|-1|1|chocolate>
+cookbook.egg=<HungerStats|-1|-1|0|1.5|0.8|Egg><Furnace|-1|-1|1|egg>
+cookbook.frenchToast=<HungerStats|-1|-1|0|3.5|2.7|French Toast><Crafting|-1|-1|1|frenchToast>
+cookbook.pancake=<HungerStats|-1|-1|0|3|1.2|Pancakes><Crafting|-1|-1|1|pancakes>
+cookbook.veal=<TextBlock|-1|-1|0|Veal is one of the hardest foods to get, you need to find and kill a baby cow! The baby cow is the only animal to have such tender meat. To harness this, you have to skillfully cut it with a cooking knife.><HungerStats|-1|-1|1|4|19.5|Veal>
+cookbook.kebab_veal=<HungerStats|-1|-1|0|3|12.6|Veal Kebab><Crafting|-1|-1|1|veal_kebab>
+cookbook.steak_kebab=<HungerStats|-1|-1|0|3|12.4|Steak Kebab><Crafting|-1|-1|1|steak_kebab>
+cookbook.pork_kebab=<HungerStats|-1|-1|0|3|12.3|Pork Kebab><Crafting|-1|-1|1|pork_kebab>
+cookbook.oven=<TextBlock|-1|-1|0|The oven has started a global revolution. This device can heat your food up and magically make things taste better. Confident in yourself you've explored every recipe that you though would taste good. Noticeably, this device doesn't need any heat to warm up. How best to use it?><Crafting|-1|-1|1|oven><TextBlock|-1|-1|2|The oven has three different types of slots. Recipe items go into the oven (1). Secondary items, like a muffin pan go into the single input slot(2). Once the food is made, it will be put into the output slot (3).><Image|-1|-1|2|extrafood:textures/gui/cookbookimages/OvenGUI.png|68|47|0|0><TextBlock|-1|-1|3|The oven is only partially automatible. Only food in the output slot can be pulled out by hoppers and only from the bottom of the oven. This is partially due to the residual heat buildup inside the oven. The MC HouseHold Hazardous Products Database has marked this a level 2 product.>
+cookbook.dough=<TextBlock|-1|-1|0|Dough is essential for the oven. By mixing the perfect combination of water and wheat, you've made a soft substances that rises when heat is applied. This dough is great when warm and can be mixed with other foods for a better taste. Note: uncooked dough is unedible><Crafting|-1|-1|1|dough>
+cookbook.muffin=<TextBlock|-1|-1|0|Muffins are a light snack food, quick to make and easy to prepare. Muffins are made with a base of dough, and a muffin pan. Additives must be added to the muffin in order for them to cook. Muffin additives are not mixable!><Oven|-1|-1|1|muffin><HungerStats|-1|-1|2|8|4|Chocolate Chip><HungerStats|-1|-1|3|10|4|Strawberry><HungerStats|-1|-1|4|12|2|Double Chocolate><HungerStats|-1|-1|5|10|5|Apple><HungerStats|-1|-1|6|10|6|Banana>
+cookbook.pizza=<TextBlock|-1|-1|0|Pizza is a filling meal made in the oven. This recipe is complicated, requiring two fresh tomatoes! In light of that, pizza's toppings can be mixed, and any combination can be made, EXCEPT: fish and sausage. Just don't do it, it'll make you sick!><Oven|-1|-1|1|pizza><HungerStats|-1|-1|2|10|9|Pizza Base><TextBlock|-1|-1|3|The pizza hunger values are statically generated, meaning that additives put on the pizza will increase hunger values from the bases'.>
