@@ -16,9 +16,9 @@ public class AchieveLoad {
 
 
 	public static void loadAc(){
-		cheesePress = new Achievement("getpress", "GetPress", 0, 0, BlockLoader.cheesePress, null);
-		getCheese = new Achievement("getcheese", "GetCheese", 3, 1, ItemLoader.cheeseWheel, cheesePress);
-		obtainKnife = new Achievement("obtainknife", "ObtainKnife", -2, 0, ItemLoader.knife, null);
+		cheesePress = new Achievement("getpress", "GetPress", 0, 0, BlockLoader.cheesePress, null).registerStat();
+		getCheese = new Achievement("getcheese", "GetCheese", 3, 1, ItemLoader.cheeseWheel, cheesePress).registerStat();
+		obtainKnife = new Achievement("obtainknife", "ObtainKnife", -2, 0, ItemLoader.knife, null).registerStat();
 		
 		
 

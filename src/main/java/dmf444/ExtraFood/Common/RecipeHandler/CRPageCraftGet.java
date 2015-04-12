@@ -1,31 +1,22 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-
-
-
-
-
-
-
-import java.util.Map;
-
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 
 public class CRPageCraftGet {
@@ -50,6 +41,7 @@ public class CRPageCraftGet {
 		this.putRecipe("cheesepress", new Object[] {"ipi", "ibi", "sss" , 'i', new ItemStack(Items.iron_ingot), 'p', new ItemStack(Blocks.planks, 1, 0), 'b', Items.bucket, 's', new ItemStack(Blocks.stone_slab, 1, 0)}, new ItemStack(BlockLoader.cheesePress, 1));
 		this.putRecipe("autoCutter", new Object[] {"pki", "psp", "p p" , 'p', new ItemStack(Blocks.planks, 1, 0), 'k', ItemLoader.knife, 'i', new ItemStack(Items.iron_ingot), 's', new ItemStack(Blocks.wooden_slab, 1, 0)}, new ItemStack(BlockLoader.autoCutter, 1));
 		this.putRecipe("juiceBlender", new Object[] {"sss", " ws", "sss" , 's', new ItemStack(Blocks.stone_slab, 1, 0), 'w', new ItemStack(Blocks.planks, 1, 0)}, new ItemStack(BlockLoader.juiceBlender, 1));
+		this.putRecipe("oven", new Object[] {"iii", "irg", "sss", 'i', new ItemStack(Blocks.iron_block), 'r', new ItemStack(Blocks.iron_bars), 'g', new ItemStack(Blocks.glass_pane), 's', new ItemStack(Blocks.stone_slab, 1, 0)}, new ItemStack(BlockLoader.oven, 1));
 		/*
 		this.putRecipe("cookBook0", new Object[] {" b ", " l ", " f " , 'b', Items.book, 'l', Items.leather, 'f', Items.apple}, new ItemStack(ItemLoader.cookBook, 1));
 		this.putRecipe("cookBook1", new Object[] {" b ", " l ", " f " , 'b', Items.book, 'l', Items.leather, 'f', Items.porkchop}, new ItemStack(ItemLoader.cookBook, 1));
@@ -107,6 +99,11 @@ public class CRPageCraftGet {
 		this.putRecipe("pureH2O", new ItemStack(ItemLoader.bucketpurifiedwater), new ItemStack(ItemLoader.bucketseaWater));
 		this.putRecipe("cookedHamburger", new ItemStack(ItemLoader.cookedHamburger), new ItemStack(ItemLoader.rawHamburger));
 		this.putRecipe("butterMilk", new ItemStack(ItemLoader.butterMilk), new ItemStack(Items.milk_bucket));
+        this.putRecipe("dough", new ItemStack(ItemLoader.dough), new ItemStack(Items.wheat), new ItemStack(Items.water_bucket));
+
+        //Oven Ones - Blocks.Carrots is removed in rendering
+        this.putRecipe("muffin",new ItemStack(NBTFoodLoader.getItem("muffin")), new ItemStack(ItemLoader.dough), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.muffinPan), new ItemStack(ItemLoader.chocolate), new ItemStack(ItemLoader.strawberry), new ItemStack(ItemLoader.banana), new ItemStack(Items.apple), new ItemStack(ItemLoader.chocolate, 2), new ItemStack(Blocks.carrots));
+        this.putRecipe("pizza", new ItemStack(NBTFoodLoader.getItem("pizza")), new ItemStack(ItemLoader.dough), new ItemStack(ItemLoader.tomato, 2), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.sausage), new ItemStack(Items.cooked_fished), new ItemStack(ItemLoader.cheeseSlice, 2), new ItemStack(ItemLoader.peanut, 3), new ItemStack(Blocks.carrots), new ItemStack(Blocks.carrots));
 		//TODO place the things in here
 	}
 	public ItemStack[] getArray(String itemname){

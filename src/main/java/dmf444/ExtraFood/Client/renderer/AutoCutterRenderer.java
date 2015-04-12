@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Client.renderer;
 
+import dmf444.ExtraFood.util.EFLog;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -32,6 +33,7 @@ public class AutoCutterRenderer extends TileEntitySpecialRenderer {
     
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
+        AutoCutterTileEntity autoCutterTileEntity = (AutoCutterTileEntity) te;
     //The PushMatrix tells the renderer to "start" doing something.
             GL11.glPushMatrix();
     //This is setting the initial location.
@@ -70,6 +72,9 @@ public class AutoCutterRenderer extends TileEntitySpecialRenderer {
             GL11.glPushMatrix();
             GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
     //A reference to your Model file. Again, very important.
+
+            this.model.knifeANIMATE.rotateAngleX = autoCutterTileEntity.knifeAngle;
+            this.model.KnifehandleANIMATE.rotateAngleX = autoCutterTileEntity.knifeAngle;
             this.model.renderEnt((AutoCutterTileEntity)te, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
     //Tell it to stop rendering for both the PushMatrix's
         

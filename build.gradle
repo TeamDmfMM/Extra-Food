@@ -16,17 +16,55 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: "curseforge"
 
-version = "1.7.2-0.5b"
+
+sourceCompatibility = 1.7 
+targetCompatibility = 1.7 
+
+
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+
+version = config.mod_version
 group= "dmf444.ExtraFood" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "ExtraFood"
 
 minecraft {
-    version = "1.7.10_pre4-10.12.2.1143-prerelease"
-    assetDir = "eclipse/assets"
+    version = config.minecraft_version + "-" + config.forge_version
+    
+    replaceIn "Core/lib/ModInfo.java"
+    replace "@VERSION@", "${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+    
 }
+version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("DRONE_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER")}"
+
+repositories { 
+  mavenCentral() 
+    maven { 
+        name = "chickenbones" 
+        url = "http://chickenbones.net/maven/" 
+  }
+      maven { // The repo from which to get waila 
+         name "Mobius Repo" 
+         url "http://mobiusstrip.eu/maven" 
+     } 
+  
+} 
+
 
 dependencies {
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.4.29:dev" 
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.4.80:dev" 
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.106:dev"
+    compile "mcp.mobius.waila:Waila:1.5.10_1.7.10"
+
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -42,22 +80,50 @@ dependencies {
 
 }
 
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+curse {
+    apiKey = System.getenv("APIKEY") // saved in the build environment vars
+    projectId = "222348" // my project url is http://minecraft.curseforge.com/mc-mods/222348-extra-food
+    changelog = """
+    Version 0.7:
+    Introduction to the oven
+    several bug fixes
+    all the last beta releases together in a release!
+    """
+    releaseType = "release"
+
+    // the default obfuscated jar is uploaded by default
+    // artifact = project.file("some/jar/to/upload.jar")
+
+    // allows you to add extra compatible MC versions. The one specified in the minecraft{} block is used by default.
+    // addGameVersion "1.7.1"
+    // addGameversion "1.7.0", "1.7.4"
+    
+    // Allows you to specify additional files that should be uploaded with your main jar
+    //additionalArtifact deobfJar
+    // additionalArtifact "$project.buildDir/libs/A-Custom-File.txt"
+    
+}
+
+processResources {
+    // exclude xcf files, as they are for development only
+    exclude '**/*.xcf'
+
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
+        include '*.info'
+
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'mod_version': project.version, 'minecraft_version': project.config.minecraft_version
     }
-        
+
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*.info'
     }
 }
+
+
+

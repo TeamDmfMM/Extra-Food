@@ -127,8 +127,7 @@ public int type = 0;
 			this.drawTexturedModalRect(xPosition, yPosition, 2, 204, 22, 22);
 			if (rloc == null){
 				this.rinder.renderItemIntoGUI(m.fontRenderer, m.getTextureManager(), new ItemStack(this.item), xPosition + 3, yPosition + 2);
-				}
-				else {
+				}else{
 					this.rinder.renderIcon(xPosition + 3, yPosition + 2, rloc, 16, 16);
 					
 				}

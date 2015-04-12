@@ -1,18 +1,20 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
 
+import com.google.common.collect.Lists;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.Client.renderer.AutoCutterModel;
-import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
-import dmf444.ExtraFood.Common.items.ItemLoader;
+
+import java.util.ArrayList;
 
 
 public class AutoCutterTileEntity extends TileEntity implements ISidedInventory {
@@ -22,6 +24,10 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     private static final int[] slots_top = new int[] {0};
     private static final int[] slots_bottom = new int[] {2, 1};
     private static final int[] slots_sides = new int[] {1};
+    private int numOfPlayers;
+
+    public float knifeAngle;
+    private int totalTime;
 
 
     public AutoCutterTileEntity(){
@@ -198,25 +204,53 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 	
 	public void updateEntity(){
+        //EFLog.error(this.knifeAngle);
+	    if (this.ok()){
+            this.ttime += 1;
 
-	if (this.ok()){
-		//if (!this.worldObj.isRemote){
-			this.ttime += 1;
+             if(this.complete >= 0) {
+               /* if(this.ttime <= 9){
+                    this.knifeAngle += 0.25F;
+                } else if(this.ttime >= 10){
+                    this.knifeAngle += 0.25F;
+                }*/
+                 ArrayList<Float> bob = Lists.newArrayList(5.0F, 5.1F, 5.2F, 5.3F, 5.4F, 5.5F, 5.6F, 5.7F, 5.8F, 5.9F, 18.5F, 6.0F, 6.1F, 6.2F, 0.0F, 6.2F, 6.0F, 18.4F, 5.8F, 5.6F);
+                 this.knifeAngle = bob.get(this.ttime - 1);
+
+             }
+
 			if (this.ttime == 20){
-				this.ttime = 0;
+                this.ttime = 0;
 				this.complete += 1;
+                this.totalTime += 1;
+                if(this.totalTime == 0 && this.complete >= 1){
+                    this.ttime = 0;
+                    this.complete = 0;
+                }
 				if (this.complete == 5){
 					//System.out.println("ko");
 					
 					this.do_();
 					this.complete = 0;
 					this.ttime = 0;
+                    this.totalTime = 0;
+                    if(this.knifeAngle != 0.0F){
+                        this.knifeAngle = 0.0F;
+                    }
 					
 				}
 			}
 		}
-	  //}
 	}
+    public int getTotalTime(){
+        return this.totalTime;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void ResetTiming(int newTime)
+    {
+        this.totalTime = newTime;
+    }
 
 
 	private void do_() {
@@ -236,6 +270,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
          {
              this.inv[0] = null;
          }
+        this.markDirty();
 	}
 	
 	/*
@@ -268,15 +303,29 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 	@Override
 	public void openInventory() {
-		// TODO Auto-generated method stub
-		
-	}
+        if (this.numOfPlayers < 0){
+            this.numOfPlayers = 0;
+        }
+        ++this.numOfPlayers;
+    }
 
 
 	@Override
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
-	}
+        --this.numOfPlayers;
+    }
 
+    @Override
+    public boolean receiveClientEvent(int eventNum, int arg)
+    {
+        if (eventNum == 1)
+        {
+            this.numOfPlayers = arg;
+            return true;
+        }
+        else
+        {
+            return super.receiveClientEvent(eventNum, arg);
+        }
+    }
 }

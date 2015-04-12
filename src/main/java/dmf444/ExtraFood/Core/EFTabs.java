@@ -19,17 +19,16 @@ public class EFTabs extends CreativeTabs {
 		super(ModInfo.MId);
 	}
 
-
+/*
 	@Override
 	public ItemStack getIconItemStack() {
 		
 		return new ItemStack(ItemLoader.cheeseWheel);
 	}
-
+*/
 
 	@Override
 	public Item getTabIconItem() {
-		// TODO Auto-generated method stub
 		return ItemLoader.cheeseWheel;
 	}
 }
