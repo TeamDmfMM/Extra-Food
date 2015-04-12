@@ -249,7 +249,7 @@ public class FarmLogicBush implements IFarmLogic {
 
 	@Override
 	public ResourceLocation getSpriteSheet() {
-		return TextureMap.locationItemsTexture; //new ResourceLocation("extrafood", "textures/items/strawberry.png");
+		return TextureMap.locationItemsTexture; //new ResourceLocation("extrafood", "textures/items/Strawberryy.png");
 	}
 
 	@Override
