@@ -1,0 +1,197 @@
+#Tab Name
+itemGroup.ExtraFood=Extra Food
+itemGroup.ExtraFood.OvenFood=Oven Baked Food
+
+#Item Names
+item.Cheese_Wheel.name=Rueda de queso
+item.Banana.name=Banana
+item.Knife.name=Cuchillo de cocina
+item.Cheeseslice.name=Trozo de queso
+item.Cookbook.name=Libro de cocina
+item.Sausage.name=Salchicha
+item.Strawberry.name=Fresa
+item.strawberrybucket.name=Cubo de zumo de fresa
+item.bucketbanana.name=Cubo de zumo de banana
+item.BucketCarrot.name=Cubo de zumo de zanahoria
+item.BucketSeaWater.name=Cubo de agua de mar
+item.Veal.name=Ternera
+item.Toast.name=Tostada
+item.BreadSlice.name=Trozo de pan
+item.BucketPurifiedWater.name=Cubo de agua purificada
+item.RawLettuceSeeds.name=Sin recubrir semillas de lechuga
+item.TomatoSeeds.name=Semilla de tomate
+item.Egg.name=Huevo cocinado
+item.Pasta.name=Pasta sencilla
+item.CoatedLettuceSeeds.name=Recubiertos semillas de lechuga
+item.BaconCheeseSandwhich.name=Sandwich de bacon y queso
+item.GrilledCheeseSandwhich.name=Sandwich de queso a la parrilla
+item.RawHamburger.name=Hamburguesa sin cocinar
+item.CookedHamburger.name=Hamburguesa cocinada
+item.HamburgerSandwhich.name=Hamburguesa
+item.Peanut.name=Cacahuete
+item.Tomato.name=Tomate
+item.Lettuce.name=Lechuga
+item.PastaWithSauce.name=Pasta con salsa de tomate
+item.meatballs.name=Albóndigas
+item.pastaMeatballs.name=Pasta con albóndigas
+item.sushi.name=Sushi
+item.pancake.name=Tortitas
+item.FishPieces.name=Trozo de pescado
+item.porkKebab.name=Kebab de cerdo
+item.vealKebab.name=Kebab de ternera
+item.steakKebab.name=Kebab de filete
+item.chocolate.name=Chocolate
+item.SausageSandwhich.name=Sandwich de salchicha
+item.Bacon.name=Bacon
+item.CookedBacon.name=Bacon cocinado
+item.FrenchFries.name=Patatas fritas
+item.PotatoLava.name=Patata de lava
+item.Grater.name=Rallador
+item.butter.name=Mantequilla
+item.peanutButter.name=Mantequilla de cacahuete
+item.vanillaIceCream.name=Helado de vainilla
+item.chocolateIceCream.name=Helado de chocolate
+item.strawberryIceCream.name=Helado de fresa
+item.icePopcicle.name=Polo
+item.neopolitanIceCream.name=Helado de napolitana
+item.chineseFood.name=Comida china
+item.chocolateSpread.name=Crema de chocolate
+item.PB&NSandwich.name=Sandwich de chocolate y crema de cacahuete
+item.BLTSandwich.name=BLT Sandwich
+item.ChocolateSandwich.name=Sandwich de chocolate
+item.PeanutButterSandwich.name=Sandwich de crema de cacahuete
+item.jelly.name=Mermelada de fresa
+item.PB&JSandwich.name=Sandwich de crema de cacahuete y mermelada
+item.strawberryYogurt.name=Yogurt de fresa
+item.yogurt.name=Yogurt natural
+item.FrenchToast.name=Tostada francesa
+item.ButterMilk.name=Leche cortada
+item.CheeseburgerSandwhich.name=Hamburguesa de queso
+item.SupremeHamburgerSandwhich.name=Deluxe Hamburger
+item.pizza.name=Pizza
+item.muffin.name=Muffin
+item.MuffinPan.name=Muffin Pan
+item.dough.name=Masa
+
+## Additive names
+add.pizza.pepperoni=Pepperoni
+add.pizza.fish=Pescado
+add.pizza.olives=Aceitunas
+add.pizza.cheese=Queso
+add.muffin.chocolate_chip=Galleta de chocolate
+add.muffin.strawberry=Fresa
+add.muffin.Doublechocolate=Doble chocolate
+add.muffin.apple=Manzana
+add.muffin.banana=Banana
+
+#Seasonal
+item.shortbread.name=Galleta de torta dulce
+item.FruitCake.name=Tarta de frutas
+item.chestnuts.name=Castañas
+item.gingerbread.name=Galletas de pan de jengibre
+item.eggnog.name=Cubo de ponche de huevo
+item.ChocolateCake.name=Tarta de chocolate
+
+#Block Names
+tile.Banana_Bunch.name=Racimo de banana
+tile.CheesePress.name=Presionador de queso
+tile.Bannana_Sapling.name=Árbol joven de Banana
+tile.Auto_Cutter.name=Cortador automático
+tile.Juice_Blender.name=Batidora
+tile.StrawberryBush.name=Arbusto de fresas
+tile.BananaLeaf.name=Hoja de Banana
+tile.PeanutBush.name=Arbusto de cacahuetes 
+tile.TheWhiteBlock.name=Block of Pure White
+tile.CropLettuce.name=Cosecha de lechuga
+tile.CropTomato.name=Cosecha de tomates
+tile.StrawberryJuice.name=Zumo de fresa
+tile.Fcarrotjuice.name=Zumo de zanahoria
+tile.Fbananajuice.name=Zumo de Banana
+tile.FEggnog.name=Ponche de huevo
+tile.Oven.name=Horno
+tile.Cake.name=Tarta de chocolate
+
+#Fluid Names ---This is for mod Compatibility
+fluid.strawberryjuice=Zumo de fresa
+fluid.carrotjuice=Zumo de zanahoria
+fluid.bananajuice=Zumo de banana 
+
+#FORESTRY Intergration Names
+circuit.managedBush=Granja de Arbustos
+managedBush=Managed Bush Farm
+for.circuit.managedBush=Granja de Arbustos
+
+#--GUI's
+gui.JB=Batidora
+gui.AC=Cortador Automático
+gui.CP=Presionador de Queso
+gui.OV=Horno
+
+#--Cook Book Names
+cookbook.Title=Libro de Cocina
+cookbook.tabname.GettingStarted=Empezando
+cookbook.tabname.HomeCookedFood=Comida Casera
+cookbook.tabname.CheesePress=Presionador de Queso
+cookbook.tabname.autocutter=Cortador Automático
+cookbook.tabname.juiceBlender=Batidora
+cookbook.tabname.oven=Horno
+
+
+#--Page Name Conventions
+# To h
+#Text on page = <TextBlock|-1|-1|0|*USER SEEN TEXT*>
+#<Crafting|-1|-1|PAGE BY HALFS|pgNameInCRPageCraftGet>
+#<HungerStats|-1|-1|PAGE BY HALFS|HungerBar|Saturation>
+#<Image|-1|-1|PAGE BY HALFS|RecourseLocation|x|y|u|v>
+
+#cookbook.pizza=La pizza es una comida muy sabrosa, y puede proporcionar, cuando se comen todo, hasta 5 puntos de hambre. Para hacer la pizza, tu necesita para hacer masa de pizza. Masa de pizza se puede hacer con dos tipos de pan, el trigo integral y regular.
+
+cookbook.cheesewheel=<TextBlock|-1|-1|0|Presurizando leche repetitiva, la capacidad para crear nuevos alimentos como se forma el queso. Ruedas de queso son los primeros pasos para una alimentación sana y una introducción al mundo de los alimentos. Esto se hace en la prensa de queso.><HungerStats|-1|-1|1|4|5.6|Cheese Wheel>
+cookbook.cheeseslice=<TextBlock|-1|-1|0|Trozo de queso se utiliza en muchas recetas de toda Extra Food. Se utilizan principalmente en la pizza, y también se utilizan en bocadillos (en particular, los de queso a la parrilla.) Su otro uso es ser un aperitivo, más saludable que toda una rueda de queso.><Crafting|-1|-1|1|cheeseslice><HungerStats|-1|-1|2|1|3.0|Cheese Slice>
+cookbook.knife=<TextBlock|-1|-1|0|La cuchilla de corte, un elemento básico de cualquier buena cocina, se utiliza para muchas tareas de corte. Estos van desde carnes de corte, frutas y otros alimentos. Al matar entidades, como el cerdo, se pueden producir gotas raras, tales como tocino o en el caso de las vacas jóvenes, ternera.><Crafting|-1|-1|1|knife>
+cookbook.bacon=<TextBlock|-1|-1|0|Tu ha decidido que los cerdos son una gran fuente de carne alternativa. Usted ve la utilidad de los cerdos: BACON. Con el cuchillo que hizo previamente, se puede matar a los cerdos y obtener tocino como una gota. Esto se puede comer en ella de forma cruda (aunque no se recomienda) y también se puede cocinar en><TextBlock|-1|-1|1|la rebanada deliciosa perfecta de carne.><HungerStats|-1|-1|2|0.5|0.6|Bacon><HungerStats|-1|-1|3|1|5.2|Cooked Bacon>
+cookbook.cheesepress=<TextBlock|-1|-1|0|La prensa de queso es la primera máquina simple de Extra Foods. No requiere de energía, convertirá cubos de leche en las ruedas de queso. Esta será su primeros pasos en la "nueva era", donde se puede comer más alimentos de diferentes tipos y no ser atrapado con carne de cerdo, carne y zanahorias!><Crafting|-1|-1|1|cheesepress><TextBlock|-1|-1|2|Para utilizar este bloque, se debe poner 3 cubos de leche en los primeros puestos (1). Esto también se puede hacer con tolvas y cualquier forma de automatización de la parte superior / todos los lados del bloque. Ruedas del queso aparecerán en la ranura inferior (2), y se puede sacar con tolvas o la automatización de la parte inferior del bloque. Cubos vacíos también pueden extraerse de la><TextBlock|-1|-1|3|parte inferior del bloque.><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/CheesePressGUIHelper.png|105|79|0|0>
+cookbook.spread=<TextBlock|-1|-1|0|Tu ha decidido utilizar las frutas y nueces que has encontrado a fin de que los diferenciales. Estos "diferenciales" muy buen gusto en un sándwich, pero han cuestionado la seguridad de comerlos solos. Ellos parecen darle efectos extraños, y no está seguro de si eso es bueno o malo!><HungerStats|-1|-1|2|2.5|5.0|Jelly><Crafting|-1|-1|3|jelly><HungerStats|-1|-1|4|4.0|4.5|Chocolate Spread><Crafting|-1|-1|5|chocolateSpread><HungerStats|-1|-1|6|1.5|4.5|Peanut Butter><Crafting|-1|-1|7|peanutButter>
+cookbook.grater=<TextBlock|-1|-1|0|Para cortar toda su comida más fina que su cuchillo hace, que has inventado un rallador. Esto ha sido muy útil en los alimentos naturales de refinación a un tipo más untable. Te sientes como un día, esto será aún más útil.><Crafting|-1|-1|1|grater>
+cookbook.worldGen=<TextBlock|-1|-1|0|A medida que comience a vagar por un mundo nuevo, que vea diferentes tipos de bloques que nunca has visto antes.><Image|-1|-1|0|extrafood:textures/gui/cookbookimages/WorldGen.png|75|40|0|0><Image|28|108|0|extrafood:textures/gui/cookbookimages/WorldGen.png|75|40|75|0><TextBlock|-1|-1|1|Al hacer clic derecho en estos bloques, que parecen llevar la comida, lo que usted tiene fresas y maní con nombre. Estos parecen tener un bajo valor de la salud, pero la combinación de ellos otros alimentos puede arreglar eso.><TextBlock|-1|-1|2|Tu también ha visto algunos buenos frutos amarillos que cuelgan de los árboles. Cuando se rompe el bloque, has nota usted puede conseguir en cualquier parte 4 - 6 plátanos comestibles! Las hojas también caen árboles jóvenes para volver a crecer los árboles.><Image|-1|-1|2|extrafood:textures/gui/cookbookimages/WorldGen.png|75|40|150|0><HungerStats|-1|-1|3|2|0.8|Banana>
+cookbook.plants=<TextBlock|-1|-1|0|Con el fin de expandir completamente su paladar, que comenzó a golpear la hierba. Aunque poco emocionante, mientras que lo golpeó, diferentes semillas cayeron. Tu ha encontrado dos tipos adicionales: Tomate y lechuga crudos semillas. Para hacer semillas de lechuga utilizable, debe cubrirlos en arcilla.><Crafting|-1|-1|1|uselettuceSeeds><TextBlock|-1|-1|2|También puede extraer semillas de tomate con el fin de conseguir más semillas de tomate.><Crafting|-1|-1|3|tomatoSeeds>
+cookbook.boneBlock=<TextBlock|-1|-1|0|En un esfuerzo por ser más compacta, has truncó juntos los trozos rotos de hueso y de crear un bloque. Este bloque es tan blanca y pura, que contiene una textura clara, no hay colores adicionales. BLANCO PURO!! Ahora, ¿Qué se puede hacer con eso?><Crafting|-1|-1|1|whiteout>
+cookbook.basicKnowlege=<TextBlock|-1|-1|0|Este libro actuará como su fuente de conocimiento en el ámbito de la cocina. Le dará toda la información que necesita, incluyendo estadísticas de hambre (simbolizado por este):><Image|-1|-1|0|extrafood:textures/gui/cookbookimages/BookIcons.png|12|13|0|0><TextBlock|-1|-1|0|Todos los alimentos mencionados en este libro también mostrará su valor de saturación, mediante el uso de este símbolo:><Image|-1|-1|0|extrafood:textures/gui/cookbookimages/BookIcons.png|13|13|12|0><TextBlock|-1|-1|1|Las recetas que hacen a mano en este libro son todos hechos en una mesa de artesanía estándar. Cuando se necesita un bloque de encargo, habrá una página de instrucciones para ese bloque. Cada una de las pestañas del libro de cocina son las técnicas para preparar los alimentos.>
+cookbook.butter=<TextBlock|-1|-1|0|Una vez que se dio cuenta de que el calentamiento de la leche produciría una sustancia gruesa, que comenzó a probar cosas. Más tarde se dio cuenta de que si moldeado el suero de mantequilla, Tu podría hecho mantequilla! Deje que sus papilas gustativas disfruten.><Crafting|-1|-1|1|butter><HungerStats|-1|-1|2|0.5|1.0|Butter>
+cookbook.yogurt=<HungerStats|-1|-1|0|2.5|6.3|Yogurt><Crafting|-1|-1|1|yogurt><HungerStats|-1|-1|2|2.5|6.8|Strawberry Yogurt><Crafting|-1|-1|3|stawberryYogurt>
+cookbook.Bread=<TextBlock|-1|-1|0|Con el fin de disminuir la cantidad de hambre, que ha cortado el trozo de pan que usted hizo en rodajas. Estos serán de gran utilidad para otros alimentos, como el sándwich y se pueden poner en un horno a tostar ligeramente, por lo tanto haciendo tostadas.><Crafting|-1|-1|1|Bread><HungerStats|-1|-1|2|2|3.0|Sliced Bread><HungerStats|-1|-1|3|3|0.8|Toast>
+cookbook.sausage=<HungerStats|-1|-1|0|1.5|0.9|Sausage><Crafting|-1|-1|1|sausage>
+cookbook.fishpieces=<HungerStats|-1|-1|0|2|0.5|Fish Pieces><Crafting|-1|-1|1|Fishpieces>
+cookbook.meatballs=<HungerStats|-1|-1|0|1.5|0.4|Meatballs><Crafting|-1|-1|1|meatballs>
+cookbook.fries=<HungerStats|-1|-1|0|4|0.7|French Fries><Crafting|-1|-1|1|frenchFries>
+cookbook.butterMilk=<HungerStats|-1|-1|0|4|3.6|Butter Milk><Furnace|-1|-1|1|butterMilk>
+cookbook.burger=<HungerStats|-1|-1|0|2.5|0.6|Raw Burger><Crafting|-1|-1|1|BugerRaw><HungerStats|-1|-1|2|3.5|1.6|Cooked Burger><Crafting|-1|-1|3|BurgerCooked><Furnace|-1|-1|4|cookedHamburger>
+cookbook.sandwichBurger=<HungerStats|-1|-1|0|4.5|1.0|Hamburger><Crafting|-1|-1|1|sandwhichHamburger><HungerStats|-1|-1|2|5|12.0|Cheeseburger><Crafting|-1|-1|3|sandwichCheeseburger1><HungerStats|-1|-1|4|7.5|11.2|Supreme Burger><Crafting|-1|-1|5|sandwichSupremeBurger>
+cookbook.autocutter=<TextBlock|-1|-1|0|Al darse cuenta del potencial de corte de la cuchilla causado que tu tenga una buena idea espontánea! Parece que han automatizado el cuchillo, y se comprime todo el artilugio en el tamaño de un bloque. Parece un poco extraño tener un cuchillo de cortar por sí mismo, pero todo va a estar bien si mantiene las manos alejadas de él!><Crafting|-1|-1|1|autoCutter><TextBlock|-1|-1|2|Para utilizar el cortador automático, debe colocar un cuchillo, con cualquier duración, en la ranura más a la derecha. Cualquier artículo que desea cortar, entra en la ranura superior y una vez cortado, se dará salida en la ranura inferior. Este bloque se puede automatizar con tolvas de entrada, en la parte superior del bloque y la exportación desde la parte inferior del bloque.><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/AutoCutterGUI1.png|75|65|0|0>
+cookbook.StrawberryJuice=<TextBlock|-1|-1|0|Fabricado en la batidora, esta bebida es la mezcla perfecta de la fresa. Es incluso mejor que el banana! Se recomienda la receta es de 10 fresas, y lo puso todo en un cubo. Si usted realmente desea, también puede hacerlo en bloque y colocarlo en el suelo.><HungerStats|-1|-1|1|3|0.8|Strawberry Juice>
+cookbook.CarrotJuice=<TextBlock|-1|-1|0|Al igual que los otros zumos de ésta también se hace en Batidora. Es una extraña mezcla de zanahorias. Como se bebe abajo, intenta olvidarlo fue tomado de un zombie. La receta recomendada es de 10 zanahorias en la batidora, para el máximo sabor!><HungerStats|-1|-1|1|3|0.9|Carrot Juice>
+cookbook.BananaJuice=<TextBlock|-1|-1|0|¿Por qué haces esto a ti mismo? Banana trituración sonaba como una buena idea. Entonces tu bebió. Su sabor es divertido. Muy divertido y sin embargo, tu consumió él. Tu he experimentado lo suficiente para saber que sólo se debe poner 10 banana en un cubo a la vez.><HungerStats|-1|-1|1|3|0.6|Banana Juice>
+cookbook.SeaWater=<TextBlock|-1|-1|0|Mientras viaja de isla en isla y su comida se agota, tu siente que puede comer cualquier cosa. Ver a los animales beben de los ríos, que agarrar un cubo de confianza y bebe también. El agua es salada y desagradable, pero lo suficiente para satisfacer su hambre.><HungerStats|-1|-1|1|1|0.5>
+cookbook.purifiedWater=<TextBlock|-1|-1|0|El agua salada comenzó a molestar. Pero su creatividad ayudó a encontrar una solución agradable! Si tu pone el agua de mar en un horno, se puede obtener agua purificada, que elimina ese sabor horrible!><HungerStats|-1|-1|1|2|0.5>
+cookbook.juiceblender=<TextBlock|-1|-1|0|Batidora estaba destinado a saciar su sed, y parece que funciona! Has añadido en diferentes frutos y ha formulado una lista de sustancias bebibles. Tal vez usted encontrará más pronto. Este bloque hace que todos los líquidos líquidos en el juego.><Crafting|-1|-1|1|juiceBlender><TextBlock|-1|-1|2|Cualquier elemento que desea mezclar entra en la batidora (1). Una vez que la batidora se realiza el procesamiento de la fruta, se producirá automáticamente al tanque. Una vez que el tanque tiene 1000mb de cualquier fluido, se puede colocar un cubo en la ranura superior (2). La batidora eliminará automáticamente 1000ml del tanque y ponerlo en un cubo que la salida a la ><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/JuiceBlenderGUI.png|68|47|0|0><TextBlock|-1|-1|3|ranura inferior (3). La automatización para este bloque es superior a las entradas de ranura de mezclas de frutas, dentro van los cubos y por abajo saca los jugos.>
+cookbook.sandwiches=<TextBlock|-1|-1|0|Mediante la mezcla de los diferentes alimentos juntos, que ha creado una nueva gama de cosas para comer. En esta nueva creación de la suya, que ha abofeteado algunos elementos diferentes entre pan, y ha creado un "sándwich". Estos se iluminarán su paladar y son muy fáciles de elaborar. Tu ha escrito algunas de los sándwiches de mejor sabor en las ><TextBlock|-1|-1|1|páginas siguientes.><HungerStats|-1|-1|2|4|9.0|PB&C Sandwich><Crafting|-1|-1|3|sandwichPBN><HungerStats|-1|-1|4|4|9.5|PB&J Sandwich><Crafting|-1|-1|5|sandwichPBJ><HungerStats|-1|-1|6|4|10.0|BLT><Crafting|-1|-1|7|sandwichBLT><HungerStats|-1|-1|8|4.5|5.5|Chocolate><Crafting|-1|-1|9|sandwichC><HungerStats|-1|-1|10|3|3.5|PB Sandwich><Crafting|-1|-1|11|sandwichPB><HungerStats|-1|-1|12|3|1.9|Grilled Cheese><Crafting|-1|-1|13|sandwhichGC><HungerStats|-1|-1|14|3.5|1.0|Sausage Sandwich><Crafting|-1|-1|15|sandwhichS><HungerStats|-1|-1|16|3|1.9|Grilled Cheese Sandwich><Crafting|-1|-1|17|sandwhichGC><HungerStats|-1|-1|18|3|1.4|Bacon Cheese><Crafting|-1|-1|19|sandwhichCB>
+cookbook.ChoIC=<HungerStats|-1|-1|0|4|0.8|Cho. Ice Cream><Crafting|-1|-1|1|chocolateIceCream>
+cookbook.StrawIC=<HungerStats|-1|-1|0|4.5|2.5|Straw. Ice Cream><Crafting|-1|-1|1|strawberryIceCream>
+cookbook.VanIC=<HungerStats|-1|-1|0|2|0.8|Vanilla Ice Cream><Crafting|-1|-1|1|vanillaIceCream>
+cookbook.ipop=<HungerStats|-1|-1|0|2.5|3.3|Ice Pop><Crafting|-1|-1|1|icePop>
+cookbook.NeoIC=<TextBlock|-1|-1|0|Esos otros helados eran tan buenos. Tu quería más. MUCHO MÁS! Ahora ya lo has truncó juntos, y parece, el cielo. Tu no va a compartir con nadie. NUNCA!><Crafting|-1|-1|1|neoIceCream><HungerStats|-1|-1|2|4|4.5|Neopolitan>
+cookbook.sushi=<HungerStats|-1|-1|0|4|2.6|Sushi><Crafting|-1|-1|1|sushi>
+cookbook.chinese=<HungerStats|-1|-1|0|3.5|5.0|Chinese Food><Crafting|-1|-1|1|chineseFood>
+cookbook.pasta=<HungerStats|-1|-1|0|1.5|0.3|Raw Pasta><Crafting|-1|-1|1|rawpasta><HungerStats|-1|-1|2|3|1.3|Cooked Pasta><Crafting|-1|-1|3|cookedpasta><HungerStats|-1|-1|4|6|1.4|Meatball Pasta><Crafting|-1|-1|5|meatballpasta1><Crafting|-1|-1|6|meatballpasta3>
+cookbook.chocolate=<HungerStats|-1|-1|0|2|1.8|Chocolate><Crafting|-1|-1|1|chocolate>
+cookbook.egg=<HungerStats|-1|-1|0|1.5|0.8|Egg><Furnace|-1|-1|1|egg>
+cookbook.frenchToast=<HungerStats|-1|-1|0|3.5|2.7|French Toast><Crafting|-1|-1|1|frenchToast>
+cookbook.pancake=<HungerStats|-1|-1|0|3|1.2|Pancakes><Crafting|-1|-1|1|pancakes>
+cookbook.veal=<TextBlock|-1|-1|0|Ternera es uno de los alimentos más difíciles de conseguir, tu necesita encontrar y matar a una vaca bebé! El bebé de la vaca es el único animal que tener esa carne tierna. Para aprovechar esto, usted tiene que cortar con habilidad con un cuchillo de cocina.><HungerStats|-1|-1|1|4|19.5|Veal>
+cookbook.kebab_veal=<HungerStats|-1|-1|0|3|12.6|Veal Kebab><Crafting|-1|-1|1|veal_kebab>
+cookbook.steak_kebab=<HungerStats|-1|-1|0|3|12.4|Steak Kebab><Crafting|-1|-1|1|steak_kebab>
+cookbook.pork_kebab=<HungerStats|-1|-1|0|3|12.3|Pork Kebab><Crafting|-1|-1|1|pork_kebab>
+cookbook.oven=<TextBlock|-1|-1|0|El horno ha comenzado una revolución global. Este dispositivo se puede calentar su comida y por arte de magia las cosas tienen mejor sabor. Confiados en ti mismo que haya explorado todas las recetas que aunque sería un buen sabor. Notablemente, este dispositivo no necesita ningún tipo de calor para calentar. La mejor forma de usarlo?><Crafting|-1|-1|1|oven><TextBlock|-1|-1|2|El horno cuenta con tres tipos diferentes de ranuras. Artículos Receta entrar en el horno (1). Elementos secundarios, como un molde para muffins colocan en la ranura de entrada única (2). Una vez que la comida está hecho, se puso en la ranura de salida (3).><Image|-1|-1|2|extrafood:textures/gui/cookbookimages/OvenGUI.png|68|47|0|0><TextBlock|-1|-1|3|El horno es sólo parcialmente automatible. Sólo los alimentos en la ranura de salida se puede sacar por tolvas y sólo desde la parte inferior del horno. Esto se debe en parte a que el calor residual se acumule en el interior del horno.>
+cookbook.dough=<TextBlock|-1|-1|0|La masa es esencial para el horno. Mediante la mezcla de la combinación perfecta de agua y el trigo, que ha realizado una sustancia suave que se eleva cuando se aplica calor. Esta masa es grande cuando se calienta y se puede mezclar con otros alimentos para un mejor sabor. Nota: masa cruda es comestible.><Crafting|-1|-1|1|dough>
+cookbook.muffin=<TextBlock|-1|-1|0|Muffins son un bocado de comida ligera, rápida de hacer y fácil de preparar. Muffins están hechos con una base de masa, y un molde para muffins. Los aditivos deben añadirse a la magdalena con el fin de que se cocinen. Mollete aditivos no son mezclables!><Oven|-1|-1|1|muffin><HungerStats|-1|-1|2|8|4|Chocolate Chip><HungerStats|-1|-1|3|10|4|Strawberry><HungerStats|-1|-1|4|12|2|Double Chocolate><HungerStats|-1|-1|5|10|5|Apple><HungerStats|-1|-1|6|10|6|Banana>
+cookbook.pizza=<TextBlock|-1|-1|0|La pizza es una comida abundante hecha en el horno. Esta receta es complicado, que requiere dos tomates frescos! En vista de ello, pizzas ingredientes se pueden mezclar, y cualquier combinación se pueden hacer, EXCEPTO: pescado y salchichas. Simplemente no lo hagas, te hace enfermo!><Oven|-1|-1|1|pizza><HungerStats|-1|-1|2|10|9|Pizza Base><TextBlock|-1|-1|3|Los valores de hambre de pizza se generan de forma estática, lo que significa que los aditivos poner en la pizza se incrementarán los valores de hambre desde las bases.>
