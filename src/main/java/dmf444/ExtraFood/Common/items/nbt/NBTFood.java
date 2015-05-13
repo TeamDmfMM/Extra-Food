@@ -1,12 +1,8 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import dmf444.ExtraFood.Core.OvenFoodTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,10 +14,8 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import dmf444.ExtraFood.Core.OvenFoodTab;
-import dmf444.ExtraFood.util.EFLog;
+
+import java.util.*;
 
 public class NBTFood extends ItemFood {
 	public String name;
@@ -79,11 +73,17 @@ public class NBTFood extends ItemFood {
     		}
     	}
     	if (specs.info.get(things) != null){
-    		return (int) specs.info.get(things).get(0);
-    	}
+            try {
+                return (int) specs.info.get(things).get(0);
+            }catch (Exception e){}
+            try {
+                return (int) Math.round((float) specs.info.get(things).get(0));
+            }catch(Exception re){}
+        }
     	else {
     		return (int) specs.defualtHunger[0];
     	}
+        return (int) specs.defualtHunger[0];
 	}
 	
 	public float getSaturation(ItemStack stack){
