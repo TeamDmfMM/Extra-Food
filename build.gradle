@@ -84,10 +84,8 @@ curse {
     apiKey = System.getenv("APIKEY") // saved in the build environment vars
     projectId = "222348" // my project url is http://minecraft.curseforge.com/mc-mods/222348-extra-food
     changelog = """
-    Version 0.7:
-    Introduction to the oven
-    several bug fixes
-    all the last beta releases together in a release!
+    Fixed:
+       -Muffin eating causing server crash
     """
     releaseType = "release"
 
