@@ -79,7 +79,7 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.meatballpasta), new ItemStack(Items.bowl), "foodMeatballs", "itemKnife", "itemKnife", "cropWheat", "cropTomato"));	
 	//Seed Recipes
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.tomatoSeeds, 2), "cropTomato"));
-	GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.uselettuceSeeds, 2), new Object[] {"cs", 'c', new ItemStack(Items.clay_ball, 1), 's', new ItemStack(ItemLoader.rawlettuceSeeds)});
+	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.uselettuceSeeds, 2), new ItemStack(Items.clay_ball, 1), new ItemStack(ItemLoader.rawlettuceSeeds));
 	
 	//Seasonal
 	if(DateUtil.isChristmas()){
