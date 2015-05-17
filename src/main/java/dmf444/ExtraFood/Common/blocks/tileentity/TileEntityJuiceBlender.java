@@ -1,26 +1,18 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
 
+import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
+import dmf444.ExtraFood.Common.fluids.FluidLoader;
+import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
-import dmf444.ExtraFood.Common.fluids.FluidLoader;
-import dmf444.ExtraFood.Common.items.ItemLoader;
+import net.minecraftforge.fluids.*;
 
 
 
@@ -210,7 +202,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 			  // FILL THE BUCKET
 			  if (this.items[1].getItem() == Items.bucket && this.tank.getFluid() != null && this.items[2] == null){
 				  if (this.tank.getFluidAmount() >= 1000){
-					  if (this.tank.getFluid().fluidID == FluidLoader.Fstrawberryjuice.getID()){
+					  if (this.tank.getFluid().getFluidID() == FluidLoader.Fstrawberryjuice.getID()){
 						  this.items[1].stackSize -= 1;
 						  this.items[2] = new ItemStack(ItemLoader.bucketstrawberry, 1);
 						  this.tank.drain(1000, true);
@@ -219,7 +211,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
 
 					  }
-					  else if (this.tank.getFluid().fluidID == FluidLoader.Fbananajuice.getID()){
+					  else if (this.tank.getFluid().getFluidID() == FluidLoader.Fbananajuice.getID()){
 						  this.items[1].stackSize -= 1;
 						  this.items[2] = new ItemStack(ItemLoader.bucketbanana, 1);
 						  this.tank.drain(1000, true);
@@ -228,7 +220,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
 
 					  }
-					  else if (this.tank.getFluid().fluidID == FluidLoader.Fcarrotjuice.getID()){
+					  else if (this.tank.getFluid().getFluidID() == FluidLoader.Fcarrotjuice.getID()){
 						  this.items[1].stackSize -= 1;
 						  this.items[2] = new ItemStack(ItemLoader.bucketcarrot, 1);
 						  this.tank.drain(1000, true);

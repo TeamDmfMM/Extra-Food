@@ -84,8 +84,9 @@ public class PacketJBTank implements IMessage{
 				EFLog.trace(message.liquidamount + "  " + message.FluidID);
 		    	TileEntityJuiceBlender b = (TileEntityJuiceBlender)w.getTileEntity(message.x, message.y, message.z);
 		    	if (b.tank.getFluid() != null){
-		    	b.tank.getFluid().fluidID = message.FluidID;
-		    	b.tank.getFluid().amount = message.liquidamount;
+                    b.tank.setFluid(new FluidStack(message.FluidID, message.liquidamount));
+		    	//b.tank.getFluid().fluid = message.FluidID;
+		    	//b.tank.getFluid().amount = message.liquidamount;
 		    	}
 		    	else {
 		    		b.tank.setFluid(new FluidStack(message.FluidID, message.liquidamount));
