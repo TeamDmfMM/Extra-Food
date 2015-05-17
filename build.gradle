@@ -60,9 +60,9 @@ repositories {
 
 
 dependencies {
-    compile "codechicken:CodeChickenCore:1.7.10-1.0.4.29:dev" 
-    compile "codechicken:NotEnoughItems:1.7.10-1.0.4.80:dev" 
-    compile "codechicken:CodeChickenLib:1.7.10-1.1.1.106:dev"
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.6.44:dev"
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.4.107:dev"
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.3.136:dev"
     compile "mcp.mobius.waila:Waila:1.5.10_1.7.10"
 
     // you may put jars on which you depend on in ./libs
@@ -84,8 +84,7 @@ curse {
     apiKey = System.getenv("APIKEY") // saved in the build environment vars
     projectId = "222348" // my project url is http://minecraft.curseforge.com/mc-mods/222348-extra-food
     changelog = """
-    Fixed:
-       -Muffin eating causing server crash
+    Update to new forge with new fluid code!
     """
     releaseType = "release"
 
