@@ -1,11 +1,12 @@
 package dmf444.ExtraFood.Core.Crossmod.NEI;
 
-import static codechicken.lib.gui.GuiDraw.gui;
-import static codechicken.lib.gui.GuiDraw.renderEngine;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-
+import codechicken.nei.NEIServerUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
+import dmf444.ExtraFood.Common.blocks.guis.GuiJuiceBlender;
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
@@ -14,16 +15,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 
-import codechicken.nei.NEIServerUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.TemplateRecipeHandler;
-import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
-import dmf444.ExtraFood.Common.blocks.guis.GuiJuiceBlender;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.lib.GuiLib;
+import java.awt.*;
+import java.util.ArrayList;
+
+import static codechicken.lib.gui.GuiDraw.gui;
+import static codechicken.lib.gui.GuiDraw.renderEngine;
 
 public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 	public class JuiceBlenderRecipe extends CachedRecipe{
@@ -145,7 +143,7 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 			//List<String> list = new ArrayList<String>();
 			//list.add("Amount: 1000mB");
 			
-		  JuiceBlenderRecipe recipe = (JuiceBlenderRecipe) arecipes.get(recipeI);
+		  //JuiceBlenderRecipe recipe = (JuiceBlenderRecipe) arecipes.get(recipeI);
 	  }
 	  
 }
