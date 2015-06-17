@@ -1,9 +1,9 @@
 package dmf444.ExtraFood.Client.MCPatcher;
 
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+
 import java.io.File;
 import java.util.Map;
-
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 public class EFFMLLoadingPlugin implements IFMLLoadingPlugin {
 	// The location of the coremod.

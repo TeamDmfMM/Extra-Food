@@ -1,7 +1,9 @@
 package dmf444.ExtraFood.Client.renderer;
 
 
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
+/*
 
 import org.lwjgl.opengl.GL11;
 
@@ -99,7 +101,7 @@ public class BerryRender implements ISimpleBlockRenderingHandler {
 
 
 
-	    renderBlock(tessellator, x, y, z, block);*/
+	    renderBlock(tessellator, x, y, z, block);*
 
 
 
@@ -211,5 +213,5 @@ public class BerryRender implements ISimpleBlockRenderingHandler {
 
 
 
-}
+}*/
 

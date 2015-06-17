@@ -1,21 +1,16 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
 
-import java.util.ArrayList;
-
-
+import dmf444.ExtraFood.Common.blocks.guis.ClickTab;
+import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
+import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-
 import org.lwjgl.opengl.GL11;
 
-
-import dmf444.ExtraFood.Common.blocks.guis.ClickTab;
-import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
-import dmf444.ExtraFood.Core.lib.GuiLib;
+import java.util.ArrayList;
 
 
 public class CookbookTab {
@@ -30,7 +25,7 @@ public class CookbookTab {
 	public CookbookTab(String name){
 		this.name = name;
 		this.buttons = new ArrayList<ClickTab>();
-		this.rinder = new RenderItem();
+		this.rinder = Minecraft.getMinecraft().getRenderItem();
 	}
 	
 	public void addButton(ClickTab tabby){
@@ -51,12 +46,10 @@ public class CookbookTab {
 																			// 22,
 																			// 22
 																			// ``54``
-				this.rinder.renderItemIntoGUI(m.fontRenderer,
-				m.getTextureManager(), this.display, p1 + 11,p2 + 2 + 4);
-			} else {
+                this.rinder.func_175042_a(this.display, p1 + 11, p2 + 2 + 4);
+            } else {
 				gui.drawTexturedModalRect(p1 - 8, p2 + 2, 54, 202, 37, 26);
-				this.rinder.renderItemIntoGUI(m.fontRenderer,
-				m.getTextureManager(), this.display, p1 + 5, p2 + 2 + 4);
+				this.rinder.func_175042_a(this.display, p1 + 5, p2 + 2 + 4);
 			}
 		} else {
 			if (gui.tab != this.name) {

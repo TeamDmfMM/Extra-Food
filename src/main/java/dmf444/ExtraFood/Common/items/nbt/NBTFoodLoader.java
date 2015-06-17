@@ -1,12 +1,12 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
 
 public class NBTFoodLoader {
 	

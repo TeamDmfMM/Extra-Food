@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.IIcon;
@@ -142,11 +143,11 @@ public class GuiJuiceBlender extends GuiContainer {
 	}
 	
 	//Taken from BuildCraft... If you own it, ask and I'll remove it
-	public static IIcon getFluidTexture(Fluid fluid, boolean flowing) {
+	public static TextureAtlasSprite getFluidTexture(Fluid fluid, boolean flowing) {
 		if (fluid == null) {
 			return null;
 		}
-		IIcon icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
+		TextureAtlasSprite icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
 		if (icon == null) {
 			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
 		}

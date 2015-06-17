@@ -1,8 +1,7 @@
 package dmf444.ExtraFood.Common.items;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +12,7 @@ public class Cookbook extends StanItem {
 
 	public Cookbook() {
 		super();
-		this.setTextureName("extrafood:Cookbook");
+		//this.setTextureName("extrafood:Cookbook");
 		// TODO Auto-generated constructor stub
 	}
 	@Override

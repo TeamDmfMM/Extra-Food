@@ -1,5 +1,8 @@
 package dmf444.ExtraFood.Client.renderer;
 
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+
+/*
 import org.lwjgl.opengl.GL11;
 
 import dmf444.ExtraFood.Core.lib.GuiLib;
@@ -9,7 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class JuiceMixerRenderer extends TileEntitySpecialRenderer{
+public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
 	 
 	private final JuiceMixerModel JMmodel = new JuiceMixerModel();
 	
@@ -63,3 +66,4 @@ public class JuiceMixerRenderer extends TileEntitySpecialRenderer{
 }
 
 }
+*/

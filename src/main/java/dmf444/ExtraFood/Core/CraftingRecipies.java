@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Core;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.RecipeAutoCutter;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;

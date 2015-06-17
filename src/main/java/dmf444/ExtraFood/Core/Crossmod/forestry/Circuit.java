@@ -12,15 +12,15 @@
 
 package dmf444.ExtraFood.Core.Crossmod.forestry;
 
-import java.util.List;
-
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.StatCollector;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.farming.IFarmHousing;
 import forestry.api.farming.IFarmLogic;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.StatCollector;
+
+import java.util.List;
 
 public class Circuit implements ICircuit{
 
@@ -108,7 +108,7 @@ public class Circuit implements ICircuit{
 		} catch (Exception e) {
 			// uses older version of the API that doesn't implement setManual
 		}
-		housing.setFarmLogic(ForgeDirection.values()[slot + 2], logic);
+		housing.setFarmLogic(EnumFacing.values()[slot + 2], logic);
 	}
 
 
@@ -123,7 +123,7 @@ public class Circuit implements ICircuit{
 		if (!isCircuitable(tile))
 			return;
 		
-		((IFarmHousing) tile).resetFarmLogic(ForgeDirection.values()[slot + 2]);
+		((IFarmHousing) tile).resetFarmLogic(EnumFacing.values()[slot + 2]);
 		
 	}
 

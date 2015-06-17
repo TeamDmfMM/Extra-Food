@@ -1,5 +1,8 @@
 package dmf444.ExtraFood.Common.items.nbt.placeable;
 
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -253,5 +256,5 @@ public String name;
     		things.add(toAdd);
     	}
     }
-}
+}*/
 

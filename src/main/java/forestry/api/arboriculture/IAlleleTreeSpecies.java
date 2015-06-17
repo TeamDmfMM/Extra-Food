@@ -5,20 +5,14 @@
  ******************************************************************************/
 package forestry.api.arboriculture;
 
-import java.util.Collection;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraftforge.common.EnumPlantType;
-
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.EnumPlantType;
+
+import java.util.Collection;
 
 public interface IAlleleTreeSpecies extends IAlleleSpecies {
 
@@ -54,11 +48,11 @@ public interface IAlleleTreeSpecies extends IAlleleSpecies {
 
 	short getLeafIconIndex(ITree tree, boolean fancy);
 
-	@SideOnly(Side.CLIENT)
-	IIcon getGermlingIcon(EnumGermlingType type, int renderPass);
+	//@SideOnly(Side.CLIENT)
+	//IIcon getGermlingIcon(EnumGermlingType type, int renderPass);
 	
-	@SideOnly(Side.CLIENT)
-	int getGermlingColour(EnumGermlingType type, int renderPass);
+	//@SideOnly(Side.CLIENT)
+	//int getGermlingColour(EnumGermlingType type, int renderPass);
 	
 	/**
 	 * 

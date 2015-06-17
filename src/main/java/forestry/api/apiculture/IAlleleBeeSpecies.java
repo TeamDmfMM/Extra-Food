@@ -5,15 +5,10 @@
  ******************************************************************************/
 package forestry.api.apiculture;
 
-import java.util.Map;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import forestry.api.genetics.IAlleleSpecies;
+import net.minecraft.item.ItemStack;
+
+import java.util.Map;
 
 public interface IAlleleBeeSpecies extends IAlleleSpecies {
 
@@ -43,8 +38,8 @@ public interface IAlleleBeeSpecies extends IAlleleSpecies {
 	 */
 	boolean isJubilant(IBeeGenome genome, IBeeHousing housing);
 
-	@SideOnly(Side.CLIENT)
-	IIcon getIcon(EnumBeeType type, int renderPass);
+	//@SideOnly(Side.CLIENT)
+	//IIcon getIcon(EnumBeeType type, int renderPass);
 
 	/**
 	 * @return Path of the texture to use for entity rendering.

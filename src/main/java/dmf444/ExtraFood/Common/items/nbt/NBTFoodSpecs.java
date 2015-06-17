@@ -1,17 +1,10 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import dmf444.ExtraFood.util.EFLog;
+
+import java.util.*;
 
 public class NBTFoodSpecs {
 	public Dictionary<String, ItemStack> addtypes;
@@ -39,8 +32,8 @@ public class NBTFoodSpecs {
 			}
 			ItemFood tItem = (ItemFood) t.getItem();
 			float[] hv = new float[2];
-			hv[0] = tItem.func_150905_g(t) / 4;
-			hv[1] = tItem.func_150906_h(t) / 4;
+			hv[0] = tItem.getHealAmount(t) / 4;
+			hv[1] = tItem.getSaturationModifier(t) / 4;
 			addvals.put(i, hv);
 			
 		}

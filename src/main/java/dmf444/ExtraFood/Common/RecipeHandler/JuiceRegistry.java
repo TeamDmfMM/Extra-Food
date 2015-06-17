@@ -1,21 +1,15 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-
-
-
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 
 public class JuiceRegistry {

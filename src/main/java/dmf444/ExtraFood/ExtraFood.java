@@ -1,54 +1,37 @@
 package dmf444.ExtraFood;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler; // used in 1.6.2
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import dmf444.ExtraFood.Common.CommonProxy;
-import dmf444.ExtraFood.Common.EventHandler.BucketHandler;
 import dmf444.ExtraFood.Common.EventHandler.EventsLoader;
 import dmf444.ExtraFood.Common.EventHandler.ExtraFood_EventBonemeal;
-import dmf444.ExtraFood.Common.EventHandler.ExtraFood_eventTextureHook;
 import dmf444.ExtraFood.Common.RecipeHandler.CRPageCraftGet;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
-import dmf444.ExtraFood.Common.WorldGen.PeanutWorldGen;
-import dmf444.ExtraFood.Common.WorldGen.StrawberryWorldGen;
 import dmf444.ExtraFood.Common.WorldGen.TreeManager;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
-import dmf444.ExtraFood.Core.AchieveLoad;
 import dmf444.ExtraFood.Core.CraftingRecipies;
+import dmf444.ExtraFood.Core.Crossmod.CrossModModules;
 import dmf444.ExtraFood.Core.GuiHandler;
 import dmf444.ExtraFood.Core.PacketJBTank;
-import dmf444.ExtraFood.Core.Crossmod.CrossModModules;
-import dmf444.ExtraFood.Core.Crossmod.NEI.NEIAutoCutterHandler.AutoCutterRecipe;
-import dmf444.ExtraFood.Core.Crossmod.Waila.WailaConfig;
-import dmf444.ExtraFood.Core.Crossmod.forestry.ForestryFarming;
-import dmf444.ExtraFood.Core.Crossmod.ThaumcraftAspects;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.util.ConfigHandler;
 import dmf444.ExtraFood.util.EFLog;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+
 
 
 @Mod(modid = ModInfo.MId,name = ModInfo.Mname, version = ModInfo.Vers)

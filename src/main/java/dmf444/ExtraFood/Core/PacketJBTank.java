@@ -1,18 +1,19 @@
 package dmf444.ExtraFood.Core;
 
-import net.minecraftforge.fluids.FluidStack;
-import io.netty.buffer.ByteBuf;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.util.EFLog;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PacketJBTank implements IMessage{
 
@@ -80,9 +81,9 @@ public class PacketJBTank implements IMessage{
 
 
 		    World w = Minecraft.getMinecraft().theWorld;
-		    if (w.blockExists(message.x, message.y, message.z)){
+		    if (w.isBlockLoaded(new BlockPos(message.x, message.y, message.z))){
 				EFLog.trace(message.liquidamount + "  " + message.FluidID);
-		    	TileEntityJuiceBlender b = (TileEntityJuiceBlender)w.getTileEntity(message.x, message.y, message.z);
+		    	TileEntityJuiceBlender b = (TileEntityJuiceBlender)w.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		    	if (b.tank.getFluid() != null){
                     b.tank.setFluid(new FluidStack(message.FluidID, message.liquidamount));
 		    	//b.tank.getFluid().fluid = message.FluidID;

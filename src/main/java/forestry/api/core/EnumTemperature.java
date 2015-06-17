@@ -5,12 +5,7 @@
  ******************************************************************************/
 package forestry.api.core;
 
-import net.minecraft.util.IIcon;
 import net.minecraft.world.biome.BiomeGenBase;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraftforge.common.BiomeDictionary;
 
 /**
@@ -34,10 +29,10 @@ public enum EnumTemperature {
 		return this.name;
 	}
 
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon() {
-		return ForestryAPI.textureManager.getDefault(iconIndex);
-	}
+	//@SideOnly(Side.CLIENT)
+	//public IIcon getIcon() {
+	//	return ForestryAPI.textureManager.getDefault(iconIndex);
+	//}
 
 	/**
 	 * Determines if a given BiomeGenBase is of HELLISH temperature, since it is treated seperatly from actual temperature values.

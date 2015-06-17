@@ -2,8 +2,6 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 
 
 import com.google.common.collect.Lists;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,12 +10,18 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IChatComponent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 
 
-public class AutoCutterTileEntity extends TileEntity implements ISidedInventory {
+public class AutoCutterTileEntity extends TileEntity implements ISidedInventory , IUpdatePlayerListBox {
 
 
     private ItemStack[] inv;
@@ -87,8 +91,8 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
     public boolean isUseableByPlayer(EntityPlayer player) {
-            return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
-            player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
+        return worldObj.getTileEntity(new BlockPos(pos.getX(), pos.getY(), pos.getZ())) == this &&
+                player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
     }
 
 
@@ -126,7 +130,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     
 
 
-   public String getInventoryName() {
+   public String getName() {
          return "extrafood.autocutter";
    }
    
@@ -140,7 +144,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
 
-	public boolean hasCustomInventoryName() {
+	public boolean hasCustomName() {
 		return false;
 	}
 
@@ -203,7 +207,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 	}
 
 	
-	public void updateEntity(){
+	public void update(){
         //EFLog.error(this.knifeAngle);
 	    if (this.ok()){
             this.ttime += 1;
@@ -287,22 +291,22 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 		this.readFromNBT(pkt.data);
 	}
 	*/
-    public boolean canInsertItem(int slot, ItemStack item, int side)
+    public boolean canInsertItem(int slot, ItemStack item, EnumFacing direction)
     {
         return this.isItemValidForSlot(slot, item);
     }
-    public boolean canExtractItem(int slot, ItemStack item, int side)
+    public boolean canExtractItem(int slot, ItemStack item, EnumFacing direction)
     {
-        return side != 0 || slot != 2 || item.getItem() == Items.bucket;
+        return direction != EnumFacing.DOWN || slot != 2 || item.getItem() == Items.bucket;
     }
-    public int[] getAccessibleSlotsFromSide(int par1)
+    public int[] getSlotsForFace(EnumFacing side)
     {
-        return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
+        return side == EnumFacing.DOWN ? slots_bottom : (side == EnumFacing.UP ? slots_top : slots_sides);
     }
 
 
 	@Override
-	public void openInventory() {
+	public void openInventory(EntityPlayer e) {
         if (this.numOfPlayers < 0){
             this.numOfPlayers = 0;
         }
@@ -311,7 +315,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
 	@Override
-	public void closeInventory() {
+	public void closeInventory(EntityPlayer p) {
         --this.numOfPlayers;
     }
 
@@ -327,5 +331,31 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
         {
             return super.receiveClientEvent(eventNum, arg);
         }
+    }
+
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+
+    @Override
+    public void setField(int id, int value) {
+   }
+
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+
+    @Override
+    public void clear() {}
+
+    @Override
+    public IChatComponent getDisplayName() {
+        return null;
     }
 }
