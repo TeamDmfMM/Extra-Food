@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.EventHandler;
 
+/*
 import net.minecraftforge.client.event.TextureStitchEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -19,3 +20,4 @@ public class ExtraFood_eventTextureHook {
 		}
 	}
 }
+*/

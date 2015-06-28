@@ -1,3 +1,4 @@
+
 package dmf444.ExtraFood.Core.Crossmod.NEI;
 
 import codechicken.nei.NEIServerUtils;
@@ -56,9 +57,11 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 		
 	}
 
-	/*
+
+/*
 	 * ADD ALL THE ITEMS FOR EACH RECIPE HERE!!!
 	 */
+
 	ArrayList<Item> InputItems = new ArrayList<Item>(){{
 		add(ItemLoader.banana);
 		add(ItemLoader.strawberry);
@@ -129,7 +132,7 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 		 
 		  TextureAtlasSprite juice = GuiJuiceBlender.getFluidTexture(JuiceRegistry.instance.getJuiceFromItemStack(arecipes.get(recipeI).getIngredient().item), false);
 		  renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		  gui.func_175175_a(147 - 5, (int) ((62 - (1000 * 0.012)) - 1), juice, 16, (int) (1000 * 0.012));
+		  gui.drawTexturedModalRect(147 - 5, (int) ((62 - (1000 * 0.012)) - 1), juice, 16, (int) (1000 * 0.012));
 		  renderEngine.bindTexture(GuiLib.JBgui);
 		  gui.drawTexturedModalRect(147 - 5, 17 - 11, 217, 0, 16, 49);
 		  float[] color = JuiceRegistry.instance.getColor(arecipes.get(recipeI).getIngredient().item);
@@ -147,3 +150,4 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 	  }
 	  
 }
+

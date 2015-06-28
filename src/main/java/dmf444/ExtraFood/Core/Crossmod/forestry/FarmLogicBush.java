@@ -1,35 +1,23 @@
 package dmf444.ExtraFood.Core.Crossmod.forestry;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Stack;
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import forestry.api.farming.*;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.util.EFLog;
-import forestry.api.farming.Farmables;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmHousing;
-import forestry.api.farming.IFarmLogic;
-import forestry.api.farming.IFarmable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.*;
 
 public class FarmLogicBush implements IFarmLogic {
 
@@ -81,14 +69,14 @@ public class FarmLogicBush implements IFarmLogic {
 		Collection<ItemStack> products = produce;
 		produce = new ArrayList<ItemStack>();
 
-		Vect coords = new Vect(housing.getCoords());
+		Vect coords = new Vect(housing.getCoords().getX(), housing.getCoords().getY(), housing.getCoords().getZ());
 		Vect area = new Vect(housing.getArea());
 		Vect offset = new Vect(housing.getOffset());
 
 		Vect min = coords.add(offset);
 		Vect max = coords.add(offset).add(area);
 
-		AxisAlignedBB harvestBox = AxisAlignedBB.getBoundingBox(min.x, min.y, min.z, max.x, max.y, max.z);
+		AxisAlignedBB harvestBox = AxisAlignedBB.fromBounds(min.x, min.y, min.z, max.x, max.y, max.z);
 		List<Entity> list = housing.getWorld().getEntitiesWithinAABB(Entity.class, harvestBox);
 
 		int i;
@@ -113,31 +101,31 @@ public class FarmLogicBush implements IFarmLogic {
 
 
 	@Override
-	public boolean cultivate(int x, int y, int z, ForgeDirection direction, int extent) {
+	public boolean cultivate(BlockPos pos, EnumFacing direction, int extent) {
 
-		if (maintainSoil(x, y, z, direction, extent))
+		if (maintainSoil(pos.getX(), pos.getY(), pos.getZ(), direction, extent))
 			return true;
 
-		if (maintainGermlings(x, y + 1, z, direction, extent))
+		if (maintainGermlings(pos.getX(), pos.getY() + 1, pos.getZ(), direction, extent))
 			return true;
 
 		return false;
 	}
 
-	private boolean maintainSoil(int x, int yGround, int z, ForgeDirection direction, int extent) {
+	private boolean maintainSoil(int x, int yGround, int z, EnumFacing direction, int extent) {
 		if (!housing.hasResources(resource))
 			return false;
 
 		for (int i = 0; i < extent; i++) {
-			Vect position = new Vect(x + direction.offsetX * i, yGround + direction.offsetY * i, z + direction.offsetZ * i);
+			Vect position = new Vect(x + direction.getFrontOffsetX() * i, yGround + direction.getFrontOffsetY() * i, z + direction.getFrontOffsetZ() * i);
 			
-			ItemStack stack = new ItemStack(housing.getWorld().getBlock(position.x, position.y, position.z), 1, housing.getWorld().getBlockMetadata(position.x, position.y, position.z));
-			if (isAcceptedGround(stack) || !canBreakGround(housing.getWorld().getBlock(position.x, position.y, position.z)))
+			ItemStack stack = new ItemStack(housing.getWorld().getBlockState(new BlockPos(position.x, position.y, position.z)).getBlock(), 1, housing.getWorld().getBlockState(new BlockPos(position.x, position.y, position.z)).getBlock().getMetaFromState(housing.getWorld().getBlockState(new BlockPos(position.x, position.y, position.z))));
+			if (isAcceptedGround(stack) || !canBreakGround(housing.getWorld().getBlockState(new BlockPos(position.x, position.y, position.z)).getBlock()))
 				continue;
 
 			produce.addAll(this.getBlockItemStack(housing.getWorld(), position));
 
-			housing.getWorld().setBlock(position.x, position.y, position.z, this.getBlock(groundblock), groundblock.getItemDamage(), 1 | 2);
+			housing.getWorld().setBlockState(new BlockPos(position.x, position.y, position.z), this.getBlock(groundblock).getStateFromMeta(groundblock.getItemDamage()), 1 | 2);
 			housing.removeResources(resource);
 			return true;
 		}
@@ -160,15 +148,15 @@ public class FarmLogicBush implements IFarmLogic {
 		return breakable.contains(block);
 	}
 
-	protected boolean maintainGermlings(int x, int y, int z, ForgeDirection direction, int extent) {
+	protected boolean maintainGermlings(int x, int y, int z, EnumFacing direction, int extent) {
 		World world = housing.getWorld();
 
 		for (int i = 0; i < extent; i++) {
-			Vect position = new Vect(x + direction.offsetX * i, y + direction.offsetY * i, z + direction.offsetZ * i);
-			if (!world.isAirBlock(position.x, position.y, position.z) && !this.isReplaceableBlock(world, position.x, position.y, position.z))
+			Vect position = new Vect(x + direction.getFrontOffsetX() * i, y + direction.getFrontOffsetY() * i, z + direction.getFrontOffsetZ() * i);
+			if (!world.isAirBlock(new BlockPos(position.x, position.y, position.z)) && !this.isReplaceableBlock(world, position.x, position.y, position.z))
 				continue;
 
-			ItemStack below = new ItemStack(world.getBlock(position.x, position.y - 1, position.z), 1, world.getBlockMetadata(position.x, position.y - 1, position.z));
+			ItemStack below = new ItemStack(world.getBlockState(new BlockPos(position.x, position.y - 1, position.z)).getBlock(), 1, world.getBlockState(new BlockPos(position.x, position.y - 1, position.z)).getBlock().getMetaFromState(world.getBlockState(new BlockPos(position.x, position.y - 1, position.z))));
 			if (!isAcceptedGround(below))
 				continue;
 
@@ -189,19 +177,20 @@ public class FarmLogicBush implements IFarmLogic {
 	}
 
 	public static boolean isReplaceableBlock(World world, int x, int y, int z) { 
-		Block block = world.getBlock(x, y, z); 
-		return block == Blocks.vine || block == Blocks.tallgrass || block == Blocks.deadbush || block == Blocks.snow_layer || block.isReplaceable(world, x, y, z); 
+		Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
+		return block == Blocks.vine || block == Blocks.tallgrass || block == Blocks.deadbush || block == Blocks.snow_layer || block.isReplaceable(world, new BlockPos(x, y, z));
 	} 
 	
-	public static ArrayList<ItemStack> getBlockItemStack(World world, Vect posBlock) { 
- 		Block block = world.getBlock(posBlock.x, posBlock.y, posBlock.z); 
-		int meta = world.getBlockMetadata(posBlock.x, posBlock.y, posBlock.z); 
- 		return block.getDrops(world, posBlock.x, posBlock.y, posBlock.z, meta, 0); 
+	public static ArrayList<ItemStack> getBlockItemStack(World world, Vect posBlock) {
+        BlockPos pos = new BlockPos(posBlock.x, posBlock.y, posBlock.z);
+ 		Block block = world.getBlockState(pos).getBlock();
+		IBlockState meta = world.getBlockState(pos);
+ 		return (ArrayList) block.getDrops(world, pos, meta, 0);
  	} 
 	public static Block getBlock(ItemStack stack) { 
  		Item item = stack.getItem(); 
  		if (item instanceof ItemBlock) { 
- 			return ((ItemBlock) item).field_150939_a; 
+ 			return ((ItemBlock) item).getBlock();
  		} else { 
  			return null; 
  		} 
@@ -213,20 +202,20 @@ public class FarmLogicBush implements IFarmLogic {
 		World world = housing.getWorld();
 
 		for (IFarmable candidate : germlings)
-			if (housing.plantGermling(candidate, world, position.x, position.y, position.z))
+			if (housing.plantGermling(candidate, world,new BlockPos(position.x, position.y, position.z)))
 				return true;
 
 		return false;
 	}
 	@Override
-	public Collection<ICrop> harvest(int x, int y, int z, ForgeDirection direction, int extent) {
+	public Collection<ICrop> harvest(BlockPos pos, EnumFacing direction, int extent) {
 		World world = housing.getWorld();
 
 		Stack<ICrop> crops = new Stack<ICrop>();
 		for (int i = 0; i < extent; i++) {
-			Vect position = new Vect(x + direction.offsetX * i, y + 0 + direction.offsetY * i, z + direction.offsetZ * i);
+			Vect position = new Vect(pos.getX() + direction.getFrontOffsetX() * i, pos.getY() + 0 + direction.getFrontOffsetY() * i, pos.getZ() + direction.getFrontOffsetZ() * i);
 			for (IFarmable seed : germlings) {
-				ICrop crop = seed.getCropAt(world, position.x, position.y, position.z);
+				ICrop crop = seed.getCropAt(world,new BlockPos(position.x, position.y, position.z));
 				if (crop != null)
 					crops.push(crop);
 			}
@@ -243,13 +232,13 @@ public class FarmLogicBush implements IFarmLogic {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon() {
-		return ItemLoader.strawberry.getIconFromDamage(0);
+	public Item getIcon() {
+		return ItemLoader.strawberry;
 	}
 
 	@Override
 	public ResourceLocation getSpriteSheet() {
-		return TextureMap.locationItemsTexture; //new ResourceLocation("extrafood", "textures/items/Strawberry.png");
+		return new ResourceLocation("textures/atlas/items.png"); //new ResourceLocation("extrafood", "textures/items/Strawberry.png");
 	}
 
 	@Override

@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "ExtraFood:blocks/Auto_Cutter"
+	}
+}

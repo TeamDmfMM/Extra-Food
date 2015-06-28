@@ -1,3 +1,4 @@
+/*
 package dmf444.ExtraFood.Client.MCPatcher;
 
 import java.io.File;
@@ -42,3 +43,4 @@ public class EFClassTransformer implements IClassTransformer {
     }
 
 }
+*/

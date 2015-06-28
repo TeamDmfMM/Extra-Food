@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
+/*
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import dmf444.ExtraFood.Core.lib.ItemLib;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Core.util.EFLog;
 
 
 public class BTPageGUI extends GuiScreen {
@@ -86,7 +87,7 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
 	this.drawDefaultBackground();	
 	this.drawBookBackground();
 /*	this.drawTextLeftSide();
-	this.drawTextRightSide();*/
+	this.drawTextRightSide();
 	this.draw();
     GL11.glDisable(GL11.GL_LIGHTING);
     GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -112,7 +113,7 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
      this.fontRendererObj.setUnicodeFlag(true);
 	 this.fontRendererObj.drawSplitString(pageTextLeft, i + 28, j + 19, 93, 0x0000000);
      this.fontRendererObj.setUnicodeFlag(false);
-	 }*/
+	 }
 
 
  public void initGui(){
@@ -239,7 +240,7 @@ public int drawElementCrafting(ArrayList<Object> args, int x, int y, int flag){
 				/* Items 0-2 Render in top row
 				 * Items 3-5 Render in middle row
 				 * Items 6-8 Render in final row
-				*/
+
 
 
 
@@ -1003,4 +1004,4 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
  }
 
   
-}
+}*/

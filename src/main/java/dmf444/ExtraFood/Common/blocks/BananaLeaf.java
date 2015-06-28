@@ -1,96 +1,76 @@
 package dmf444.ExtraFood.Common.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import dmf444.ExtraFood.Core.EFTabs;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeavesBase;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.common.IShearable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import dmf444.ExtraFood.Core.EFTabs;
-import dmf444.ExtraFood.Core.lib.ModInfo;
-import dmf444.ExtraFood.util.RenderIcon;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeavesBase;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.IShearable;
+//import net.minecraft.client.renderer.texture.IIconRegister;
+//import net.minecraft.util.IIcon;
 
 public class BananaLeaf extends BlockLeavesBase implements IShearable
-{   
-	public boolean graphicsLevel;
-    
-    protected BananaLeaf(Material par2Material, boolean par3)
-    {
-        super(par2Material, par3);
-        this.graphicsLevel = par3;
-    }
+{
+    //public boolean graphicsLevel;
+    @SideOnly(Side.CLIENT)
+    protected int iconIndex;
+    @SideOnly(Side.CLIENT)
+    protected boolean isTransparent;
+    public static final PropertyBool DECAYABLE = PropertyBool.create("decayable");
+    public static final PropertyBool CHECK_DECAY = PropertyBool.create("check_decay");
 
     /** 1 for fast graphic. 0 for fancy graphics. used in iconArray. */
-    private int iconType;
-    private IIcon[][] iconArray = new IIcon[2][];
+
     int[] adjacentTreeBlocks;
 
     protected BananaLeaf()
     {
+
         super(Material.leaves, false);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
         this.setTickRandomly(true);
         this.setCreativeTab(EFTabs.INSTANCE);
         this.setHardness(0.3F);
-        this.setBlockTextureName("extrafood:BananaLeaf");
+        this.setLightOpacity(1);
+        this.setStepSound(soundTypeGrass);
+
     }
 
     @SideOnly(Side.CLIENT)
     public int getBlockColor()
     {
-        double d0 = 0.8D;
-        double d1 = 9.0D;
-        return ColorizerFoliage.getFoliageColor(d0, d1);
+        return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Returns the color this block should be rendered. Used by leaves.
-     */
-    public int getRenderColor(int par1)
+    public int getRenderColor(IBlockState state)
     {
-        return (par1 & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((par1 & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic());
+        return ColorizerFoliage.getFoliageColorBasic();
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
-     * when first determining what to render.
-     */
-    public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z)
+    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
     {
-        int l = 0;
-        int i1 = 0;
-        int j1 = 0;
-
-        for (int k1 = -1; k1 <= 1; ++k1)
-        {
-            for (int l1 = -1; l1 <= 1; ++l1)
-            {
-                int i2 = blockAccess.getBiomeGenForCoords(x + l1, z + k1).getBiomeFoliageColor(x + l1, y, z + k1);
-                l += (i2 & 16711680) >> 16;
-                i1 += (i2 & 65280) >> 8;
-                j1 += i2 & 255;
-            }
-        }
-
-        return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
+        return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
     }
 
     /**
@@ -98,12 +78,15 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
      * different metadata value, but before the new metadata value is set. Args: World, x, y, z, old block ID, old
      * metadata
      */
-    public void breakBlock(World world, int x, int y, int z, Block blocks, int meta)
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         byte b0 = 1;
         int i1 = b0 + 1;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
 
-        if (world.checkChunksExist(x - i1, y - i1, z - i1, x + i1, y + i1, z + i1))
+        if (world.isAreaLoaded(new BlockPos(x - i1, y - i1, z - i1),new BlockPos(x + i1, y + i1, z + i1)))
         {
             for (int j1 = -b0; j1 <= b0; ++j1)
             {
@@ -111,10 +94,10 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
                 {
                     for (int l1 = -b0; l1 <= b0; ++l1)
                     {
-                        Block block = world.getBlock(x + j1, y + k1, z + l1);
-                        if (block.isLeaves(world, x + j1, y + k1, z + l1))
+                        Block block = world.getBlockState(new BlockPos(x + j1, y + k1, z + l1)).getBlock();
+                        if (block.isLeaves(world,new BlockPos(x + j1, y + k1, z + l1)))
                         {
-                            block.beginLeavesDecay(world, x + j1, y + k1, z + l1);
+                            block.beginLeavesDecay(world,new BlockPos(x + j1, y + k1, z + l1));
                         }
                     }
                 }
@@ -125,14 +108,16 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World world, int par2, int par3, int par4, Random par5Random)
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
+        int par2 = pos.getX();
+        int par3 = pos.getY();
+        int par4 = pos.getZ();
         if (!world.isRemote)
         {
-            int l = world.getBlockMetadata(par2, par3, par4);
+            if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue()){
 
-            if ((l & 8) != 0 && (l & 4) == 0)
-            {
+
                 byte b0 = 4;
                 int i1 = b0 + 1;
                 byte b1 = 32;
@@ -146,7 +131,7 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
 
                 int l1;
 
-                if (world.checkChunksExist(par2 - i1, par3 - i1, par4 - i1, par2 + i1, par3 + i1, par4 + i1))
+                if (world.isAreaLoaded(new BlockPos(par2 - i1, par3 - i1, par4 - i1), new BlockPos(par2 + i1, par3 + i1, par4 + i1)))
                 {
                     int i2;
                     int j2;
@@ -158,11 +143,11 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
                         {
                             for (j2 = -b0; j2 <= b0; ++j2)
                             {
-                                Block block = world.getBlock(par2 + l1, par3 + i2, par4 + j2);
+                                Block block = world.getBlockState(new BlockPos(par2 + l1, par3 + i2, par4 + j2)).getBlock();
 
-                                if (!block.canSustainLeaves(world, par2 + l1, par3 + i2, par4 + j2))
+                                if (!block.canSustainLeaves(world,new BlockPos(par2 + l1, par3 + i2, par4 + j2)))
                                 {
-                                    if (block.isLeaves(world, par2 + l1, par3 + i2, par4 + j2))
+                                    if (block.isLeaves(world,new BlockPos(par2 + l1, par3 + i2, par4 + j2)))
                                     {
                                         this.adjacentTreeBlocks[(l1 + k1) * j1 + (i2 + k1) * b1 + j2 + k1] = -2;
                                     }
@@ -229,7 +214,7 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
 
                 if (l1 >= 0)
                 {
-                    world.setBlockMetadataWithNotify(par2, par3, par4, l & -9, 4);
+                    world.setBlockState(pos, state.withProperty(CHECK_DECAY, Boolean.valueOf(false)), 4);
                 }
                 else
                 {
@@ -244,21 +229,22 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
-    public void randomDisplayTick(World world, int par2, int par3, int par4, Random random)
+    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if (world.canLightningStrikeAt(par2, par3 + 1, par4) && !World.doesBlockHaveSolidTopSurface(world, par2, par3 - 1, par4) && random.nextInt(15) == 1)
+        if (world.canLightningStrike(pos.up()) && !World.doesBlockHaveSolidTopSurface(world, pos.down()) && rand.nextInt(15) == 1)
         {
-            double d0 = (double)((float)par2 + random.nextFloat());
-            double d1 = (double)par3 - 0.05D;
-            double d2 = (double)((float)par4 + random.nextFloat());
-            world.spawnParticle("dripWater", d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            double d0 = (double)((float)pos.getX() + rand.nextFloat());
+            double d1 = (double)pos.getY() - 0.05D;
+            double d2 = (double)((float)pos.getZ() + rand.nextFloat());
+            world.spawnParticle(EnumParticleTypes.DRIP_WATER, d0, d1, d2, 0.0D, 0.0D, 0.0D, new int[0]);
         }
     }
 
-    private void removeLeaves(World par1World, int par2, int par3, int par4)
+    private void removeLeaves(World world, int x, int y, int z)
     {
-        this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-        par1World.setBlockToAir(par2, par3, par4);
+        BlockPos pos = new BlockPos(x,y,z);
+        this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+        world.setBlockToAir(pos);
     }
 
     /**
@@ -272,7 +258,7 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
     /**
      * Returns the ID of the items to drop on destruction.
      */
-    public Item getItemDropped(int par1, Random par2Random, int par3)
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(BlockLoader.saplingBanana);
     }
@@ -280,26 +266,27 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
     /**
      * Drops the block items with a specified chance of dropping the specified items
      */
-    public void dropBlockAsItemWithChance(World world, int par2, int par3, int par4, int par5, float par6, int par7)
+    public void dropBlockAsItemWithChance(World world, BlockPos pos, IBlockState state, float chance, int fortune)
     {
-        super.dropBlockAsItemWithChance(world, par2, par3, par4, par5, 1.0f, par7);
+        super.dropBlockAsItemWithChance(world, pos, state, chance, fortune);
     }
 
-    protected void func_150124_c(World p_150124_1_, int p_150124_2_, int p_150124_3_, int p_150124_4_, int p_150124_5_, int p_150124_6_) {}
+    protected void dropApple(World world, BlockPos pos, IBlockState state, int chance) {}
 
-    protected int func_150123_b(int p_150123_1_)
+    protected int getSaplingDropChance(IBlockState state)
     {
         return 20;
     }
 
-    /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
-     * block and l is the block's subtype/damage.
-     */
+    /*
+      Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
+      block and l is the block's subtype/damage.
+     
     public void harvestBlock(World par1World, EntityPlayer par2EntityPlayer, int par3, int par4, int par5, int par6)
     {
-        super.harvestBlock(par1World, par2EntityPlayer, par3, par4, par5, par6);
-    }
+    	super.harvestBlock(world, player, pos, state, te);
+       
+    }*/
 
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
@@ -308,6 +295,11 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
     {
         return par1 & 3;
     }
+    
+/*    public boolean isVisuallyOpaque()
+    {
+        return false;
+    }*/
 
     /**
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
@@ -320,14 +312,11 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
 
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * Pass true to draw this block using fancy graphics, or false for fast graphics.
-     */
-    public void setGraphicsLevel(boolean par1)
+    public void setGraphicsLevel(boolean fancy)
     {
-        this.graphicsLevel = par1;
-        this.iconType = par1 ? 0 : 1;
+        this.isTransparent = fancy;
+        this.fancyGraphics = fancy;
+        this.iconIndex = fancy ? 0 : 1;
     }
 
     @SideOnly(Side.CLIENT)
@@ -351,31 +340,35 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
     }
 
     @Override
-    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
+    public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos)
     {
         return true;
     }
 
     @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        ret.add(new ItemStack(this, 1, world.getBlockMetadata(x, y, z) & 3));
+        ret.add(new ItemStack(this, 1, 0));
         return ret;
     }
 
     @Override
-    public void beginLeavesDecay(World world, int x, int y, int z)
+    public void beginLeavesDecay(World world, BlockPos pos)
     {
-        world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) | 8, 4);
+        IBlockState state = world.getBlockState(pos);
+        if (!(Boolean)state.getValue(CHECK_DECAY))
+        {
+            world.setBlockState(pos, state.withProperty(CHECK_DECAY, true), 4);
+        }
     }
 
     @Override
-    public boolean isLeaves(IBlockAccess world, int x, int y, int z)
+    public boolean isLeaves(IBlockAccess world, BlockPos pos)
     {
         return true;
     }
-  
+
 
     @SideOnly(Side.CLIENT)
 
@@ -383,14 +376,65 @@ public class BananaLeaf extends BlockLeavesBase implements IShearable
      * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
      * coordinates.  Args: blockAccess, x, y, z, side
      */
-    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public boolean shouldSideBeRendered(IBlockAccess world, int par2, int par3, int par4, int par5)
     {
-        Block i1 = par1IBlockAccess.getBlock(par2, par3, par4);
+        Block i1 = world.getBlockState(new BlockPos(par2, par3, par4)).getBlock();
         return true;
     }
 
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        int chance = this.getSaplingDropChance(state);
+
+        if (fortune > 0)
+        {
+            chance -= 2 << fortune;
+            if (chance < 10) chance = 10;
+        }
+
+        if (rand.nextInt(chance) == 0)
+            ret.add(new ItemStack(getItemDropped(state, rand, fortune), 1, damageDropped(state)));
+
+        chance = 200;
+        if (fortune > 0)
+        {
+            chance -= 10 << fortune;
+            if (chance < 40) chance = 40;
+        }
+
+        this.captureDrops(true);
+
+        ret.addAll(this.captureDrops(false));
+        return ret;
+    }
+    protected BlockState createBlockState()
+    {
+        return new BlockState(this, new IProperty[] {CHECK_DECAY, DECAYABLE});
+    }
+
+    public int getMetaFromState(IBlockState state)
+    {
+        byte b0 = 0;
+        int i = b0 | 0;
+
+        if (!((Boolean)state.getValue(DECAYABLE)).booleanValue())
+        {
+            i |= 4;
+        }
+
+        if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue())
+        {
+            i |= 8;
+        }
+
+        return i;
     }
 }

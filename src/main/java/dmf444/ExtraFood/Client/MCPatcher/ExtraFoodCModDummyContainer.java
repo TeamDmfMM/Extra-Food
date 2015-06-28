@@ -1,3 +1,4 @@
+/*
 package dmf444.ExtraFood.Client.MCPatcher;
 
 import com.google.common.eventbus.Subscribe;
@@ -63,3 +64,4 @@ public class ExtraFoodCModDummyContainer extends DummyModContainer {
 
 
 
+*/

@@ -5,7 +5,7 @@ import dmf444.ExtraFood.Common.blocks.guis.ClickTab;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
-import dmf444.ExtraFood.util.ConfigHandler;
+import dmf444.ExtraFood.Core.util.ConfigHandler;
 import net.minecraft.item.ItemStack;
 
 import java.util.*;

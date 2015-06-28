@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Common.items;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.EFTabs;
 import dmf444.ExtraFood.Core.lib.ItemLib;
@@ -63,18 +63,18 @@ public class ItemLoader {
 
 		knife = new Knife().setUnlocalizedName(ItemLib.iK);	
 		cookBook = new Cookbook().setUnlocalizedName(ItemLib.iCB);
-		bucketstrawberry = new BucketStrawberry(6, 0.8F);
-		bucketbanana = new BucketBanana(6, 0.6F);
-		bucketcarrot = new BucketCarrot(6, 0.9F);
-		bucketseaWater = new BucketSeaWater(2, 0.5F);
-		bucketpurifiedwater = new BucketPurifiedWater(4, 0.5F);
-		bucketeggnog = new EdibleBucket(9, 5.0F, BlockLoader.Beggnog, "eggnog");
-		tomatoSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.tomatoCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iTS).setTextureName("extrafood:tomatoSeeds").setCreativeTab(EFTabs.INSTANCE);
-		rawlettuceSeeds = new StanItem().setUnlocalizedName(ItemLib.iULS).setTextureName("extrafood:uselessLettuceSeeds");
-		uselettuceSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iCLS).setTextureName("extrafood:coatedLettuceSeeds").setCreativeTab(EFTabs.INSTANCE);
+		bucketstrawberry = new BucketEdible(6, 0.8F, BlockLoader.Bstrawberryjuice, ItemLib.iBS);
+		bucketbanana = new BucketEdible(6, 0.6F, BlockLoader.Bbananajuice, ItemLib.iBB);
+		bucketcarrot = new BucketEdible(6, 0.9F, BlockLoader.Bcarrotjuice, ItemLib.iBC);
+		bucketseaWater = new BucketEdible(2, 0.5F, Blocks.water, ItemLib.iBSW);
+		bucketpurifiedwater = new BucketEdible(4, 0.5F, Blocks.water, ItemLib.iBPW);
+		bucketeggnog = new BucketEdible(9, 5.0F, BlockLoader.Beggnog, ItemLib.iEggnog);
+		tomatoSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.tomatoCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iTS).setCreativeTab(EFTabs.INSTANCE);
+		rawlettuceSeeds = new StanItem().setUnlocalizedName(ItemLib.iULS);
+		uselettuceSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iCLS).setCreativeTab(EFTabs.INSTANCE);
 		grater = new Grater().setUnlocalizedName(ItemLib.iGrater);
-		muffinPan = new StanItem().setUnlocalizedName(ItemLib.iMuffPan).setTextureName("extrafood:" + ItemLib.iMuffPan);
-		dough = new StanItem().setUnlocalizedName(ItemLib.iDough).setTextureName("extrafood:" + ItemLib.iDough);
+		muffinPan = new StanItem().setUnlocalizedName(ItemLib.iMuffPan);
+		dough = new StanItem().setUnlocalizedName(ItemLib.iDough);
 		
 		registerItems();
 	}
@@ -90,7 +90,7 @@ public class ItemLoader {
 		cookedBacon = new StanFood(2, 5.2F).setUnlocalizedName(ItemLib.iCBac);
 		toast = new StanFood(6, 0.8F).setUnlocalizedName(ItemLib.iToastS);
 		slicedBread = new StanFood(4, 3.0F).setUnlocalizedName(ItemLib.iBRS);
-		frenchFries = new ItemFood(8, 0.7F, false).setUnlocalizedName(ItemLib.iFF()).setCreativeTab(EFTabs.INSTANCE).setTextureName("extrafood:" + ItemLib.iFF());//" + ItemLib.iFF()
+		frenchFries = new StanFood(8, 0.7F).setUnlocalizedName(ItemLib.iFF).setCreativeTab(EFTabs.INSTANCE);
 		tomato = new StanFood(4, 2.5F).setUnlocalizedName(ItemLib.iTom);
 		lettuce = new StanFood(4, 1.6F).setUnlocalizedName(ItemLib.iLet);	
 		egg = new StanFood(3, 0.8F).setUnlocalizedName(ItemLib.iEgg);
@@ -140,7 +140,7 @@ public class ItemLoader {
 		gingerbread = new StanFood(9, 5.0F).setUnlocalizedName(ItemLib.iGB);
 		chestnuts = new StanFood(10, 5.0F).setUnlocalizedName(ItemLib.Chestnut);
 		//Temp HDB
-		ChocolateCake = new ItemReed(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE).setTextureName("extrafood:Chocake");
+		ChocolateCake = new ItemReed(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
 		
 		registerFood();
 	}
@@ -185,7 +185,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(veal, ItemLib.iV);
 			GameRegistry.registerItem(toast, ItemLib.iToastS);
 			GameRegistry.registerItem(slicedBread, ItemLib.iBRS);
-			GameRegistry.registerItem(frenchFries, "FrenchFries");
+			GameRegistry.registerItem(frenchFries, ItemLib.iFF);
 			GameRegistry.registerItem(egg, ItemLib.iEgg);
 			GameRegistry.registerItem(rawpasta, ItemLib.iPasta);
 			GameRegistry.registerItem(sandwhichS, ItemLib.iSandS);

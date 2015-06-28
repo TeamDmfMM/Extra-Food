@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Core.lib;
 
-import dmf444.ExtraFood.util.ConfigHandler;
+import dmf444.ExtraFood.Core.util.ConfigHandler;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemLib {
@@ -70,9 +70,7 @@ public class ItemLib {
 	public static String iStrawIceCream = "strawberryIceCream";
 	public static String iCNF = "chineseFood";
 	public static String iChoSpread = "chocolateSpread";
-	/* 
-	 * Jelly 
-	 */
+
 	public static String iJ = "jelly";
 	public static String iPopcicle = "icePopcicle";
 	public static String iNeoIceCream = "neopolitanIceCream"; 
@@ -86,14 +84,15 @@ public class ItemLib {
 	public static String Chestnut = "chestnuts";
 	public static String Cake = "ChocolateCake";
 	public static String iMuffPan = "MuffinPan";
+
+
+    //SEASONAL
+    public static String iEggnog = "eggnog";
+
+	
 	
 
 
-
-	
-	
-
-	
 	//Special ones
 	public static String iFF(){
 			if(ConfigHandler.FeelLikeAure){
@@ -101,5 +100,6 @@ public class ItemLib {
 			}
 			return "FrenchFries";
 	}
+    public static String iFF = "FrenchFries";
 
 }

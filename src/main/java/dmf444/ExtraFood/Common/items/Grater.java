@@ -1,6 +1,5 @@
 package dmf444.ExtraFood.Common.items;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class Grater extends StanItem {
@@ -9,11 +8,11 @@ public class Grater extends StanItem {
 	{
         super();
         this.maxStackSize = 1;
-        this.setTextureName("extrafood:grater");
+        //this.setTextureName("extrafood:grater");
         this.setContainerItem(this);
     }
     
-    public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemstack) 
+    public boolean hasContainerItem(ItemStack itemstack)
     {
     	return false;
     }

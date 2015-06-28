@@ -1,11 +1,10 @@
 package dmf444.ExtraFood.Common.items;
 
+import dmf444.ExtraFood.Core.EFTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dmf444.ExtraFood.Core.EFTabs;
 
 public class DrinkActionFood extends StanFood{
 
@@ -21,7 +20,7 @@ public class DrinkActionFood extends StanFood{
 	        this.SaturationCount = saturation;
 	    }
 	    
-	    public ItemStack onEaten(ItemStack par1, World world, EntityPlayer Player)
+	    public ItemStack onItemUseFinish(ItemStack par1, World world, EntityPlayer Player)
 	    {
 	    	Player.getFoodStats().addStats(FoodBarCount, SaturationCount);
 	        if (!Player.capabilities.isCreativeMode)
@@ -46,7 +45,7 @@ public class DrinkActionFood extends StanFood{
 	     */
 	    public EnumAction getItemUseAction(ItemStack p_77661_1_)
 	    {
-	        return EnumAction.drink;
+	        return EnumAction.DRINK;
 	    }
 
 	    /**

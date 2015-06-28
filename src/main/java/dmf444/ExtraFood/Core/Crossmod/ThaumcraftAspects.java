@@ -1,4 +1,7 @@
 package dmf444.ExtraFood.Core.Crossmod;
+/*
+import net.minecraft.item.ItemStack;
+
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -48,3 +51,4 @@ public class ThaumcraftAspects {
 		return new ItemStack(block, 1);
 	}
 }
+*/

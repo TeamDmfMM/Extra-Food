@@ -8,6 +8,7 @@ import dmf444.ExtraFood.Common.blocks.guis.ButtonNextPageGUI;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import dmf444.ExtraFood.ExtraFood;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -54,7 +55,7 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
 	pageTextLeft = StatCollector.translateToLocal("cookbookL." + pagename);
 	pageTextRight = StatCollector.translateToLocal("cookbookR." + pagename);
 	this.items = ExtraFood.crafterPage.getArray(pagename);
-	this.irender = new RenderItem();
+	this.irender = Minecraft.getMinecraft().getRenderItem();
 	pagen = pagename;
 	
 	ris = (ArrayList<CBElement>) this.digestString(StatCollector.translateToLocal("cookbook." + pagename));
@@ -222,17 +223,17 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     		 */
 			if (items[0] != null){				
 			    GL11.glDisable(GL11.GL_LIGHTING);					
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[0], x1 + 16, y1 + 9);
+				this.irender.renderItemIntoGUI(items[0], x1 + 16, y1 + 9);
 				GL11.glEnable(GL11.GL_LIGHTING);			
 			}
 			if (items[9] != null){
 			GL11.glDisable(GL11.GL_LIGHTING);
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 16, y1 - 33);
-				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 16, y1 - 33);
+				this.irender.renderItemIntoGUI(items[9], x1 + 16, y1 - 33);
+				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 16, y1 - 33, null);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			GL11.glDisable(GL11.GL_LIGHTING);
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), new ItemStack(Items.coal), x1 + 16, y1 + 49);
+				this.irender.renderItemIntoGUI(new ItemStack(Items.coal), x1 + 16, y1 + 49);
 			GL11.glEnable(GL11.GL_LIGHTING);
     	}
     }
@@ -294,8 +295,8 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     private void renderItem(ItemStack i, int x, int y){
         if(i != null){
         	GL11.glDisable(GL11.GL_LIGHTING);
-        	this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), i, x, y);
-        	this.irender.renderItemOverlayIntoGUI(fontRendererObj, this.mc.getTextureManager(), i, x, y);
+        	this.irender.renderItemIntoGUI(i, x, y);
+        	this.irender.renderItemOverlayIntoGUI(fontRendererObj, i, x, y, null);
         	GL11.glEnable(GL11.GL_LIGHTING);
         }
     }
@@ -334,54 +335,54 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
 				
 			if (items[0] != null){				
 		    GL11.glDisable(GL11.GL_LIGHTING);					
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[0], x1 - 3, y1 + 1);
+			this.irender.renderItemIntoGUI(items[0], x1 - 3, y1 + 1);
 			GL11.glEnable(GL11.GL_LIGHTING);			
 			}	
 			if (items[1] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[1], x1 + 18, y1 + 1);
+			this.irender.renderItemIntoGUI(items[1], x1 + 18, y1 + 1);
 				GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[2] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[2], x1 + 40, y1 + 1);
+			this.irender.renderItemIntoGUI(items[2], x1 + 40, y1 + 1);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[3] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[3], x1 - 3, y1 + 22);
+			this.irender.renderItemIntoGUI(items[3], x1 - 3, y1 + 22);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[4] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[4], x1 + 18, y1 + 22);
+			this.irender.renderItemIntoGUI(items[4], x1 + 18, y1 + 22);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[5] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[5], x1 + 40, y1 + 22);
+			this.irender.renderItemIntoGUI(items[5], x1 + 40, y1 + 22);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[6] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[6], x1 - 3, y1 + 43);
+			this.irender.renderItemIntoGUI(items[6], x1 - 3, y1 + 43);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[7] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[7], x1 + 18, y1 + 43);
+			this.irender.renderItemIntoGUI(items[7], x1 + 18, y1 + 43);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[8] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[8], x1 + 40, y1 + 43);
+			this.irender.renderItemIntoGUI(items[8], x1 + 40, y1 + 43);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			   //Itemstack 9 is the output slot
 			if (items[9] != null){
 			GL11.glDisable(GL11.GL_LIGHTING);
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 19, y1 - 44);
-				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 19, y1 - 44);
+				this.irender.renderItemIntoGUI(items[9], x1 + 19, y1 - 44);
+				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 19, y1 - 44, null);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 

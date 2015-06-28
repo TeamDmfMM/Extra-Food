@@ -1,17 +1,12 @@
 package dmf444.ExtraFood.Common.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import cpw.mods.fml.common.registry.GameRegistry;
-import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
-import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
-import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
+import dmf444.ExtraFood.Common.blocks.tileentity.*;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import dmf444.ExtraFood.Core.lib.BlockLib;
-import dmf444.ExtraFood.Core.lib.ModInfo;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockLoader {
 
@@ -37,24 +32,26 @@ public class BlockLoader {
 	public static boolean Register=false;
 	
 	public static void initiateBlocks() {
-		bananaBunch = new BananaBlock(Material.cactus).setBlockName(BlockLib.bBB).setBlockTextureName("extrafood:BananaBunch");
-		saplingBanana = new BananaTreeSapling().setBlockName(BlockLib.bBS);
-		cheesePress = new CheesePress().setBlockName(BlockLib.bCP).setHardness(1.5F);
-		autoCutter = new AutoCutter().setBlockName(BlockLib.bAC).setHardness(2.0F);
-		juiceBlender = new BlockJuiceBlender().setBlockName(BlockLib.bJB).setHardness(1.5F);
-		oven = new Oven().setBlockName(BlockLib.bO);
-		whiteout = new Whiteout().setBlockName("TheWhiteBlock").setBlockTextureName("extrafood:The whiteout").setHardness(1.5F);
-		Bbananajuice = new GeneralFluid("BananaJuice", FluidLoader.Fbananajuice, Material.water).setBlockName("Fbananajuice");
-		Beggnog = new GeneralFluid("Eggnog",FluidLoader.FEggnog, Material.water).setBlockName("FEggnog");
-		Bstrawberryjuice = new GeneralFluid("StrawberryJuice", FluidLoader.Fstrawberryjuice, Material.water).setBlockName("StrawberryJuice");
-		strawberryBush = new StrawberryBush(Material.plants).setBlockName(BlockLib.bSB);
-		Bcarrotjuice = new GeneralFluid("CarrotJuice", FluidLoader.Fcarrotjuice, Material.water).setBlockName("Fcarrotjuice");
-		bananaLeaf = new BananaLeaf().setBlockName("BananaLeaf");
-		peanutbush = new PeanutBush(Material.plants).setBlockName(BlockLib.bPB);
-		tomatoCrop = new CropBlock("tomato").setBlockName(BlockLib.bCT);
-		lettuceCrop = new CropBlock("lettuce").setBlockName(BlockLib.bCL);
-		juiceMixer = new BlockJuiceMixer().setBlockName(BlockLib.bJM);
-		Chocake = new ChocolateCake().setBlockName("Cake");
+		bananaBunch = new BananaBlock(Material.cactus).setUnlocalizedName(BlockLib.bBB);
+		saplingBanana = new BananaTreeSapling().setUnlocalizedName(BlockLib.bBS);
+		cheesePress = new CheesePress().setUnlocalizedName(BlockLib.bCP).setHardness(1.5F);
+		autoCutter = new AutoCutter().setUnlocalizedName(BlockLib.bAC).setHardness(2.0F);
+		juiceBlender = new BlockJuiceBlender().setUnlocalizedName(BlockLib.bJB).setHardness(1.5F);
+		oven = new Oven().setUnlocalizedName(BlockLib.bO);
+		whiteout = new Whiteout().setUnlocalizedName(BlockLib.bTWB).setHardness(1.5F);
+        bananaLeaf = new BananaLeaf().setUnlocalizedName(BlockLib.bBL);
+        peanutbush = new PeanutBush(Material.plants).setUnlocalizedName(BlockLib.bPB);
+        tomatoCrop = new CropBlock("tomato").setUnlocalizedName(BlockLib.bCT);
+        lettuceCrop = new CropBlock("lettuce").setUnlocalizedName(BlockLib.bCL);
+        juiceMixer = new BlockJuiceMixer().setUnlocalizedName(BlockLib.bJM);
+        Chocake = new ChocolateCake().setUnlocalizedName(BlockLib.bCake);
+        strawberryBush = new StrawberryBush(Material.plants).setUnlocalizedName(BlockLib.bSB);
+
+		Bbananajuice = new GeneralFluid(FluidLoader.Fbananajuice, Material.water).setUnlocalizedName(BlockLib.bFluidBan);
+		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.water).setUnlocalizedName(BlockLib.bFluidEgg);
+		Bstrawberryjuice = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.water).setUnlocalizedName(BlockLib.bFluidStraw);
+		Bcarrotjuice = new GeneralFluid(FluidLoader.Fcarrotjuice, Material.water).setUnlocalizedName(BlockLib.bFluidCarrot);
+
 		
 		
 		registerBlocks();
@@ -67,18 +64,18 @@ public class BlockLoader {
 			GameRegistry.registerBlock(autoCutter, BlockLib.bAC);
 			GameRegistry.registerBlock(juiceBlender, BlockLib.bJB);
 			GameRegistry.registerBlock(oven, BlockLib.bO);
-			GameRegistry.registerBlock(whiteout, "TheWhiteBlock");
-			GameRegistry.registerBlock(Bbananajuice, ModInfo.MId + "_" + Bbananajuice.getUnlocalizedName().substring(5));
-			GameRegistry.registerBlock(Bstrawberryjuice, ModInfo.MId + "_" + Bstrawberryjuice.getUnlocalizedName().substring(5));
-			GameRegistry.registerBlock(Beggnog, ModInfo.MId + "_" + Beggnog.getUnlocalizedName().substring(5));
+			GameRegistry.registerBlock(whiteout, BlockLib.bTWB);
+			GameRegistry.registerBlock(Bbananajuice, BlockLib.bFluidBan);
+			GameRegistry.registerBlock(Bstrawberryjuice, BlockLib.bFluidStraw);
+			GameRegistry.registerBlock(Beggnog, BlockLib.bFluidEgg);
+            GameRegistry.registerBlock(Bcarrotjuice, BlockLib.bFluidCarrot);
 			GameRegistry.registerBlock(strawberryBush, BlockLib.bSB);
-			GameRegistry.registerBlock(Bcarrotjuice, ModInfo.MId + "_" + Bcarrotjuice.getUnlocalizedName().substring(5));
-			GameRegistry.registerBlock(bananaLeaf, "BananaLeaf");
+			GameRegistry.registerBlock(bananaLeaf, BlockLib.bBL);
 			GameRegistry.registerBlock(peanutbush, BlockLib.bPB);
 			GameRegistry.registerBlock(tomatoCrop, BlockLib.bCT);
 			GameRegistry.registerBlock(lettuceCrop, BlockLib.bCL);
 			GameRegistry.registerBlock(juiceMixer, BlockLib.bJM);
-			GameRegistry.registerBlock(Chocake, "Cake");
+			GameRegistry.registerBlock(Chocake, BlockLib.bCake);
 			
 		}
 		Register=true;

@@ -46,10 +46,10 @@ public class CookbookTab {
 																			// 22,
 																			// 22
 																			// ``54``
-                this.rinder.func_175042_a(this.display, p1 + 11, p2 + 2 + 4);
+                this.rinder.renderItemIntoGUI(this.display, p1 + 11, p2 + 2 + 4);
             } else {
 				gui.drawTexturedModalRect(p1 - 8, p2 + 2, 54, 202, 37, 26);
-				this.rinder.func_175042_a(this.display, p1 + 5, p2 + 2 + 4);
+				this.rinder.renderItemIntoGUI(this.display, p1 + 5, p2 + 2 + 4);
 			}
 		} else {
 			if (gui.tab != this.name) {

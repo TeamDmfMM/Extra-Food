@@ -277,20 +277,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
         this.markDirty();
 	}
 	
-	/*
-	public Packet getDescriptionPacket(){
-		NBTTagCompound tags = new NBTTagCompound();
-		this.writeToNBT(tags);
-		return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tags);
-	}
 
-
-	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-	{
-
-		this.readFromNBT(pkt.data);
-	}
-	*/
     public boolean canInsertItem(int slot, ItemStack item, EnumFacing direction)
     {
         return this.isItemValidForSlot(slot, item);

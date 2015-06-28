@@ -14,5 +14,15 @@ public class BlockLib {
 	public static String bCT = "CropTomato";
 	public static String bCL = "CropLettuce";
 	public static String bJM = "JuiceMixer";
+    public static String bTWB = "TheWhiteBlock";
+    public static String bBL = "BananaLeaf";
+    public static String bCake = "Cake";
+
+
+    //Fluids
+    public static String bFluidBan = "Fbananajuice";
+    public static String bFluidEgg = "FEggnog";
+    public static String bFluidStraw = "StrawberryJuice";
+    public static String bFluidCarrot = "Fcarrotjuice";
 
 }

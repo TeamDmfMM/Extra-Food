@@ -94,7 +94,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
             }
             else
             {
-                Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).offsetDown()).getBlock();
+                Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).down()).getBlock();
 
                 boolean isSoil = block2.canSustainPlant(world,new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.sapling);
                 if (isSoil && y < 256 - l - 1)
@@ -135,7 +135,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
 
                     for (k1 = 0; k1 < l; ++k1)
                     {
-                        BlockPos upN = pos.offsetUp(k1);
+                        BlockPos upN = pos.up(k1);
                         block = world.getBlockState(upN).getBlock();
 
                         if (block.isAir(world,new BlockPos( x, y + k1, z)) || block.isLeaves(world,new BlockPos( x, y + k1, z))) {
@@ -156,8 +156,8 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
                                 {
                                     BlockPos blockposL = new BlockPos(i2, k1, j2);
                                     if (world.getBlockState(blockposL).getBlock().isLeaves(world, blockposL)) {
-                                        BlockPos blockposWest = blockposL.offsetWest();
-                                        BlockPos blockposEast = blockposL.offsetEast();
+                                        BlockPos blockposWest = blockposL.west();
+                                        BlockPos blockposEast = blockposL.east();
                                         if (rand.nextInt(25) == 0 && world.getBlockState(blockposWest).getBlock().isAir(world,new BlockPos(i2, k1 - 1, j2)))
                                         {
                                             this.growVines(world, i2, k1 - 1, j2, 1);

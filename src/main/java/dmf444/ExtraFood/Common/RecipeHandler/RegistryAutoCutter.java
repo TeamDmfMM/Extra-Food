@@ -1,13 +1,9 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.CraftingRecipies;
-import dmf444.ExtraFood.util.EFLog;
 
 
 public class RegistryAutoCutter {

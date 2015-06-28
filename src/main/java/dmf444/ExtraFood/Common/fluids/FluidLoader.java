@@ -1,9 +1,6 @@
 package dmf444.ExtraFood.Common.fluids;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import dmf444.ExtraFood.Core.lib.ModInfo;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -19,15 +16,18 @@ public class FluidLoader {
 	public static Fluid Fstrawberryjuice;
 	public static Fluid Fcarrotjuice;
 	public static Fluid FEggnog;
+    private static final String pre = "extrafood:blocks/fluid/";
+    private static final String still = "Fluid_%s_Still";
+    private static final String flow = "Fluid_%s_Flow";
 
 	
 	public static boolean Registate=false;
 	
 	public static void initiateFluids() {
-		Fbananajuice = new Fluid("bananajuice").setViscosity(3000);
-		Fstrawberryjuice = new Fluid("strawberryjuice");
-		Fcarrotjuice = new Fluid("carrotjuice");
-		FEggnog = new Fluid("Eggnog").setViscosity(2000);
+		Fbananajuice = new Fluid("bananajuice", new ResourceLocation(pre + localize(still, "BananaJuice")), new ResourceLocation(pre + localize(flow, "BananaJuice"))).setViscosity(3000);
+		Fstrawberryjuice = new Fluid("strawberryjuice", new ResourceLocation(pre + localize(still, "StrawberryJuice")), new ResourceLocation(pre + localize(flow, "StrawberryJuice")));
+		Fcarrotjuice = new Fluid("carrotjuice", new ResourceLocation(pre + localize(still, "CarrotJuice")), new ResourceLocation(pre + localize(flow, "CarrotJuice")));
+		FEggnog = new Fluid("Eggnog", new ResourceLocation(pre + localize(still, "Eggnog")), new ResourceLocation(pre + localize(flow, "Eggnog"))).setViscosity(2000);
 		
 		
 		
@@ -43,5 +43,8 @@ public class FluidLoader {
 		}
 		Registate = true;
 	}
-	
+
+    private static String localize(String type, String fluid){
+        return String.format(type, fluid);
+    }
 }

@@ -1,21 +1,16 @@
 package dmf444.ExtraFood.Common.blocks.container;
 
 
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
+import dmf444.ExtraFood.Core.PacketJBTank;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.Core.PacketJBTank;
-import dmf444.ExtraFood.util.EFLog;
 
 
 public class ContainerJuiceBlender extends Container{
@@ -70,7 +65,7 @@ public class ContainerJuiceBlender extends Container{
 			if (crafters.get(i) instanceof EntityPlayerMP){
 				if (tileEntity.tank.getFluid() != null){
 					//ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid().getID(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord), new TargetPoint(tileEntity.getWorldObj().provider.dimensionId, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 10));
-					ExtraFood.JBTanknet.sendTo(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid().getID(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord), (EntityPlayerMP) crafters.get(i));
+					ExtraFood.JBTanknet.sendTo(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid().getID(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), (EntityPlayerMP) crafters.get(i));
 				}
 		}
 	}

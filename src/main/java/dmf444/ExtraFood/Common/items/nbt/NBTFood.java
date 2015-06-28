@@ -1,9 +1,6 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import dmf444.ExtraFood.Core.OvenFoodTab;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,27 +8,28 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class NBTFood extends ItemFood {
 	public String name;
 	
 	public NBTFoodSpecs specs;
 	
-	public Dictionary<String, IIcon> icons;
+	//public Dictionary<String, IIcon> icons;
 	
 	
-	public IIcon base;
+	//public IIcon base;
 	
 	public NBTFood(String name){
 		super(0,0,false);
 		specs = NBTFoodRegistry.food.getSpecs(name);
 		
-		icons = new Hashtable<String, IIcon>();
+		//icons = new Hashtable<String, IIcon>();
 		this.setCreativeTab(OvenFoodTab.INSTANCE);
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName(name);
@@ -58,10 +56,10 @@ public class NBTFood extends ItemFood {
 	    }
 	
 	public int getHunger(ItemStack stack){
-		NBTTagCompound comp = stack.stackTagCompound;
+		NBTTagCompound comp = stack.getTagCompound();
 		String key;
     	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.func_150296_c().toArray()){
+    	for (Object keyb : comp.getKeySet().toArray()){
     		key = (String)keyb;
     		if (!Collections.list(specs.additives.keys()).contains(key)){
     			continue;
@@ -87,10 +85,10 @@ public class NBTFood extends ItemFood {
 	}
 	
 	public float getSaturation(ItemStack stack){
-		NBTTagCompound comp = stack.stackTagCompound;
+		NBTTagCompound comp = stack.getTagCompound();
 		String key;
     	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.func_150296_c().toArray()){
+    	for (Object keyb : comp.getKeySet().toArray()){
     		key = (String)keyb;
     		if (!Collections.list(specs.additives.keys()).contains(key)){
     			continue;
@@ -110,13 +108,13 @@ public class NBTFood extends ItemFood {
 	}
 	
 	public void addInformation(ItemStack stack, EntityPlayer player, List text, boolean idk) {
-		NBTTagCompound comp = stack.stackTagCompound;
+		NBTTagCompound comp = stack.getTagCompound();
     	String key;
     	if (comp == null){
     		return;
     	}
     	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.func_150296_c().toArray()){
+    	for (Object keyb : comp.getKeySet().toArray()){
     		key = (String)keyb;
     		if (!Collections.list(specs.additives.keys()).contains(key)){
     			continue;
@@ -136,7 +134,7 @@ public class NBTFood extends ItemFood {
     		}
     	}
 	}
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister){
     	ArrayList<String> keys = Collections.list(specs.additives.keys());
@@ -184,7 +182,7 @@ public class NBTFood extends ItemFood {
     	}
     	
     }
-    
+    */
     public NBTTagCompound getNBT(String... strings){
     	return getNBT(ar(strings));
     }

@@ -1,3 +1,4 @@
+/*
 package dmf444.ExtraFood.Client.MCPatcher;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
@@ -44,3 +45,4 @@ public class EFFMLLoadingPlugin implements IFMLLoadingPlugin {
 	}
 
 }
+*/

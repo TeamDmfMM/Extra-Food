@@ -7,9 +7,12 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IChatComponent;
 
-public class TileEntityOven extends TileEntity implements ISidedInventory{
+public class TileEntityOven extends TileEntity implements ISidedInventory, IUpdatePlayerListBox{
 		//TODO Constructors
 	
 	public ItemStack[] items;
@@ -27,12 +30,11 @@ public class TileEntityOven extends TileEntity implements ISidedInventory{
 	}
 	
 	public int getSizeInventory() {
-		// TODO Auto-generated method stub
 		return 6;
 	}
 	
 	@Override
-	public void updateEntity() {
+	public void update() {
 		if (OvenRegistry.instance.ok(items) && items[5] == null){
 			if (getTime() == 0 && going == false){
 				startRecipe(OvenRegistry.instance.getRecipe(items));
@@ -124,13 +126,11 @@ public class TileEntityOven extends TileEntity implements ISidedInventory{
 
 	@Override
 	public ItemStack getStackInSlot(int slot) {
-		// TODO Auto-generated method stub
 		return items[slot];
 	}
 	
 	@Override
 	public ItemStack decrStackSize(int slot, int amt) {
-		// TODO Auto-generated method stub
 		ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
                 if (stack.stackSize <= amt) {
@@ -147,51 +147,49 @@ public class TileEntityOven extends TileEntity implements ISidedInventory{
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
-		// TODO Auto-generated method stub
 		return items[slot];
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-		// TODO Auto-generated method stub
 		items[slot] = stack;
 		
 	}
 
 	@Override
-	public String getInventoryName() {
-		// TODO Auto-generated method stub
+	public String getName() {
 		return "Oven";
 	}
 
 	@Override
-	public boolean hasCustomInventoryName() {
-		// TODO Auto-generated method stub
+	public boolean hasCustomName() {
 		return false;
 	}
 
-	@Override
+    @Override
+    public IChatComponent getDisplayName() {
+        return null;
+    }
+
+    @Override
 	public int getInventoryStackLimit() {
-		// TODO Auto-generated method stub
 		return 64;
 	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		// TODO Auto-generated method stub
-		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
-	            player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
+		return worldObj.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
 	}
 
 	@Override
-	public void openInventory() {
-		// TODO Auto-generated method stub
+	public void openInventory(EntityPlayer player) {
+
 		
 	}
 
 	@Override
-	public void closeInventory() {
-		// TODO Auto-generated method stub
+	public void closeInventory(EntityPlayer player) {
 		
 	}
 
@@ -200,7 +198,28 @@ public class TileEntityOven extends TileEntity implements ISidedInventory{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	  @Override
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {
+
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
 	    public void readFromNBT(NBTTagCompound tagCompound) {
 	            super.readFromNBT(tagCompound);
 	            
@@ -240,17 +259,17 @@ public class TileEntityOven extends TileEntity implements ISidedInventory{
 		}
 
     @Override
-    public int[] getAccessibleSlotsFromSide(int side) {
-        return side == 0 ? slots_bottom : null;
+    public int[] getSlotsForFace(EnumFacing side) {
+        return side == EnumFacing.DOWN ? slots_bottom : null;
     }
 
     @Override
-    public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+    public boolean canInsertItem(int slot, ItemStack item, EnumFacing direction) {
         return false;
     }
 
     @Override
-    public boolean canExtractItem(int slot, ItemStack item, int side) {
+    public boolean canExtractItem(int slot, ItemStack item, EnumFacing direction) {
         return slot == 5;
     }
 }

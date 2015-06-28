@@ -1,20 +1,21 @@
 package dmf444.ExtraFood.Common.EventHandler;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Core.util.ConfigHandler;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.util.ConfigHandler;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * @authour SpaceToad
@@ -60,12 +61,11 @@ public class BucketHandler {
     private ItemStack fillCustomBucket(World world, MovingObjectPosition pos) {
 
 
-            Block block = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
+            IBlockState state = world.getBlockState(pos.getBlockPos());
+            Item bucket = buckets.get(state.getBlock());
 
-
-            Item bucket = buckets.get(block);
-            if (bucket != null && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0) {
-                    world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
+        if (bucket != null && state.getBlock().getMetaFromState(state) == 0) {
+                    world.setBlockToAir(pos.getBlockPos());
                     return new ItemStack(bucket);
             } else
                     return null;

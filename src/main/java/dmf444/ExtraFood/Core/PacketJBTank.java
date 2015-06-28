@@ -1,7 +1,7 @@
 package dmf444.ExtraFood.Core;
 
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Core.util.EFLog;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;

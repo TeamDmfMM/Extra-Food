@@ -1,28 +1,24 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
+import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
+import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
+import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
+import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
-
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import codechicken.lib.render.RenderUtils;
-import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
-import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.Core.lib.GuiLib;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GuiJuiceBlender extends GuiContainer {
@@ -52,7 +48,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);
 		this.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		this.drawTexturedModelRectFromIcon(x + 147, (int)(y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false),  16, (int)(te.tank.getFluidAmount() * 0.012));
+		this.drawTexturedModalRect(x + 147, (int) (y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false), 16, (int) (te.tank.getFluidAmount() * 0.012));
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
@@ -127,8 +123,8 @@ public class GuiJuiceBlender extends GuiContainer {
 	
 	
 	}
-	protected void mouseMovedOrUp(int par1, int par2, int par3){
-		super.mouseMovedOrUp(par1, par2, par3);
+	protected void mouseReleased(int par1, int par2, int par3){
+		super.mouseReleased(par1, par2, par3);
 		if (par3 == 0){
 			this.mousex = par1;
 			this.mousey = par2;
@@ -139,8 +135,10 @@ public class GuiJuiceBlender extends GuiContainer {
 		int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
 		this.mousex = x - guiLeft;
 		this.mousey = y - guiTop;
-		super.handleMouseInput();
-	}
+        try {
+            super.handleMouseInput();
+        } catch (IOException e) {}
+    }
 	
 	//Taken from BuildCraft... If you own it, ask and I'll remove it
 	public static TextureAtlasSprite getFluidTexture(Fluid fluid, boolean flowing) {

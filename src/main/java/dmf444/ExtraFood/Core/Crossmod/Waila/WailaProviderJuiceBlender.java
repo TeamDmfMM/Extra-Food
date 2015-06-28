@@ -1,27 +1,21 @@
+/*
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
-import java.util.List;
-
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.IWailaDataProvider;
-import net.minecraft.entity.player.EntityPlayerMP;
+import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
+import dmf444.ExtraFood.Core.PacketJBTank;
+import dmf444.ExtraFood.ExtraFood;
+import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.Core.PacketJBTank;
-import dmf444.ExtraFood.util.EFLog;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class WailaProviderJuiceBlender implements IWailaDataProvider{
 	
 	
 
 	@Override
-	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+	public ITaggedList.ITipList getWailaBody(ItemStack itemStack, ITaggedList.ITipList currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		TileEntityJuiceBlender jb = (TileEntityJuiceBlender) accessor.getTileEntity();
 		//ContainerJuiceBlender container = new ContainerJuiceBlender(accessor.getPlayer().inventory, jb);
 		int fluidAmount = jb.tank.getFluidAmount();
@@ -39,7 +33,7 @@ public class WailaProviderJuiceBlender implements IWailaDataProvider{
 	}
 
 	@Override
-	public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+	public ITaggedList.ITipList getWailaHead(ItemStack itemStack, ITaggedList.ITipList currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		return currenttip;
 	}
 
@@ -49,19 +43,20 @@ public class WailaProviderJuiceBlender implements IWailaDataProvider{
 	}
 
 	@Override
-	public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+	public ITaggedList.ITipList getWailaTail(ItemStack itemStack, ITaggedList.ITipList currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		return currenttip;
 	}
 
 	@Override
-	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) {
+	public NBTTagCompound getNBTData(TileEntity te, NBTTagCompound tag, IWailaDataAccessorServer accessor) {
         if (te != null){
         	TileEntityJuiceBlender tileEntity = (TileEntityJuiceBlender) te;
         	if(tileEntity.tank.getFluid() != null){
-        		ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid().getID(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord), new TargetPoint(tileEntity.getWorldObj().provider.dimensionId, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 10));
+        		ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid().getID(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), new TargetPoint(tileEntity.getWorld().provider.getDimensionId(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), 10));
         	}
         }
         return tag;
 	}
 
 }
+*/

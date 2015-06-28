@@ -6,13 +6,15 @@
 package forestry.api.farming;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IFarmHousing {
 
-	int[] getCoords();
+	BlockPos getCoords();
 
 	int[] getArea();
 
@@ -41,12 +43,10 @@ public interface IFarmHousing {
 	 * 
 	 * @param farmable
 	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param pos
 	 * @return true if planting was successful, false otherwise.
 	 */
-	boolean plantGermling(IFarmable farmable, World world, int x, int y, int z);
+	boolean plantGermling(IFarmable farmable, World world, BlockPos pos);
 
 	/* INTERACTION WITH HATCHES */
 	boolean acceptsAsGermling(ItemStack itemstack);

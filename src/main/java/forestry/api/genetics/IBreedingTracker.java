@@ -8,8 +8,6 @@ package forestry.api.genetics;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-import forestry.api.apiculture.IBeekeepingMode;
-
 /**
  * Keeps track of who bred and/or discovered which species in a world.
  * 
@@ -18,12 +16,12 @@ import forestry.api.apiculture.IBeekeepingMode;
 public interface IBreedingTracker {
 
 	/**
-	 * @return Name of the current {@link IBeekeepingMode}.
+	 * @return Name of the current {@link net.minecraft.item.Item}.
 	 */
 	String getModeName();
 
 	/**
-	 * Set the current {@link IBeekeepingMode}.
+	 * Set the current {@link  net.minecraft.item.Item}.
 	 */
 	void setModeName(String name);
 

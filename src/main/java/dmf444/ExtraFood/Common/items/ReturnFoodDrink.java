@@ -1,12 +1,9 @@
 package dmf444.ExtraFood.Common.items;
 
 import dmf444.ExtraFood.Core.EFTabs;
-import dmf444.ExtraFood.Core.lib.ItemLib;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -24,14 +21,14 @@ public class ReturnFoodDrink extends StanFood{
 	        this.SaturationCount = saturation;
 	    }
 	    
-	    public ItemStack onEaten(ItemStack par1, World world, EntityPlayer Player)
+	    public ItemStack onItemUseFinish(ItemStack par1, World world, EntityPlayer Player)
 	    {
 	    	Player.getFoodStats().addStats(FoodBarCount, SaturationCount);
 	        if (!Player.capabilities.isCreativeMode)
 	        {
 	            --par1.stackSize;
 	        }
-	        this.onFoodEaten(par1, world, Player);
+	        this.onItemUseFinish(par1, world, Player);
 	        	return par1.stackSize <= 0 ? new ItemStack(Items.bucket) : par1;
 	    }
 
@@ -49,7 +46,7 @@ public class ReturnFoodDrink extends StanFood{
 	     */
 	    public EnumAction getItemUseAction(ItemStack p_77661_1_)
 	    {
-	        return EnumAction.drink;
+	        return EnumAction.DRINK;
 	    }
 
 	    /**

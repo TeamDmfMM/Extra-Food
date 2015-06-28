@@ -2,7 +2,7 @@ package dmf444.ExtraFood.Common.WorldGen;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
@@ -72,7 +72,7 @@ public class StrawberryWorldGen implements IWorldGenerator {
     private int HackyHackyLevel(BlockPos pos, World world){
         BlockPos blockpos1;
         int i = 63;
-        for (blockpos1 = new BlockPos(pos.getX(), 63, pos.getZ()); !world.isAirBlock(blockpos1.offsetUp()); blockpos1 = blockpos1.offsetUp())
+        for (blockpos1 = new BlockPos(pos.getX(), 63, pos.getZ()); !world.isAirBlock(blockpos1.up()); blockpos1 = blockpos1.up())
         {
             i++;
         }

@@ -1,35 +1,20 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
+import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
+import dmf444.ExtraFood.Common.RecipeHandler.CookbookTab;
+import dmf444.ExtraFood.Common.blocks.guis.cookbook.BTPageGUI;
+import dmf444.ExtraFood.Core.lib.GuiLib;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraft.stats.AchievementList;
-import net.minecraft.stats.StatFileWriter;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.AchievementPage;
-import dmf444.ExtraFood.Common.RecipeHandler.CookbookButtonLoader;
-import dmf444.ExtraFood.Common.RecipeHandler.CookbookTab;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.lib.GuiLib;
-import dmf444.ExtraFood.Common.blocks.guis.cookbook.BTPageGUI;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 public class CookBookGUI extends GuiScreen {
 	   private static int minDisplayColumn;
@@ -225,7 +210,9 @@ public class CookBookGUI extends GuiScreen {
     	int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
     	this.mousex = x;
     	this.mousey = y;
-    	super.handleMouseInput();
+        try {
+            super.handleMouseInput();
+        } catch (IOException e) {}
     }
     protected void genDasButtons(int par1, int par2, float par3){
         int i1 = (this.width - this.achievementsPaneWidth) / 2;
@@ -379,9 +366,10 @@ public class CookBookGUI extends GuiScreen {
     public boolean doesGuiPauseGame()
     {
         return false;
-    }    
-    protected void mouseMovedOrUp(int par1, int par2, int par3){
-    	super.mouseMovedOrUp(par1, par2, par3);
+    }
+
+    protected void mouseReleased(int par1, int par2, int par3){
+    	super.mouseReleased(par1, par2, par3);
     	if (par3 == -1){
     		if (Mouse.isButtonDown(0)){
     			int dx = par1 - x;
@@ -430,7 +418,7 @@ public class CookBookGUI extends GuiScreen {
     }
     
     private void plotCurve(double startX, double startY, int bezierX, int bezierY, double endX, double endY){
-    	Tessellator tess = Tessellator.instance;
+    	Tessellator tess = Tessellator.getInstance();
     	GL11.glPushMatrix();
         //GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);//516
         GL11.glDisable(GL11.GL_TEXTURE_2D);//3553
@@ -440,22 +428,22 @@ public class CookBookGUI extends GuiScreen {
         GL11.glEnable(GL11.GL_LINE_SMOOTH);//2848
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST); //3154, 4354
         GL11.glDisable(GL11.GL_LIGHTING);
-        tess.startDrawing(GL11.GL_LINE_STRIP);
-        tess.setColorRGBA_F(1f, 1f, 1f, 1f);
+        tess.getWorldRenderer().startDrawing(GL11.GL_LINE_STRIP);
+        tess.getWorldRenderer().setColorRGBA_F(1f, 1f, 1f, 1f);
     	for(double t=0.0;t<=1;t+=0.09)  
     	{  
     	    int x = (int) (  (1-t)*(1-t)*startX + 2*(1-t)*t*bezierX+t*t*endX);  
     	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);  
     	  
     	    //plot something @  x,y coordinate here...
-    	    tess.setColorRGBA_F(0.0f, 0.0f, 0.3f, 1.0f);
-    	    tess.addVertex(x, y, t);
-    	    tess.setBrightness(100);
+    	    tess.getWorldRenderer().setColorRGBA_F(0.0f, 0.0f, 0.3f, 1.0f);
+    	    tess.getWorldRenderer().addVertex(x, y, t);
+    	    tess.getWorldRenderer().setBrightness(100);
     	    
     	    
     	}
     	GL11.glColor4d(1, 1, 1, 1);
-    	tess.setColorRGBA_F(1f, 1f, 1f, 1f);
+    	tess.getWorldRenderer().setColorRGBA_F(1f, 1f, 1f, 1f);
     	tess.draw();
     	//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770, 771
         GL11.glDisable(GL11.GL_LINE_SMOOTH);//2848
@@ -467,14 +455,11 @@ public class CookBookGUI extends GuiScreen {
         GL11.glPopMatrix();
     }
         
-    private int cosineint(int x, int y, int z){
-    	double w = (1-Math.cos(z*Math.PI))/2;
-    	return (int) (x*(1-w)+y*w);
-    	
-    }
+
     public static int getAchievementsPaneWidth(){
     	return achievementsPaneWidth;
     }
+
     public static void setAchievementsPaneWidth(int achievementsPaneWidth) {
     	CookBookGUI.achievementsPaneWidth = achievementsPaneWidth;
     }

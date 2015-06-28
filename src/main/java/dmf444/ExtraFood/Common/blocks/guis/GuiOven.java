@@ -1,9 +1,9 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
@@ -13,9 +13,7 @@ import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistryRecipe;
 import dmf444.ExtraFood.Common.blocks.container.ContainerOven;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
-import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
-import dmf444.ExtraFood.util.EFLog;
 
 public class GuiOven extends GuiContainer {
 
@@ -28,7 +26,7 @@ public class GuiOven extends GuiContainer {
 	public GuiOven(InventoryPlayer player, TileEntityOven te) {
 		super(new ContainerOven(player, te));
 		tileEntity = te;
-		this.renders = new RenderItem();
+		this.renders = Minecraft.getMinecraft().getRenderItem();
 
 		
 		//bob[4] = null;
@@ -85,8 +83,8 @@ public class GuiOven extends GuiContainer {
 			ItemStack output2 = output.getRecipeOutput(OvenRegistry.instance.getArrayList(bob));
 		if(output2 != null){
 		//EFLog.error("IMAGE MADE");
-		this.renders.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), new ItemStack(output2.getItem()), 80, 43);
-		this.renders.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), new ItemStack(output2.getItem()), 80, 43);
+		this.renders.renderItemOverlayIntoGUI(this.fontRendererObj, new ItemStack(output2.getItem()), 80, 43, null);
+		this.renders.renderItemIntoGUI(new ItemStack(output2.getItem()), 80, 43);
 		}		
 		} catch(NullPointerException e){}
 		}

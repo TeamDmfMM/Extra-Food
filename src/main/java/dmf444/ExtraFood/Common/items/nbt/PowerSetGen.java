@@ -2,8 +2,6 @@ package dmf444.ExtraFood.Common.items.nbt;
 
 import java.util.ArrayList;
 
-import dmf444.ExtraFood.util.EFLog;
-
 public class PowerSetGen {
 	
 	public static ArrayList<String> binaryTo(int num, ArrayList<String> list){

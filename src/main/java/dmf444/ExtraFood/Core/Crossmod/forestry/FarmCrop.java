@@ -12,13 +12,14 @@
 
 package dmf444.ExtraFood.Core.Crossmod.forestry;
 
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmable;
 
 public class FarmCrop implements IFarmable{
 	
@@ -33,10 +34,10 @@ public class FarmCrop implements IFarmable{
 	}
 	
 	@Override
-	public boolean isSaplingAt(World world, int x, int y, int z) {
-		if(world.isAirBlock(x, y, z)){
+	public boolean isSaplingAt(World world, BlockPos pos) {
+		if(world.isAirBlock(pos)){
 			return false;
-		} else if(world.getBlock(x, y, z) != farmBlocks){
+		} else if(world.getBlockState(pos).getBlock() != farmBlocks){
 			return false;
 		} else {
 			return true;
@@ -44,12 +45,12 @@ public class FarmCrop implements IFarmable{
 	}
 
 	@Override
-	public ICrop getCropAt(World world, int x, int y, int z) {
-		if (world.getBlock(x, y, z) != farmBlocks)
+	public ICrop getCropAt(World world, BlockPos pos) {
+		if (world.getBlockState(pos).getBlock() != farmBlocks)
 			return null;
-		if (world.getBlockMetadata(x, y, z) != fullGrowths)
+		if (world.getBlockState(pos).getBlock().getMetaFromState(world.getBlockState(pos)) != fullGrowths)
 			return null;
-		return new CropBlock(world, farmBlocks, fullGrowths, x, y, z);
+		return new CropBlock(world, farmBlocks, fullGrowths, pos);
 		
 	}
 
@@ -69,8 +70,8 @@ public class FarmCrop implements IFarmable{
 	}
 
 	@Override
-	public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, int x, int y, int z) {
-		return germling.copy().tryPlaceItemIntoWorld(player, world, x, y -1, z, 1, 0, 0, 0);
+	public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, BlockPos pos) {
+		return germling.copy().onItemUse(player, world, pos, EnumFacing.UP, 0, 0, 0);
 	}
 
 }

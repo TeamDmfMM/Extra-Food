@@ -1,12 +1,9 @@
 package dmf444.ExtraFood.Common.items;
 
 import dmf444.ExtraFood.Core.EFTabs;
-import dmf444.ExtraFood.Core.lib.ModInfo;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentStyle;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
@@ -20,13 +17,12 @@ public class CheeseWheel extends ItemFood {
 		super(8, 0.6F, false);
 		this.setMaxStackSize(64);
 		this.setCreativeTab(EFTabs.INSTANCE);
-		this.setTextureName("extrafood:cheese_wheel");
+		//this.setTextureName("extrafood:cheese_wheel");
 		this.message = msg;
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
-	public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer Player)
+	public ItemStack onItemUseFinish(ItemStack par1ItemStack, World par2World, EntityPlayer Player)
     {
 		 --par1ItemStack.stackSize;
 	        Player.getFoodStats().addStats(8, 0.6F);

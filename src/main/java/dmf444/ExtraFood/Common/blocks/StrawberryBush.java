@@ -1,20 +1,12 @@
 package dmf444.ExtraFood.Common.blocks;
 
 
-import java.util.ArrayList;
-import java.util.Random;
-
-
-
-
-
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Core.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,18 +14,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
-import dmf444.ExtraFood.Client.ClientProxy;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.EFTabs;
-import dmf444.ExtraFood.Core.lib.ModInfo;
-import dmf444.ExtraFood.util.EFLog;
-import dmf444.ExtraFood.util.RenderIcon;
+
+import java.util.Random;
 
 
 public class StrawberryBush extends Block implements IGrowable {
@@ -49,53 +34,23 @@ public class StrawberryBush extends Block implements IGrowable {
 		this.setCreativeTab(EFTabs.INSTANCE);
 		this.setTickRandomly(true);
 	}
-	@Override
-	  public IIcon getIcon(int side, int meta){
-		  if (meta  < 7)
-	        {
-	            if (meta >= 4 && meta < 7)
-	            {
-	                meta = 5;
-	                return RenderIcon.getIcon("Strawberries", 1);
-	            }
 
-
-	            return RenderIcon.getIcon("Strawberries");
-	        }
-	        else
-	        {
-	            return RenderIcon.getIcon("Strawberries", 2);
-	        }
-	}
 
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random random) {
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random random) {
 	    {
-	        super.updateTick(world, x, y, z, random);
+	        super.updateTick(world, pos, state, random);
 
 
 //	        if (world.getBlockLightValue(x, y + 1, z) >= 9) 
 	        // im just gonna change this to my own code, okay?
 	        //NO IT'S NOT OK!!!! I WANT MY CODE
 	        //MOMMY- HE STOLE MY CODE!!!
-//	        {
-//	            int l = world.getBlockMetadata( x, y, z);
-//
-//	            if (l < 7)
-//	            {
-//	                float f = this.magicStuff(world,  x, y, z);
-//
-//	                if (random.nextInt((int)(25.0F / f) + 1) == 0)
-//	                {
-//	                    ++l;
-//	                    world.setBlockMetadataWithNotify(x, y, z, l, 2);
-//	                }
-//	            }
-//	        }
-	        if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+
+	        if (world.getBlockLightOpacity(pos.north()) >= 9) {
 	        	// Can survive, next!
-	        	int meta = world.getBlockMetadata(x, y, z);
+	        	int meta = state.getBlock().getMetaFromState(state);
 
 
 	        	// Can grow more?
@@ -103,17 +58,14 @@ public class StrawberryBush extends Block implements IGrowable {
 	        		// Yes, yes it can!
 	        		// Now, should I use my magical power to make it grow a bit?
 	        		// Well, first lets check if it is in nice rows:
-	        		float modifier = this.getGrowthModifierForBlock(world, x, y, z);
+	        		float modifier = this.getGrowthModifierForBlock(world, pos.getX(), pos.getY(), pos.getZ());
 	        		// Now, with the modifier in mind, check if we should add to the growth:
 	        		if (random.nextInt((int)(25.0 / modifier) + 1) == 0){
 	        			// Randomly give it a little boost:
 	        			if (random.nextInt(7) == 0) {meta += 2;}
 	        			else {meta += 1;}
-	        			world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+	        			world.setBlockState(pos, state.getBlock().getStateFromMeta(meta), 2);
 	        		}
-
-
-
 
 	        	}
 	        	// No, lets go home now :(
@@ -123,8 +75,8 @@ public class StrawberryBush extends Block implements IGrowable {
 
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float what, float these, float are) {
-    	int meta = world.getBlockMetadata(x, y, z);
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+    	int meta = state.getBlock().getMetaFromState(state);
     	if (player.inventory.getCurrentItem() != null){
     		ItemStack is = player.inventory.getCurrentItem();
     		if (is.getItem() == Items.dye){
@@ -140,119 +92,35 @@ public class StrawberryBush extends Block implements IGrowable {
     	case 4: case 5: case 6:
     		if(!world.isRemote){
     		ItemStack item = new ItemStack(ItemLoader.strawberry, 2);
-    		Entity Ientity = new EntityItem(world, x, y, z, item);
-			world.spawnEntityInWorld(Ientity);
-			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+    		Entity Ientity = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item);
+			world.spawnEntityInWorld(Ientity);world.setBlockState(pos, state.getBlock().getStateFromMeta(0), 2);
 			return true;
     		}
     	case 7: case 8:
     		if(!world.isRemote){
     		ItemStack item1 = new ItemStack(ItemLoader.strawberry, 4);
-    		Entity Ientity1 = new EntityItem(world, x, y, z, item1);
+    		Entity Ientity1 = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item1);
 			world.spawnEntityInWorld(Ientity1);
-			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+            world.setBlockState(pos, state.getBlock().getStateFromMeta(0), 2);
     		return true;
     		}
     	}
     	return false;
     }
-    	/*
-    	//EFLog.info("Current Meta:" + meta);
-    	if (player.inventory.getCurrentItem() != null){
-    		ItemStack is = player.inventory.getCurrentItem();
-    		if (is.getItem() == Items.dye){
-    			if (is.getItemDamage() == 15){
-    				return false;
-    			}
-    		}
-    	}
-    	switch (meta) {
-    	case -1:
-    			return false;
-    			
-    	case 4: case 5: case 6:
-			if(this.isSpaceInInv(player, 2) == true){
-				player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 2));
-				world.setBlockMetadataWithNotify(x, y, z, 0, 2);   		
-    			return true;
-			} else {
-				return false;
-			}
 
-    	case 7: case 8:
-    		if(this.isSpaceInInv(player, 4) == true){
-    			player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 4));
-    			world.setBlockMetadataWithNotify(x, y, z, 0, 2);
-    			return true;
-    		} else {
-				return false;
-			}
 
-    	}
-		return false;
-    }
-
-    private ArrayList<Integer> SlotsWithItem = new ArrayList<Integer>();
-    
-	private boolean isSpaceInInv(EntityPlayer player, int numberIn) {
-		if(player.inventory.getFirstEmptyStack() == -1 && !player.inventory.hasItem(ItemLoader.strawberry)){
-			return false; //Player has no empty inventory and has no strawberry
-		} else if(player.inventory.getFirstEmptyStack() != -1){
-				return true;
-		} else if(player.inventory.hasItem(ItemLoader.strawberry)){
-			this.getItemStacks(player);
-			if (SlotsWithItem.isEmpty()){
-				return false;
-			}
-			for(int i = 0; i <= SlotsWithItem.size() - 1; ++i){
-				//ItemStack item = player.inventory.getStackInSlot(SlotsWithItem.get(i));
-				//EFLog.error(SlotsWithItem.get(i));
-				if(player.inventory.getStackInSlot(SlotsWithItem.get(i)).stackSize < 32 && player.inventory.getStackInSlot(SlotsWithItem.get(i)).stackSize + numberIn <= 32){
-					return true;
-				}		//player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 2));
-			}
-			return false;
-		}
-		return true;
-	}
-	private void getItemStacks(EntityPlayer player){
-		SlotsWithItem.clear();
-		for(int i = 0; i < player.inventory.mainInventory.length; ++i){
-			if(player.inventory.mainInventory[i].isItemEqual(new ItemStack(ItemLoader.strawberry))){
-				SlotsWithItem.add(i);
-			}
-		}
-	}*/
-
-	//private void placeInInv(EntityPlayer player) {
-	//	player.inventory.addItemStackToInventory(new ItemStack(ItemLoader.strawberry, 4));	
-	//}
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block block){
+	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block){
 		boolean drop = false; //False don't drop. True break
 		
-		if(!world.isSideSolid(x, y - 1, z, ForgeDirection.UP)){
+		if(!world.isSideSolid(pos.down(), EnumFacing.UP)){
 			drop = true;
 		}
 		if(drop == true){
-			this.dropBlockAsItem(world, x, y, z, 0, 0);
-			world.setBlockToAir(x, y, z);
+			this.dropBlockAsItem(world, pos, state, 0);
+			world.setBlockToAir(pos);
 		}
 	}
-	
-	 @SideOnly(Side.CLIENT)
-	    public void registerBlockIcons(IIconRegister iiconr)
-	    {
 
-	        	RenderIcon.addIcon("Strawberries", ModInfo.MId.toLowerCase() + ":Plants/berries_stage_0", iiconr);
-	        	RenderIcon.addIcon("Strawberries" + "1", ModInfo.MId.toLowerCase() + ":Plants/strawberry_stage_1", iiconr);
-	        	RenderIcon.addIcon("Strawberries" + "2", ModInfo.MId.toLowerCase() + ":Plants/strawberry_stage_2", iiconr);
-
-	    }
-	 @SideOnly(Side.CLIENT)
-	    public int getRenderType()
-	    {
-	        return  ClientProxy.bushrender.getRenderId();
-	    }
 		public boolean isOpaqueCube()
 	    {
 	        return false;
@@ -261,24 +129,26 @@ public class StrawberryBush extends Block implements IGrowable {
 	    {
 	        return false;
 	    }
+
 		@Override
-		public boolean func_149851_a(World world, int x, int y, int z, boolean bool) {
-			return world.getBlockMetadata(x, y, z) != 7;
+		public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient){
+			return state.getBlock().getMetaFromState(state) != 7;
 		}
+
 		@Override
-		public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_) {
+		public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 			//Copy of BlockCrops
 			return true;
 		}
 		@Override
-		public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_) {
-			this.onBonemealEvent(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);			
+		public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+			this.onBonemealEvent(world, pos, state);
 		}
 
 
-	    public void onBonemealEvent(World world, int x, int y, int z)
+	    public void onBonemealEvent(World world, BlockPos pos, IBlockState state)
 	    {
-	        int meta = world.getBlockMetadata(x, y, z) + 1;
+	        int meta = state.getBlock().getMetaFromState(state) + 1;
 
 
 	        boolean randfact = world.rand.nextInt(3) <= 1;
@@ -296,10 +166,9 @@ public class StrawberryBush extends Block implements IGrowable {
 		        	meta += 1;
 		        }
 	        }
-
-
-	        world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+            world.setBlockState(pos, state.getBlock().getStateFromMeta(meta), 2);
 	    }
+
 	    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
 	    {
 	        return null;
@@ -309,14 +178,14 @@ public class StrawberryBush extends Block implements IGrowable {
 	    private float getGrowthModifierForBlock(World world, int x, int y, int z)
 	    {
 	        float f = 1.0F;
-	        Block block = world.getBlock(x, y, z - 1);
-	        Block block1 = world.getBlock(x, y, z + 1);
-	        Block block2 = world.getBlock(x - 1, y, z);
-	        Block block3 = world.getBlock(x + 1, y, z);
-	        Block block4 = world.getBlock(x - 1, y, z - 1);
-	        Block block5 = world.getBlock(x + 1, y, z - 1);
-	        Block block6 = world.getBlock(x + 1, y, z + 1);
-	        Block block7 = world.getBlock(x - 1, y, z + 1);
+	        Block block = world.getBlockState(new BlockPos(x, y, z - 1)).getBlock();
+	        Block block1 = world.getBlockState(new BlockPos(x, y, z + 1)).getBlock();
+	        Block block2 = world.getBlockState(new BlockPos(x - 1, y, z)).getBlock();
+	        Block block3 = world.getBlockState(new BlockPos(x + 1, y, z)).getBlock();
+	        Block block4 = world.getBlockState(new BlockPos(x - 1, y, z - 1)).getBlock();
+	        Block block5 = world.getBlockState(new BlockPos(x + 1, y, z - 1)).getBlock();
+	        Block block6 = world.getBlockState(new BlockPos(x + 1, y, z + 1)).getBlock();
+	        Block block7 = world.getBlockState(new BlockPos(x - 1, y, z + 1)).getBlock();
 	        boolean flag = block2 == this || block3 == this;
 	        boolean flag1 = block == this || block1 == this;
 	        boolean flag2 = block4 == this || block5 == this || block6 == this || block7 == this;
@@ -329,12 +198,12 @@ public class StrawberryBush extends Block implements IGrowable {
 	                float f1 = 0.0F;
 
 
-	                if (world.getBlock(l, y - 1, i1) == Blocks.dirt || world.getBlock(l, y - 1, i1) == Blocks.grass)
+	                if (world.getBlockState(new BlockPos(l, y - 1, i1)).getBlock() == Blocks.dirt || world.getBlockState(new BlockPos(l, y - 1, i1)).getBlock() == Blocks.grass)
 	                {
 	                    f1 = 1.0F;
 
 
-	                    if (world.getBlock(l, y - 1, i1).isFertile(world, l, y - 1, i1))
+	                    if (world.getBlockState(new BlockPos(l, y - 1, i1)).getBlock().isFertile(world, new BlockPos(l, y - 1, i1)))
 	                    {
 	                        f1 = 3.0F;
 	                    }

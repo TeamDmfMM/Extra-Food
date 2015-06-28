@@ -5,7 +5,7 @@ import dmf444.ExtraFood.Common.RecipeHandler.RecipeAutoCutter;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.util.DateUtil;
+import dmf444.ExtraFood.Core.util.DateUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"normal": { "model": "ExtraFood:Oven" }
+		
+		"facing=north": { "model": "ExtraFood:Oven" },
+        "facing=south": { "model": "ExtraFood:Oven", "y": 180 },
+        "facing=west":  { "model": "ExtraFood:Oven", "y": 270 },
+        "facing=east":  { "model": "ExtraFood:Oven", "y": 90 },
+		"facing=down":  { "model": "ExtraFood:Oven", "x": 90 },
+		"facing=up":    { "model": "ExtraFood:Oven", "x": 270 
+	}
+}

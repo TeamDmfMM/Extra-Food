@@ -41,6 +41,8 @@ minecraft {
     
     replaceIn "Core/lib/ModInfo.java"
     replace "@VERSION@", "${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+
+    mappings = "snapshot_20141222"
     
 }
 version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("DRONE_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER")}"
@@ -60,10 +62,10 @@ repositories {
 
 
 dependencies {
-    compile "codechicken:CodeChickenCore:1.8-1.0.5.34:dev"
+    compile "codechicken:CodeChickenCore:1.8-1.0.5.36:dev"
     compile "codechicken:NotEnoughItems:1.8-1.0.5.82:dev"
-    compile "codechicken:CodeChickenLib:1.8-1.1.2.115:dev"
-    compile "mcp.mobius.waila:Waila:1.6.0_B1_1.8.1"
+    compile "codechicken:CodeChickenLib:1.8-1.1.2.133:dev"
+    compile "mcp.mobius.waila:Waila:1.6.0_B1_1.8.1:dev"
 
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
@@ -102,23 +104,21 @@ curse {
 }
 
 processResources {
-    // exclude xcf files, as they are for development only
-    exclude '**/*.xcf'
-
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include '*.info'
-
+        include 'mcmod.info'
 
         // replace version and mcversion
-        expand 'mod_version': project.version, 'minecraft_version': project.config.minecraft_version
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-
 
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude '**/*.info'
+        exclude 'mcmod.info'
     }
 }
 

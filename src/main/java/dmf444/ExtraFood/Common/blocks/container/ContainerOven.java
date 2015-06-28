@@ -1,14 +1,12 @@
 package dmf444.ExtraFood.Common.blocks.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
 
 public class ContainerOven extends Container {
 

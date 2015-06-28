@@ -5,15 +5,19 @@
  ******************************************************************************/
 package forestry.api.core;
 
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 /**
  * Provides icons, needed in some interfaces, most notably for bees and trees. 
  */
 public interface IIconProvider {
 	
-	//@SideOnly(Side.CLIENT)
-	//IIcon getIcon(short texUID);
+	@SideOnly(Side.CLIENT)
+	Item getIcon(short texUID);
 	
-	//@SideOnly(Side.CLIENT)
-	//void registerIcons(IIconRegister register);
+	@SideOnly(Side.CLIENT)
+	void registerIcons(Item register);
 
 }

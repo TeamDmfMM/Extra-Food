@@ -1,16 +1,11 @@
+/*
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
-import java.util.List;
-
-import dmf444.ExtraFood.util.DateUtil;
-import net.minecraft.entity.player.EntityPlayerMP;
+import dmf444.ExtraFood.Core.util.DateUtil;
+import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.IWailaDataProvider;
 
 public class WailaProviderEasterEgg implements IWailaDataProvider{
 
@@ -19,29 +14,31 @@ public class WailaProviderEasterEgg implements IWailaDataProvider{
 		return null;
 	}
 
-	@Override
-	public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-		if(DateUtil.isBirthDay()){
-			currenttip.add("Birthday Cake");
-		}
-		return currenttip;
-	}
+    @Override
+    public ITaggedList.ITipList getWailaHead(ItemStack itemStack, ITaggedList.ITipList currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        if(DateUtil.isBirthDay()){
+            currenttip.add("Birthday Cake");
+        }
+        return currenttip;
+    }
 
-	@Override
-	public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-		if(DateUtil.isBirthDay()){
-			currenttip.add("Happy Birthday Mincrmatt12");
-		}
-		return currenttip;
-	}
+    @Override
+    public ITaggedList.ITipList getWailaBody(ItemStack itemStack, ITaggedList.ITipList currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        if(DateUtil.isBirthDay()){
+            currenttip.add("Happy Birthday Mincrmatt12");
+        }
+        return currenttip;
+    }
 
-	@Override
-	public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-		return currenttip;
-	}
+    @Override
+    public ITaggedList.ITipList getWailaTail(ItemStack itemStack, ITaggedList.ITipList currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        return null;
+    }
 
-	@Override
-	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) {
-		return null;
-	}
+    @Override
+    public NBTTagCompound getNBTData(TileEntity te, NBTTagCompound tag, IWailaDataAccessorServer accessor) {
+        return null;
+    }
+
 }
+*/

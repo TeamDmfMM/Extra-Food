@@ -6,17 +6,10 @@
 
 package dmf444.ExtraFood.Client.renderer;
 
-import java.awt.List;
-import java.util.ArrayList;
-
-import com.google.common.collect.Lists;
-
-import scala.actors.threadpool.Arrays;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
-import dmf444.ExtraFood.util.EFLog;
 
 public class AutoCutterModel extends ModelBase
 {

@@ -1,12 +1,5 @@
 package dmf444.ExtraFood;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 import dmf444.ExtraFood.Common.CommonProxy;
 import dmf444.ExtraFood.Common.EventHandler.EventsLoader;
 import dmf444.ExtraFood.Common.EventHandler.ExtraFood_EventBonemeal;
@@ -23,14 +16,24 @@ import dmf444.ExtraFood.Core.CraftingRecipies;
 import dmf444.ExtraFood.Core.Crossmod.CrossModModules;
 import dmf444.ExtraFood.Core.GuiHandler;
 import dmf444.ExtraFood.Core.PacketJBTank;
+import dmf444.ExtraFood.Core.init.BlockTextureRegistry;
+import dmf444.ExtraFood.Core.init.ExceptionTextureRegistry;
+import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
 import dmf444.ExtraFood.Core.lib.ModInfo;
-import dmf444.ExtraFood.util.ConfigHandler;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Core.util.ConfigHandler;
+import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 
 
@@ -97,6 +100,13 @@ public class ExtraFood {
 			proxy.registerKeybinds();
 			proxy.intermodComm();
 			CrossModModules.load();
+
+        if(event.getSide() == Side.CLIENT){
+            ExceptionTextureRegistry.registerExceptiions();
+            BlockTextureRegistry.RegisterBlockTextures();
+            ItemTextureRegistry.registerItemTextures();
+        }
+
 		EFLog.info("Finished all INIT!");
 	}
 	
