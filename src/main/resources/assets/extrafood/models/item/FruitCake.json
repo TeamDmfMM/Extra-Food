@@ -1,8 +1,8 @@
 {
-	"parent": "builtin/generated",
-    "textures": {
-        "layer0": "ExtraFood:blocks/ItemJuiceBlender"
-    },
+  "parent": "builtin/generated",
+  "textures": {
+    "layer0": "extrafood:items/FruitCake"
+  },
   "display": {
     "thirdperson": {
       "rotation": [ -90, 0, 0 ],

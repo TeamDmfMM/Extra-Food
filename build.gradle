@@ -86,9 +86,9 @@ curse {
     apiKey = System.getenv("APIKEY") // saved in the build environment vars
     projectId = "222348" // my project url is http://minecraft.curseforge.com/mc-mods/222348-extra-food
     changelog = """
-    Update to new forge with new fluid code!
+    Working on 1.8, Inital update + new renderers and such
     """
-    releaseType = "release"
+    releaseType = "alpha"
 
     // the default obfuscated jar is uploaded by default
     // artifact = project.file("some/jar/to/upload.jar")

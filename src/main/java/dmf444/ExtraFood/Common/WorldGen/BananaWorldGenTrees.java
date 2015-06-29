@@ -168,15 +168,15 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
                                             this.growVines(world, i2, k1 - 1, j2, 1);
                                         }
 
-                                        /*if (par2Random.nextInt(4) == 0 && par1World.isAirBlock(j2, j1 - 1, k2))
+                                        if (rand.nextInt(15) == 0 && world.isAirBlock(new BlockPos(i2, k1 - 1, j2)))
                                         {
-                                            this.growVines(par1World, j2, j1 - 1, k2, 1);
+                                            this.growVines(world, i2, k1 - 1, j2, 1);
                                         }
 
-                                        if (par2Random.nextInt(4) == 0 && par1World.isAirBlock(j2, j1 -1, k2))
+                                        if (rand.nextInt(15) == 0 && world.isAirBlock(new BlockPos(i2, k1 -1, j2)))
                                         {
-                                            this.growVines(par1World, j2, j1 - 1, k2, 1);
-                                        }*/
+                                            this.growVines(world, i2, k1 - 1, j2, 1);
+                                        }
                                     }
                                 }
                             }
@@ -218,7 +218,11 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
     private void growVines(World world, int x, int y, int z, int length)
     {
         BlockPos bananaPlace = new BlockPos(x,y,z);
-        this.func_175905_a(world, bananaPlace, BlockLoader.bananaBunch, length);
+        if(world.getBlockState(bananaPlace).getBlock() == Blocks.air) {
+            this.func_175905_a(world, bananaPlace, BlockLoader.bananaBunch, length);
+        } else{
+            this.growVines(world, x, y - 1, z, 1);
+        }
         //this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, BlockLoader.bananaBunch, par5);
     }
 

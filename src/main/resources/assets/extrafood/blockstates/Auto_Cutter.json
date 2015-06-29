@@ -1,6 +1,6 @@
 {
 	"variants": {
-		"normal": { "model": "ExtraFood:Auto_Cutter" }
+		"normal": { "model": "ExtraFood:Auto_Cutter" },
 		
 		"facing=north": { "model": "ExtraFood:Auto_Cutter" },
         "facing=south": { "model": "ExtraFood:Auto_Cutter", "y": 180 },

@@ -1,7 +1,6 @@
 package dmf444.ExtraFood.Core.init;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -77,13 +76,22 @@ public class ItemTextureRegistry {
         register(ItemLoader.veal_kebab, 0);
         register(ItemLoader.yogurt, 0);
         register(ItemLoader.frenchFries, 0);
+        register(ItemLoader.bucketeggnog, 0);
+        register(ItemLoader.shortbread, 0);
+        register(ItemLoader.fruitcake, 0);
+        register(ItemLoader.gingerbread, 0);
+        register(ItemLoader.chestnuts, 0);
+        register(ItemLoader.dough, 0);
+
+        register(ItemLoader.muffinPan, 0);
+
     }
 
 
 
     private static void register(Item item, int meta){
         ItemModelMesher modelRegistry = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-        EFLog.fatal((ResourceLocation) Item.itemRegistry.getNameForObject(item));
+        //EFLog.fatal((ResourceLocation) Item.itemRegistry.getNameForObject(item));
         modelRegistry.register(item, 0, new ModelResourceLocation((ResourceLocation) Item.itemRegistry.getNameForObject(item), "inventory"));
     }
 

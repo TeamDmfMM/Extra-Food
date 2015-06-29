@@ -22,7 +22,6 @@ import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.ConfigHandler;
 import dmf444.ExtraFood.Core.util.EFLog;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -56,10 +55,10 @@ public class ExtraFood {
 
 	
 	
-		@EventHandler
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-			
-			EFLog.info("Extra Food has been activated, loading blocks,items and Events");
+
+        EFLog.info("Extra Food has been activated, loading blocks,items and Events");
 		ConfigHandler.init(event.getSuggestedConfigurationFile());
 			
 		FluidLoader.initiateFluids();
@@ -82,8 +81,12 @@ public class ExtraFood {
 		JBTanknet.registerMessage(PacketJBTank.Handler.class, PacketJBTank.class, 1,Side.CLIENT);
 
 		CrossModModules.preInit();
+
+        if (event.getSide() == Side.CLIENT) {
+            ExceptionTextureRegistry.registerExceptiions();
+        }
 		
-			EFLog.info("Cleared EF's Registry");
+		EFLog.info("Cleared EF's Registry");
 		
 	}
 		
@@ -103,10 +106,7 @@ public class ExtraFood {
 			CrossModModules.load();
 
         if(event.getSide() == Side.CLIENT){
-            ResourceLocation loc = new ResourceLocation("extrafood:textures/blocks/fluid/Fluid_CarrotJuice_Flow.png");
-            EFLog.fatal(loc == null);
 
-            ExceptionTextureRegistry.registerExceptiions();
             BlockTextureRegistry.RegisterBlockTextures();
             ItemTextureRegistry.registerItemTextures();
         }

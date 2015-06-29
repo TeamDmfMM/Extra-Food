@@ -72,39 +72,16 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
         Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new BananaWorldGenTrees(false, 6, 3, 3, true);
         int i1 = 0;
         int j1 = 0;
-        boolean flag = false;
 
-        if (!flag) {
-            return;
-        }
+
 
         IBlockState iblockstate1 = Blocks.air.getDefaultState();
+        worldIn.setBlockState(pos, iblockstate1, 4);
 
-        if (flag)
-        {
-            worldIn.setBlockState(pos.add(i1, 0, j1), iblockstate1, 4);
-            worldIn.setBlockState(pos.add(i1 + 1, 0, j1), iblockstate1, 4);
-            worldIn.setBlockState(pos.add(i1, 0, j1 + 1), iblockstate1, 4);
-            worldIn.setBlockState(pos.add(i1 + 1, 0, j1 + 1), iblockstate1, 4);
-        }
-        else
-        {
-            worldIn.setBlockState(pos, iblockstate1, 4);
-        }
 
         if (!((WorldGenerator)object).generate(worldIn, rand, pos.add(i1, 0, j1)))
         {
-            if (flag)
-            {
-                worldIn.setBlockState(pos.add(i1, 0, j1), state, 4);
-                worldIn.setBlockState(pos.add(i1 + 1, 0, j1), state, 4);
-                worldIn.setBlockState(pos.add(i1, 0, j1 + 1), state, 4);
-                worldIn.setBlockState(pos.add(i1 + 1, 0, j1 + 1), state, 4);
-            }
-            else
-            {
-                worldIn.setBlockState(pos, state, 4);
-            }
+            worldIn.setBlockState(pos, state, 4);
         }
     }
 

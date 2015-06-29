@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "extrafood:/items/BucketSeaWater"
+        "layer0": "minecraft:items/bucket_water"
     },
     "display": {
         "thirdperson": {

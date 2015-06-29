@@ -21,6 +21,9 @@ public class BlockTextureRegistry {
         registerBlock(BlockLib.bCP, 0, "extrafood:CheesePress");
         registerBlock(BlockLib.bAC, 0);
         registerBlock(BlockLib.bSB, 0);
+        registerBlock(BlockLib.bPB, 0);
+        registerBlock(BlockLib.bJB, 0);
+        registerBlock(BlockLib.bO, 0);
 
     }
 
