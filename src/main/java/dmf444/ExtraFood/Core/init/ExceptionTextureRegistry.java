@@ -37,6 +37,12 @@ public class ExceptionTextureRegistry {
                 return new ModelResourceLocation("extrafood:BananaLeaf", "normal");
             }
         });
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.bananaLeaf), new ItemMeshDefinition() {
+            @Override
+            public ModelResourceLocation getModelLocation(ItemStack stack) {
+                return new ModelResourceLocation("extrafood:BananaLeaf", "inventory");
+            }
+        });
 
     }
 
