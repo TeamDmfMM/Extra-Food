@@ -13,7 +13,7 @@ import java.util.Hashtable;
 public class NBTFoodRegistry {
 	
 	public static NBTFoodRegistry food;
-	
+
 	public ArrayList<NBTFoodSpecs> foods;
 	
 	public NBTFoodSpecs getSpecs(String name){
@@ -36,7 +36,7 @@ public class NBTFoodRegistry {
 				
 						
 	}
-	private String p = "extrafood:oven/";
+	private String p = "extrafood:items/oven/";
 	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(ItemLoader.sausage), "fish", p +"pizzaFish", is(Items.cooked_fish), "olives", p +"pizzaOlive", new ItemStack(ItemLoader.peanut, 3), "cheese", p +"pizzaCheese", new ItemStack(ItemLoader.cheeseSlice, 2));
 	private Dictionary<String, ArrayList<Object>> Muffin_ADD = dict("chocolate_chip", p +"muffinChocolate", is(ItemLoader.chocolate), "strawberry", p +"muffinStrawberry", is(ItemLoader.strawberry), "banana", p +"muffinBanana", is(ItemLoader.banana), "apple", p +"muffinApple", is(Items.apple), "Doublechocolate", p +"muffinDoubleChocolate", new ItemStack(ItemLoader.chocolate, 2));
 	

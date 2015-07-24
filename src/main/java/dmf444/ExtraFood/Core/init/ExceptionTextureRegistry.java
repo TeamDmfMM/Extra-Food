@@ -1,5 +1,7 @@
 package dmf444.ExtraFood.Core.init;
 
+import dmf444.ExtraFood.Client.modelbake.ModelBakeInjector;
+import dmf444.ExtraFood.Client.modelbake.TextureInjector;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -9,6 +11,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 
 
 public class ExceptionTextureRegistry {
@@ -37,6 +40,9 @@ public class ExceptionTextureRegistry {
                 return new ModelResourceLocation("extrafood:BananaLeaf", "normal");
             }
         });
+
+        MinecraftForge.EVENT_BUS.register(new ModelBakeInjector());
+        MinecraftForge.EVENT_BUS.register(new TextureInjector());
 
     }
 

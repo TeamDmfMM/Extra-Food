@@ -84,6 +84,9 @@ public class ExtraFood {
 
         if (event.getSide() == Side.CLIENT) {
             ExceptionTextureRegistry.registerExceptiions();
+
+
+
         }
 		
 		EFLog.info("Cleared EF's Registry");
@@ -109,6 +112,8 @@ public class ExtraFood {
 
             BlockTextureRegistry.RegisterBlockTextures();
             ItemTextureRegistry.registerItemTextures();
+
+
         }
 
 		EFLog.info("Finished all INIT!");

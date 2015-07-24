@@ -11,9 +11,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class NBTFood extends ItemFood {
 	public String name;
@@ -134,55 +132,102 @@ public class NBTFood extends ItemFood {
     		}
     	}
 	}
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister){
-    	ArrayList<String> keys = Collections.list(specs.additives.keys());
-    	//System.out.println(keys);
-    	for (String key : keys){
-    		String iconstring = specs.additives.get(key);
-    		icons.put(key, iconRegister.registerIcon(iconstring));
-    	}
-    	
-    	base = iconRegister.registerIcon(specs.defualtIcon);
-    }
-	
-    public IIcon getIcon(ItemStack stack, int pass){
-    	NBTTagCompound comp = stack.stackTagCompound;
-    	if (comp == null){
-    		return base;
-    	}
-    	String key;
-    	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.func_150296_c().toArray()){
-    		key = (String)keyb;
-    		if (!Collections.list(specs.additives.keys()).contains(key)){
-    			continue;
-    		}
-    		if (comp.hasKey(key)){
-    			if (comp.getBoolean(key)){
-    				things.add(key);
-    			}
-    		}
-    	}
-    	if (pass == 0){
-    		return base;
-    	}
-    	else {
-    		int length = things.size();
-    		if (pass > length){
-    			pass = length;
-    		}
-    		if (length == 0){
-    			return base;
-    		}
-    		//System.out.println(icons.get(Collections.list(specs.additives.keys()).get(pass - 1)).getIconName());
-    		return icons.get(things.get(pass - 1));
-    		
-    	}
-    	
-    }
-    */
+
+	public ArrayList<String> getIconNames(ItemStack t) {
+
+		ArrayList<String> ret = new ArrayList<>();
+
+		Map<String, String> possibleicons = new HashMap<>();
+
+		ArrayList<String> keys = Collections.list(specs.additives.keys());
+		//System.out.println(keys);
+		for (String key : keys){
+			String iconstring = specs.additives.get(key);
+			possibleicons.put(key, iconstring);
+		}
+
+		NBTTagCompound comp = t.getTagCompound();
+
+		String key;
+		ArrayList<String> things = new ArrayList<String>();
+		for (Object keyb : comp.getKeySet().toArray()){
+			key = (String)keyb;
+			if (!Collections.list(specs.additives.keys()).contains(key)){
+
+				continue;
+			}
+			if (comp.hasKey(key)){
+				if (comp.getBoolean(key)){
+					things.add(key);
+				}
+			}
+		}
+
+		for (String thing : things){
+			ret.add(possibleicons.get(thing));
+		}
+
+		return ret;
+
+
+
+	}
+
+	public String getBase(){
+		return specs.defualtIcon;
+	}
+
+	/*@Override
+        @SideOnly(Side.CLIENT)
+        public void registerIcons(IIconRegister iconRegister){
+            ArrayList<String> keys = Collections.list(specs.additives.keys());
+            //System.out.println(keys);
+            for (String key : keys){
+                String iconstring = specs.additives.get(key);
+                icons.put(key, iconRegister.registerIcon(iconstring));
+            }
+
+            base = iconRegister.registerIcon(specs.defualtIcon);
+        }
+
+        public IIcon getIcon(ItemStack stack, int pass){
+            NBTTagCompound comp = stack.stackTagCompound;
+            if (comp == null){
+                return base;
+            }
+            String key;
+            ArrayList<String> things = new ArrayList<String>();
+            for (Object keyb : comp.getKeySet().toArray()){
+                key = (String)keyb;
+                if (!Collections.list(specs.additives.keys()).contains(key)){
+
+                    continue;
+                }
+                if (comp.hasKey(key)){
+                    if (comp.getBoolean(key)){
+                        things.add(key);
+                    }
+                }
+            }
+            if (pass == 0){
+                return base;
+            }
+            else {
+                int length = things.size();
+                if (pass > length){
+                    pass = length;
+                }
+                if (length == 0){
+                    return base;
+                }
+                //System.out.println(icons.get(Collections.list(specs.additives.keys()).get(pass - 1)).getIconName());
+                return icons.get(things.get(pass - 1));
+
+            }
+
+        }
+        */
+
     public NBTTagCompound getNBT(String... strings){
     	return getNBT(ar(strings));
     }

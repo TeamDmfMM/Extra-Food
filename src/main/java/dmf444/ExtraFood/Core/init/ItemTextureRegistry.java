@@ -1,11 +1,16 @@
 package dmf444.ExtraFood.Core.init;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFood;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTModelRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.Enumeration;
 
 public class ItemTextureRegistry {
 
@@ -84,6 +89,21 @@ public class ItemTextureRegistry {
         register(ItemLoader.dough, 0);
 
         register(ItemLoader.muffinPan, 0);
+
+        // NBT Food Start
+
+        Enumeration<Item> e = NBTFoodLoader.foods.elements();
+
+        while (e.hasMoreElements()) {
+            NBTFood nbt = (NBTFood) e.nextElement();
+
+            ModelResourceLocation modelname = NBTModelRegistry.getInstance().models.get(nbt.specs);
+
+            ItemModelMesher modelRegistry = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
+            //EFLog.fatal((ResourceLocation) Item.itemRegistry.getNameForObject(item));
+            modelRegistry.register(((Item) nbt), 0, modelname);
+
+        }
 
     }
 

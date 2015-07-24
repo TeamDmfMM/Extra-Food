@@ -14,8 +14,19 @@ public class NBTFoodSpecs {
 	public String defualtIcon;
 	public float[] defualtHunger;
 	public ArrayList<ArrayList<String>> non;
-	
+	public String hackyModelName = "";
+
+	public NBTFoodSpecs(){
+		String tafb = "hackynbtfoodmodelname_" + NBTCount.getInstance().lastId;
+		NBTCount.getInstance().lastId += 1;
+
+		hackyModelName = tafb;
+	}
+
 	public void setup(){
+
+
+
 		Enumeration<String> enu = additives.keys();
 		ArrayList<String> dohicker = new ArrayList<String>();
 		for (String i : Collections.list(enu)){
