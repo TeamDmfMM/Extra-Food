@@ -110,7 +110,7 @@ public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
 	//System.out.println("Magical Calling");
     GL11.glPushMatrix();
 	GL11.glDisable(GL11.GL_LIGHTING);
-    GL11.glEnable(GL11.GL_BLEND);
+    //GL11.glEnable(GL11.GL_BLEND);
 	 int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
 	    int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
    // Check height of block
@@ -138,7 +138,7 @@ public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
     		if (flag == 0){
     			this.fontRendererObj.drawSplitString(p1, x, y, 93, 0x0000000);
     			this.fontRendererObj.setUnicodeFlag(false);
-    			GL11.glEnable(GL11.GL_LIGHTING);
+    			//GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL11.GL_BLEND);
                 GL11.glPopMatrix();
     			return h;
@@ -147,7 +147,7 @@ public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
     			String p2r = p2.substring(1, p2.length());
     			this.fontRendererObj.drawSplitString(p2r, x, y, 93, 0x0000000);
     			this.fontRendererObj.setUnicodeFlag(false);
-    			GL11.glEnable(GL11.GL_LIGHTING);
+    			//GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL11.GL_BLEND);
                 GL11.glPopMatrix();
     			return -h;
@@ -166,6 +166,7 @@ public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
 public int drawElementImage(ArrayList<Object> args, int x, int y, int flag){
 	int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
     int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
+    GL11.glPushMatrix();
     //System.out.println(y + 0 + ":" + j);
 	if (y + (int)args.get(2) < j  + 155){
 		ResourceLocation image = (ResourceLocation) args.get(0);
@@ -178,6 +179,8 @@ public int drawElementImage(ArrayList<Object> args, int x, int y, int flag){
 		GL11.glColor4f(1f, 1f, 1f, 1f);
 		this.drawTexturedModalRect(x, y, xx, yy, w, h);
 		GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
+        GL11.glPopMatrix();
 		return h;
 	}
 	else {
@@ -236,7 +239,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
         int y1 = y + 50;
         this.fontRendererObj.setUnicodeFlag(false);
         this.mc.getTextureManager().bindTexture(GuiLib.CBoven);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_LIGHTING);
         this.drawTexturedModalRect(x1 - 25, y1 - 52, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
@@ -306,7 +309,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     int y1 = y + 50;
     this.fontRendererObj.setUnicodeFlag(false);
     this.mc.getTextureManager().bindTexture(GuiLib.CBcraftgrid);
-    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     GL11.glEnable(GL11.GL_BLEND);
     this.drawTexturedModalRect(x1 - 14, y1 - 51, 0, 0,  CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
     GL11.glDisable(GL11.GL_BLEND);

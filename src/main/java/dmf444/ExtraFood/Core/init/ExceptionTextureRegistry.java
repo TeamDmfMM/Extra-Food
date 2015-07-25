@@ -40,6 +40,12 @@ public class ExceptionTextureRegistry {
                 return new ModelResourceLocation("extrafood:BananaLeaf", "normal");
             }
         });
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.bananaLeaf), new ItemMeshDefinition() {
+            @Override
+            public ModelResourceLocation getModelLocation(ItemStack stack) {
+                return new ModelResourceLocation("extrafood:BananaLeaf", "inventory");
+            }
+        });
 
         MinecraftForge.EVENT_BUS.register(new ModelBakeInjector());
         MinecraftForge.EVENT_BUS.register(new TextureInjector());

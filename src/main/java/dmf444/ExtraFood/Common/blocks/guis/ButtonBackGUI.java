@@ -1,12 +1,9 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
+import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
-import dmf444.ExtraFood.Core.lib.GuiLib;
 
 public class ButtonBackGUI extends GuiButton
 {
@@ -30,8 +27,10 @@ public class ButtonBackGUI extends GuiButton
         if (this.visible)
         {
             boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            GL11.glPushMatrix();
             GL11.glEnable(GL11.GL_BLEND);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             par1Minecraft.getTextureManager().bindTexture(GuiLib.arrowsGUI);
             int k = 0;
             int l = 176;
@@ -42,6 +41,8 @@ public class ButtonBackGUI extends GuiButton
 
             this.drawTexturedModalRect(this.xPosition, this.yPosition, k, l, 23, 16);
             GL11.glDisable(GL11.GL_BLEND);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glPopMatrix();
         }
     }
 }
