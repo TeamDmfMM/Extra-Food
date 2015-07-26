@@ -17,7 +17,11 @@ public class NBTFoodSpecs {
 	public String hackyModelName = "";
 
 	public NBTFoodSpecs(){
-		String tafb = "hackynbtfoodmodelname_" + NBTCount.getInstance().lastId;
+
+	}
+
+	public void setupModelName(){
+		String tafb = "NBT" + this.name;
 		NBTCount.getInstance().lastId += 1;
 
 		hackyModelName = tafb;
@@ -25,7 +29,7 @@ public class NBTFoodSpecs {
 
 	public void setup(){
 
-
+		setupModelName();
 
 		Enumeration<String> enu = additives.keys();
 		ArrayList<String> dohicker = new ArrayList<String>();

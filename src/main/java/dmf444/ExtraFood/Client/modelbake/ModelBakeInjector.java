@@ -22,11 +22,11 @@ public class ModelBakeInjector {
 
             Object getter = event.modelRegistry.getObject(l);
 
-
-                IBakedModel existing = (IBakedModel)getter;
-                NBTFoodSmartItemModel custom = new NBTFoodSmartItemModel();
+            if (getter instanceof IBakedModel) {
+                IBakedModel existing = (IBakedModel) getter;
+                NBTFoodSmartItemModel custom = new NBTFoodSmartItemModel(existing);
                 event.modelRegistry.putObject(l, custom);
-
+            }
         }
 
 

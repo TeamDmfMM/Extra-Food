@@ -61,7 +61,9 @@ public class NBTFoodRegistry {
 		spec.defualtHunger = dHunger;
 		spec.info = info;
 		spec.non = non;
+		spec.setupModelName();
 		foods.add(spec);
+
 		
 	}
 	public void addFoods(String name, Dictionary<String, ArrayList<Object>> adds, String dIcon, float[] dHunger, ArrayList<ArrayList<String>> non){

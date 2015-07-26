@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.ISmartItemModel;
 
+import javax.vecmath.Vector3f;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,12 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
     String baseFood = "minecraft:blocks/diamond_block"; // Again, placeholders that will never be seen
     ArrayList<String> tex = new ArrayList<>();
 
-    public NBTFoodSmartItemModel(){
+    IBakedModel exist;
+
+    public NBTFoodSmartItemModel(IBakedModel e){
 
 
+        exist = e;
 
     }
 
@@ -47,12 +51,13 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
 
     @Override
     public List getFaceQuads(EnumFacing p_177551_1_) {
+
         return getQuadsForTextures(tex);
     }
 
     @Override
     public List getGeneralQuads() {
-        return getQuadsForTextures(tex);
+        return exist.getGeneralQuads();
     }
 
     @Override
@@ -76,15 +81,17 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
                 .getAtlasSprite("minecraft:blocks/diamond_block"); // Yes, this is silly, but it is a placeholder so the game doesn't crash
     }
 
+    private static final ItemCameraTransforms cameraTransforms = new ItemCameraTransforms(
+            new ItemTransformVec3f(new Vector3f(90.0F, 0.0F, 0.0F), new Vector3f(0.0F, 0.0F, -0.2F), new Vector3f(-1.0F, -1.0F, 1.0F)),//tp
+            new ItemTransformVec3f(new Vector3f(10F, -40F, -5.0F), new Vector3f(-0.35F, 0.2F, 0.15F), new Vector3f(1.0F, 1.0F, 1.0F)),//fp
+            new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(), new Vector3f(1.0F, 1.0F, 1.0F)),//head
+            new ItemTransformVec3f(new Vector3f(0F, -190F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F))//gui
+    );
+
     @Override
     public ItemCameraTransforms getItemCameraTransforms()
     {
-        if (SCALED == null)
-        {
-            ItemTransformVec3f v = new ItemTransformVec3f(new javax.vecmath.Vector3f(10F, -45F, 170F), new javax.vecmath.Vector3f(0F, 0.075F, -0.1375F), new javax.vecmath.Vector3f(0.375F, 0.375F, 0.375F));
-            SCALED = new ItemCameraTransforms(v, ItemTransformVec3f.DEFAULT, ItemTransformVec3f.DEFAULT, ItemTransformVec3f.DEFAULT);
-        }
-        return SCALED;
+        return cameraTransforms;
     }
 
     private static ItemCameraTransforms SCALED;
@@ -117,32 +124,22 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
 
 
 
-        BakedQuad front = createBakedQuadForFace(center1, size,
-                center2, size, -DISTANCE_BEHIND_SOUTH_FACE + delta,
-                r0,
-                t,
-                EnumFacing.SOUTH);
 
-        BakedQuad back = createBakedQuadForFace(center1, size,
-                center2, size,
-                -DISTANCE_BEHIND_NORTH_FACE + delta,
-                r0, t, EnumFacing.NORTH);
 
         delta += 0.001f;
 
-        extras.add(front);
-        extras.add(back);
+
 
         for (String i : texLocations) {
             TextureAtlasSprite t2 = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(i);
 
-            front = createBakedQuadForFace(center1, size,
+            BakedQuad front = createBakedQuadForFace(center1, size,
                     center2, size, -DISTANCE_BEHIND_SOUTH_FACE + delta,
                     r0,
                     t2,
                     EnumFacing.SOUTH);
 
-            back = createBakedQuadForFace(center1, size,
+            BakedQuad back = createBakedQuadForFace(center1, size,
                     center2, size,
                     -DISTANCE_BEHIND_NORTH_FACE + delta,
                     r0, t2, EnumFacing.NORTH);
