@@ -85,7 +85,7 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
             new ItemTransformVec3f(new Vector3f(90.0F, 0.0F, 0.0F), new Vector3f(0.0F, 0.0F, -0.2F), new Vector3f(-1.0F, -1.0F, 1.0F)),//tp
             new ItemTransformVec3f(new Vector3f(10F, -40F, -5.0F), new Vector3f(-0.35F, 0.2F, 0.15F), new Vector3f(1.0F, 1.0F, 1.0F)),//fp
             new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(), new Vector3f(1.0F, 1.0F, 1.0F)),//head
-            new ItemTransformVec3f(new Vector3f(0F, -190F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F))//gui
+            new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F))//gui
     );
 
     @Override
@@ -133,7 +133,7 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
         for (String i : texLocations) {
             TextureAtlasSprite t2 = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(i);
 
-            BakedQuad front = createBakedQuadForFace(center1, size,
+            BakedQuad front = createBakedQuadForFace(center1- 0.031f, size,
                     center2, size, -DISTANCE_BEHIND_SOUTH_FACE + delta,
                     r0,
                     t2,
