@@ -109,6 +109,7 @@ tile.Fcarrotjuice.name=Carrot Juice
 tile.Fbananajuice.name=Banana Juice
 tile.FEggnog.name=Eggnog
 tile.Oven.name=Oven
+tile.JuiceMixer.name=Juice Mixer [WIP]
 tile.Cake.name=Chocolate Cake
 
 #Fluid Names ---This is for mod Compatibility

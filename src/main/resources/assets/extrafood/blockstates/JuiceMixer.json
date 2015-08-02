@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"normal": { "model": "ExtraFood:JuiceMixer" }
+		"normal": { "model": "extrafood:JuiceMixer" }
 	}
 }
