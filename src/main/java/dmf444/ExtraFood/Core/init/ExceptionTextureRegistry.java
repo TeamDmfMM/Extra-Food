@@ -33,17 +33,10 @@ public class ExceptionTextureRegistry {
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Beggnog), new cSM(3));
         ModelLoader.setCustomStateMapper(BlockLoader.Beggnog, new cSM(3));
 
-        ModelBakery.addVariantName(Item.getItemFromBlock(BlockLoader.bananaLeaf));
         ModelLoader.setCustomStateMapper(BlockLoader.bananaLeaf, new StateMapperBase() {
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState p_178132_1_) {
                 return new ModelResourceLocation("extrafood:BananaLeaf", "normal");
-            }
-        });
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.bananaLeaf), new ItemMeshDefinition() {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                return new ModelResourceLocation("extrafood:BananaLeaf", "inventory");
             }
         });
 

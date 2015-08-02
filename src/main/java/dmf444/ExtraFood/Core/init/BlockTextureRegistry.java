@@ -15,7 +15,7 @@ public class BlockTextureRegistry {
     @SideOnly(Side.CLIENT)
     public static void RegisterBlockTextures(){
         registerBlock(BlockLib.bBB, 0, "extrafood:Banana_Bunch");
-        //registerBlock(BlockLib.bBL, 0, "extrafood:BananaLeaf");
+        registerBlock(BlockLib.bBL, 0, "extrafood:BananaLeaf");
         registerBlock(BlockLib.bTWB, 0, "extrafood:TheWhiteBlock");
         registerBlock(BlockLib.bBS, 0, "extrafood:Bannana_Sapling");
         registerBlock(BlockLib.bCP, 0, "extrafood:CheesePress");

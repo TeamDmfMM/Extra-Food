@@ -11,9 +11,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -33,6 +36,39 @@ public class BananaLeaf extends BlockLeaves
         this.setCreativeTab(EFTabs.INSTANCE);
     }
 
+
+    @SideOnly(Side.CLIENT)
+    public int getBlockColor()
+    {
+        return ColorizerFoliage.getFoliageColorBasic();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(IBlockState state)
+    {
+        return ColorizerFoliage.getFoliageColorBasic();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    {
+        if(pos != null) {
+            return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
+        }else{
+            return ColorizerFoliage.getFoliageColorBasic();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getColorFromItemStack(ItemStack stack, int renderPass)
+    {
+        return 4557568;
+    }
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer()
+    {
+        return EnumWorldBlockLayer.CUTOUT_MIPPED;
+    }
 
     /**
      * Returns the quantity of items to drop on block destruction.
@@ -63,11 +99,15 @@ public class BananaLeaf extends BlockLeaves
     public BlockPlanks.EnumType getWoodType(int meta) {
         return null;
     }
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
 
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
-        return EnumWorldBlockLayer.CUTOUT_MIPPED;
+        return super.shouldSideBeRendered(worldIn, pos, side);
     }
 
     @SideOnly(Side.CLIENT)
