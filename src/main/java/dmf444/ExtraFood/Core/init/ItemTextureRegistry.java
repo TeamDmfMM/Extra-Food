@@ -89,6 +89,7 @@ public class ItemTextureRegistry {
         register(ItemLoader.dough, 0);
 
         register(ItemLoader.muffinPan, 0);
+        register(ItemLoader.ChocolateCake, 0);
 
         // NBT Food Start
 
