@@ -7,6 +7,7 @@ import dmf444.ExtraFood.Common.RecipeHandler.CRPageCraftGet;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
+import dmf444.ExtraFood.Common.WorldGen.OliveTreeManager;
 import dmf444.ExtraFood.Common.WorldGen.TreeManager;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
@@ -72,6 +73,8 @@ public class ExtraFood {
 		GameRegistry.registerWorldGenerator(treeManager, 0);
 		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
 		}
+
+		GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
 		
 		EventsLoader.loadEvents();
 		//Gui Handler Registration

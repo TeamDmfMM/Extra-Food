@@ -22,12 +22,13 @@ public class BlockLoader {
 	public static Block Beggnog;
 	public static Block strawberryBush;
 	public static Block Bcarrotjuice;
-	public static Block bananaLeaf;
+	public static Block bananaLeaf, oliveLeaf;
 	public static Block peanutbush;
 	public static Block tomatoCrop;
 	public static Block lettuceCrop;
 	public static Block juiceMixer;
 	public static Block Chocake;
+	public static Block oliveBush;
 	
 	public static boolean Register=false;
 	
@@ -46,6 +47,8 @@ public class BlockLoader {
         juiceMixer = new BlockJuiceMixer().setUnlocalizedName(BlockLib.bJM);
         Chocake = new ChocolateCake().setUnlocalizedName(BlockLib.bCake);
         strawberryBush = new StrawberryBush(Material.plants).setUnlocalizedName(BlockLib.bSB);
+		oliveBush = new OliveTreeSapling().setUnlocalizedName(BlockLib.bOliveBush);
+		oliveLeaf = new OliveLeaf().setUnlocalizedName(BlockLib.bOliveLeaf);
 
 		Bbananajuice = new GeneralFluid(FluidLoader.Fbananajuice, Material.water).setUnlocalizedName(BlockLib.bFluidBan);
 		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.water).setUnlocalizedName(BlockLib.bFluidEgg);
@@ -76,6 +79,8 @@ public class BlockLoader {
 			GameRegistry.registerBlock(lettuceCrop, BlockLib.bCL);
 			GameRegistry.registerBlock(juiceMixer, BlockLib.bJM);
 			GameRegistry.registerBlock(Chocake, BlockLib.bCake);
+			GameRegistry.registerBlock(oliveBush, BlockLib.bOliveBush);
+			GameRegistry.registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
 			
 		}
 		Register=true;

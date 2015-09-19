@@ -208,12 +208,12 @@ public class NBTFoodRegistry {
 	
 	public static ItemStack getPizzaDisplay(){
 		ItemStack bob = new ItemStack(NBTFoodLoader.getItem("pizza"));
-		//bob.setTagCompound(((NBTFood) NBTFoodLoader.getItem("pizza")).getNBT("pepperoni", "cheese"));
+		bob.setTagCompound(((NBTFood)(bob.getItem())).getNBT("pepperoni", "cheese"));
 		return bob;
 	}
     public static ItemStack getMuffinDisplay(){
         ItemStack bob = new ItemStack(NBTFoodLoader.getItem("muffin"));
-        //bob.setTagCompound(((NBTFood) NBTFoodLoader.getItem("muffin")).getNBT("Doublechocolate"));
+		bob.setTagCompound(((NBTFood)(bob.getItem())).getNBT("Doublechocolate"));
         return bob;
     }
 	

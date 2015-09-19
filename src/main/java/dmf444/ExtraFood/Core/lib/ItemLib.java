@@ -88,9 +88,7 @@ public class ItemLib {
 
     //SEASONAL
     public static String iEggnog = "eggnog";
-
-	
-	
+	public static String iOlive = "olive";
 
 
 	//Special ones

@@ -20,7 +20,7 @@ public class ItemLoader {
 	public static Item cheeseSlice;
 	public static Item cookBook;
 	public static Item sausage;
-	public static Item strawberry, peanut;
+	public static Item strawberry, peanut, olive;
 	public static Item bucketstrawberry;
 	public static Item bucketbanana;
 	public static Item bucketcarrot;
@@ -139,6 +139,7 @@ public class ItemLoader {
 		fruitcake = new StanFood(12, 5.0F).setUnlocalizedName(ItemLib.iFC);
 		gingerbread = new StanFood(9, 5.0F).setUnlocalizedName(ItemLib.iGB);
 		chestnuts = new StanFood(10, 5.0F).setUnlocalizedName(ItemLib.Chestnut);
+		olive = new StanFood(4, 3.0F).setUnlocalizedName(ItemLib.iOlive);
 		//Temp HDB
 		ChocolateCake = new ItemReed(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
 		
@@ -228,6 +229,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(frenchToast, ItemLib.iFrenchToast);
 			GameRegistry.registerItem(sandwichCheeseburger, ItemLib.iSandCheeseBurger);
 			GameRegistry.registerItem(sandwichSupremeBurger, ItemLib.iSandSupremeH);
+			GameRegistry.registerItem(olive, ItemLib.iOlive);
 			//Noel
 			GameRegistry.registerItem(shortbread, ItemLib.iShortB);
 			GameRegistry.registerItem(fruitcake, ItemLib.iFC);
@@ -282,6 +284,7 @@ public class ItemLoader {
 			OreDictionary.registerOre("foodSupremeBurger", ItemLoader.sandwichSupremeBurger);
 			OreDictionary.registerOre("foodFrenchToast", ItemLoader.frenchToast);
             OreDictionary.registerOre("foodDough", ItemLoader.dough);
+			OreDictionary.registerOre("foodOlive", ItemLoader.olive);
 			
 		}
 		FRegister=true;

@@ -21,7 +21,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
     private final int metaWood;
     /** The metadata value of the leaves to use in tree generation. */
     private final int metaLeaves;
-    private static final String __OBFID = "CL_00000438";
+
 
     public BananaWorldGenTrees(boolean p_i2027_1_)
     {

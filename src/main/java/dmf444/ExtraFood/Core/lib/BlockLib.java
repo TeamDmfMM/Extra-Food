@@ -25,4 +25,6 @@ public class BlockLib {
     public static String bFluidStraw = "StrawberryJuice";
     public static String bFluidCarrot = "Fcarrotjuice";
 
+	public static String bOliveBush = "OliveTreeSapling";
+	public static String bOliveLeaf = "OliveLeaf";
 }

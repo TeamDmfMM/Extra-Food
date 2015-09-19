@@ -3,6 +3,7 @@ package dmf444.ExtraFood.Core.init;
 import dmf444.ExtraFood.Client.modelbake.ModelBakeInjector;
 import dmf444.ExtraFood.Client.modelbake.TextureInjector;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Common.blocks.OliveLeaf;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -37,6 +38,17 @@ public class ExceptionTextureRegistry {
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState p_178132_1_) {
                 return new ModelResourceLocation("extrafood:BananaLeaf", "normal");
+            }
+        });
+
+        ModelLoader.setCustomStateMapper(BlockLoader.oliveLeaf, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState p_178132_1_) {
+                return new ModelResourceLocation("extrafood:OliveLeaf", getGrowthLVL(p_178132_1_));
+            }
+            private String getGrowthLVL(IBlockState state){
+                int lvl = ((Integer)state.getValue(OliveLeaf.METALVL)).intValue();
+                return "growth=" + lvl;
             }
         });
 
