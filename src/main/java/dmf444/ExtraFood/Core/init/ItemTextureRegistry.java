@@ -87,6 +87,7 @@ public class ItemTextureRegistry {
         register(ItemLoader.gingerbread, 0);
         register(ItemLoader.chestnuts, 0);
         register(ItemLoader.dough, 0);
+        register(ItemLoader.olive, 0);
 
         register(ItemLoader.muffinPan, 0);
         register(ItemLoader.ChocolateCake, 0);

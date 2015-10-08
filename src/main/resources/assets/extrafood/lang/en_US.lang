@@ -72,6 +72,7 @@ item.pizza.name=Pizza
 item.muffin.name=Muffin
 item.MuffinPan.name=Muffin Pan
 item.dough.name=Dough
+item.olive.name=Olives
 
 ## Additive names
 add.pizza.pepperoni=Pepperoni

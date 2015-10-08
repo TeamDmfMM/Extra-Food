@@ -26,6 +26,7 @@ public class BlockTextureRegistry {
         registerBlock(BlockLib.bO, 0);
         registerBlock(BlockLib.bJM, 0);
         registerBlock(BlockLib.bOliveLeaf, 0);
+        registerBlock(BlockLib.bOliveBush, 0);
 
     }
 
