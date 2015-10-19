@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Common.blocks;
 
 import dmf444.ExtraFood.Common.WorldGen.BananaWorldGenTrees;
+import dmf444.ExtraFood.Common.WorldGen.OliveWorldGenTrees;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,14 +23,14 @@ public class OliveTreeSapling extends BananaTreeSapling{
 
 
     public OliveTreeSapling(){
-
+        this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.7F, 0.8F);
     }
 
     @Override
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new BananaWorldGenTrees(false, 6, 3, 3, true);
+        Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new OliveWorldGenTrees(false, 6, 3, 3, true);
         int i1 = 0;
         int j1 = 0;
 

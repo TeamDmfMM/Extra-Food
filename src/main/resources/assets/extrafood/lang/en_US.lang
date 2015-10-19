@@ -112,6 +112,8 @@ tile.FEggnog.name=Eggnog
 tile.Oven.name=Oven
 tile.JuiceMixer.name=Juice Mixer [WIP]
 tile.Cake.name=Chocolate Cake
+tile.OliveTreeSapling.name=Olive Sapling
+tile.OliveLeaf.name=Olive Leaf
 
 #Fluid Names ---This is for mod Compatibility
 fluid.strawberryjuice=Strawberry Juice

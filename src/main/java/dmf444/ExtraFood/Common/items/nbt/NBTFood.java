@@ -150,19 +150,20 @@ public class NBTFood extends ItemFood {
 
 		String key;
 		ArrayList<String> things = new ArrayList<String>();
-		for (Object keyb : comp.getKeySet().toArray()){
-			key = (String)keyb;
-			if (!Collections.list(specs.additives.keys()).contains(key)){
+		if(comp != null) {
+			for (Object keyb : comp.getKeySet().toArray()) {
+				key = (String) keyb;
+				if (!Collections.list(specs.additives.keys()).contains(key)) {
 
-				continue;
-			}
-			if (comp.hasKey(key)){
-				if (comp.getBoolean(key)){
-					things.add(key);
+					continue;
+				}
+				if (comp.hasKey(key)) {
+					if (comp.getBoolean(key)) {
+						things.add(key);
+					}
 				}
 			}
 		}
-
 		for (String thing : things){
 			ret.add(possibleicons.get(thing));
 		}

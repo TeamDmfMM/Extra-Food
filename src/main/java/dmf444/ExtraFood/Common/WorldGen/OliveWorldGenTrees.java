@@ -130,8 +130,8 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
                     placeBlock(world,x+1,y+3, z+1, dab);
 
                     //Top et all
-                    placeBlock(world, x, y, z, Blocks.beacon);
-                    placeBlock(world, x, y+1, z, Blocks.beacon);
+                    placeBlock(world, x, y, z, Blocks.log);
+                    placeBlock(world, x, y+1, z, Blocks.log);
                     placeBlock(world, x, y+4, z, dab);
                     return true;
                 }

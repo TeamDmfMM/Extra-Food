@@ -1,9 +1,11 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -152,9 +154,9 @@ public class NBTFoodRegistry {
 	/**
 	 * Continous list of Info
 	 * 
-	 * @param String item
-	 * @param int Hunger
-	 * @param int Saturation
+	 * String item
+	 * int Hunger
+	 * int Saturation
 	 */
 	public Dictionary<ArrayList<String>, ArrayList<Object>> createInfo(Object... info){
 		Dictionary<ArrayList<String>, ArrayList<Object>> rval = new Hashtable<ArrayList<String>, ArrayList<Object>>();
@@ -209,11 +211,15 @@ public class NBTFoodRegistry {
 	public static ItemStack getPizzaDisplay(){
 		ItemStack bob = new ItemStack(NBTFoodLoader.getItem("pizza"));
 		bob.setTagCompound(((NBTFood)(bob.getItem())).getNBT("pepperoni", "cheese"));
+		//bob.setTagCompound();
 		return bob;
 	}
     public static ItemStack getMuffinDisplay(){
         ItemStack bob = new ItemStack(NBTFoodLoader.getItem("muffin"));
-		bob.setTagCompound(((NBTFood)(bob.getItem())).getNBT("Doublechocolate"));
+		NBTTagCompound tagCompound = new NBTTagCompound();
+		tagCompound.setBoolean("Doublechocolate", true);
+		bob.setTagCompound(tagCompound);
+		EFLog.error(((NBTFood) bob.getItem()).getIconNames(bob).size());
         return bob;
     }
 	

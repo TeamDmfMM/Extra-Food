@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -14,6 +15,7 @@ public class ClickTab extends GuiButton{
 
 
 public Item item;
+public ItemStack stack;
 public RenderItem rinder = Minecraft.getMinecraft().getRenderItem();
 
 public int x;
@@ -55,7 +57,7 @@ public int type = 0;
 		super(0, 0, 0, 22, 22, "");
 		x = xPOS;
 		y = yPOS;
-		item = itemStack.getItem();
+		this.stack = itemStack;
 		this.pagename = page_name;
 		this.pre = pres;
 	}
@@ -88,14 +90,20 @@ public int type = 0;
 			GL11.glDisable(GL11.GL_LIGHTING);
 			GL11.glEnable(GL11.GL_BLEND);
 			this.drawTexturedModalRect(xPosition, yPosition, 2, 204, 22, 22);
-			//if (rloc == null){
+			if (stack == null){
 				this.rinder.renderItemIntoGUI(new ItemStack(this.item), xPosition + 3, yPosition + 2);
-			//	}else{
-			//		this.rinder.renderIcon(xPosition + 3, yPosition + 2, rloc, 16, 16);
-					
-			//	}
+				}else{
+				Item stack1 = new ItemStack(BlockLoader.strawberryBush).getItem();
+				if(stack.getItem().equals(stack1) || stack.getItem().equals(Item.getItemFromBlock(BlockLoader.whiteout))){
+					GL11.glEnable(GL11.GL_LIGHTING);
+					this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
+					GL11.glDisable(GL11.GL_LIGHTING);
+				}else{
+					this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
+				}
+			}
 
-			GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glPopMatrix();
 	}
