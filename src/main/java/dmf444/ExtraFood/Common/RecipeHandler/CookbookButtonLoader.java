@@ -112,7 +112,7 @@ public class CookbookButtonLoader {
 		AddPage("Bread", 2);
 		AddPage("sandwiches", 17);
 		AddPage("spread", 6);
-		AddPage("worldGen", 2);
+		AddPage("worldGen", 3);
 		AddPage("butter", 2);
 		AddPage("yogurt", 2);
 		AddPage("burger", 3);

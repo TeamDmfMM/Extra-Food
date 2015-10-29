@@ -8,7 +8,6 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -27,7 +26,7 @@ public class OliveLeaf extends BananaLeaf{
 
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(rand.nextInt() == 43 && ((Integer)state.getValue(METALVL)).intValue() < 4){
+        if(rand.nextInt((10-1)+1) == 4 && ((Integer)state.getValue(METALVL)).intValue() < 4){
             world.setBlockState(pos, state.withProperty(METALVL, Integer.valueOf(((Integer) state.getValue(METALVL)).intValue() + 1)), 2);
         }
 
@@ -48,6 +47,7 @@ public class OliveLeaf extends BananaLeaf{
                 EntityItem olives = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.olive));
                 world.spawnEntityInWorld(olives);
             }
+            world.setBlockState(pos, state.withProperty(METALVL, 0));
         }
         return false;
     }
