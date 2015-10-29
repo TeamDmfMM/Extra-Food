@@ -27,12 +27,13 @@ public class BlockLoader {
 	public static Block Beggnog;
 	public static Block strawberryBush;
 	public static Block Bcarrotjuice;
-	public static Block bananaLeaf;
+	public static Block bananaLeaf, oliveLeaf;
 	public static Block peanutbush;
 	public static Block tomatoCrop;
 	public static Block lettuceCrop;
 	public static Block juiceMixer;
 	public static Block Chocake;
+	public static Block oliveBush;
 	
 	public static boolean Register=false;
 	
@@ -55,6 +56,8 @@ public class BlockLoader {
 		lettuceCrop = new CropBlock("lettuce").setBlockName(BlockLib.bCL);
 		juiceMixer = new BlockJuiceMixer().setBlockName(BlockLib.bJM);
 		Chocake = new ChocolateCake().setBlockName("Cake");
+		oliveBush = new OliveTreeSapling().setBlockName(BlockLib.bOliveBush);
+		oliveLeaf = new OliveLeaf().setBlockName(BlockLib.bOliveLeaf);
 		
 		
 		registerBlocks();
@@ -79,6 +82,8 @@ public class BlockLoader {
 			GameRegistry.registerBlock(lettuceCrop, BlockLib.bCL);
 			GameRegistry.registerBlock(juiceMixer, BlockLib.bJM);
 			GameRegistry.registerBlock(Chocake, "Cake");
+			GameRegistry.registerBlock(oliveBush, BlockLib.bOliveBush);
+			GameRegistry.registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
 			
 		}
 		Register=true;

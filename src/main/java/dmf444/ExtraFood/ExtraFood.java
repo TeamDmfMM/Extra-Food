@@ -1,5 +1,6 @@
 package dmf444.ExtraFood;
 
+import dmf444.ExtraFood.Common.WorldGen.OliveTreeManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -86,6 +87,7 @@ public class ExtraFood {
 		GameRegistry.registerWorldGenerator(treeManager, 0);
 		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
 		}
+		GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
 		
 		EventsLoader.loadEvents();
 		//Gui Handler Registration
