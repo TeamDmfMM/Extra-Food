@@ -15,4 +15,8 @@ public class BlockLib {
 	public static String bCL = "CropLettuce";
 	public static String bJM = "JuiceMixer";
 
+	public static String bOliveBush = "OliveTreeSapling";
+	public static String bOliveLeaf = "OliveLeaf";
+
+
 }

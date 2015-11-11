@@ -51,7 +51,7 @@ public class CropBlock extends BlockCrops{
 	    protected Item func_149866_i()
 	    {	
 	        if(Crop == "tomato"){
-	        	return ItemLoader.tomato;
+	        	return ItemLoader.tomatoSeeds;
 	        }else if (Crop == "lettuce"){
 	        	return ItemLoader.rawlettuceSeeds;
 	        }
