@@ -21,7 +21,7 @@ public class OliveLeaf extends BananaLeaf{
     public static final PropertyInteger  METALVL = PropertyInteger.create("growth", 0, 4);
 
     public OliveLeaf(){
-        this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, Integer.valueOf(0));
+        this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, 0);
     }
 
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
@@ -47,13 +47,58 @@ public class OliveLeaf extends BananaLeaf{
                 EntityItem olives = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.olive));
                 world.spawnEntityInWorld(olives);
             }
-            world.setBlockState(pos, state.withProperty(METALVL, 0));
+            world.setBlockToAir(pos);
+            world.setBlockState(pos, state.withProperty(METALVL, 1));
+            return true;
         }
-        return false;
     }
 
     protected BlockState createBlockState()
     {
         return new BlockState(this, new IProperty[] {CHECK_DECAY, DECAYABLE, METALVL});
+    }
+
+
+    public int getMetaFromState(IBlockState state)
+    {
+        byte b0 = 0;
+        int i = b0;
+
+        if (!((Boolean)state.getValue(DECAYABLE)).booleanValue())
+        {
+            i |= 4;
+        }
+
+        if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue())
+        {
+            i |= 8;
+        }
+        int addenum=1000;
+        switch (((Integer)state.getValue(METALVL)).intValue()){
+            case 0:
+                addenum = 1000;
+                break;
+            case 1:
+                addenum = 2000;
+                break;
+            case 2:
+                addenum = 3000;
+                break;
+            case 3:
+                addenum = 4000;
+                break;
+            case 5:
+                addenum = 5000;
+                break;
+    }
+        return addenum+i;
+    }
+    public IBlockState getStateFromMeta(int meta)
+    {
+        int one = Integer.parseInt("" + Integer.toString(meta).charAt(0));
+        int metaz = meta - (one*1000);
+
+
+        return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((metaz & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((metaz & 8) > 0)).withProperty(METALVL, one);
     }
 }
