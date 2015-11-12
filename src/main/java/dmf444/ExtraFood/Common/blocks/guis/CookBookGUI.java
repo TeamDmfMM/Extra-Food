@@ -479,7 +479,7 @@ public class CookBookGUI extends GuiScreen {
     {
         if (!textLines.isEmpty())
         {
-            GL11.glDisable('耺');
+            GL11.glDisable(32826);
             RenderHelper.disableStandardItemLighting();
             GL11.glDisable(2896);
             GL11.glDisable(2929);
@@ -549,7 +549,7 @@ public class CookBookGUI extends GuiScreen {
             GL11.glEnable(2896);
             GL11.glEnable(2929);
             RenderHelper.enableStandardItemLighting();
-            GL11.glEnable('耺');
+            GL11.glEnable(32826);
         }
     }
 }

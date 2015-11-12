@@ -5,6 +5,7 @@ import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.lib.GuiLib;
+import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -159,7 +160,8 @@ public class GuiJuiceBlender extends GuiContainer {
     {
         if (!textLines.isEmpty())
         {
-            GL11.glDisable('耺');
+			//EFLog.fatal((int)((Character)('耺')).charValue());
+            GL11.glDisable(32826);
             RenderHelper.disableStandardItemLighting();
             GL11.glDisable(2896);
             GL11.glDisable(2929);
@@ -229,7 +231,7 @@ public class GuiJuiceBlender extends GuiContainer {
             GL11.glEnable(2896);
             GL11.glEnable(2929);
             RenderHelper.enableStandardItemLighting();
-            GL11.glEnable('耺');
+            GL11.glEnable(32826);
         }
     }
 

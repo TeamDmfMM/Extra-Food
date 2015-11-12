@@ -16,6 +16,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 import java.util.Collection;
@@ -39,7 +40,7 @@ public class CropBlock implements ICrop{
  	protected Collection<ItemStack> harvestBlock(int x, int y, int z) {
  		Collection<ItemStack> harvested = block.getDrops(world,new BlockPos(x, y, z), block.getStateFromMeta(meta), 0);
  		//Proxies.common.addBlockDestroyEffects(world, pos.x, pos.y, pos.z, block, 0);
- 		Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(new BlockPos(x, y, z), block.getStateFromMeta(meta));
+ 		Minecraft.getMinecraft().effectRenderer.addBlockHitEffects(new BlockPos(x, y, z), EnumFacing.UP);
  		world.setBlockToAir(new BlockPos(x,y,z));
   		return harvested; 
 
