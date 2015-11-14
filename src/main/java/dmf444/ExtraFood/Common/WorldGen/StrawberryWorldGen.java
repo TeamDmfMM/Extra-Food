@@ -62,9 +62,9 @@ public class StrawberryWorldGen implements IWorldGenerator {
                     }
                     else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.grass && random.nextInt(3) == 0){
                         world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
-                        EFLog.error("xx: " + xx + " zz: " + zz  + "Y:" + by);
+                        //EFLog.error("xx: " + xx + " zz: " + zz  + "Y:" + by);
                     }
-                    EFLog.error("Block: " + world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock().getUnlocalizedName());
+                    //EFLog.error("Block: " + world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock().getUnlocalizedName());
                 }
             }
         }

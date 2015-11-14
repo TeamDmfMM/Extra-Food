@@ -42,7 +42,7 @@ minecraft {
     version = config.minecraft_version + "-" + config.forge_version
     
     replaceIn "Core/lib/ModInfo.java"
-    replace "@VERSION@", "${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: 0}"
+    replace "@VERSION@", "${config.mod_version}.${System.getenv("BUILD_NUMBER") ?: config.build_number}"
 	
     runDir = "run"
     
@@ -55,7 +55,7 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
-version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("DRONE_BUILD_NUMBER") ?: System.getenv("BUILD_NUMBER")}"
+version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("DRONE_BUILD_NUMBER") ?: config.build_number}"
 
 repositories { 
   mavenCentral() 

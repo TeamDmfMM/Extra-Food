@@ -57,7 +57,7 @@ public class PeanutWorldGen implements IWorldGenerator {
 
 
                     if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.tallgrass && random.nextInt(3) == 0){
-                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos),(IBlockState) new BlockState(BlockLoader.peanutbush));
+                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockState(BlockLoader.peanutbush).getBaseState());
 
                     }
                     else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.grass && random.nextInt(3) == 0){
