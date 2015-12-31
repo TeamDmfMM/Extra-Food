@@ -87,7 +87,7 @@ public class ExtraFood {
 		GameRegistry.registerWorldGenerator(treeManager, 0);
 		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
 		}
-		GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
+		//GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
 		
 		EventsLoader.loadEvents();
 		//Gui Handler Registration
