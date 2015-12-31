@@ -3,6 +3,7 @@ package dmf444.ExtraFood.Common.WorldGen;
 import java.util.Random;
 
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -29,8 +30,17 @@ private void generateSurface(World world, Random random, int x, int z) {
 		int Xcoord1 = x + random.nextInt(16); //where in chuck it generates
 		int Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
 		int Zcoord1 = z + random.nextInt(16); //where in chunk it generates
-		
-		new BananaWorldGenTrees(false, 6, 3, 0, true).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
+
+		final BiomeGenBase biome = world.getBiomeGenForCoords(Xcoord1, Zcoord1);
+
+		if(biome == BiomeGenBase.jungle || biome == BiomeGenBase.jungleEdge || biome == BiomeGenBase.jungleHills) {
+			new BananaWorldGenTrees(false, 6, 3, 0, true).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
+		}else if(shouldTreesSpawn(biome)){
+			int rand = random.nextInt(100);
+			if(rand > 75) {
+				new OliveWorldGenTrees(false).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
+			}
+		}
 		
 	}
 	
@@ -39,4 +49,14 @@ private void generateSurface(World world, Random random, int x, int z) {
 private void generateNether(World world, Random random, int x, int z) {
 	
 }
+
+
+	private boolean shouldTreesSpawn(BiomeGenBase biome){
+		if(biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.deepOcean || biome == BiomeGenBase.desert ||
+				biome == BiomeGenBase.desertHills || biome == BiomeGenBase.megaTaiga || biome == BiomeGenBase.river || biome == BiomeGenBase.megaTaigaHills ||
+				biome == BiomeGenBase.ocean || biome == BiomeGenBase.taiga || biome == BiomeGenBase.taigaHills){
+			return false;
+		}
+		return true;
+	}
 }

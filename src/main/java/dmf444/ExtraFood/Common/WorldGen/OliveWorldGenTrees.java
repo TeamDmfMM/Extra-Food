@@ -88,7 +88,8 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
                 Block block2 = world.getBlock(x, y - 1, z);
 
                 boolean isSoil = block2.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
-                if (isSoil && y < 256 - l) {
+                boolean notWater = !world.getBlock(x, y, z).equals(Blocks.water) && !world.getBlock(x, y, z).equals(Blocks.flowing_water);
+                if (isSoil && notWater && y < 256 - l) {
                     block2.onPlantGrow(world, x, y - 1, z, x, y, z);
 
 
