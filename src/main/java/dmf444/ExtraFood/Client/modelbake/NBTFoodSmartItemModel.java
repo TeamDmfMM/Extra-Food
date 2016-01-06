@@ -11,8 +11,9 @@ import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.ISmartItemModel;
+import org.lwjgl.util.vector.Vector3f;
 
-import javax.vecmath.Vector3f;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +77,7 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
     }
 
     @Override
-    public TextureAtlasSprite getTexture() {
+    public TextureAtlasSprite getParticleTexture() {
         return Minecraft.getMinecraft().getTextureMapBlocks()
                 .getAtlasSprite("minecraft:blocks/diamond_block"); // Yes, this is silly, but it is a placeholder so the game doesn't crash
     }
@@ -85,7 +86,9 @@ public class NBTFoodSmartItemModel implements ISmartItemModel {
             new ItemTransformVec3f(new Vector3f(90.0F, 0.0F, 0.0F), new Vector3f(0.0F, 0.0F, -0.2F), new Vector3f(-1.0F, -1.0F, 1.0F)),//tp
             new ItemTransformVec3f(new Vector3f(10F, -40F, -5.0F), new Vector3f(-0.35F, 0.2F, 0.15F), new Vector3f(1.0F, 1.0F, 1.0F)),//fp
             new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(), new Vector3f(1.0F, 1.0F, 1.0F)),//head
-            new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F))//gui
+            new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F)),//gui
+            new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F)),//ground
+            new ItemTransformVec3f(new Vector3f(0F, 0F, 0.0F), new Vector3f(0.0F, -0.05F, 0.F), new Vector3f(1.0F, 1.0F, 1.0F))//fixed
     );
 
     @Override

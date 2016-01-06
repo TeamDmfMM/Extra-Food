@@ -32,9 +32,9 @@ public class CheesePressContainer extends Container {
     }
 
     @Override
-    public void addCraftingToCrafters(ICrafting crafters)
+    public void onCraftGuiOpened(ICrafting crafters)
     {
-        super.addCraftingToCrafters(crafters);
+        super.onCraftGuiOpened(crafters);
         crafters.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
     }
 

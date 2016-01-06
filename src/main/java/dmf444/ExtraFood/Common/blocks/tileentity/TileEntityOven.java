@@ -7,12 +7,12 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ITickable;
 
-public class TileEntityOven extends TileEntity implements ISidedInventory, IUpdatePlayerListBox{
+public class TileEntityOven extends TileEntity implements ISidedInventory, ITickable {
 		//TODO Constructors
 	
 	public ItemStack[] items;
@@ -146,7 +146,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, IUpda
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
+	public ItemStack removeStackFromSlot(int slot) {
 		return items[slot];
 	}
 

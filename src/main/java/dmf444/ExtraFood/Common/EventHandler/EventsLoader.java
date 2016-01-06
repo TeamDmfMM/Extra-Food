@@ -31,7 +31,7 @@ public class EventsLoader {
 			ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.cookBook), 1, 1, 50));
 			//Load the Achivements
 			AchieveLoad.loadAc();
-			FMLCommonHandler.instance().bus().register(new CraftingAchievements());
+			MinecraftForge.EVENT_BUS.register(new CraftingAchievements());
 			
 	}
 }

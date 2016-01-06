@@ -126,7 +126,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
 
                                     if (block1.isAir(world, new BlockPos(i2, k1, k2)) || block1.isLeaves(world,new BlockPos(i2, k1, k2)))
                                     {
-                                        this.func_175905_a(world, new BlockPos(i2, k1, k2), BlockLoader.bananaLeaf, this.metaLeaves);
+                                        this.setBlockAndNotifyAdequately(world, new BlockPos(i2, k1, k2), BlockLoader.bananaLeaf.getDefaultState());
                                     }
                                 }
                             }
@@ -139,7 +139,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
                         block = world.getBlockState(upN).getBlock();
 
                         if (block.isAir(world,new BlockPos( x, y + k1, z)) || block.isLeaves(world,new BlockPos( x, y + k1, z))) {
-                            this.func_175905_a(world,new BlockPos(x, y + k1, z), Blocks.log, this.metaWood);
+                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + k1, z), Blocks.log.getDefaultState());
                         }
                     }
 
@@ -219,7 +219,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
     {
         BlockPos bananaPlace = new BlockPos(x,y,z);
         if(world.getBlockState(bananaPlace).getBlock() == Blocks.air) {
-            this.func_175905_a(world, bananaPlace, BlockLoader.bananaBunch, length);
+            this.setBlockAndNotifyAdequately(world, bananaPlace, BlockLoader.bananaBunch.getDefaultState());
         } else{
             this.growVines(world, x, y - 1, z, 1);
         }

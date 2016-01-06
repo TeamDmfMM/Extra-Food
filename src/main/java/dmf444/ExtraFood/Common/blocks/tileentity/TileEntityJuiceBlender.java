@@ -10,14 +10,14 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.*;
 
 
-public class TileEntityJuiceBlender extends TileEntity implements ISidedInventory, IFluidHandler, IUpdatePlayerListBox {
+public class TileEntityJuiceBlender extends TileEntity implements ISidedInventory, IFluidHandler, ITickable {
 
 
     private static final int[] slots_top = new int[]{0};
@@ -72,7 +72,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int slot) {
+    public ItemStack removeStackFromSlot(int slot) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
             setInventorySlotContents(slot, null);
@@ -204,19 +204,19 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
             // FILL THE BUCKET
             if (this.items[1].getItem() == Items.bucket && this.tank.getFluid() != null && this.items[2] == null) {
                 if (this.tank.getFluidAmount() >= 1000) {
-                    if (this.tank.getFluid().getFluidID() == FluidLoader.Fstrawberryjuice.getID()) {
+                    if (this.tank.getFluid().getFluid() == FluidLoader.Fstrawberryjuice) {
                         this.items[1].stackSize -= 1;
                         this.items[2] = new ItemStack(ItemLoader.bucketstrawberry, 1);
                         this.tank.drain(1000, true);
 
 
-                    } else if (this.tank.getFluid().getFluidID() == FluidLoader.Fbananajuice.getID()) {
+                    } else if (this.tank.getFluid().getFluid() == FluidLoader.Fbananajuice) {
                         this.items[1].stackSize -= 1;
                         this.items[2] = new ItemStack(ItemLoader.bucketbanana, 1);
                         this.tank.drain(1000, true);
 
 
-                    } else if (this.tank.getFluid().getFluidID() == FluidLoader.Fcarrotjuice.getID()) {
+                    } else if (this.tank.getFluid().getFluid() == FluidLoader.Fcarrotjuice) {
                         this.items[1].stackSize -= 1;
                         this.items[2] = new ItemStack(ItemLoader.bucketcarrot, 1);
                         this.tank.drain(1000, true);

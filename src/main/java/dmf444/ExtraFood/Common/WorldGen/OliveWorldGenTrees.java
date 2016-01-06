@@ -148,6 +148,6 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
         }
 
         private void placeBlock(World world, int x, int y, int z, Block block){
-            this.func_175905_a(world, poz(x, y, z), block, 0);
+            this.setBlockAndNotifyAdequately(world, poz(x, y, z), block.getDefaultState());
         }
 }

@@ -18,19 +18,19 @@ import net.minecraftforge.common.MinecraftForge;
 public class ExceptionTextureRegistry {
 
     public static void registerExceptiions(){
-        ModelBakery.addVariantName(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice));
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice));
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice), new cSM(0));
         ModelLoader.setCustomStateMapper(BlockLoader.Bstrawberryjuice, new cSM(0));
 
-        ModelBakery.addVariantName(Item.getItemFromBlock(BlockLoader.Bbananajuice));
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bbananajuice));
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bbananajuice), new cSM(1));
         ModelLoader.setCustomStateMapper(BlockLoader.Bbananajuice, new cSM(1));
 
-        ModelBakery.addVariantName(Item.getItemFromBlock(BlockLoader.Bcarrotjuice));
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bcarrotjuice));
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bcarrotjuice), new cSM(2));
         ModelLoader.setCustomStateMapper(BlockLoader.Bcarrotjuice, new cSM(2));
 
-        ModelBakery.addVariantName(Item.getItemFromBlock(BlockLoader.Beggnog));
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Beggnog));
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Beggnog), new cSM(3));
         ModelLoader.setCustomStateMapper(BlockLoader.Beggnog, new cSM(3));
 

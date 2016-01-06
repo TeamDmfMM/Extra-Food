@@ -1,6 +1,6 @@
 
 package dmf444.ExtraFood.Core.Crossmod.NEI;
-
+/*
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -98,5 +98,5 @@ public class NEICheesePressHandler extends TemplateRecipeHandler{
 		  drawProgressBar(128, 19, 176, 0, 3, 26, 125, 1);
 	  }
 	
-}
+}*/
 

@@ -1,6 +1,6 @@
 
 package dmf444.ExtraFood.Core.Crossmod.NEI;
-
+/*
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -58,9 +58,9 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 	}
 
 
-/*
+*
 	 * ADD ALL THE ITEMS FOR EACH RECIPE HERE!!!
-	 */
+	 *
 
 	ArrayList<Item> InputItems = new ArrayList<Item>(){{
 		add(ItemLoader.banana);
@@ -148,6 +148,6 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 			
 		  //JuiceBlenderRecipe recipe = (JuiceBlenderRecipe) arecipes.get(recipeI);
 	  }
-	  
-}
+
+} */
 

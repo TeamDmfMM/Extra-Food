@@ -7,15 +7,15 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class CheesePressTileEntity extends TileEntity implements ISidedInventory, IUpdatePlayerListBox {
+public class CheesePressTileEntity extends TileEntity implements ISidedInventory, ITickable {
 
     private static final int[] slots_top = new int[]{0, 1, 2};
     private static final int[] slots_bottom = new int[]{0, 1, 2, 3};
@@ -67,7 +67,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int slot) {
+    public ItemStack removeStackFromSlot(int slot) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
             setInventorySlotContents(slot, null);

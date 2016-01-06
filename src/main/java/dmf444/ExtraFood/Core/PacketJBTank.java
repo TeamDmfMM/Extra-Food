@@ -3,10 +3,15 @@ package dmf444.ExtraFood.Core;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.util.EFLog;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -20,7 +25,7 @@ public class PacketJBTank implements IMessage{
 
 	private int liquidamount;
 	private NBTTagCompound tag;
-	private int FluidID;
+	private String FluidBlock;
 
 
 	private int x;
@@ -35,10 +40,10 @@ public class PacketJBTank implements IMessage{
 	}
 
 
-	public PacketJBTank(int liquidA, NBTTagCompound nbt, int fluidid, int x, int y, int z){
+	public PacketJBTank(int liquidA, NBTTagCompound nbt, Fluid fluid, int x, int y, int z){
 		this.liquidamount = liquidA;
 		this.tag = nbt;
-		this.FluidID = fluidid;
+		this.FluidBlock = fluid.getName();
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -49,7 +54,7 @@ public class PacketJBTank implements IMessage{
 	public void fromBytes(ByteBuf buf) {
 		liquidamount = ByteBufUtils.readVarInt(buf, 5);
 		tag = ByteBufUtils.readTag(buf);
-		FluidID = ByteBufUtils.readVarInt(buf, 5);
+		FluidBlock = ByteBufUtils.readUTF8String(buf);
 		x = ByteBufUtils.readVarInt(buf, 5);
 		y = ByteBufUtils.readVarInt(buf, 5);
 		z = ByteBufUtils.readVarInt(buf, 5);
@@ -62,7 +67,7 @@ public class PacketJBTank implements IMessage{
 	public void toBytes(ByteBuf buf) {
     ByteBufUtils.writeVarInt(buf, liquidamount, 5000);
     ByteBufUtils.writeTag(buf, tag);
-    ByteBufUtils.writeVarInt(buf, FluidID, 127);
+    ByteBufUtils.writeUTF8String(buf, FluidBlock);
     ByteBufUtils.writeVarInt(buf, x, 5);
     ByteBufUtils.writeVarInt(buf, y, 5);
     ByteBufUtils.writeVarInt(buf, z, 5);
@@ -82,15 +87,15 @@ public class PacketJBTank implements IMessage{
 
 		    World w = Minecraft.getMinecraft().theWorld;
 		    if (w.isBlockLoaded(new BlockPos(message.x, message.y, message.z))){
-				EFLog.trace(message.liquidamount + "  " + message.FluidID);
+				EFLog.trace(message.liquidamount + "  " + FluidRegistry.getFluid(message.FluidBlock));
 		    	TileEntityJuiceBlender b = (TileEntityJuiceBlender)w.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		    	if (b.tank.getFluid() != null){
-                    b.tank.setFluid(new FluidStack(message.FluidID, message.liquidamount));
+                    b.tank.setFluid(new FluidStack(FluidRegistry.getFluid(message.FluidBlock), message.liquidamount));
 		    	//b.tank.getFluid().fluid = message.FluidID;
 		    	//b.tank.getFluid().amount = message.liquidamount;
 		    	}
 		    	else {
-		    		b.tank.setFluid(new FluidStack(message.FluidID, message.liquidamount));
+		    		b.tank.setFluid(new FluidStack(FluidRegistry.getFluid(message.FluidBlock), message.liquidamount));
 		    	}
 
 

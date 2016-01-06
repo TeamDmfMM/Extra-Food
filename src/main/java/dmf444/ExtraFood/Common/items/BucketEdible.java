@@ -25,6 +25,7 @@ public class BucketEdible extends ItemBucket {
 		this.SaturationLvl = saturation;
 	}
 
+
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer Player)
     {

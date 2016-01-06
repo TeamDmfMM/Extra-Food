@@ -10,18 +10,18 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 
 
-public class AutoCutterTileEntity extends TileEntity implements ISidedInventory , IUpdatePlayerListBox {
+public class AutoCutterTileEntity extends TileEntity implements ISidedInventory , ITickable {
 
 
     private ItemStack[] inv;
@@ -75,7 +75,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     }
 
 
-    public ItemStack getStackInSlotOnClosing(int slot) {
+    public ItemStack removeStackFromSlot(int slot) {
             ItemStack stack = getStackInSlot(slot);
             if (stack != null) {
                     setInventorySlotContents(slot, null);

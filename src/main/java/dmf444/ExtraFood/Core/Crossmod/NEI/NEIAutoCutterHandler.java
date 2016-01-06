@@ -1,6 +1,6 @@
 
 package dmf444.ExtraFood.Core.Crossmod.NEI;
-
+/*
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -109,5 +109,5 @@ public class NEIAutoCutterHandler extends TemplateRecipeHandler{
 		  drawProgressBar(116 - 5, 34 - 11, 176, 0, 10, 28, 100, 1);
 		  AutoCutterRecipe recipe = (AutoCutterRecipe) arecipes.get(recipeI);
 	  }
-}
+}*/
 
