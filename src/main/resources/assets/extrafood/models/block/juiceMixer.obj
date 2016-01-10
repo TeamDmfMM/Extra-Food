@@ -1,6 +1,6 @@
 # Blender v2.71 (sub 0) OBJ File: 'JuiceMixer.blend'
 # www.blender.org
-mtllib JuiceMixer.mtl
+mtllib juiceMixer.mtl
 o Cube
 v 1.000000 -0.011292 -1.000000
 v 1.000000 -0.011290 1.000000

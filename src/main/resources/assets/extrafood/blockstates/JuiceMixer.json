@@ -1,14 +1,12 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "textures": {
-      "material": "extrafood:textures/models/JuiceMixer1.png"
-    },
-	"custom": { "flip-v": true },
 	"model": "extrafood:juiceMixer.obj"
   },
   "variants": {
 	"normal": [{}],
-	"inventory": [{}]
+	"inventory": [{
+	  "transform": "forge:default-block"
+	}]
   }
 }

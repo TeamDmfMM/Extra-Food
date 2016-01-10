@@ -37,6 +37,7 @@ public class JuiceMixerModel {
 	private static final Function<ResourceLocation, TextureAtlasSprite> TEXTUREGETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
 		@Override
 		public TextureAtlasSprite apply(ResourceLocation input) {
+			EFLog.fatal(input.toString() +" ::::" +Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString()));
 			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString());
 		}
 	};
@@ -47,8 +48,8 @@ public class JuiceMixerModel {
 			OBJModel model = ((OBJModel) OBJLoader.instance.loadModel(new ResourceLocation("extrafood:models/block/juiceMixer.obj")));
 
 			// Apply the texture and flip the v's of the model
-			IModel ovenModel = ((OBJModel) model.retexture(ImmutableMap.of("#Material", "extrafood:textures/models/JuiceMixer1.png"))).process(ImmutableMap.of("flip-v", "true"));
-			EFLog.fatal(ovenModel.getTextures().toString());
+			IModel ovenModel = ((OBJModel) model.retexture(ImmutableMap.of("#Material", "extrafood:models/JuiceMixer1.png"))).process(ImmutableMap.of("flip-v", "true"));
+
 			oven = ovenModel.bake(new OBJModel.OBJState(ImmutableList.of("Cube"), false), Attributes.DEFAULT_BAKED_FORMAT, TEXTUREGETTER);
 
 
