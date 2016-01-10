@@ -73,22 +73,22 @@ public class OliveLeaf extends BananaLeaf{
         {
             i |= 8;
         }
-        int addenum=1000;
+        int addenum=10000;
         switch (((Integer)state.getValue(METALVL)).intValue()){
             case 0:
-                addenum = 1000;
+                addenum = 10000;
                 break;
             case 1:
-                addenum = 2000;
+                addenum = 20000;
                 break;
             case 2:
-                addenum = 3000;
+                addenum = 30000;
                 break;
             case 3:
-                addenum = 4000;
+                addenum = 40000;
                 break;
             case 5:
-                addenum = 5000;
+                addenum = 50000;
                 break;
     }
         return addenum+i;
@@ -96,7 +96,7 @@ public class OliveLeaf extends BananaLeaf{
     public IBlockState getStateFromMeta(int meta)
     {
         int one = Integer.parseInt("" + Integer.toString(meta).charAt(0));
-        int metaz = meta - (one*1000);
+        int metaz = meta - (one*10000);
 
 
         return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((metaz & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((metaz & 8) > 0)).withProperty(METALVL, one);

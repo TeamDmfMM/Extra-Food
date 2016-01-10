@@ -69,7 +69,7 @@ dependencies {
     //compile "codechicken:CodeChickenCore:1.8-1.0.5.36:dev"
     //compile "codechicken:NotEnoughItems:1.8-1.0.5.82:dev"
     //compile "codechicken:CodeChickenLib:1.8-1.1.2.133:dev"
-    //compile "mcp.mobius.waila:Waila:1.6.0_B1_1.8.1:dev"
+    compile "mcp.mobius.waila:Waila:1.6.0_B3_1.8.8:dev"
 	
 	
     // you may put jars on which you depend on in ./libs

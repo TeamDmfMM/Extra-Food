@@ -8,6 +8,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.input.Mouse;
@@ -437,26 +438,27 @@ public class CookBookGUI extends GuiScreen {
         GL11.glEnable(GL11.GL_LINE_SMOOTH);//2848
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST); //3154, 4354
         GL11.glDisable(GL11.GL_LIGHTING);
-        tess.getWorldRenderer().startDrawing(GL11.GL_LINE_STRIP);
-        tess.getWorldRenderer().setColorRGBA_F(1f, 1f, 1f, 1f);
+        tess.getWorldRenderer().begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
+        tess.getWorldRenderer().color(1f, 1f, 1f, 1f);
     	for(double t=0.0;t<=1;t+=0.09)  
     	{  
     	    int x = (int) (  (1-t)*(1-t)*startX + 2*(1-t)*t*bezierX+t*t*endX);  
-    	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);  
-    	  
-    	    //plot something @  x,y coordinate here...
-    	    tess.getWorldRenderer().setColorRGBA_F(0.0f, 0.0f, 0.3f, 1.0f);
-    	    tess.getWorldRenderer().addVertex(x, y, t);
-    	    tess.getWorldRenderer().setBrightness(100);
-    	    
-    	    
-    	}
-    	GL11.glColor4d(1, 1, 1, 1);
-    	tess.getWorldRenderer().setColorRGBA_F(1f, 1f, 1f, 1f);
-        tess.getWorldRenderer().finishDrawing();
+    	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);
 
-    	//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770, 771
-        GL11.glDisable(GL11.GL_LINE_SMOOTH);//2848
+        //plot something @  x,y coordinate here...
+        tess.getWorldRenderer().color(0.0f, 0.0f, 0.3f, 1.0f);
+        tess.getWorldRenderer().pos(x, y, t);
+        tess.getWorldRenderer().endVertex();
+        //tess.getWorldRenderer().setBrightness(100);
+
+
+    }
+    GL11.glColor4d(1, 1, 1, 1);
+    tess.getWorldRenderer().color(1f, 1f, 1f, 1f);
+    tess.getWorldRenderer().finishDrawing();
+
+    //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770, 771
+    GL11.glDisable(GL11.GL_LINE_SMOOTH);//2848
         GL11.glDisable(GL11.GL_BLEND);//3042
         //GL11.glDisable(32826/*GL_RESCALE_NORMAL_EXT*/);
         GL11.glEnable(GL11.GL_LIGHTING);

@@ -1,16 +1,18 @@
 package dmf444.ExtraFood.Client.renderer;
 
+import dmf444.ExtraFood.Core.lib.GuiLib;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
-/*
+
+import net.minecraft.client.resources.model.IBakedModel;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.obj.OBJModel;
 import org.lwjgl.opengl.GL11;
 
-import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 
 public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
 	 
@@ -20,7 +22,7 @@ public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
 	}
 	
 	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale, int hitx) {
 		   //The PushMatrix tells the renderer to "start" doing something.
         GL11.glPushMatrix();
 //This is setting the initial location.
@@ -51,19 +53,19 @@ public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
         GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
 
 //Use in 1.6.2  this
-        ResourceLocation textures = (GuiLib.TextureJM); 
+       ResourceLocation textures = (GuiLib.TextureJM);
 //the ':' is very important
 //binding the textures
-        Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-               
-        GL11.glPushMatrix();
-        GL11.glScalef(0.5F, 0.5F, 0.5F);
-//A reference to your Model file. Again, very important.
-        this.JMmodel.render();
-//Tell it to stop rendering for both the PushMatrix's
-        GL11.glPopMatrix();
+            Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+            //GlStateManager.enableBlend();
+            GlStateManager.disableLighting();
+            JMmodel.renderModel();
+            //GlStateManager.disableBlend();
+            GlStateManager.enableLighting();
+            GlStateManager.popMatrix();
         GL11.glPopMatrix();
 }
 
 }
-*/

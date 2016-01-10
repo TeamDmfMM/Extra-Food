@@ -74,7 +74,7 @@ public class ExtraFood {
 		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
 		}
 
-		GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
+		//GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
 		
 		EventsLoader.loadEvents();
 		//Gui Handler Registration
@@ -86,6 +86,7 @@ public class ExtraFood {
 		CrossModModules.preInit();
 
         if (event.getSide() == Side.CLIENT) {
+			MinecraftForge.EVENT_BUS.register(new ExceptionTextureRegistry());
             ExceptionTextureRegistry.registerExceptiions();
 
 

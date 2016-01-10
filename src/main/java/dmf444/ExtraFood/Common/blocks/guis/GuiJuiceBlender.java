@@ -149,7 +149,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		if (fluid == null) {
 			return null;
 		}
-		TextureAtlasSprite icon = flowing ? Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFlowing().getResourceDomain()) : fluid.getStillIcon();
+		TextureAtlasSprite icon = flowing ? Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFlowing().toString()) : Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getStill().toString());
 		if (icon == null) {
 			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
 		}

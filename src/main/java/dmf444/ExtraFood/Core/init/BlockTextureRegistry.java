@@ -1,10 +1,14 @@
 package dmf444.ExtraFood.Core.init;
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.lib.BlockLib;
+import dmf444.ExtraFood.Core.lib.ModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,6 +31,8 @@ public class BlockTextureRegistry {
         registerBlock(BlockLib.bJM, 0);
         registerBlock(BlockLib.bOliveLeaf, 0);
         registerBlock(BlockLib.bOliveBush, 0);
+
+        //ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockLoader.juiceMixer), 0, new ModelResourceLocation("extrafood:" + BlockLib.bJM, "inventory"));
 
     }
 

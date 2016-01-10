@@ -73,11 +73,11 @@ public class Oven extends BlockContainer {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, entity, stack);
-        world.setBlockState(pos, state.withProperty(FACING, BPHelp.getFFE(world, pos, entity)), 2);
+        world.setBlockState(pos, state.withProperty(FACING, BPHelp.getFFE(world, pos, entity, true)), 2);
     }
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, BPHelp.getFFE(worldIn, pos, placer));
+        return this.getDefaultState().withProperty(FACING, BPHelp.getFFE(worldIn, pos, placer, true));
     }
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
@@ -118,7 +118,7 @@ public class Oven extends BlockContainer {
                 item.stackSize = 0;
             }
         }
-        EntityItem e = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockLoader.autoCutter));
+        EntityItem e = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this));
         world.spawnEntityInWorld(e);
 
     }

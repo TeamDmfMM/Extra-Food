@@ -4,6 +4,8 @@ import dmf444.ExtraFood.Client.modelbake.ModelBakeInjector;
 import dmf444.ExtraFood.Client.modelbake.TextureInjector;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.OliveLeaf;
+import dmf444.ExtraFood.Core.lib.BlockLib;
+import dmf444.ExtraFood.Core.lib.ModInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -11,8 +13,12 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 public class ExceptionTextureRegistry {
@@ -33,6 +39,8 @@ public class ExceptionTextureRegistry {
         ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Beggnog));
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Beggnog), new cSM(3));
         ModelLoader.setCustomStateMapper(BlockLoader.Beggnog, new cSM(3));
+
+        OBJLoader.instance.addDomain(ModInfo.MId);
 
         ModelLoader.setCustomStateMapper(BlockLoader.bananaLeaf, new StateMapperBase() {
             @Override
@@ -76,6 +84,11 @@ public class ExceptionTextureRegistry {
             String number = "fluid" + Integer.toString(this.fn);
             return new ModelResourceLocation("extrafood:FluidModels", number);
         }
+    }
+
+    @SubscribeEvent
+    public void onTextureStitchEvent(TextureStitchEvent event){
+        event.map.registerSprite(new ResourceLocation("extrafood:models/JuiceMixer1"));
     }
 
 }

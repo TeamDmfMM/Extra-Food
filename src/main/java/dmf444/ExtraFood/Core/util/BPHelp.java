@@ -7,7 +7,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BPHelp {
-    public static EnumFacing getFFE/*getFacingFromEntity*/(World world, BlockPos clickedBlock, EntityLivingBase entityIn)
+    public static EnumFacing getFFE/*getFacingFromEntity*/(World world, BlockPos clickedBlock, EntityLivingBase entityIn, boolean safe)
     {
         if (MathHelper.abs((float)entityIn.posX - (float)clickedBlock.getX()) < 2.0F && MathHelper.abs((float)entityIn.posZ - (float)clickedBlock.getZ()) < 2.0F)
         {
@@ -15,12 +15,12 @@ public class BPHelp {
 
             if (d0 - (double)clickedBlock.getY() > 2.0D)
             {
-                return EnumFacing.UP;
+                return  safe ? EnumFacing.SOUTH :EnumFacing.UP;
             }
 
             if ((double)clickedBlock.getY() - d0 > 0.0D)
             {
-                return EnumFacing.DOWN;
+                return safe ? EnumFacing.SOUTH: EnumFacing.DOWN;
             }
         }
 

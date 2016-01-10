@@ -1,4 +1,4 @@
-/*
+
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
 import mcp.mobius.waila.api.IWailaRegistrar;
@@ -14,4 +14,4 @@ public class WailaConfig {
 		registrar.registerBodyProvider(new WailaProviderEasterEgg(), ChocolateCake.class);
 	}
 }
-*/
+

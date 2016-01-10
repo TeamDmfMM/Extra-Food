@@ -119,13 +119,13 @@ public class CheesePress extends BlockContainer {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, entity, stack);
-        world.setBlockState(pos, state.withProperty(FACING, BPHelp.getFFE(world, pos, entity)), 2);
+        world.setBlockState(pos, state.withProperty(FACING, BPHelp.getFFE(world, pos, entity, true)), 2);
 
 
     }
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, BPHelp.getFFE(worldIn, pos, placer));
+        return this.getDefaultState().withProperty(FACING, BPHelp.getFFE(worldIn, pos, placer, true));
     }
 
 
