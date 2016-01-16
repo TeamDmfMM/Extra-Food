@@ -4,6 +4,9 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Core.PacketJBTank;
+import dmf444.ExtraFood.Core.util.EFLog;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -15,6 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 
 public class TileEntityJuiceBlender extends TileEntity implements ISidedInventory, IFluidHandler, ITickable {
@@ -194,11 +198,13 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
                 this.ttime = 0;
                 this.complete += 1;
                 if (this.complete == 20) {
-                    this.do_thingy();
                     this.ttime = 0;
                     this.complete = 0;
+                    this.do_thingy();
                 }
             }
+        } else{
+            this.complete = 0;
         }
         if (this.items[1] != null) {
             // FILL THE BUCKET
@@ -223,6 +229,9 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
                     }
                     if (items[1].stackSize == 0) {
                         this.items[1] = null;
+                    }
+                    if (!getWorld().isRemote) {
+                        ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimensionId(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }
                 }
             }

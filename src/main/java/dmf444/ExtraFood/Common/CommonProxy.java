@@ -11,4 +11,8 @@ public class CommonProxy {
 	}
 	public void intermodComm(){
 	}
+
+	public void preInit() {
+
+	}
 }

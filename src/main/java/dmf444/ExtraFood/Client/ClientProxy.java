@@ -4,8 +4,12 @@ import dmf444.ExtraFood.Client.renderer.*;
 import dmf444.ExtraFood.Common.CommonProxy;
 import dmf444.ExtraFood.Common.blocks.tileentity.*;
 import dmf444.ExtraFood.Core.lib.ModInfo;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ClientProxy extends CommonProxy{
 
@@ -26,6 +30,17 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void intermodComm(){
 		//FMLInterModComms.sendMessage("Waila", "register", WailaConfig.class.getName() + ".callbackRegister");
+	}
+
+	public void preInit() {
+		OBJLoader.instance.addDomain(ModInfo.MId);
+		MinecraftForge.EVENT_BUS.register(this);
+		OBJRender.init();
+	}
+
+	@SubscribeEvent
+	public void onTextureStitchEvent(TextureStitchEvent event){
+		event.map.registerSprite(new ResourceLocation("extrafood:model/JuiceMixer1"));
 	}
 }
 

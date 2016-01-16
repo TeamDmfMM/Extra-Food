@@ -182,7 +182,9 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 							//System.out.println("3-in");
 							if (this.inv[1].getItem() == l.getItem()){//6
 								//System.out.println("4-donein");
-
+                                if(!(this.inv[1].stackSize < 64 - l.stackSize)){
+                                    return false;
+                                }
 
 								return true;//6}
 							}

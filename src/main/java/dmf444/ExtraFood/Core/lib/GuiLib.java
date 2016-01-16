@@ -18,6 +18,6 @@ public class GuiLib {
     public static final ResourceLocation OVgui = new ResourceLocation(i, "textures/gui/Oven.png");
     
     public static final ResourceLocation ModelJM = new ResourceLocation(i, "block/juiceMixer.obj");
-    public static final ResourceLocation TextureJM = new ResourceLocation(i, "textures/models/JuiceMixer1.png");
+    public static final ResourceLocation TextureJM = new ResourceLocation(i, "textures/model/JuiceMixer1.png");
 }
       

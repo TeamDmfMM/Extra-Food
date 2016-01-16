@@ -1,5 +1,6 @@
-package dmf444.ExtraFood.Common.blocks;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -29,7 +30,7 @@ public class BananaLeaf extends BlockLeaves
 {
 
 
-    protected BananaLeaf()
+    public BananaLeaf()
     {
         super();
         this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true));

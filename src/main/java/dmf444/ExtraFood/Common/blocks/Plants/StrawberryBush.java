@@ -1,6 +1,7 @@
-package dmf444.ExtraFood.Common.blocks;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.EFTabs;
 import net.minecraft.block.Block;

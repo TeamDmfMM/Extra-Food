@@ -1,6 +1,8 @@
-package dmf444.ExtraFood.Common.blocks;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Common.blocks.Plants.BananaLeaf;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -16,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class OliveLeaf extends BananaLeaf{
+public class OliveLeaf extends BananaLeaf {
 
     public static final PropertyInteger  METALVL = PropertyInteger.create("growth", 0, 4);
 

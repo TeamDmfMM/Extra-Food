@@ -1,4 +1,4 @@
-package dmf444.ExtraFood.Common.blocks;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.WorldGen.BananaWorldGenTrees;
 import dmf444.ExtraFood.Core.EFTabs;
@@ -29,7 +29,7 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
     //public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockPlanks.EnumType.class);
     //private static final String __OBFID = "CL_00000305";
 
-    protected BananaTreeSapling()
+    public BananaTreeSapling()
     {
         float f = 0.4F;
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));

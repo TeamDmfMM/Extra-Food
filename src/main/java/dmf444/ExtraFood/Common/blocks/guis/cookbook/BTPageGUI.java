@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -211,20 +212,18 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     		/* Items 0 is in
     		 * items 1 is out
     		 */
-			if (items[0] != null){				
-			    GL11.glDisable(GL11.GL_LIGHTING);					
+			if (items[0] != null){
+				RenderHelper.enableStandardItemLighting();
 				this.irender.renderItemIntoGUI(items[0], x1 + 16, y1 + 9);
-				GL11.glEnable(GL11.GL_LIGHTING);			
+
 			}
 			if (items[9] != null){
-			GL11.glDisable(GL11.GL_LIGHTING);
+				RenderHelper.enableStandardItemLighting();
 				this.irender.renderItemIntoGUI(items[9], x1 + 16, y1 - 33);
 				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 16, y1 - 33, null);
-			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
-			GL11.glDisable(GL11.GL_LIGHTING);
+			RenderHelper.enableStandardItemLighting();
 				this.irender.renderItemIntoGUI(new ItemStack(Items.coal), x1 + 16, y1 + 49);
-			GL11.glEnable(GL11.GL_LIGHTING);
     	}
     }
     return -150;
@@ -284,10 +283,9 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     
     private void renderItem(ItemStack i, int x, int y){
         if(i != null){
-        	GL11.glDisable(GL11.GL_LIGHTING);
+			RenderHelper.enableStandardItemLighting();
         	this.irender.renderItemIntoGUI(i, x, y);
         	this.irender.renderItemOverlayIntoGUI(fontRendererObj, i, x, y, null);
-        	GL11.glEnable(GL11.GL_LIGHTING);
         }
     }
     private ItemStack conversioncheck(ItemStack i){
@@ -313,6 +311,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     GL11.glEnable(GL11.GL_BLEND);
     this.drawTexturedModalRect(x1 - 14, y1 - 51, 0, 0,  CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
     GL11.glDisable(GL11.GL_BLEND);
+		RenderHelper.enableStandardItemLighting();
 	ItemStack[] items = ExtraFood.instance.crafterPage.getArray((String) args.get(0).toString());
 	for (ItemStack i : ExtraFood.instance.crafterPage.getArray((String) args.get(0).toString())){
 		if (i != null){

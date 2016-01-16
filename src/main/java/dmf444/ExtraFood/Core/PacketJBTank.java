@@ -38,7 +38,18 @@ public class PacketJBTank implements IMessage{
 	public PacketJBTank(){ 
 		//DO NOTHING.....
 	}
-
+	public PacketJBTank(int liquidA, Fluid fluid, int x, int y, int z){
+		this.liquidamount = liquidA;
+		this.tag = null;
+		if(fluid != null) {
+			this.FluidBlock = fluid.getName();
+		}else{
+			this.FluidBlock = "ZIBBITY";
+		}
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
 	public PacketJBTank(int liquidA, NBTTagCompound nbt, Fluid fluid, int x, int y, int z){
 		this.liquidamount = liquidA;
@@ -87,16 +98,19 @@ public class PacketJBTank implements IMessage{
 
 		    World w = Minecraft.getMinecraft().theWorld;
 		    if (w.isBlockLoaded(new BlockPos(message.x, message.y, message.z))){
-				EFLog.trace(message.liquidamount + "  " + FluidRegistry.getFluid(message.FluidBlock));
-		    	TileEntityJuiceBlender b = (TileEntityJuiceBlender)w.getTileEntity(new BlockPos(message.x, message.y, message.z));
-		    	if (b.tank.getFluid() != null){
-                    b.tank.setFluid(new FluidStack(FluidRegistry.getFluid(message.FluidBlock), message.liquidamount));
-		    	//b.tank.getFluid().fluid = message.FluidID;
-		    	//b.tank.getFluid().amount = message.liquidamount;
-		    	}
-		    	else {
-		    		b.tank.setFluid(new FluidStack(FluidRegistry.getFluid(message.FluidBlock), message.liquidamount));
-		    	}
+				TileEntityJuiceBlender b = (TileEntityJuiceBlender) w.getTileEntity(new BlockPos(message.x, message.y, message.z));
+				if(!message.FluidBlock.equals("ZIBBITY")) {
+					EFLog.trace(message.liquidamount + "  " + FluidRegistry.getFluid(message.FluidBlock));
+					if (b.tank.getFluid() != null) {
+						b.tank.setFluid(new FluidStack(FluidRegistry.getFluid(message.FluidBlock), message.liquidamount));
+						//b.tank.getFluid().fluid = message.FluidID;
+						//b.tank.getFluid().amount = message.liquidamount;
+					} else {
+						b.tank.setFluid(new FluidStack(FluidRegistry.getFluid(message.FluidBlock), message.liquidamount));
+					}
+				}else{
+					b.tank.setFluid(null);
+				}
 
 
 		    }

@@ -8,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -56,6 +58,11 @@ public class JuiceRegistry {
 		catch (Exception e) {
 			return null;
 		}
+	}
+
+	public Item[] getValidItems(){
+		Item[] carl = new Item[juices.size()];
+		return Collections.list(juices.keys()).toArray(carl);
 	}
 /*	public String getTextureFromJuice(Fluid juice){
 		try {

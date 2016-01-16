@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.IFlexibleBakedModel;
 import net.minecraftforge.client.model.obj.OBJModel;
 import org.lwjgl.opengl.GL11;
 
@@ -16,7 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
 	 
-	private final JuiceMixerModel JMmodel = new JuiceMixerModel();
+
 	
 	public JuiceMixerRenderer(){
 	}
@@ -53,15 +54,14 @@ public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
         GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
 
 //Use in 1.6.2  this
-       ResourceLocation textures = (GuiLib.TextureJM);
-//the ':' is very important
-//binding the textures
+
+        IFlexibleBakedModel model = OBJRender.loadModel("block/juiceMixer.obj");
             Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.5F, 0.5F, 0.5F);
             //GlStateManager.enableBlend();
             GlStateManager.disableLighting();
-            JMmodel.renderModel();
+            OBJRender.renderModel(model, -1);
             //GlStateManager.disableBlend();
             GlStateManager.enableLighting();
             GlStateManager.popMatrix();

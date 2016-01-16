@@ -1,8 +1,8 @@
 package dmf444.ExtraFood.Common.EventHandler;
 
-import dmf444.ExtraFood.Common.blocks.BananaTreeSapling;
+import dmf444.ExtraFood.Common.blocks.Plants.BananaTreeSapling;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.blocks.OliveTreeSapling;
+import dmf444.ExtraFood.Common.blocks.Plants.OliveTreeSapling;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 

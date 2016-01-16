@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Common.blocks;
 
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
+import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
 import dmf444.ExtraFood.Core.EFTabs;
 import dmf444.ExtraFood.Core.util.BPHelp;
 import dmf444.ExtraFood.ExtraFood;
@@ -25,45 +25,26 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-
-public class BlockJuiceBlender extends BlockContainer{
+/**
+ * Default class for blocks that can be rotated, keeps all the other blocks cleaner
+ */
+public class BlockContainerRotate extends BlockContainer {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    protected BlockJuiceBlender() {
-        super(Material.rock);
+
+    public BlockContainerRotate(Material material) {
+        super(material);
         this.setCreativeTab(EFTabs.INSTANCE);
     }
 
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity == null || player.isSneaking()) {
-            return false;
-        }
-        player.openGui(ExtraFood.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
-        return true;
-    }
-
-
+    //Make sure you set this as your TileEntity class relevant for the block!
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileEntityJuiceBlender();
-    }
-    public int getRenderType() {
-        return -1;
+        return null;
     }
 
-    //It's not an opaque cube, so you need this.
-    @Override
-    public boolean isOpaqueCube() {
-        return false;
-    }
 
-    //It's not a normal block, so you need this too.
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, entity, stack);
@@ -117,8 +98,6 @@ public class BlockJuiceBlender extends BlockContainer{
 
     }
 
-
-
     //Copy for 1.8
     @SideOnly(Side.CLIENT)
     public IBlockState getStateForEntityRender(IBlockState state)
@@ -147,4 +126,5 @@ public class BlockJuiceBlender extends BlockContainer{
     {
         return new BlockState(this, new IProperty[] {FACING});
     }
+
 }

@@ -6,6 +6,7 @@ import dmf444.ExtraFood.Common.blocks.guis.cookbook.BTPageGUI;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -429,15 +430,18 @@ public class CookBookGUI extends GuiScreen {
     
     private void plotCurve(double startX, double startY, int bezierX, int bezierY, double endX, double endY){
     	Tessellator tess = Tessellator.getInstance();
-    	GL11.glPushMatrix();
+        GlStateManager.pushMatrix();
         //GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);//516
-        GL11.glDisable(GL11.GL_TEXTURE_2D);//3553
-        GL11.glEnable(GL11.GL_BLEND);//3042
+        GlStateManager.disableTexture2D();
+        GlStateManager.enableBlend();
+            //GL11.glDisable(GL11.GL_TEXTURE_2D);//3553
+            //GL11.glEnable(GL11.GL_BLEND);//3042
         //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770,771
         GL11.glLineWidth(3.6F);
         GL11.glEnable(GL11.GL_LINE_SMOOTH);//2848
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST); //3154, 4354
-        GL11.glDisable(GL11.GL_LIGHTING);
+        GlStateManager.disableLighting();
+            //GL11.glDisable(GL11.GL_LIGHTING);
         tess.getWorldRenderer().begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
         tess.getWorldRenderer().color(1f, 1f, 1f, 1f);
     	for(double t=0.0;t<=1;t+=0.09)  
@@ -464,7 +468,7 @@ public class CookBookGUI extends GuiScreen {
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_TEXTURE_2D);//3553
         //GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);//516
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
         
 

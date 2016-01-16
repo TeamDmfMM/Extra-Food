@@ -23,6 +23,8 @@ import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.ConfigHandler;
 import dmf444.ExtraFood.Core.util.EFLog;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -36,6 +38,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 
 @Mod(modid = ModInfo.MId,name = ModInfo.Mname, version = ModInfo.Vers)
@@ -68,7 +73,6 @@ public class ExtraFood {
 		ItemLoader.initiateFoods();
 		NBTFoodLoader.initiateItems();
 		NBTFoodLoader.register();
-		
 		if (ConfigHandler.GenBananaTrees){
 		GameRegistry.registerWorldGenerator(treeManager, 0);
 		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
@@ -84,12 +88,9 @@ public class ExtraFood {
 		JBTanknet.registerMessage(PacketJBTank.Handler.class, PacketJBTank.class, 1,Side.CLIENT);
 
 		CrossModModules.preInit();
-
+		proxy.preInit();
         if (event.getSide() == Side.CLIENT) {
-			MinecraftForge.EVENT_BUS.register(new ExceptionTextureRegistry());
             ExceptionTextureRegistry.registerExceptiions();
-
-
 
         }
 		

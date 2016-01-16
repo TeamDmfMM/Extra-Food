@@ -5,6 +5,7 @@ import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -93,14 +94,9 @@ public int type = 0;
 			if (stack == null){
 				this.rinder.renderItemIntoGUI(new ItemStack(this.item), xPosition + 3, yPosition + 2);
 				}else{
-				Item stack1 = new ItemStack(BlockLoader.strawberryBush).getItem();
-				if(stack.getItem().equals(stack1) || stack.getItem().equals(Item.getItemFromBlock(BlockLoader.whiteout))){
-					GL11.glEnable(GL11.GL_LIGHTING);
+					RenderHelper.enableStandardItemLighting();
 					this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
-					GL11.glDisable(GL11.GL_LIGHTING);
-				}else{
-					this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
-				}
+
 			}
 
 		GL11.glEnable(GL11.GL_LIGHTING);

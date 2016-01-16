@@ -14,16 +14,24 @@ import net.minecraft.item.ItemStack;
  * Params: inventory, id, x, y, itemidtoallow
  */
 public class SlotFilter extends Slot {
-	Item idToUse = null;
+	Item[] idToUse;
 	
 	public SlotFilter(IInventory par1iInventory, int par2, int par3, int par4, Item knife) {
 		super(par1iInventory, par2, par3, par4);
-		idToUse = knife;}
+		idToUse = new Item[]{knife};
+	}
+
+	public SlotFilter(IInventory par1iInventory, int par2, int par3, int par4, Item... items) {
+		super(par1iInventory, par2, par3, par4);
+		idToUse = items;
+	}
 		
 		// TODO Auto-generated constructor stub
 	public boolean isItemValid(ItemStack is){
-		if (is.getItem() == idToUse){
-			return true;
+		for(int i = 0; i < idToUse.length; i++){
+			if(idToUse[i].equals(is.getItem())){
+				return true;
+			}
 		}
 		return false;
 	}
