@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "extrafood:/items/olives"
+    "layer0": "extrafood:items/olives"
   },
   "display": {
     "thirdperson": {

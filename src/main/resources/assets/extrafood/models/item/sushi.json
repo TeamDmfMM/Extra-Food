@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "extrafood:/items/sushi"
+        "layer0": "extrafood:items/sushi"
     },
     "display": {
         "thirdperson": {

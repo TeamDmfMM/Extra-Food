@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "extrafood:/items/Knife"
+        "layer0": "extrafood:items/knife"
     },
     "display": {
         "thirdperson": {

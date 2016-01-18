@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "extrafood:/items/PotatoLava"
+        "layer0": "extrafood:items/PotatoLava"
     },
     "display": {
         "thirdperson": {
