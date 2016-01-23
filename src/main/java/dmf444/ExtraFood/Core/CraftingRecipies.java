@@ -110,6 +110,7 @@ public class CraftingRecipies {
 		GameRegistry.addSmelting(ItemLoader.slicedBread, new ItemStack(ItemLoader.toast, 1), 0.1F);
 		GameRegistry.addSmelting(Items.egg, new ItemStack(ItemLoader.egg), 0.1F);
 		GameRegistry.addSmelting(ItemLoader.bucketseaWater, new ItemStack(ItemLoader.bucketpurifiedwater, 1), 0.5F);
+		GameRegistry.addSmelting(ItemLoader.bucketpurifiedwater, new ItemStack(Items.water_bucket, 1), 0.5F);
 		GameRegistry.addSmelting(ItemLoader.rawHamburger, new ItemStack(ItemLoader.cookedHamburger), 0.7F);
 		GameRegistry.addSmelting(Items.milk_bucket, new ItemStack(ItemLoader.butterMilk), 0.9F);
 	}
