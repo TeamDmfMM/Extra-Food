@@ -46,7 +46,7 @@ public class Knife extends StanItem {
     
     public boolean hasContainerItem(ItemStack itemstack)
     {
-    	return false;
+    	return true;
     }
     
     public boolean getShareTag()

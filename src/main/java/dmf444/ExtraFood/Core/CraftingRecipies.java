@@ -1,14 +1,14 @@
 package dmf444.ExtraFood.Core;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.RecipeAutoCutter;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Core.util.DateUtil;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -21,9 +21,9 @@ public class CraftingRecipies {
 	//Blocks
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.cheesePress, 1), new Object[] {"ipi", "ibi", "sss", 'i', "ingotIron", 'p', "plankWood", 'b', Items.bucket, 's', new ItemStack(Blocks.stone_slab, 1, 0)}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.autoCutter, 1), new Object[] {"pki", "psp", "p p", 'p', "plankWood", 'k', ItemLoader.knife, 'i', "ingotIron", 's', "slabWood"}));
-	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.juiceBlender, 1), new Object[] {"sss", " ws", "sss", 's', new ItemStack(Blocks.stone_slab, 1, 0), 'w', "plankWood"}));
+	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.juiceBlender, 1), new Object[]{"sss", " ws", "sss", 's', new ItemStack(Blocks.stone_slab, 1, 0), 'w', "plankWood"}));
 	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.whiteout), new Object[] {"bbb", "bbb", "bbb", 'b', new ItemStack(Items.dye, 1, 15)});
-	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.oven), new Object[] {"iii", "irg", "sss", 'i', new ItemStack(Blocks.iron_block), 'r', new ItemStack(Blocks.iron_bars), 'g', new ItemStack(Blocks.glass_pane), 's', new ItemStack(Blocks.stone_slab, 1, 0)});
+	GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.oven), new Object[]{"iii", "irg", "sss", 'i', new ItemStack(Blocks.iron_block), 'r', new ItemStack(Blocks.iron_bars), 'g', new ItemStack(Blocks.glass_pane), 's', new ItemStack(Blocks.stone_slab, 1, 0)});
 	
 	//CookBook Recipies
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.cookBook, 1), new Object[] {" b ", " l ", " f ", 'b', Items.book, 'l', Items.leather, 'f', Items.apple}));
@@ -40,9 +40,10 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.icePop), new Object[] {" i ", " s ", 'i', Blocks.ice, 's', "stickWood"}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.neoIceCream), new Object[] {"vcs", " b ", 'v', "foodVanillaIceCream", 'c', "foodChocolateIceCream", 's', "foodStrawberryIceCream", 'b', Items.bowl}));
 	//Items and Food
+	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.muffinPan), new Object[]{"", "ppp", "iii", 'p', Items.paper, 'i', Items.iron_ingot}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.chocolateSpread), new Object[] {"gc ", "sb ", 'g', "itemGrater", 'c', "foodChocolate", 's', Items.bowl, 'b', "foodButter"}));
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.butter), ItemLoader.butterMilk.setContainerItem(Items.bucket)));
-	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.grater), new Object[] {"ii ", "ii ", "ss ", 'i', "ingotIron", 's', "stickWood"}));
+	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.grater, 1), new Object[] {"ii ", "ii ", "ss ", 'i', "ingotIron", 's', "stickWood"}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.pancakes, 2), new Object[] {"ws ", "bm ", 'w', Items.wheat, 's', Items.sugar, 'b', "foodButter", 'm', Items.milk_bucket}));
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.peanutButter, 1), "itemGrater", "foodPeanuts", new ItemStack (Items.bowl, 1), "foodButter"));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.grater, 1), new Object[] {"ss ", "ii ", "ii ", 's', "stickWood", 'i', "ingotIron"}));

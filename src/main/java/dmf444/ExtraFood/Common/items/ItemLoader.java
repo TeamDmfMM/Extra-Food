@@ -264,7 +264,7 @@ public class ItemLoader {
 			OreDictionary.registerOre("foodPancakes", ItemLoader.pancakes);
 			OreDictionary.registerOre("foodPeanutButter", ItemLoader.peanutButter);
 			OreDictionary.registerOre("foodChinese", ItemLoader.chineseFood);
-			OreDictionary.registerOre("itemGrater", ItemLoader.grater);
+			OreDictionary.registerOre("itemGrater", new ItemStack(ItemLoader.grater, 1, OreDictionary.WILDCARD_VALUE));
 			OreDictionary.registerOre("foodButter", ItemLoader.butter);
 			OreDictionary.registerOre("foodChocolateSpread", ItemLoader.chocolateSpread);
 			OreDictionary.registerOre("foodEgg", ItemLoader.egg);
