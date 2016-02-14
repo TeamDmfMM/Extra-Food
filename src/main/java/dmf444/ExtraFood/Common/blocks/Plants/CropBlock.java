@@ -24,7 +24,7 @@ public class CropBlock extends BlockCrops{
 	    protected Item getSeed()
 	    {	
 	        if(Crop == "tomato"){
-	        	return ItemLoader.tomato;
+	        	return ItemLoader.tomatoSeeds;
 	        }else if (Crop == "lettuce"){
 	        	return ItemLoader.rawlettuceSeeds;
 	        }
