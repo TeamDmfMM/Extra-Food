@@ -40,7 +40,7 @@ public class CraftingRecipies {
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.icePop), new Object[] {" i ", " s ", 'i', Blocks.ice, 's', "stickWood"}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.neoIceCream), new Object[] {"vcs", " b ", 'v', "foodVanillaIceCream", 'c', "foodChocolateIceCream", 's', "foodStrawberryIceCream", 'b', Items.bowl}));
 	//Items and Food
-	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.muffinPan), new Object[]{"", "ppp", "iii", 'p', Items.paper, 'i', Items.iron_ingot}));
+	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.muffinPan), new Object[]{"   ", "ppp", "iii", 'p', Items.paper, 'i', Items.iron_ingot}));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.chocolateSpread), new Object[] {"gc ", "sb ", 'g', "itemGrater", 'c', "foodChocolate", 's', Items.bowl, 'b', "foodButter"}));
 	GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.butter), ItemLoader.butterMilk.setContainerItem(Items.bucket)));
 	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.grater, 1), new Object[] {"ii ", "ii ", "ss ", 'i', "ingotIron", 's', "stickWood"}));
