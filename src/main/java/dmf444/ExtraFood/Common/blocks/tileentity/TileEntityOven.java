@@ -260,7 +260,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 
     @Override
     public int[] getSlotsForFace(EnumFacing side) {
-        return side == EnumFacing.DOWN ? slots_bottom : null;
+        return side == EnumFacing.DOWN ? slots_bottom : new int[] {};
     }
 
     @Override
