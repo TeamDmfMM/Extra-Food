@@ -125,10 +125,8 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
 
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        if (itemstack.getItem() == Items.milk_bucket) {
-            return true;
-        }
-        return false;
+        if (i == 3){ return false;}
+        return itemstack.getItem() == Items.milk_bucket;
     }
 
     @Override
