@@ -110,7 +110,7 @@ public class CookbookButtonLoader {
 		this.truth.put("cheesepress", true);
 		this.multiNum.put("cheesepress", 2);
 		AddPage("Bread", 2);
-		AddPage("sandwiches", 17);
+		AddPage("sandwiches", 15);
 		AddPage("spread", 6);
 		AddPage("worldGen", 3);
 		AddPage("butter", 2);
