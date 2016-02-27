@@ -51,7 +51,7 @@ import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.util.ConfigHandler;
 import dmf444.ExtraFood.util.EFLog;
 
-
+//FINAL VERSION OF 1.7.10 - ExtraFood-1.7.10-0.7.46a.jar
 @Mod(modid = ModInfo.MId,name = ModInfo.Mname, version = ModInfo.Vers)
 
 public class ExtraFood {
