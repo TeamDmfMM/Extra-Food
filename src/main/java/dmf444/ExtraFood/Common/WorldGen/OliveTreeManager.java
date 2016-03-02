@@ -29,7 +29,7 @@ public class OliveTreeManager implements IWorldGenerator {
     }
 
     private void generateSurface(World world, Random random, int x, int z) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             int Xcoord1 = x + random.nextInt(16); //where in chuck it generates
             int Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
             int Zcoord1 = z + random.nextInt(16); //where in chunk it generates

@@ -200,8 +200,8 @@ public class ItemLoader {
 			GameRegistry.registerItem(lettuce, ItemLib.iLet);
 			GameRegistry.registerItem(cookedpasta, ItemLib.iCP);
 			GameRegistry.registerItem(meatballs, ItemLib.iMB);
-			GameRegistry.registerItem(meatballpasta, ItemLib.iSushi);
-			GameRegistry.registerItem(sushi, ItemLib.iMBP);
+			GameRegistry.registerItem(meatballpasta, ItemLib.iMBP);
+			GameRegistry.registerItem(sushi, ItemLib.iSushi);
 			GameRegistry.registerItem(fishpieces, ItemLib.iFP);
 			GameRegistry.registerItem(pork_kebab, ItemLib.iPKeb);
 			GameRegistry.registerItem(veal_kebab, ItemLib.iVKeb);
