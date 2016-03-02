@@ -101,6 +101,6 @@ public class OliveLeaf extends BananaLeaf {
         int metaz = meta - (one*10000);
 
 
-        return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((metaz & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((metaz & 8) > 0)).withProperty(METALVL, one);
+        return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((metaz & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((metaz & 8) > 0)).withProperty(METALVL, one-1);
     }
 }
