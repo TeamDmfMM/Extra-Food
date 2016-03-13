@@ -1,9 +1,7 @@
 package dmf444.ExtraFood.Common.blocks;
 
-import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.Core.util.BPHelp;
-import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -12,7 +10,6 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

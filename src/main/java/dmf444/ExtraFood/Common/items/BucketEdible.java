@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Common.items;
 
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -9,6 +9,7 @@ import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 
 public class BucketEdible extends ItemBucket {
 	
@@ -24,7 +25,6 @@ public class BucketEdible extends ItemBucket {
 		this.FoodStat = foodBar;
 		this.SaturationLvl = saturation;
 	}
-
 
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer Player)

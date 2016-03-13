@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Common.items;
 
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;

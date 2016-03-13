@@ -1,7 +1,7 @@
 package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;

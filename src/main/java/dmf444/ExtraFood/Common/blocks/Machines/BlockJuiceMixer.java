@@ -1,26 +1,17 @@
 package dmf444.ExtraFood.Common.blocks.Machines;
 
 
-import com.google.common.collect.Lists;
 import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
-import dmf444.ExtraFood.Core.EFTabs;
-import dmf444.ExtraFood.Core.util.EFLog;
-import dmf444.ExtraFood.ExtraFood;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

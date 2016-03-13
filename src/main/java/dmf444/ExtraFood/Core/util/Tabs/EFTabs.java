@@ -1,4 +1,4 @@
-package dmf444.ExtraFood.Core;
+package dmf444.ExtraFood.Core.util.Tabs;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.lib.ModInfo;

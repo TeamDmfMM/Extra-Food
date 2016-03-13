@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Common.items;
 
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.item.ItemFood;
 
 //import net.minecraft.client.renderer.texture.IIconRegister;

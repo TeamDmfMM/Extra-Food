@@ -1,6 +1,6 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
-import dmf444.ExtraFood.Core.OvenFoodTab;
+import dmf444.ExtraFood.Core.util.Tabs.OvenFoodTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

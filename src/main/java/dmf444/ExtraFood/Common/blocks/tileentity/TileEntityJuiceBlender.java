@@ -34,8 +34,6 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
     public int ttime;
     public int complete;
 
-    public int amountin;
-    public FluidStack myjuice;
 
     public TileEntityJuiceBlender() {
         items = new ItemStack[3];
@@ -87,16 +85,12 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     @Override
     public String getName() {
-
-
         return "Juice Blender";
     }
 
 
     @Override
     public boolean hasCustomName() {
-
-
         return false;
     }
 
@@ -108,8 +102,6 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     @Override
     public int getInventoryStackLimit() {
-
-
         return 64;
     }
 
@@ -188,10 +180,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     public void update() {
 
-
         // EFLog.error(tank.getFluidAmount());
-
-
         if (this.ok()) {
             this.ttime += 1;
             if (this.ttime == 20) {

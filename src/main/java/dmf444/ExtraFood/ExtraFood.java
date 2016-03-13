@@ -1,5 +1,6 @@
 package dmf444.ExtraFood;
 
+import dmf444.ExtraFood.Client.modelbake.ModelDynGlassbottle;
 import dmf444.ExtraFood.Common.CommonProxy;
 import dmf444.ExtraFood.Common.EventHandler.EventsLoader;
 import dmf444.ExtraFood.Common.EventHandler.ExtraFood_EventBonemeal;
@@ -25,6 +26,8 @@ import dmf444.ExtraFood.Core.util.ConfigHandler;
 import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityBanner;
+import net.minecraftforge.client.model.ICustomModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -90,6 +93,7 @@ public class ExtraFood {
 		CrossModModules.preInit();
 		proxy.preInit();
         if (event.getSide() == Side.CLIENT) {
+			ModelLoaderRegistry.registerLoader(ModelDynGlassbottle.LoaderDynBucketz.instance);
             ExceptionTextureRegistry.registerExceptiions();
 
         }

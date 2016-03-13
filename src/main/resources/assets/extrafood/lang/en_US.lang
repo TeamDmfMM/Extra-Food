@@ -119,6 +119,10 @@ tile.OliveLeaf.name=Olive Leaf
 fluid.strawberryjuice=Strawberry Juice
 fluid.carrotjuice=Carrot Juice
 fluid.bananajuice=Banana Juice
+item.EFbottle.strawberryjuice.name=Bottle of Strawberry Juice
+item.EFbottle.carrotjuice.name=Bottle of Carrot Juice
+item.EFbottle.bananajuice.name=Bottle of Banana Juice
+item.EFbottle.eggnog.name=Bottle of Eggnog
 
 #FORESTRY Intergration Names
 circuit.managedBush=Bush Farm

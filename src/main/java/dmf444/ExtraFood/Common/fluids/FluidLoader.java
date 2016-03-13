@@ -1,8 +1,11 @@
 package dmf444.ExtraFood.Common.fluids;
 
+import dmf444.ExtraFood.Core.lib.ItemLib;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FluidLoader {
 	/*
@@ -16,6 +19,7 @@ public class FluidLoader {
 	public static Fluid Fstrawberryjuice;
 	public static Fluid Fcarrotjuice;
 	public static Fluid FEggnog;
+	public static Item FluidContainer;
     private static final String pre = "extrafood:blocks/fluid/";
     private static final String still = "Fluid_%s_Still";
     private static final String flow = "Fluid_%s_Flow";
@@ -24,11 +28,11 @@ public class FluidLoader {
 	public static boolean Registate=false;
 	
 	public static void initiateFluids() {
-		Fbananajuice = new Fluid("bananajuice", new ResourceLocation(pre + localize(still, "BananaJuice")), new ResourceLocation(pre + localize(flow, "BananaJuice"))).setViscosity(3000);
-		Fstrawberryjuice = new Fluid("strawberryjuice", new ResourceLocation(pre + localize(still, "StrawberryJuice")), new ResourceLocation(pre + localize(flow, "StrawberryJuice")));
-		Fcarrotjuice = new Fluid("carrotjuice", new ResourceLocation(pre + localize(still, "CarrotJuice")), new ResourceLocation(pre + localize(flow, "CarrotJuice")));
-		FEggnog = new Fluid("Eggnog", new ResourceLocation(pre + localize(still, "Eggnog")), new ResourceLocation(pre + localize(flow, "Eggnog"))).setViscosity(2000);
-		
+		Fbananajuice = new EdibleFluid("bananajuice", new ResourceLocation(pre + localize(still, "BananaJuice")), new ResourceLocation(pre + localize(flow, "BananaJuice")), 6, 0.6F).setViscosity(3000);
+		Fstrawberryjuice = new EdibleFluid("strawberryjuice", new ResourceLocation(pre + localize(still, "StrawberryJuice")), new ResourceLocation(pre + localize(flow, "StrawberryJuice")), 6, 0.8F);
+		Fcarrotjuice = new EdibleFluid("carrotjuice", new ResourceLocation(pre + localize(still, "CarrotJuice")), new ResourceLocation(pre + localize(flow, "CarrotJuice")), 6, 0.9F);
+		FEggnog = new EdibleFluid("Eggnog", new ResourceLocation(pre + localize(still, "Eggnog")), new ResourceLocation(pre + localize(flow, "Eggnog")), 9, 5.0F).setViscosity(2000);
+		FluidContainer = new GlassFluidContainer().setUnlocalizedName(ItemLib.glassContainer);
 		
 		
 		registerFluid();
@@ -39,6 +43,8 @@ public class FluidLoader {
 		FluidRegistry.registerFluid(Fstrawberryjuice);
 		FluidRegistry.registerFluid(Fcarrotjuice);
 		FluidRegistry.registerFluid(FEggnog);
+			GameRegistry.registerItem(FluidContainer, ItemLib.glassContainer);
+			GlassFluidContainer.createGlassBottles();
 
 		}
 		Registate = true;

@@ -3,6 +3,7 @@ package dmf444.ExtraFood.Common.blocks;
 import dmf444.ExtraFood.Common.blocks.Machines.*;
 import dmf444.ExtraFood.Common.blocks.Plants.*;
 import dmf444.ExtraFood.Common.blocks.tileentity.*;
+import dmf444.ExtraFood.Common.fluids.EdibleFluid;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import dmf444.ExtraFood.Core.lib.BlockLib;

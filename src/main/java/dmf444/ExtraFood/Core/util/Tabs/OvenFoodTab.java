@@ -1,9 +1,8 @@
-package dmf444.ExtraFood.Core;
+package dmf444.ExtraFood.Core.util.Tabs;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFood;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import dmf444.ExtraFood.Core.lib.ModInfo;

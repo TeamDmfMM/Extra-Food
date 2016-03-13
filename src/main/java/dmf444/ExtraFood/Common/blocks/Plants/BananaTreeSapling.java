@@ -1,7 +1,7 @@
 package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.WorldGen.BananaWorldGenTrees;
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;

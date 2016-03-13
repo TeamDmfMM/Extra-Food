@@ -2,7 +2,7 @@ package dmf444.ExtraFood.Common.items;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.EFTabs;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.Core.lib.ItemLib;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
