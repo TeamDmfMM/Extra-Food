@@ -1,8 +1,13 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
+import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
@@ -40,7 +45,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     public ArrayList<FluidStack> outputState;
 
-    public SelectedTank selected;
+    public static SelectedTank selected;
     private ItemStack[] inv;
 
     public JuiceMixerTileEntity(){
@@ -48,6 +53,9 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         selected = SelectedTank.LEFT;
     }
 
+    public static void changeSelected(SelectedTank tank){
+        selected = tank;
+    }
     @Override
     public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
         return 0;
@@ -171,7 +179,6 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public void update() {
-
     }
 
     @Override
@@ -188,4 +195,19 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public IChatComponent getDisplayName() {
         return null;
     }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        NBTTagCompound syncData = new NBTTagCompound();
+        syncData.setInteger("Meattype", selected.toInt());
+        return new S35PacketUpdateTileEntity(this.getPos(), 1, syncData);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    {
+        selected = SelectedTank.values()[pkt.getNbtCompound().getInteger("State")];
+    }
+
 }

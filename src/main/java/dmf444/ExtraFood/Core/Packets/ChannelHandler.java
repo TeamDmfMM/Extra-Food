@@ -18,7 +18,7 @@ public class ChannelHandler {
 
     public static void init(){
         EFchannel.registerMessage(PacketJBTank.Handler.class, PacketJBTank.class, 1,Side.CLIENT);
-
+        EFchannel.registerMessage(PacketSelector.Handler.class, PacketSelector.class, 2, Side.SERVER);
     }
 
 }

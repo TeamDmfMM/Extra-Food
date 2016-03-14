@@ -4,6 +4,8 @@ import dmf444.ExtraFood.Common.blocks.container.JuiceMixerContainer;
 import dmf444.ExtraFood.Common.blocks.guis.Buttons.MixerReleaseButton;
 import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
+import dmf444.ExtraFood.Core.Packets.ChannelHandler;
+import dmf444.ExtraFood.Core.Packets.PacketSelector;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.gui.GuiButton;
@@ -50,13 +52,13 @@ public class GuiJuiceMixer extends GuiContainer {
         int y = (height - ySize) / 2;
         int lx = 0;
         switch (te.selected){
-            case 0:
+            case LEFT:
                 lx = 6;//6
                 break;
-            case 1:
+            case MIDDLE:
                 lx = 31;
                 break;
-            case 2:
+            case RIGHT:
                 lx = 56;
                 break;
             default:
@@ -98,12 +100,15 @@ public class GuiJuiceMixer extends GuiContainer {
         if(isPointInRegion(7, 6, 18, 62, mouseX, mouseY)){
             //Tank 1
             EFLog.error("Clicked on tank 1");
+            ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.LEFT, te.getPos()));
         }else if(isPointInRegion(32, 6, 18, 62, mouseX, mouseY)){
             //Tank 2
             EFLog.error("Clicked on tank 2");
+            ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.MIDDLE, te.getPos()));
         }else if(isPointInRegion(57, 6, 18, 62, mouseX, mouseY)){
             //Tank 3
             EFLog.fatal("Clicked on tank 3");
+            ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.RIGHT, te.getPos()));
         }
         super.mouseReleased(mouseX, mouseY, state);
     }
