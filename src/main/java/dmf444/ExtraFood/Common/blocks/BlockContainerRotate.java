@@ -33,6 +33,8 @@ public class BlockContainerRotate extends BlockContainer {
         LEFT(-1),
         RIGHT(1),
         FRONT(0),
+        DOWN(-10),
+        UP(-11),
         BACK(-2);
 
         // Index in EnumFacing.HORIZONTALS relative to facing
@@ -42,11 +44,38 @@ public class BlockContainerRotate extends BlockContainer {
             relativeIndex = relative;
         }
 
+        public int getRelativeIndex() {
+            return this.relativeIndex;
+        }
+
         public EnumFacing getTrueDirection(EnumFacing in) {
             int facingIndex = in.getHorizontalIndex();
+            if (facingIndex == -1) {
+                if (in == EnumFacing.DOWN) {
+                    return EnumFacing.DOWN;
+                }
+                else {
+                    return EnumFacing.UP;
+                }
+            }
             facingIndex += relativeIndex;
             facingIndex %= 4;
             return EnumFacing.HORIZONTALS[facingIndex];
+        }
+
+        public static RelativeDirection getRelativeDirection(EnumFacing in, EnumFacing forwards) {
+            int index = in.getHorizontalIndex() - forwards.getHorizontalIndex();
+            for (RelativeDirection r : RelativeDirection.values()) {
+                if (r.getRelativeIndex() == index) {
+                    return r;
+                }
+            }
+            if (in == EnumFacing.DOWN) {
+                return DOWN;
+            }
+            else {
+                return UP;
+            }
         }
     }
 
@@ -55,7 +84,13 @@ public class BlockContainerRotate extends BlockContainer {
         this.setCreativeTab(EFTabs.INSTANCE);
     }
 
-    public EnumFacing getTrueDirectionFromRelative(RelativeDirection relativeDirection, World worldIn, BlockPos blockPos) {
+    public static EnumFacing getFacing(World worldIn, BlockPos blockPos) {
+        IBlockState blockState = worldIn.getBlockState(blockPos);
+        EnumFacing facingIn = blockState.getValue(FACING);
+        return facingIn;
+    }
+
+    public static EnumFacing getTrueDirectionFromRelative(RelativeDirection relativeDirection, World worldIn, BlockPos blockPos) {
         IBlockState blockState = worldIn.getBlockState(blockPos);
         EnumFacing facingIn = blockState.getValue(FACING);
         return relativeDirection.getTrueDirection(facingIn);

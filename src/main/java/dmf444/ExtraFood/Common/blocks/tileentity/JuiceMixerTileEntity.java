@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
+import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -57,32 +58,134 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
     @Override
     public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+            case LEFT:
+                return input1.fill(resource, doFill);
+            case RIGHT:
+                return input3.fill(resource, doFill);
+            case BACK:
+                return input2.fill(resource, doFill);
+            case DOWN:
+                return 0;
+            default:
+                break;
+        }
         return 0;
     }
 
     @Override
     public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
-        return null;
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+            case LEFT:
+                if (input1.getFluid().isFluidEqual(resource)) {
+                    return input1.drain(resource.amount, doDrain);
+                }
+                return null;
+            case RIGHT:
+                if (input3.getFluid().isFluidEqual(resource)) {
+                    return input3.drain(resource.amount, doDrain);
+                }
+                return null;
+            case BACK:
+                if (input2.getFluid().isFluidEqual(resource)) {
+                    return input2.drain(resource.amount, doDrain);
+                }
+                return null;
+            case DOWN:
+                if (outputState.size() == 1) {
+                    if (resource.isFluidEqual(outputState.get(0))) {
+                        return drainOutput(resource.amount, doDrain);
+                    }
+                }
+                return null;
+            default:
+                return null;
+
+        }
+    }
+
+    public FluidStack drainOutput(int maxDrain, boolean doDrain) {
+        FluidStack fluid = outputState.get(0);
+        if (outputState.size() != 1) {
+            return null;
+        }
+        int drained = maxDrain;
+        if (fluid.amount < drained)
+        {
+            drained = fluid.amount;
+        }
+        FluidStack stack = new FluidStack(fluid, drained);
+        if (doDrain) {
+            fluid.amount -= drained;
+            if (fluid.amount <= 0)
+            {
+                outputState.clear();
+            }
+            else {
+                outputState.set(0, fluid);
+            }
+
+        }
+        return stack;
     }
 
     @Override
     public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain) {
-        return null;
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+            case LEFT:
+                return input1.drain(maxDrain, doDrain);
+            case BACK:
+                return input2.drain(maxDrain, doDrain);
+            case RIGHT:
+                return input3.drain(maxDrain, doDrain);
+            case DOWN:
+                return drainOutput(maxDrain, doDrain);
+            default:
+                return null;
+        }
     }
 
     @Override
     public boolean canFill(EnumFacing from, Fluid fluid) {
-        return false;
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+            case LEFT:
+            case BACK:
+            case RIGHT:
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override
     public boolean canDrain(EnumFacing from, Fluid fluid) {
-        return false;
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+            case LEFT:
+            case BACK:
+            case RIGHT:
+                return true;
+            case DOWN:
+                if (outputState.size() == 1){
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(EnumFacing from) {
-        return new FluidTankInfo[0];
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+            case LEFT:
+                return new FluidTankInfo[] {new FluidTankInfo(input1.getFluid(), input1.getFluidAmount())};
+            case BACK:
+                return new FluidTankInfo[] {new FluidTankInfo(input2.getFluid(), input2.getFluidAmount())};
+            case RIGHT:
+                return new FluidTankInfo[] {new FluidTankInfo(input3.getFluid(), input3.getFluidAmount())};
+            default:
+                return new FluidTankInfo[0];
+        }
     }
 
     @Override

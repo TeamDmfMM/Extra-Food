@@ -3,10 +3,9 @@ package dmf444.ExtraFood.Common.blocks.container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 /**
- * Created by dmf444 on 3/14/2016. Code originally written
+ * Created by dmf444 on 3/14/2016. <-- PI DAY WOOT! Code originally written
  * for ExtraFood1.7. Do not copy without permission,
  * because that is just mean. Code is VISIBLE SOURCE, therfore
  * credit us, just don't steal large portions of this.
