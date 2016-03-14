@@ -25,7 +25,7 @@ public class MixerSquareButton extends GuiButton{
     }
 
     public void drawButton(Minecraft mc, int mouseX, int mouseY){
-        GlStateManager.pushMatrix();
+        //GlStateManager.pushMatrix();
         Minecraft.getMinecraft().renderEngine.bindTexture(GuiLib.JMgui);
         if(mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height){
             //EFLog.fatal("HELLO THERE!");
@@ -45,10 +45,10 @@ public class MixerSquareButton extends GuiButton{
                 this.drawTexturedModalRect(xPosition, yPosition, 0, 173, 27, 7);
             }
         }
-        GlStateManager.popMatrix();
+        //GlStateManager.popMatrix();
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
         fontRenderer.setUnicodeFlag(true);
-        fontRenderer.drawString(text, 178 +136 - (fontRenderer.getStringWidth(text)/2), yPosition-1, 0);
+        fontRenderer.drawString(text, (xPosition + width/2) - (fontRenderer.getStringWidth(text)/2) + 1, yPosition-1, 0);
         fontRenderer.setUnicodeFlag(false);
 
     }

@@ -62,6 +62,29 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         outputState = new ArrayList<>();
     }
 
+    public void handleClickingRelease(int tank) {
+        FluidTank toDrain = null;
+        switch (tank) {
+            case 0:
+                toDrain = input1;
+                break;
+            case 1:
+                toDrain = input2;
+                break;
+            case 2:
+                toDrain = input3;
+                break;
+        }
+        FluidStack drainable = toDrain.drain(500, false);
+        if (drainable == null || drainable.amount < 500) {
+            return;
+        }
+        else {
+            Fluid fluid = toDrain.getFluid().getFluid();
+        }
+
+    }
+
     public void changeSelected(SelectedTank tank){
         selected = tank;
     }

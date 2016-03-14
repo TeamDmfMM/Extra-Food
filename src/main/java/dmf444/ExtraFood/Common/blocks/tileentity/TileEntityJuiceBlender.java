@@ -6,7 +6,6 @@ import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
 import dmf444.ExtraFood.Core.Packets.PacketJBTank;
-import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -48,11 +47,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     @Override
     public ItemStack getStackInSlot(int p_70301_1_) {
-
-
         return items[p_70301_1_];
-
-
     }
 
 
