@@ -442,23 +442,22 @@ public class CookBookGUI extends GuiScreen {
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST); //3154, 4354
         GlStateManager.disableLighting();
             //GL11.glDisable(GL11.GL_LIGHTING);
-        tess.getWorldRenderer().begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
-        tess.getWorldRenderer().color(1f, 1f, 1f, 1f);
+        tess.getWorldRenderer().begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_COLOR);
     	for(double t=0.0;t<=1;t+=0.09)  
     	{  
     	    int x = (int) (  (1-t)*(1-t)*startX + 2*(1-t)*t*bezierX+t*t*endX);  
     	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);
 
         //plot something @  x,y coordinate here...
+            // tess.getWorldRenderer().pos(x, y, t);
         tess.getWorldRenderer().color(0.0f, 0.0f, 0.3f, 1.0f);
-        tess.getWorldRenderer().pos(x, y, t);
+
         tess.getWorldRenderer().endVertex();
         //tess.getWorldRenderer().setBrightness(100);
 
 
     }
     GL11.glColor4d(1, 1, 1, 1);
-    tess.getWorldRenderer().color(1f, 1f, 1f, 1f);
     tess.getWorldRenderer().finishDrawing();
 
     //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770, 771

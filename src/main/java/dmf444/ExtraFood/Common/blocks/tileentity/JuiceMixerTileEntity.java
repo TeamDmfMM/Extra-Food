@@ -12,6 +12,12 @@ import net.minecraftforge.fluids.*;
 import java.util.ArrayList;
 
 public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, ITickable, IInventory{
+
+    // Back is middle
+    // L is L
+    // R is R
+    // Bottom is  out
+
     public FluidTank input1;
     public FluidTank input2;
     public FluidTank input3;
