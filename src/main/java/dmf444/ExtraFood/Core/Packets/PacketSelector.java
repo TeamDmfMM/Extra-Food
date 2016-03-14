@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Core.Packets;
 
+import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;

@@ -2,6 +2,7 @@ package dmf444.ExtraFood.Common.blocks.guis;
 
 import dmf444.ExtraFood.Common.blocks.container.JuiceMixerContainer;
 import dmf444.ExtraFood.Common.blocks.guis.Buttons.MixerReleaseButton;
+import dmf444.ExtraFood.Common.blocks.guis.Buttons.MixerSquareButton;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
 import dmf444.ExtraFood.Core.Packets.PacketSelector;
@@ -86,9 +87,11 @@ public class GuiJuiceMixer extends GuiContainer {
     private void addButtons() {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
-        this.buttonList.add(new MixerReleaseButton(0, x + 12, y + 71));
-        this.buttonList.add(new MixerReleaseButton(1, x + 12 + 25, y + 71));
-        this.buttonList.add(new MixerReleaseButton(2, x + 12 + 50, y + 71));
+        this.buttonList.add(new MixerReleaseButton(0, x + 13, y + 71));
+        this.buttonList.add(new MixerReleaseButton(1, x + 13 + 25, y + 71));
+        this.buttonList.add(new MixerReleaseButton(2, x + 13 + 50, y + 71));
+        this.buttonList.add(new MixerSquareButton(3, x+121, y+58, "MAKE", false));
+        this.buttonList.add(new MixerSquareButton(3, x+121, y+68, "DELETE", true));
     }
 
     private void drawBkgd() {
