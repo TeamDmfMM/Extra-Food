@@ -58,7 +58,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         selected = SelectedTank.LEFT;
     }
 
-    public static void changeSelected(SelectedTank tank){
+    public void changeSelected(SelectedTank tank){
         selected = tank;
     }
     @Override
