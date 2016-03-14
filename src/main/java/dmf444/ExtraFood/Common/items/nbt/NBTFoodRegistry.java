@@ -7,10 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.*;
 
 public class NBTFoodRegistry {
 	
@@ -20,7 +17,7 @@ public class NBTFoodRegistry {
 	
 	public NBTFoodSpecs getSpecs(String name){
 		for (NBTFoodSpecs i : foods){
-			if (i.name == name){
+			if (Objects.equals(i.name, name)){
 				return i;
 			}
 		}

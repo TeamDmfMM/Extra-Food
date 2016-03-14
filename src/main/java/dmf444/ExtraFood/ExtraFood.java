@@ -1,6 +1,7 @@
 package dmf444.ExtraFood;
 
 import dmf444.ExtraFood.Client.modelbake.ModelDynGlassbottle;
+import dmf444.ExtraFood.Client.modelbake.NBTFoodModel;
 import dmf444.ExtraFood.Common.CommonProxy;
 import dmf444.ExtraFood.Common.EventHandler.EventsLoader;
 import dmf444.ExtraFood.Common.EventHandler.ExtraFood_EventBonemeal;
@@ -8,7 +9,6 @@ import dmf444.ExtraFood.Common.RecipeHandler.CRPageCraftGet;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
-import dmf444.ExtraFood.Common.WorldGen.OliveTreeManager;
 import dmf444.ExtraFood.Common.WorldGen.TreeManager;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
@@ -24,9 +24,6 @@ import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.ConfigHandler;
 import dmf444.ExtraFood.Core.util.EFLog;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityBanner;
-import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -40,10 +37,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 
 @Mod(modid = ModInfo.MId,name = ModInfo.Mname, version = ModInfo.Vers)
@@ -94,6 +87,7 @@ public class ExtraFood {
 		proxy.preInit();
         if (event.getSide() == Side.CLIENT) {
 			ModelLoaderRegistry.registerLoader(ModelDynGlassbottle.LoaderDynBucketz.instance);
+			ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
             ExceptionTextureRegistry.registerExceptiions();
 
         }

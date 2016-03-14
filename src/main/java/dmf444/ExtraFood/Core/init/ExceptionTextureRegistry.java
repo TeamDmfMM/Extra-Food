@@ -1,10 +1,11 @@
 package dmf444.ExtraFood.Core.init;
 
-import dmf444.ExtraFood.Client.modelbake.ModelBakeInjector;
+//import dmf444.ExtraFood.Client.modelbake.ModelBakeInjector;
 import dmf444.ExtraFood.Client.modelbake.TextureInjector;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.Plants.OliveLeaf;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -13,7 +14,6 @@ import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelFluid;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -22,6 +22,8 @@ public class ExceptionTextureRegistry {
 
     public static void registerExceptiions(){
         registerItemModel(FluidLoader.FluidContainer, 0, "EFglassBottle");
+        registerItemModel(NBTFoodLoader.getItem("pizza"), 0, "NBTpizza");
+        registerItemModel(NBTFoodLoader.getItem("muffin"), 0, "NBTmuffin");
 
         ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice));
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice), new cSM(0));
@@ -57,7 +59,7 @@ public class ExceptionTextureRegistry {
             }
         });
 
-        MinecraftForge.EVENT_BUS.register(new ModelBakeInjector());
+       // MinecraftForge.EVENT_BUS.register(new ModelBakeInjector());
         MinecraftForge.EVENT_BUS.register(new TextureInjector());
 
     }

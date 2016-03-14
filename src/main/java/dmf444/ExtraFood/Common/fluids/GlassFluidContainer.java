@@ -28,7 +28,8 @@ import java.util.List;
  * because that is just mean. Code is VISIBLE SOURCE, therfore
  * credit us, just don't steal large portions of this.
  */
-public class GlassFluidContainer extends Item{
+public class
+GlassFluidContainer extends Item{
 
     private static ArrayList<Fluid> list = new ArrayList();
 
