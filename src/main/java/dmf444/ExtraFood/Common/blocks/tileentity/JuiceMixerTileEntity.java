@@ -13,6 +13,22 @@ import java.util.ArrayList;
 
 public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, ITickable, IInventory{
 
+    public enum SelectedTank {
+        LEFT(0),
+        MIDDLE(1),
+        RIGHT(2);
+
+        private int id;
+
+        SelectedTank(int id) {
+            this.id = id;
+        }
+
+        public int toInt() {
+            return this.id;
+        }
+    }
+
     // Back is middle
     // L is L
     // R is R
@@ -24,12 +40,12 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     public ArrayList<FluidStack> outputState;
 
-    public int selected;
+    public SelectedTank selected;
     private ItemStack[] inv;
 
     public JuiceMixerTileEntity(){
         inv = new ItemStack[4];
-        selected = 0;
+        selected = SelectedTank.LEFT;
     }
 
     @Override
