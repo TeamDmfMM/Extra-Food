@@ -4,8 +4,8 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.PacketJBTank;
-import dmf444.ExtraFood.Core.util.EFLog;
+import dmf444.ExtraFood.Core.Packets.ChannelHandler;
+import dmf444.ExtraFood.Core.Packets.PacketJBTank;
 import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -220,7 +220,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
                         this.items[1] = null;
                     }
                     if (!getWorld().isRemote) {
-                        ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimensionId(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
+                        ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimensionId(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }
                 }
             }

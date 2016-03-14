@@ -2,7 +2,8 @@
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.Core.PacketJBTank;
+import dmf444.ExtraFood.Core.Packets.ChannelHandler;
+import dmf444.ExtraFood.Core.Packets.PacketJBTank;
 import dmf444.ExtraFood.ExtraFood;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -57,7 +58,7 @@ public class WailaProviderJuiceBlender implements IWailaDataProvider{
         if (te != null){
         	TileEntityJuiceBlender tileEntity = (TileEntityJuiceBlender) te;
         	if(tileEntity.tank.getFluid() != null){
-        		ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), new TargetPoint(tileEntity.getWorld().provider.getDimensionId(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), 10));
+				ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), new TargetPoint(tileEntity.getWorld().provider.getDimensionId(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), 10));
         	}
         }
         return tag;

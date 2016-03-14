@@ -17,7 +17,8 @@ import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import dmf444.ExtraFood.Core.CraftingRecipies;
 import dmf444.ExtraFood.Core.Crossmod.CrossModModules;
 import dmf444.ExtraFood.Core.GuiHandler;
-import dmf444.ExtraFood.Core.PacketJBTank;
+import dmf444.ExtraFood.Core.Packets.ChannelHandler;
+import dmf444.ExtraFood.Core.Packets.PacketJBTank;
 import dmf444.ExtraFood.Core.init.BlockTextureRegistry;
 import dmf444.ExtraFood.Core.init.ExceptionTextureRegistry;
 import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
@@ -52,8 +53,7 @@ public class ExtraFood {
 	public static CRPageCraftGet crafterPage;
 	public static RegistryAutoCutter registryCutter;
 	TreeManager treeManager = new TreeManager();
-	
-	public static SimpleNetworkWrapper JBTanknet;
+
 
 	
 	
@@ -80,8 +80,7 @@ public class ExtraFood {
 		//Gui Handler Registration
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		//Init the packet Handler
-		JBTanknet = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MId);
-		JBTanknet.registerMessage(PacketJBTank.Handler.class, PacketJBTank.class, 1,Side.CLIENT);
+		ChannelHandler.init();
 
 		CrossModModules.preInit();
 		proxy.preInit();
