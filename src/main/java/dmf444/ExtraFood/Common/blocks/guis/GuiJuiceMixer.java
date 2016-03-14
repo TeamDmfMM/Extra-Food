@@ -105,14 +105,17 @@ public class GuiJuiceMixer extends GuiContainer {
             //Tank 1
             EFLog.error("Clicked on tank 1");
             ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.LEFT, te.getPos()));
+            te.changeSelected(JuiceMixerTileEntity.SelectedTank.LEFT);
         }else if(isPointInRegion(32, 6, 18, 62, mouseX, mouseY)){
             //Tank 2
             EFLog.error("Clicked on tank 2");
             ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.MIDDLE, te.getPos()));
+            te.changeSelected(JuiceMixerTileEntity.SelectedTank.MIDDLE);
         }else if(isPointInRegion(57, 6, 18, 62, mouseX, mouseY)){
             //Tank 3
             EFLog.fatal("Clicked on tank 3");
             ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.RIGHT, te.getPos()));
+            te.changeSelected(JuiceMixerTileEntity.SelectedTank.RIGHT);
         }
         super.mouseReleased(mouseX, mouseY, state);
     }

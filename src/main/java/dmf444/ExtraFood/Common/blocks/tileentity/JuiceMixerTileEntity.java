@@ -345,6 +345,9 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
         for (int i = 0; i < 4; i++) {
             ItemStack stacky = this.inv[i];
+            if (stacky == null) {
+                continue;
+            }
             NBTTagCompound stackCompound = new NBTTagCompound();
             stacky.writeToNBT(stackCompound);
             stackCompound.setInteger("Slot", i);
