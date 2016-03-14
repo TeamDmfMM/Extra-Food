@@ -56,6 +56,10 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public JuiceMixerTileEntity(){
         inv = new ItemStack[4];
         selected = SelectedTank.LEFT;
+        input1 = new FluidTank(2000);
+        input2 = new FluidTank(2000);
+        input3 = new FluidTank(2000);
+        outputState = new ArrayList<>();
     }
 
     public void changeSelected(SelectedTank tank){
@@ -372,3 +376,4 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         }
     }
 }
+
