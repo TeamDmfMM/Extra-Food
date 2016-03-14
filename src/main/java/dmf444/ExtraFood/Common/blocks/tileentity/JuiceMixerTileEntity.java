@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -32,6 +33,10 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         public int toInt() {
             return this.id;
         }
+
+        public static SelectedTank fromInt(int i) {
+            return SelectedTank.values()[i];
+        }
     }
 
     // Back is middle
@@ -45,7 +50,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     public ArrayList<FluidStack> outputState;
 
-    public static SelectedTank selected;
+    public SelectedTank selected;
     private ItemStack[] inv;
 
     public JuiceMixerTileEntity(){
@@ -299,7 +304,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public Packet getDescriptionPacket()
     {
         NBTTagCompound syncData = new NBTTagCompound();
-        syncData.setInteger("Meattype", selected.toInt());
+        syncData.setInteger("State", selected.toInt());
         return new S35PacketUpdateTileEntity(this.getPos(), 1, syncData);
     }
 
@@ -309,4 +314,61 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         selected = SelectedTank.values()[pkt.getNbtCompound().getInteger("State")];
     }
 
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        NBTTagCompound fluidTank1 = new NBTTagCompound();
+        input1.writeToNBT(fluidTank1);
+        NBTTagCompound fluidTank2 = new NBTTagCompound();
+        input2.writeToNBT(fluidTank2);
+        NBTTagCompound fluidTank3 = new NBTTagCompound();
+        input3.writeToNBT(fluidTank3);
+        compound.setTag("InputTank1", fluidTank1);
+        compound.setTag("InputTank2", fluidTank2);
+        compound.setTag("InputTank3", fluidTank3);
+
+        NBTTagList output = new NBTTagList();
+        for (FluidStack f : outputState) {
+            NBTTagCompound fluidCompound = new NBTTagCompound();
+            f.writeToNBT(fluidCompound);
+            output.appendTag(fluidCompound);
+        }
+
+        compound.setTag("OutputState", output);
+        compound.setInteger("Selected", selected.toInt());
+
+        NBTTagList inventory = new NBTTagList();
+
+        for (int i = 0; i < 4; i++) {
+            ItemStack stacky = this.inv[i];
+            NBTTagCompound stackCompound = new NBTTagCompound();
+            stacky.writeToNBT(stackCompound);
+            stackCompound.setInteger("Slot", i);
+        }
+
+        compound.setTag("Inventory", inventory);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        input1.readFromNBT(compound.getCompoundTag("InputTank1"));
+        input2.readFromNBT(compound.getCompoundTag("InputTank2"));
+        input3.readFromNBT(compound.getCompoundTag("InputTank3"));
+
+        NBTTagList outputStateList = compound.getTagList("OutputState", 10);
+        for (int outputIndex = 0; outputIndex < outputStateList.tagCount(); outputIndex++) {
+            NBTTagCompound fluidStackCompound = outputStateList.getCompoundTagAt(outputIndex);
+            this.outputState.add(FluidStack.loadFluidStackFromNBT(fluidStackCompound));
+        }
+
+        selected = SelectedTank.fromInt(compound.getInteger("Selected"));
+
+        NBTTagList inventoryList = compound.getTagList("Inventory", 10);
+        for (int inventoryListIndex = 0; inventoryListIndex < inventoryList.tagCount(); inventoryListIndex++) {
+            NBTTagCompound stackCompound = inventoryList.getCompoundTagAt(inventoryListIndex);
+            int slot = stackCompound.getInteger("Slot");
+            inv[slot] = ItemStack.loadItemStackFromNBT(stackCompound);
+        }
+    }
 }
