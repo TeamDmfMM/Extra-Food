@@ -4,6 +4,7 @@ package dmf444.ExtraFood.Common.blocks.Machines;
 import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,9 +52,10 @@ public class BlockJuiceMixer extends BlockContainerRotate {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntity tileEntity = world.getTileEntity(pos);
-        if (tileEntity == null || player.isSneaking()) {
-            return false;}
-        return false;
+        if (tileEntity == null || player.isSneaking()) {return false;}
+
+        player.openGui(ExtraFood.instance, 4, world, pos.getX(), pos.getY(), pos.getZ());
+        return true;
 
 
     }

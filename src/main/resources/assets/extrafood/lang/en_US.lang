@@ -134,6 +134,7 @@ gui.JB=Juice Blender
 gui.AC=Auto Cutter
 gui.CP=Cheese Press
 gui.OV=Oven
+gui.JM=Mixer
 
 #--Cook Book Names
 cookbook.Title=Cookbook

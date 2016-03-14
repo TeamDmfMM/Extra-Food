@@ -25,6 +25,12 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public ArrayList<FluidStack> outputState;
 
     public int selected;
+    private ItemStack[] inv;
+
+    public JuiceMixerTileEntity(){
+        inv = new ItemStack[4];
+        selected = 0;
+    }
 
     @Override
     public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
@@ -58,37 +64,55 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public int getSizeInventory() {
-        return 0;
+        return inv.length;
     }
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return null;
+        return inv[index];
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return null;
+    public ItemStack decrStackSize(int slot, int amt) {
+        ItemStack stack = getStackInSlot(slot);
+        if (stack != null) {
+            if (stack.stackSize <= amt) {
+                setInventorySlotContents(slot, null);
+            } else {
+                stack = stack.splitStack(amt);
+                if (stack.stackSize == 0) {
+                    setInventorySlotContents(slot, null);
+                }
+            }
+        }
+        return stack;
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return null;
+    public ItemStack removeStackFromSlot(int slot) {
+        ItemStack stack = getStackInSlot(slot);
+        if (stack != null) {
+            setInventorySlotContents(slot, null);
+        }
+        return stack;
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-
+        inv[index] = stack;
+        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
+            stack.stackSize = getInventoryStackLimit();
+        }
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return false;
+        return true;
     }
 
     @Override
@@ -103,7 +127,10 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return false;
+        if(index == 2 || index == 3){
+            return false;
+        }
+        return true;
     }
 
     @Override

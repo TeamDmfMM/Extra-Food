@@ -41,7 +41,7 @@ public class ContainerOven extends Container {
          for (int i = 0; i < 9; i++) {
                  addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
          }
- }
+	 }
 
 	@Override
 	public boolean canInteractWith(EntityPlayer p_75145_1_) {
