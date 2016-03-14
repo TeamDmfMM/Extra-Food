@@ -80,7 +80,27 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
             return;
         }
         else {
+            toDrain.drain(500, true);
             Fluid fluid = toDrain.getFluid().getFluid();
+            int total = 0;
+            for (FluidStack fluidStack : outputState) {
+                total += fluidStack.amount;
+            }
+            if (total > 50 * 11) {
+                return;
+            }
+            ArrayList<FluidStack> outputStateNew = new ArrayList<>();
+            for (FluidStack fluidStack : outputState) {
+                if (fluidStack.getFluid() == fluid) {
+                    FluidStack newFluidStack = fluidStack.copy();
+                    newFluidStack.amount += 500;
+                    outputStateNew.add(newFluidStack);
+                }
+                else {
+                    outputStateNew.add(fluidStack.copy());
+                }
+            }
+            outputState = outputStateNew;
         }
 
     }
