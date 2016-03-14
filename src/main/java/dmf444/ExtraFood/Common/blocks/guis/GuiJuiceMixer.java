@@ -2,7 +2,6 @@ package dmf444.ExtraFood.Common.blocks.guis;
 
 import dmf444.ExtraFood.Common.blocks.container.JuiceMixerContainer;
 import dmf444.ExtraFood.Common.blocks.guis.Buttons.MixerReleaseButton;
-import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
 import dmf444.ExtraFood.Core.Packets.PacketSelector;
@@ -11,10 +10,7 @@ import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Created by mincrmatt12. Do not copy this or you will have to face
@@ -32,9 +28,15 @@ public class GuiJuiceMixer extends GuiContainer {
     }
 
     @Override
+    public void initGui() {
+        super.initGui();
+        this.addButtons();
+    }
+
+    @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         this.drawBkgd();
-        this.addButtons();
+
         this.drawFluids();
         this.drawFluidOverlay();
         this.drawSelector();
@@ -84,7 +86,9 @@ public class GuiJuiceMixer extends GuiContainer {
     private void addButtons() {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
-        this.buttonList.add(new MixerReleaseButton(0, x, (y*2)+7));
+        this.buttonList.add(new MixerReleaseButton(0, x + 12, y + 71));
+        this.buttonList.add(new MixerReleaseButton(1, x + 12 + 25, y + 71));
+        this.buttonList.add(new MixerReleaseButton(2, x + 12 + 50, y + 71));
     }
 
     private void drawBkgd() {

@@ -29,10 +29,36 @@ public class BlockContainerRotate extends BlockContainer {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
+    public enum RelativeDirection {
+        LEFT(-1),
+        RIGHT(1),
+        FRONT(0),
+        BACK(-2);
+
+        // Index in EnumFacing.HORIZONTALS relative to facing
+        private int relativeIndex;
+
+        RelativeDirection(int relative) {
+            relativeIndex = relative;
+        }
+
+        public EnumFacing getTrueDirection(EnumFacing in) {
+            int facingIndex = in.getHorizontalIndex();
+            facingIndex += relativeIndex;
+            facingIndex %= 4;
+            return EnumFacing.HORIZONTALS[facingIndex];
+        }
+    }
 
     public BlockContainerRotate(Material material) {
         super(material);
         this.setCreativeTab(EFTabs.INSTANCE);
+    }
+
+    public EnumFacing getTrueDirectionFromRelative(RelativeDirection relativeDirection, World worldIn, BlockPos blockPos) {
+        IBlockState blockState = worldIn.getBlockState(blockPos);
+        EnumFacing facingIn = blockState.getValue(FACING);
+        return relativeDirection.getTrueDirection(facingIn);
     }
 
     //Make sure you set this as your TileEntity class relevant for the block!

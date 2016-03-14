@@ -1,6 +1,5 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
-import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -151,10 +150,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        if(index == 2 || index == 3){
-            return false;
-        }
-        return true;
+        return !(index == 2 || index == 3);
     }
 
     @Override
@@ -183,7 +179,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public String getName() {
-        return null;
+        return "extrafood.juicemixerTE";
     }
 
     @Override
