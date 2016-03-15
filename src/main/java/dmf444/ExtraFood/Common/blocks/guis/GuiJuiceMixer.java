@@ -111,7 +111,7 @@ public class GuiJuiceMixer extends GuiContainer {
     private void drawFluids () {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
-        drawFluid(te.input1, x + 7, x + 6, 18, 62);
+        drawFluid(te.input1, x + 8, y + 7, 16, 60);
     }
     private void drawFluid(FluidTank fluidTank, int x, int y, int w, int h) {
         if (fluidTank.getFluid() == null) {
@@ -122,14 +122,13 @@ public class GuiJuiceMixer extends GuiContainer {
         int height = (int)(((float)h / fluidTank.getCapacity()) * fluidTank.getFluid().amount);
         int full = height / 16;
         int semi = height % 16;
-
-        if (semi > 0) { y = y - h - 16; }
+        y += h;
         for (int i = 0; i < full; i++) {
-            drawTexturedModalRect(x, y, tas, 16, 16);
             y -= 16;
+            drawTexturedModalRect(x, y, tas, w, 16);
         }
         y -= semi;
-        drawTexturedModalRect(x, y, tas, 16, semi);
+        drawTexturedModalRect(x, y, tas, w, semi);
 
     }
 

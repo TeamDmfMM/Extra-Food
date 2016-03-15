@@ -1,7 +1,7 @@
 package dmf444.ExtraFood.Common.fluids;
 
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.Core.util.EFLog;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -12,8 +12,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,7 +29,7 @@ import java.util.List;
  * because that is just mean. Code is VISIBLE SOURCE, therfore
  * credit us, just don't steal large portions of this.
  */
-public class GlassFluidContainer extends Item{
+public class GlassFluidContainer extends Item implements IFluidContainerItem{
 
     private static ArrayList<Fluid> list = new ArrayList();
 
@@ -66,7 +67,7 @@ public class GlassFluidContainer extends Item{
 
     public static void createGlassBottles(){
         for (Fluid fluid : list){
-            FluidContainerRegistry.registerFluidContainer(fluid, createFluidFilledBottle(fluid), FluidContainerRegistry.EMPTY_BOTTLE);
+            //FluidContainerRegistry.registerFluidContainer(fluid, createFluidFilledBottle(fluid), FluidContainerRegistry.EMPTY_BOTTLE);
             EFLog.fatal("Added "+fluid.getName() +" to the Registry");
         }
 
@@ -123,4 +124,56 @@ public class GlassFluidContainer extends Item{
         return 32;
     }
 
+    @Override
+    public FluidStack getFluid(ItemStack container) {
+        return new FluidStack(FluidRegistry.getFluid(container.getTagCompound().getString("fluid")), 1000);
+    }
+
+    @Override
+    public int getCapacity(ItemStack container) {
+        return 1000;
+    }
+
+    @Override
+    public int fill(ItemStack container, FluidStack resource, boolean doFill) {
+        if (container.getItem() != Items.glass_bottle) {
+            return 0;
+        }
+        else {
+            if (resource.amount != 1000) {
+                return 0;
+            }
+            else {
+                if (!list.contains(resource.getFluid())) {
+                    return 0;
+                }
+                if (doFill) {
+                    container.setItem(this);
+                    container.setTagCompound(new NBTTagCompound());
+                    container.getTagCompound().setString("fluid", resource.getFluid().getName());
+                }
+                return 1000;
+            }
+        }
+    }
+
+
+    @Override
+    public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
+        if (container.getItem() != this) {
+            return null;
+        }
+        else {
+            if (maxDrain != 1000) {
+                return null;
+            }
+            else {
+                FluidStack previous = getFluid(container);
+                if (doDrain) {
+                    container.setItem(Items.glass_bottle);
+                }
+                return previous;
+            }
+        }
+    }
 }

@@ -33,9 +33,9 @@ public class FluidLoader {
 		Fstrawberryjuice = new EdibleFluid("strawberryjuice", new ResourceLocation(pre + localize(still, "StrawberryJuice")), new ResourceLocation(pre + localize(flow, "StrawberryJuice")), 6, 0.8F);
 		Fcarrotjuice = new EdibleFluid("carrotjuice", new ResourceLocation(pre + localize(still, "CarrotJuice")), new ResourceLocation(pre + localize(flow, "CarrotJuice")), 6, 0.9F);
 		FEggnog = new EdibleFluid("Eggnog", new ResourceLocation(pre + localize(still, "Eggnog")), new ResourceLocation(pre + localize(flow, "Eggnog")), 9, 5.0F).setViscosity(2000);
-		FluidContainer = new GlassFluidContainer().setUnlocalizedName(ItemLib.glassContainer);
 		FHorribleLiquid = new EdibleFluid("disgustingMix", new ResourceLocation(pre + localize(still, "disgustingMix")), new ResourceLocation(pre + localize(flow, "disgustingMix")), -5, 0.6F).setViscosity(3500);
-		
+
+		FluidContainer = new GlassFluidContainer().setUnlocalizedName(ItemLib.glassContainer);
 		
 		registerFluid();
 	}
