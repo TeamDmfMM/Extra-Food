@@ -16,11 +16,14 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by mincrmatt12. Do not copy this or you will have to face
@@ -70,12 +73,12 @@ public class GuiJuiceMixer extends GuiContainer {
         this.drawFluidOverlay();
         this.drawSelector();
 
-
-
         for (int i = 0; i < this.buttonList.size(); ++i)
         {
             ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY);
         }
+
+        this.handleTooltips(mouseX, mouseY);
     }
 
     private void drawSelector() {
@@ -107,6 +110,48 @@ public class GuiJuiceMixer extends GuiContainer {
         this.drawTexturedModalRect(x+33, y+12, 217, 0, 16, 49);
         this.drawTexturedModalRect(x+58, y+12, 217, 0, 16, 49);
         this.drawTexturedModalRect(x+101, y+41, 199, 0, 16, 22);
+    }
+
+    private void handleTooltips(int mouseX, int mouseY) {
+        if (isPointInRegion(7, 6, 18, 62, mouseX, mouseY)) {
+            FluidTank theFluidTank = te.input1;
+            if (theFluidTank.getFluid() == null) {
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+            }
+            else {
+                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+            }
+        }
+        else if (isPointInRegion(32, 6, 18, 62, mouseX, mouseY)) {
+            FluidTank theFluidTank = te.input2;
+            if (theFluidTank.getFluid() == null) {
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+            }
+            else {
+                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+            }
+        }
+        else if (isPointInRegion(57, 6, 18, 62, mouseX, mouseY)) {
+            FluidTank theFluidTank = te.input3;
+            if (theFluidTank.getFluid() == null) {
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+            }
+            else {
+                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+            }
+        }
+        else if (isPointInRegion(101, 37, 16, 30, mouseX, mouseY)){
+            if (te.outputState.size() == 0) {
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+            }
+            else {
+                ArrayList<String> strings = new ArrayList<>(Arrays.asList("Contents:"));
+                for (FluidStack fluidStack : te.outputState) {
+                    strings.add(EnumChatFormatting.GREEN + fluidStack.getFluid().getLocalizedName(fluidStack) + ": " + EnumChatFormatting.RED + fluidStack.amount + EnumChatFormatting.WHITE + "mB");
+                }
+                drawHoveringText(strings, mouseX, mouseY);
+            }
+        }
     }
 
     private void drawFluids () {
