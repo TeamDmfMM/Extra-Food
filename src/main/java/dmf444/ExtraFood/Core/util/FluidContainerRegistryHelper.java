@@ -76,6 +76,10 @@ public class FluidContainerRegistryHelper {
     }
 
     public static int getContainerCapacity(FluidStack fluidStack, ItemStack stackInSlot) {
+        if (specialCases.containsKey(stackInSlot.getItem())) {
+            IFluidContainerItem iFluidContainerItem = specialCases.get(stackInSlot.getItem());
+            return iFluidContainerItem.getCapacity(stackInSlot);
+        }
         if (stackInSlot.getItem() instanceof IFluidContainerItem) {
             return ((IFluidContainerItem) stackInSlot.getItem()).getCapacity(stackInSlot);
         }
@@ -88,7 +92,7 @@ public class FluidContainerRegistryHelper {
         if (specialCases.containsKey(stackInSlot.getItem())) {
             IFluidContainerItem iFluidContainerItem = specialCases.get(stackInSlot.getItem());
             ItemStack working = stackInSlot.copy();
-            int amt = ((IFluidContainerItem) stackInSlot.getItem()).fill(working, fluidStack, true);
+            int amt = iFluidContainerItem.fill(working, fluidStack, true);
             if (amt != 0) {
                 return working;
             }
