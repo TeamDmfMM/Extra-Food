@@ -114,7 +114,7 @@ public class GuiJuiceMixer extends GuiContainer {
         int y = (height - ySize) / 2;
         drawFluid(te.input1, x + 8, y + 7, 16, 60);
         drawFluid(te.input2, x + 8 + 25, y + 7, 16, 60);
-        drawFluid(te.input3, x + 8 + 30, y + 7, 16, 60);
+        drawFluid(te.input3, x + 8 + 50, y + 7, 16, 60);
         // 16, 30 wh: 101 37 xy
         int offset = 0;
         for (FluidStack fluidStack : te.outputState) {
