@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.blocks.tileentity;
 
+import dmf444.ExtraFood.Common.RecipeHandler.RegistryJuiceMixer;
 import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import dmf444.ExtraFood.Common.blocks.container.JuiceMixerContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +18,7 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, ITickable, IInventory{
 
@@ -62,8 +64,18 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         input3 = new FluidTank(2000);
         outputState = new ArrayList<>();
     }
-
-    public void handleClickingRelease(int tank) {
+    public void handleMakeDestroy(int id) {
+        switch (id){
+            case 0:
+                this.outputState = new ArrayList<>(Arrays.asList(RegistryJuiceMixer.instance.getOutputForCurrent(outputState)));
+                break;
+            case 1:
+                this.outputState = new ArrayList<>();
+                break;
+        }
+    }
+    public void handleClickingRelease(int
+                                              tank) {
         FluidTank toDrain = null;
         switch (tank) {
             case 0:
@@ -81,8 +93,8 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
             return;
         }
         else {
-            toDrain.drain(500, true);
             Fluid fluid = toDrain.getFluid().getFluid();
+            toDrain.drain(500, true);
             int total = 0;
             for (FluidStack fluidStack : outputState) {
                 total += fluidStack.amount;
@@ -355,6 +367,18 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
                     }
                 }
 
+            }
+        }
+        if (getStackInSlot(JuiceMixerContainer.INPUT_2) != null) {
+            if (FluidContainerRegistry.isEmptyContainer(getStackInSlot(JuiceMixerContainer.INPUT_2))) {
+                if (outputState.size() == 1) {
+                    int amount = FluidContainerRegistry.getContainerCapacity(outputState.get(0), getStackInSlot(JuiceMixerContainer.INPUT_2));
+                    if (drainOutput(amount, false).amount == amount) {
+                        if (getStackInSlot(JuiceMixerContainer.OUTPUT_2) == null) {
+                            setInventorySlotContents(JuiceMixerContainer.OUTPUT_2, FluidContainerRegistry.fillFluidContainer(drainOutput(amount, true), getStackInSlot(JuiceMixerContainer.INPUT_2)));
+                        }
+                    }
+                }
             }
         }
 

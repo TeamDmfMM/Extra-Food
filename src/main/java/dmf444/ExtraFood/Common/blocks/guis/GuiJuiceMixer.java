@@ -5,13 +5,21 @@ import dmf444.ExtraFood.Common.blocks.guis.Buttons.MixerReleaseButton;
 import dmf444.ExtraFood.Common.blocks.guis.Buttons.MixerSquareButton;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
-import dmf444.ExtraFood.Core.Packets.PacketSelector;
+import dmf444.ExtraFood.Core.Packets.juicemixer.PacketMakeDestroy;
+import dmf444.ExtraFood.Core.Packets.juicemixer.PacketReleaseFluid;
+import dmf444.ExtraFood.Core.Packets.juicemixer.PacketSelector;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import dmf444.ExtraFood.Core.util.EFLog;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidTank;
+
+import java.io.IOException;
 
 /**
  * Created by mincrmatt12. Do not copy this or you will have to face
@@ -26,6 +34,25 @@ public class GuiJuiceMixer extends GuiContainer {
 
         this.te = tileEntity;
 
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) throws IOException {
+        super.actionPerformed(button);
+        switch (button.id) {
+            case 0:
+            case 1:
+            case 2:
+                JuiceMixerTileEntity.SelectedTank selectedTank = JuiceMixerTileEntity.SelectedTank.fromInt(button.id);
+                ChannelHandler.EFchannel.sendToServer(new PacketReleaseFluid(selectedTank, te.getPos()));
+                te.handleClickingRelease(button.id);
+                break;
+            case 3:
+            case 4:
+                ChannelHandler.EFchannel.sendToServer(new PacketMakeDestroy(button.id - 3, te.getPos()));
+                te.handleMakeDestroy(button.id - 3);
+                break;
+        }
     }
 
     @Override
@@ -81,7 +108,29 @@ public class GuiJuiceMixer extends GuiContainer {
         this.drawTexturedModalRect(x+101, y+41, 199, 0, 16, 22);
     }
 
-    private void drawFluids() {
+    private void drawFluids () {
+        int x = (width - xSize) / 2;
+        int y = (height - ySize) / 2;
+        drawFluid(te.input1, x + 7, x + 6, 18, 62);
+    }
+    private void drawFluid(FluidTank fluidTank, int x, int y, int w, int h) {
+        if (fluidTank.getFluid() == null) {
+            return;
+        }
+        TextureAtlasSprite tas = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluidTank.getFluid().getFluid().getStill().toString());
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        int height = (int)(((float)h / fluidTank.getCapacity()) * fluidTank.getFluid().amount);
+        int full = height / 16;
+        int semi = height % 16;
+
+        if (semi > 0) { y = y - h - 16; }
+        for (int i = 0; i < full; i++) {
+            drawTexturedModalRect(x, y, tas, 16, 16);
+            y -= 16;
+        }
+        y -= semi;
+        drawTexturedModalRect(x, y, tas, 16, semi);
+
     }
 
     private void addButtons() {
@@ -91,7 +140,7 @@ public class GuiJuiceMixer extends GuiContainer {
         this.buttonList.add(new MixerReleaseButton(1, x + 13 + 25, y + 71));
         this.buttonList.add(new MixerReleaseButton(2, x + 13 + 50, y + 71));
         this.buttonList.add(new MixerSquareButton(3, x+121, y+58, "MAKE", false));
-        this.buttonList.add(new MixerSquareButton(3, x+121, y+68, "DELETE", true));
+        this.buttonList.add(new MixerSquareButton(4, x+121, y+68, "DELETE", true));
     }
 
     private void drawBkgd() {

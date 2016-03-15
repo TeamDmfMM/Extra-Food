@@ -1,5 +1,8 @@
 package dmf444.ExtraFood.Core.Packets;
 
+import dmf444.ExtraFood.Core.Packets.juicemixer.PacketMakeDestroy;
+import dmf444.ExtraFood.Core.Packets.juicemixer.PacketReleaseFluid;
+import dmf444.ExtraFood.Core.Packets.juicemixer.PacketSelector;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -19,6 +22,8 @@ public class ChannelHandler {
     public static void init(){
         EFchannel.registerMessage(PacketJBTank.Handler.class, PacketJBTank.class, 1,Side.CLIENT);
         EFchannel.registerMessage(PacketSelector.Handler.class, PacketSelector.class, 2, Side.SERVER);
+        EFchannel.registerMessage(PacketMakeDestroy.Handler.class, PacketMakeDestroy.class, 3, Side.SERVER);
+        EFchannel.registerMessage(PacketReleaseFluid.Handler.class, PacketReleaseFluid.class, 4, Side.SERVER);
     }
 
 }

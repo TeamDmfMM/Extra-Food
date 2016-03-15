@@ -1,6 +1,5 @@
-package dmf444.ExtraFood.Core.Packets;
+package dmf444.ExtraFood.Core.Packets.juicemixer;
 
-import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,17 +17,17 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
  * because that is just mean. Code is VISIBLE SOURCE, therfore
  * credit us, just don't steal large portions of this.
  */
-public class PacketSelector implements IMessage{
+public class PacketReleaseFluid implements IMessage{
 
     JuiceMixerTileEntity.SelectedTank selected;
     BlockPos pos;
 
 
-    public PacketSelector(){
+    public PacketReleaseFluid(){
 
     }
 
-    public PacketSelector(JuiceMixerTileEntity.SelectedTank newSelected, BlockPos pos){
+    public PacketReleaseFluid(JuiceMixerTileEntity.SelectedTank newSelected, BlockPos pos){
         this.selected = newSelected;
         this.pos = pos;
     }
@@ -49,15 +48,15 @@ public class PacketSelector implements IMessage{
         ByteBufUtils.writeTag(buf, tag);
     }
 
-    public static class Handler implements IMessageHandler<PacketSelector, IMessage> {
+    public static class Handler implements IMessageHandler<PacketReleaseFluid, IMessage> {
 
         @Override
-        public IMessage onMessage(PacketSelector message, MessageContext ctx) {
+        public IMessage onMessage(PacketReleaseFluid message, MessageContext ctx) {
             World world = ctx.getServerHandler().playerEntity.worldObj;
 
             TileEntity tile = world.getTileEntity(message.pos);
             if(tile instanceof JuiceMixerTileEntity){
-                ((JuiceMixerTileEntity)tile).changeSelected(message.selected);
+                ((JuiceMixerTileEntity)tile).handleClickingRelease(message.selected.toInt());
             }
             return null;
         }
