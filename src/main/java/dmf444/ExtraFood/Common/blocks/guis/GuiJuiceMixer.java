@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
 import java.io.IOException;
@@ -112,10 +113,18 @@ public class GuiJuiceMixer extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawFluid(te.input1, x + 8, y + 7, 16, 60);
+        drawFluid(te.input2, x + 8 + 25, y + 7, 16, 60);
+        drawFluid(te.input3, x + 8 + 30, y + 7, 16, 60);
+        // 16, 30 wh: 101 37 xy
+        int offset = 0;
+        for (FluidStack fluidStack : te.outputState) {
+            offset += drawFluid(fluidStack, 6000, x + 101, y + 37, 16, 30, offset);
+
+        }
     }
-    private void drawFluid(FluidTank fluidTank, int x, int y, int w, int h) {
+    private int drawFluid(FluidTank fluidTank, int x, int y, int w, int h) {
         if (fluidTank.getFluid() == null) {
-            return;
+            return -1;
         }
         TextureAtlasSprite tas = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluidTank.getFluid().getFluid().getStill().toString());
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
@@ -129,7 +138,26 @@ public class GuiJuiceMixer extends GuiContainer {
         }
         y -= semi;
         drawTexturedModalRect(x, y, tas, w, semi);
+        return (16 * full) + semi;
+    }
 
+    private int drawFluid(FluidStack fluidTank, int cap, int x, int y, int w, int h, int yOffset) {
+        if (fluidTank == null) {
+            return -1;
+        }
+        TextureAtlasSprite tas = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluidTank.getFluid().getStill().toString());
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        int height = (int)(((float)h / cap) * fluidTank.amount);
+        int full = height / 16;
+        int semi = height % 16;
+        y += (h - yOffset);
+        for (int i = 0; i < full; i++) {
+            y -= 16;
+            drawTexturedModalRect(x, y, tas, w, 16);
+        }
+        y -= semi;
+        drawTexturedModalRect(x, y, tas, w, semi);
+        return (16 * full) + semi;
     }
 
     private void addButtons() {

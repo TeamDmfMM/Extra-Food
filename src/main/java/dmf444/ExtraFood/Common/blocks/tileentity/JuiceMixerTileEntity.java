@@ -93,16 +93,16 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         if (drainable == null || drainable.amount < 500) {
             return;
         }
+        int total = 0;
+        for (FluidStack fluidStack : outputState) {
+            total += fluidStack.amount;
+        }
+        if (total > 500 * 11) {
+            return;
+        }
         else {
             Fluid fluid = toDrain.getFluid().getFluid();
             toDrain.drain(500, true);
-            int total = 0;
-            for (FluidStack fluidStack : outputState) {
-                total += fluidStack.amount;
-            }
-            if (total > 50 * 11) {
-                return;
-            }
             ArrayList<FluidStack> outputStateNew = new ArrayList<>();
             boolean existed = false;
             for (FluidStack fluidStack : outputState) {
@@ -354,22 +354,24 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
                 FluidStack toAdd = FluidContainerRegistryHelper.getFluidForFilledItem(getStackInSlot(JuiceMixerContainer.INPUT_1));
 
                 if (toAdd != null) {
-                    FluidTank toFill = null;
-                    switch (selected) {
-                        case LEFT:
-                            toFill = input1;
-                            break;
-                        case MIDDLE:
-                            toFill = input2;
-                            break;
-                        case RIGHT:
-                            toFill = input3;
-                            break;
-                    }
-                    if (toFill.fill(toAdd, false) == toAdd.amount && this.getStackInSlot(JuiceMixerContainer.OUTPUT_1) == null) {
-                        this.setInventorySlotContents(JuiceMixerContainer.OUTPUT_1, FluidContainerRegistryHelper.drainFluidContainer(getStackInSlot(JuiceMixerContainer.INPUT_1)));
-                        this.setInventorySlotContents(JuiceMixerContainer.INPUT_1, null);
-                        toFill.fill(toAdd, true);
+                    if (RegistryJuiceMixer.instance.validFluid(toAdd.getFluid())) {
+                        FluidTank toFill = null;
+                        switch (selected) {
+                            case LEFT:
+                                toFill = input1;
+                                break;
+                            case MIDDLE:
+                                toFill = input2;
+                                break;
+                            case RIGHT:
+                                toFill = input3;
+                                break;
+                        }
+                        if (toFill.fill(toAdd, false) == toAdd.amount && this.getStackInSlot(JuiceMixerContainer.OUTPUT_1) == null) {
+                            this.setInventorySlotContents(JuiceMixerContainer.OUTPUT_1, FluidContainerRegistryHelper.drainFluidContainer(getStackInSlot(JuiceMixerContainer.INPUT_1)));
+                            this.setInventorySlotContents(JuiceMixerContainer.INPUT_1, null);
+                            toFill.fill(toAdd, true);
+                        }
                     }
                 }
 

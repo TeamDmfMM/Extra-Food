@@ -23,7 +23,7 @@ public class RegistryJuiceMixer {
         public RecipeJuiceMixer(int outputAmount, Fluid outputFluid, DualObjectLink<Integer, Fluid>... inputFluids) {
             this.outputAmount = outputAmount;
             this.outputFluid = outputFluid;
-            this.inputFluids = (ArrayList<DualObjectLink<Integer, Fluid>>) Arrays.asList(inputFluids);
+            this.inputFluids = new ArrayList<>(Arrays.asList(inputFluids));
         }
 
         public boolean matches(ArrayList<FluidStack> fluidStacks) {
@@ -90,13 +90,34 @@ public class RegistryJuiceMixer {
     public static RegistryJuiceMixer instance = new RegistryJuiceMixer();
 
     public ArrayList<RecipeJuiceMixer> recipes;
+    public ArrayList<Fluid> validFluids;
 
     public RegistryJuiceMixer() {
         recipes = new ArrayList<>();
+        validFluids = new ArrayList<>();
         // TODO: Add recipes
+        // Test recipe
+        addRecipe(3, FluidLoader.Fstrawberryjuice, dl(1, FluidLoader.Fbananajuice), dl(2, FluidLoader.Fcarrotjuice));
+    }
+
+    public void addRecipe(int output, Fluid outputFluid, DualObjectLink<Integer, Fluid>... fluids) {
+        RecipeJuiceMixer recipe = new RecipeJuiceMixer(output, outputFluid, fluids);
+        for (DualObjectLink<Integer, Fluid> dualObjectLink : fluids) {
+            if (!validFluids.contains(dualObjectLink.getB())) {
+                validFluids.add(dualObjectLink.getB());
+            }
+        }
+        recipes.add(recipe);
+    }
+
+    public DualObjectLink<Integer, Fluid> dl(Integer i, Fluid f) {
+        return new DualObjectLink<>(i, f);
     }
 
     public FluidStack getOutputForCurrent(ArrayList<FluidStack> fluidStacks) {
+        if (fluidStacks.size() == 1) {
+            return fluidStacks.get(0).copy();
+        }
         for (RecipeJuiceMixer recipe : recipes) {
             if (recipe.matches(fluidStacks)) {
                 int millis = 500 * recipe.output(fluidStacks);
@@ -108,6 +129,10 @@ public class RegistryJuiceMixer {
             total += fluidStack.amount;
         }
         return new FluidStack(FluidLoader.FHorribleLiquid, total);
+    }
+
+    public boolean validFluid(Fluid f) {
+        return validFluids.contains(f);
     }
 
 
