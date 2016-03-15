@@ -94,7 +94,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
     }
 
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
-        if (stack.getItem() == this){
+        if (stack.getItem() == this && player.canEat(false)){
             player.setItemInUse(stack, 32);
             return stack;
         }
@@ -110,9 +110,19 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
             if(FluidRegistry.getFluid(stack.getTagCompound().getString("fluid")) instanceof EdibleFluid) {
                 EdibleFluid edibleFluid = (EdibleFluid) FluidRegistry.getFluid(stack.getTagCompound().getString("fluid"));
                 --stack.stackSize;
-                Player.getFoodStats().addStats(edibleFluid.getHunger(), edibleFluid.getSaturation());
+                Player.getFoodStats().addStats(edibleFluid.HUNGER, edibleFluid.STARVE);
                 world.playSoundAtEntity(Player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-                return stack.stackSize <= 0 ? new ItemStack(Items.glass_bottle) : stack;
+                if (!Player.capabilities.isCreativeMode)
+                {
+                    if (stack.stackSize <= 0)
+                    {
+                        return new ItemStack(Items.glass_bottle);
+                    }
+
+                    Player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
+                }
+
+                return stack;
             }
         }
         return stack;

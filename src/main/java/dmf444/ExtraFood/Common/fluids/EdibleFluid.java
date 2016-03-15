@@ -10,8 +10,8 @@ import net.minecraftforge.fluids.Fluid;
 
 public class EdibleFluid extends Fluid {
 
-	private static int HUNGER;
-    private static float STARVE;
+    int HUNGER;
+    float STARVE;
     
     public EdibleFluid(String fluidName, ResourceLocation still, ResourceLocation flowing, int hunger, float saturation) {
         super(fluidName, still, flowing);
@@ -19,12 +19,5 @@ public class EdibleFluid extends Fluid {
         this.STARVE = saturation;
     }
 
-    public static int getHunger(){
-        return HUNGER;
-    }
-
-    public static float getSaturation(){
-        return STARVE;
-    }
     
 }

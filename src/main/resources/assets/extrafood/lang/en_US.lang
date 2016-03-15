@@ -135,6 +135,8 @@ gui.AC=Auto Cutter
 gui.CP=Cheese Press
 gui.OV=Oven
 gui.JM=Mixer
+button.make=MAKE
+button.delete=DELETE
 
 #--Cook Book Names
 cookbook.Title=Cookbook

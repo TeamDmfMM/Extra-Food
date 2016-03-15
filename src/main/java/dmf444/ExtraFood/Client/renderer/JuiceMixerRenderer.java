@@ -55,10 +55,10 @@ public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
 
 //Use in 1.6.2  this
 
-        IFlexibleBakedModel model = OBJRender.loadModel("block/juiceMixer.obj");
+        IFlexibleBakedModel model = OBJRender.loadModel("block/juiceMixer2.obj");
             Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
             GlStateManager.pushMatrix();
-            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+            GlStateManager.scale(05.5F, 05.5F, 05.5F);
             //GlStateManager.enableBlend();
             GlStateManager.disableLighting();
             OBJRender.renderModel(model, -1);

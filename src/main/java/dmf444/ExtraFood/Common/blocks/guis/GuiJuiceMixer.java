@@ -211,8 +211,8 @@ public class GuiJuiceMixer extends GuiContainer {
         this.buttonList.add(new MixerReleaseButton(0, x + 13, y + 71));
         this.buttonList.add(new MixerReleaseButton(1, x + 13 + 25, y + 71));
         this.buttonList.add(new MixerReleaseButton(2, x + 13 + 50, y + 71));
-        this.buttonList.add(new MixerSquareButton(3, x+121, y+58, "MAKE", false));
-        this.buttonList.add(new MixerSquareButton(4, x+121, y+68, "DELETE", true));
+        this.buttonList.add(new MixerSquareButton(3, x+121, y+58, StatCollector.translateToLocal("button.make"), false));
+        this.buttonList.add(new MixerSquareButton(4, x+121, y+68, StatCollector.translateToLocal("button.delete"), true));
     }
 
     private void drawBkgd() {
