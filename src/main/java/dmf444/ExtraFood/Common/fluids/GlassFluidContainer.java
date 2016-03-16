@@ -181,6 +181,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
                 FluidStack previous = getFluid(container);
                 if (doDrain) {
                     container.setItem(Items.glass_bottle);
+                    container.setTagCompound(null);
                 }
                 return previous;
             }
