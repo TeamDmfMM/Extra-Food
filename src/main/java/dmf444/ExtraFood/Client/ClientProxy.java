@@ -20,7 +20,7 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(AutoCutterTileEntity.class, new AutoCutterRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJuiceBlender.class, new RendererJuiceBlender());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOven.class, new RenderOven());
-		ClientRegistry.bindTileEntitySpecialRenderer(JuiceMixerTileEntity.class, new JuiceMixerRenderer());
+	//	ClientRegistry.bindTileEntitySpecialRenderer(JuiceMixerTileEntity.class, new JuiceMixerRenderer());
 		//JuiceRegistry.instance = new JuiceRegistry();
 
 		
@@ -35,7 +35,7 @@ public class ClientProxy extends CommonProxy{
 	public void preInit() {
 		OBJLoader.instance.addDomain(ModInfo.MId);
 		MinecraftForge.EVENT_BUS.register(this);
-		OBJRender.init();
+	//	OBJRender.init();
 	}
 
 	@SubscribeEvent
