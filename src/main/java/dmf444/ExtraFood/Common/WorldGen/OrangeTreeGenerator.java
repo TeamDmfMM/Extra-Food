@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.WorldGen;
 
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 
@@ -9,6 +10,11 @@ import net.minecraft.init.Blocks;
  */
 public class OrangeTreeGenerator extends BaseTreeGenerator {
 
+
+    @Override
+    protected IBlockState getLeafBlockWithoutCheckDecay() {
+        return Blocks.leaves2.getStateFromMeta(1).withProperty(BlockLeaves.CHECK_DECAY, false).withProperty(BlockLeaves.DECAYABLE, true);
+    }
 
     @Override
     IBlockState getHangingBlock() {

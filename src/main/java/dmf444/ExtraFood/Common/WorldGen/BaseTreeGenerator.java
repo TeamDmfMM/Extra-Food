@@ -19,7 +19,14 @@ import java.util.Random;
 public abstract class BaseTreeGenerator extends WorldGenerator {
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        int treeHeight = rand.nextInt(getMaxTreeHeight() - getMinTreeHeight()) + getMinTreeHeight();
+        int treeHeight;
+        if (getMaxTreeHeight() == getMinTreeHeight()) {
+          treeHeight = getMinTreeHeight();
+        }
+        else {
+            treeHeight = rand.nextInt(getMaxTreeHeight() - getMinTreeHeight()) + getMinTreeHeight();
+        }
+
         if (position.getY() < 1 || position.getY() > 256 - 1 - treeHeight) {
             return false;
         }
@@ -60,24 +67,35 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         }
         height[getLeavesCanopyHeight()] = 1;
         for (int leafLayer = 0; leafLayer < height.length - 1; leafLayer++) {
-            int layer = treeHeight - (height.length - (leafLayer - 1));
+            int layer = treeHeight - (height.length - (leafLayer)) + 2;
             int size = height[leafLayer];
             int startx = position.getX() - (size / 2);
             int startz = position.getZ() - (size / 2);
             for (int x = 0; x < size; x++) {
                 for (int z = 0; z < size; z++) {
                     if (x == 0 && z == 0 || x == size-1 && z == 0 || x == size-1 && z == size-1 || z == size-1 && x == 0) {
-                        if (rand.nextInt(4) < 2)
+                        if (rand.nextInt(3) < 2)
                             continue;
                     }
-                    if (x == position.getX() && z == position.getZ()) {
+                    if (x + startx == position.getX() && z + startz == position.getZ()) {
                         continue;
                     }
                     BlockPos blockPos = new BlockPos(x + startx, layer + position.getY(), z + startz);
-                    if (worldIn.getBlockState(blockPos.down()).getBlock() == Blocks.air) {
+                    if (worldIn.getBlockState(blockPos.down()).getBlock() == Blocks.air && leafLayer != 0) {
                         continue;
                     }
-                    worldIn.setBlockState(blockPos, getLeafBlock());
+                    boolean flag = false;
+                    for (EnumFacing facing : EnumFacing.values()) {
+                        if (worldIn.getBlockState(blockPos.offset(facing)).getBlock() == getWoodBlock()) {
+                         flag = true;
+                        }
+                    }
+                    if (flag) {
+                        worldIn.setBlockState(blockPos, getLeafBlock());
+                    }
+                    else {
+                        worldIn.setBlockState(blockPos, getLeafBlockWithoutCheckDecay());
+                    }
                 }
             }
         }
@@ -88,14 +106,23 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
             int startz = position.getZ() - (size / 2);
             for (int x = 0; x < size; x++) {
                 for (int z = 0; z < size; z++) {
-                    head = new BlockPos(startx + x, hangheight, startz + z);
+                    head = new BlockPos(startx + x, hangheight + position.getY() + 1, startz + z);
                     if (worldIn.isAirBlock(head) || rand.nextInt(10) > 4) {
                         continue;
                     }
-                    int tailheight = rand.nextInt(getMaximumHangingBlockHeight() - getMinimumHangingBlockHeight()) + getMinimumHangingBlockHeight();
+                    int tailheight;
+                    if (getMaximumHangingBlockHeight() == getMinimumHangingBlockHeight()) {
+                        tailheight = getMaximumHangingBlockHeight();
+                    }
+                    else {
+                        tailheight = rand.nextInt(getMaximumHangingBlockHeight() - getMinimumHangingBlockHeight()) + getMinimumHangingBlockHeight();
+                    }
+
                     for (int i = 0; i < tailheight; i++) {
                         head = head.down();
-                        if (!worldIn.isAirBlock(head)) { break; }
+                        if (worldIn.getBlockState(head.up()) != getLeafBlock()) {
+                            continue;
+                        }
                         if (hangingBlockOnEdgeOnly()) {
                             if (!(x == 0 || x == size-1)) {
                                 if (!(z == 0 || z == size - 1)) {
@@ -110,6 +137,14 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         }
         return true;
     }
+
+    /**
+     * The block used for the leaves of the tree that are not touching wood.
+     * The resulting blockstate should have decayable enabled but not check_decay,
+     *
+     * @return the leaf as a blockstate
+     */
+    protected abstract IBlockState getLeafBlockWithoutCheckDecay();
 
     /**
      * Block to be used for the hanging blocks under the tree. Only has effect if hasHangingBlocks is true
@@ -198,7 +233,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return the leaf canopy height
      */
     public int getLeavesCanopyHeight() {
-        return 4;
+        return 3;
     }
 
     /**
@@ -207,7 +242,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return minimum height of tree bark
      */
     public int getMinTreeHeight() {
-        return 4;
+        return 3;
     }
 
     /**
@@ -216,7 +251,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return maximum height of tree bark
      */
     public int getMaxTreeHeight() {
-        return 7;
+        return 6;
     }
 
     public boolean isReplaceable(World world, BlockPos pos)
