@@ -2,10 +2,10 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 
 
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
-import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
 import dmf444.ExtraFood.Core.Packets.PacketJBTank;
+import dmf444.ExtraFood.Core.util.FluidContainerRegistryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -192,28 +192,11 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
         }
         if (this.items[1] != null) {
             // FILL THE BUCKET
-            if (this.items[1].getItem() == Items.bucket && this.tank.getFluid() != null && this.items[2] == null) {
-                if (this.tank.getFluidAmount() >= 1000) {
-                    if (this.tank.getFluid().getFluid() == FluidLoader.Fstrawberryjuice) {
-                        this.items[1].stackSize -= 1;
-                        this.items[2] = new ItemStack(ItemLoader.bucketstrawberry, 1);
-                        this.tank.drain(1000, true);
-
-
-                    } else if (this.tank.getFluid().getFluid() == FluidLoader.Fbananajuice) {
-                        this.items[1].stackSize -= 1;
-                        this.items[2] = new ItemStack(ItemLoader.bucketbanana, 1);
-                        this.tank.drain(1000, true);
-
-
-                    } else if (this.tank.getFluid().getFluid() == FluidLoader.Fcarrotjuice) {
-                        this.items[1].stackSize -= 1;
-                        this.items[2] = new ItemStack(ItemLoader.bucketcarrot, 1);
-                        this.tank.drain(1000, true);
-                    }
-                    if (items[1].stackSize == 0) {
-                        this.items[1] = null;
-                    }
+            if (FluidContainerRegistryHelper.isEmptyContainer(this.items[1])) {
+                int amount = FluidContainerRegistryHelper.getContainerCapacity(this.tank.getFluid(), this.items[1]);
+                if (amount == tank.drain(amount, false).amount) {
+                    setInventorySlotContents(2, FluidContainerRegistryHelper.fillFluidContainer(tank.drain(amount, true), getStackInSlot(1)));
+                    setInventorySlotContents(1, null);
                     if (!getWorld().isRemote) {
                         ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimensionId(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }

@@ -5,11 +5,9 @@ import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
 import dmf444.ExtraFood.Core.Packets.PacketJBTank;
-import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -28,7 +26,7 @@ public class ContainerJuiceBlender extends Container{
 
 	public ContainerJuiceBlender(InventoryPlayer inventoryPlayer, TileEntityJuiceBlender te){
 		this.addSlotToContainer(new SlotFilter(te, INPUT_1, 80, 20, JuiceRegistry.instance.getValidItems()));
-		this.addSlotToContainer(new SlotFilter(te, INPUT_2, 126, 12, Items.bucket));
+		this.addSlotToContainer(new Slot(te, INPUT_2, 126, 12));
 		this.addSlotToContainer(new Slot(te, OUTPUT_1, 126, 34));
 		this.tileEntity = te;
 
