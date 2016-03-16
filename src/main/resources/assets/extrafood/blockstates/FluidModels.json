@@ -20,6 +20,10 @@
     "fluid4": {
       "model": "forge:fluid",
       "custom": { "fluid": "disgustingmix" }
+    },
+    "fluid5": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "applejuice" }
     }
   }
 }

@@ -16,7 +16,7 @@ import java.util.Random;
  * Created by mincrmatt12. Do not copy this or you will have to face
  * our legal team. (dmf444)
  */
-public class BaseTreeGenerator extends WorldGenerator {
+public abstract class BaseTreeGenerator extends WorldGenerator {
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         int treeHeight = rand.nextInt(getMaxTreeHeight() - getMinTreeHeight()) + getMinTreeHeight();
@@ -117,9 +117,7 @@ public class BaseTreeGenerator extends WorldGenerator {
      * @return block for hanging block under tree
      * @see BaseTreeGenerator#hasHangingBlocks()
      */
-    private IBlockState getHangingBlock() {
-        return null;
-    }
+    abstract IBlockState getHangingBlock();
 
     /**
      * Minimum number of hanging blocks under tree. Only has effect if hasHangingBlocks is true.
@@ -155,27 +153,21 @@ public class BaseTreeGenerator extends WorldGenerator {
      *
      * @return true if tree has hanging blocks
      */
-    private boolean hasHangingBlocks() {
-        return false;
-    }
+    abstract boolean hasHangingBlocks();
 
     /**
      * The block used for the leaves of the tree
      *
      * @return the leaf as a blockstate
      */
-    private IBlockState getLeafBlock() {
-        return null;
-    }
+    abstract IBlockState getLeafBlock();
 
     /**
      * The block used for the bark of the tree
      *
      * @return the wood block as a blockstate
      */
-    public IBlockState getWoodBlock() {
-        return null;
-    }
+    abstract IBlockState getWoodBlock();
 
     /**
      * Get the leaves width and height value, used to determine the base size of the leaf canopy. This usually works better with even numbers
@@ -206,7 +198,7 @@ public class BaseTreeGenerator extends WorldGenerator {
      * @return the leaf canopy height
      */
     public int getLeavesCanopyHeight() {
-        return 3;
+        return 4;
     }
 
     /**

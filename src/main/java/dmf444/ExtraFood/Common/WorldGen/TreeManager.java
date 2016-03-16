@@ -37,6 +37,8 @@ public class TreeManager implements IWorldGenerator {
 
             final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(Xcoord1, Ycoord1, Zcoord1));
 
+            new OrangeTreeGenerator().generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
+
             if(biome == BiomeGenBase.jungle || biome == BiomeGenBase.jungleEdge || biome == BiomeGenBase.jungleHills) {
                 new BananaWorldGenTrees(false, 6, 3, 0, true).generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
             }else if(shouldTreesSpawn(biome)){

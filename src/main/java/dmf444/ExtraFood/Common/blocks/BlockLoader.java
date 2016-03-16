@@ -32,7 +32,7 @@ public class BlockLoader {
 	public static Block juiceMixer;
 	public static Block Chocake;
 	public static Block oliveBush;
-	public static Block BdiscustingMix;
+	public static Block BdiscustingMix, BappleJuice;
 	
 	public static boolean Register=false;
 	
@@ -59,6 +59,7 @@ public class BlockLoader {
 		Bstrawberryjuice = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.water).setUnlocalizedName(BlockLib.bFluidStraw);
 		Bcarrotjuice = new GeneralFluid(FluidLoader.Fcarrotjuice, Material.water).setUnlocalizedName(BlockLib.bFluidCarrot);
 		BdiscustingMix = new GeneralFluid(FluidLoader.FHorribleLiquid, Material.water).setUnlocalizedName(BlockLib.bDisgustingMix);
+		BappleJuice = new GeneralFluid(FluidLoader.Fapplejuice, Material.water).setUnlocalizedName("SSSKJFHFGNEFS");
 
 		
 		
@@ -87,7 +88,7 @@ public class BlockLoader {
 			GameRegistry.registerBlock(oliveBush, BlockLib.bOliveBush);
 			GameRegistry.registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
 			GameRegistry.registerBlock(BdiscustingMix, BlockLib.bDisgustingMix);
-			
+			GameRegistry.registerBlock(BappleJuice, "SSSKJFHFGNEFS");
 		}
 		Register=true;
 	}

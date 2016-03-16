@@ -64,6 +64,7 @@ public class FluidLoader {
 			FluidRegistry.registerFluid(FEggnog);
 			FluidRegistry.registerFluid(FHorribleLiquid);
 			FluidRegistry.registerFluid(Fwatermelonjuice);
+			FluidRegistry.registerFluid(Fapplejuice);
 
 			GameRegistry.registerItem(FluidContainer, ItemLib.glassContainer);
 			GlassFluidContainer.createGlassBottles();
