@@ -54,21 +54,24 @@ public class BaseTreeGenerator extends WorldGenerator {
         for (int i = 0; i < getLeavesCanopyHeight(); i++) {
             height[i] = (int)current;
             current -= value;
-            if (current < 2) {
-                current = 2;
+            if (current < 3) {
+                current = 3;
             }
         }
         height[getLeavesCanopyHeight()] = 1;
-        for (int leafLayer = 0; leafLayer < height.length; leafLayer++) {
-            int layer = treeHeight - (leafLayer + 1);
+        for (int leafLayer = 0; leafLayer < height.length - 1; leafLayer++) {
+            int layer = treeHeight - (height.length - (leafLayer - 1));
             int size = height[leafLayer];
             int startx = position.getX() - (size / 2);
             int startz = position.getZ() - (size / 2);
-            for (int x = 0; x < size++; x++) {
+            for (int x = 0; x < size; x++) {
                 for (int z = 0; z < size; z++) {
                     if (x == 0 && z == 0 || x == size-1 && z == 0 || x == size-1 && z == size-1 || z == size-1 && x == 0) {
                         if (rand.nextInt(4) < 2)
                             continue;
+                    }
+                    if (x == position.getX() && z == position.getZ()) {
+                        continue;
                     }
                     BlockPos blockPos = new BlockPos(x + startx, layer + position.getY(), z + startz);
                     if (worldIn.getBlockState(blockPos.down()).getBlock() == Blocks.air) {
@@ -78,9 +81,83 @@ public class BaseTreeGenerator extends WorldGenerator {
                 }
             }
         }
+        if (hasHangingBlocks()) {
+            int hangheight = treeHeight - getLeavesCanopyHeight();
+            int size = getLeavesWidthAndLength();
+            int startx = position.getX() - (size / 2);
+            int startz = position.getZ() - (size / 2);
+            for (int x = 0; x < size; x++) {
+                for (int z = 0; z < size; z++) {
+                    head = new BlockPos(startx + x, hangheight, startz + z);
+                    if (worldIn.isAirBlock(head) || rand.nextInt(10) > 4) {
+                        continue;
+                    }
+                    int tailheight = rand.nextInt(getMaximumHangingBlockHeight() - getMinimumHangingBlockHeight()) + getMinimumHangingBlockHeight();
+                    for (int i = 0; i < tailheight; i++) {
+                        head = head.down();
+                        if (!worldIn.isAirBlock(head)) { break; }
+                        if (hangingBlockOnEdgeOnly()) {
+                            if (!(x == 0 || x == size-1)) {
+                                if (!(z == 0 || z == size - 1)) {
+                                    break;
+                                }
+                            }
+                        }
+                        worldIn.setBlockState(head, getHangingBlock());
+                    }
+                }
+            }
+        }
         return true;
     }
 
+    /**
+     * Block to be used for the hanging blocks under the tree. Only has effect if hasHangingBlocks is true
+     *
+     * @return block for hanging block under tree
+     * @see BaseTreeGenerator#hasHangingBlocks()
+     */
+    private IBlockState getHangingBlock() {
+        return null;
+    }
+
+    /**
+     * Minimum number of hanging blocks under tree. Only has effect if hasHangingBlocks is true.
+     *
+     * @return the minimum number of hanging blocks under tree
+     * @see BaseTreeGenerator#hasHangingBlocks()
+     */
+    private int getMinimumHangingBlockHeight() {
+        return 1;
+    }
+
+    /**
+     * Maximum number of hanging blocks under tree. Only has effect if hasHangingBlocks is true.
+     *
+     * @return the maximum number of hanging blocks under tree
+     * @see BaseTreeGenerator#hasHangingBlocks()
+     */
+    private int getMaximumHangingBlockHeight() {
+        return 1;
+    }
+
+    /**
+     * If the tree has hanging blocks, only put the on the edges?
+     *
+     * @return true if tree has hanging blocks on the edge only
+     */
+    private boolean hangingBlockOnEdgeOnly() {
+        return true;
+    }
+
+    /**
+     * Does the tree have blocks hanging under it?
+     *
+     * @return true if tree has hanging blocks
+     */
+    private boolean hasHangingBlocks() {
+        return false;
+    }
 
     /**
      * The block used for the leaves of the tree
@@ -115,7 +192,7 @@ public class BaseTreeGenerator extends WorldGenerator {
      * @return the leaf canopy's base width and length
      */
     public int getLeavesWidthAndLength() {
-        return 3;
+        return 5;
     }
 
     /**
