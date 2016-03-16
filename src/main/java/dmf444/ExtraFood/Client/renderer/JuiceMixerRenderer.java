@@ -1,19 +1,12 @@
 package dmf444.ExtraFood.Client.renderer;
 
-import dmf444.ExtraFood.Core.lib.GuiLib;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-
-
-import net.minecraft.client.resources.model.IBakedModel;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
-import net.minecraftforge.client.model.obj.OBJModel;
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.model.IFlexibleBakedModel;
+import org.lwjgl.opengl.GL11;
 
 public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
 	 
@@ -58,12 +51,14 @@ public class JuiceMixerRenderer extends TileEntitySpecialRenderer {
         IFlexibleBakedModel model = OBJRender.loadModel("block/juiceMixer2.obj");
             Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
             GlStateManager.pushMatrix();
-            GlStateManager.scale(05.5F, 05.5F, 05.5F);
+            GlStateManager.translate(0f, 0.5f, 0f);
+            GlStateManager.scale(00.01F, 00.01F, 00.01F);
+        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
             //GlStateManager.enableBlend();
-            GlStateManager.disableLighting();
+            GlStateManager.enableLighting();
             OBJRender.renderModel(model, -1);
             //GlStateManager.disableBlend();
-            GlStateManager.enableLighting();
+         GlStateManager.disableLighting();
             GlStateManager.popMatrix();
         GL11.glPopMatrix();
 }

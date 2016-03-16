@@ -8,7 +8,7 @@
     }
   },
   "variants": {
-      "normal": [{ "textures": { "#juiceMixer": "extrafood:model/Juice_Mixers" } }],
+      "normal": [{ "textures": { "#juiceMixer": "extrafood:model/juicemixer" } }],
       "facing=north": [{}],
       "facing=south": [{}],
       "facing=east": [{}],
