@@ -30,7 +30,7 @@ public class BlockTextureRegistry {
         registerBlock(BlockLib.bOliveLeaf, 0);
         registerBlock(BlockLib.bOliveBush, 0);
 
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockLoader.juiceMixer), 0, new ModelResourceLocation("extrafood:" + BlockLib.bJM, "normal"));
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BlockLoader.juiceMixer), 0, new ModelResourceLocation("extrafood:" + BlockLib.bJM, "inventory"));
 
     }
 

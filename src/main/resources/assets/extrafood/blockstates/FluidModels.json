@@ -16,6 +16,10 @@
     "fluid3": {
       "model": "forge:fluid",
       "custom": { "fluid": "eggnog" }
+    },
+    "fluid4": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "disgustingmix" }
     }
   }
 }

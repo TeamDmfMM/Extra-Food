@@ -15,7 +15,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelJuiceBlender extends ModelBase
+public class JuiceBlenderModel extends ModelBase
 {
   //fields
     ModelRenderer Base;
@@ -29,7 +29,7 @@ public class ModelJuiceBlender extends ModelBase
     ModelRenderer MixerBar;
     ModelRenderer Mixer;
   
-  public ModelJuiceBlender()
+  public JuiceBlenderModel()
   {
     textureWidth = 128;
     textureHeight = 64;

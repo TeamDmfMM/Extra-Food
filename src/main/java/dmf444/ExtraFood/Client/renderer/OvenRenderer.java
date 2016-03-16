@@ -9,13 +9,13 @@ import org.lwjgl.opengl.GL11;
 
 
 
-public class RenderOven extends TileEntitySpecialRenderer {
+public class OvenRenderer extends TileEntitySpecialRenderer {
     
     //The model of your block
-    private final ModelOven model;
+    private final OvenModel model;
     
-    public RenderOven() {
-            this.model = new ModelOven();
+    public OvenRenderer() {
+            this.model = new OvenModel();
     }
     
 

@@ -41,6 +41,10 @@ public class ExceptionTextureRegistry {
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Beggnog), new cSM(3));
         ModelLoader.setCustomStateMapper(BlockLoader.Beggnog, new cSM(3));
 
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.BdiscustingMix));
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.BdiscustingMix), new cSM(4));
+        ModelLoader.setCustomStateMapper(BlockLoader.BdiscustingMix, new cSM(4));
+
         ModelLoader.setCustomStateMapper(BlockLoader.bananaLeaf, new StateMapperBase() {
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState p_178132_1_) {

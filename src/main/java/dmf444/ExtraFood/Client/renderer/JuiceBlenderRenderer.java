@@ -8,13 +8,13 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 
-public class RendererJuiceBlender extends TileEntitySpecialRenderer {
+public class JuiceBlenderRenderer extends TileEntitySpecialRenderer {
     
     //The model of your block
-    private final ModelJuiceBlender model;
+    private final JuiceBlenderModel model;
     
-    public RendererJuiceBlender() {
-            this.model = new ModelJuiceBlender();
+    public JuiceBlenderRenderer() {
+            this.model = new JuiceBlenderModel();
     }
     
 

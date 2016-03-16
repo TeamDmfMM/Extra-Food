@@ -5,7 +5,10 @@ import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.ExtraFood;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockJuiceMixer extends BlockContainerRotate {
+public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContainerRotate
 
     public BlockJuiceMixer() {
         super(Material.iron);
@@ -28,7 +31,7 @@ public class BlockJuiceMixer extends BlockContainerRotate {
         // TODO Auto-generated method stub
         return new JuiceMixerTileEntity();
     }
-   /* public int getRenderType() {
+    /*public int getRenderType() {
         return -1;
     }*/
 
@@ -58,6 +61,27 @@ public class BlockJuiceMixer extends BlockContainerRotate {
         return true;
 
 
+    }
+
+    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    {
+        EnumFacing dir = world.getBlockState(pos).getValue(this.FACING);
+        switch (dir){
+            case EAST:
+                this.setBlockBounds(0, 0, 0, 0.8f, 1.15f, 1);
+                break;
+            case WEST:
+                this.setBlockBounds(0.20f, 0, 0, 1, 1.15f, 1);
+                break;
+            case NORTH:
+                this.setBlockBounds(0, 0, 0.20f, 1, 1.15f, 1);
+                break;
+            case SOUTH:
+                this.setBlockBounds(0, 0, 0, 1, 1.15f, 0.8f);
+                break;
+            default:
+                this.setBlockBounds(0, 0, 0, 1, 1, 1);
+        }
     }
 
 }

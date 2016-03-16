@@ -15,7 +15,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelOven extends ModelBase
+public class OvenModel extends ModelBase
 {
   //fields
     ModelRenderer Base;
@@ -35,7 +35,7 @@ public class ModelOven extends ModelBase
     ModelRenderer Weirdname;
     ModelRenderer Button2;
   
-  public ModelOven()
+  public OvenModel()
   {
     textureWidth = 64;
     textureHeight = 128;

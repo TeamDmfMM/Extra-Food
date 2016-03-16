@@ -2,16 +2,17 @@
   "forge_marker": 1,
   "defaults": {
     "model": "extrafood:juiceMixer2.obj",
-    "transform": "forge:default-block",
+    "transform": {"translation": [0.02, -0.04, 0]},
     "custom": {
       "flip-v": true
     }
   },
   "variants": {
-      "normal": [{ "textures": { "#juiceMixer": "extrafood:model/juicemixer" } }],
-      "facing=north": [{}],
-      "facing=south": [{}],
-      "facing=east": [{}],
-      "facing=west": [{}]
+      "normal": [{}],
+      "facing=north": [{"transform": {"translation": [-0.065, -0.04, 0], "rotation":  {"y": 180}}}],
+      "facing=south": [{"transform": {"translation": [0.065, -0.04, 0], "rotation":  {"y": 0}}}],
+      "facing=east": [{"transform": {"translation": [0, -0.04, -0.065], "rotation":  {"y": 90}}}],
+      "facing=west": [{"transform": {"translation": [0, -0.04, 0.065], "rotation":  {"y": 270}}}],
+      "inventory": [{}]
   }
 }

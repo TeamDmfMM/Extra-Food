@@ -2,7 +2,9 @@ package dmf444.ExtraFood.Common.blocks;
 
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.Core.util.BPHelp;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -25,7 +27,7 @@ import java.util.Random;
 /**
  * Default class for blocks that can be rotated, keeps all the other blocks cleaner
  */
-public class BlockContainerRotate extends BlockContainer {
+public class BlockContainerRotate extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 

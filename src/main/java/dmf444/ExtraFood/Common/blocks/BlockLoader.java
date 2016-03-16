@@ -8,6 +8,7 @@ import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import dmf444.ExtraFood.Core.lib.BlockLib;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraftforge.client.model.ModelFluid;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockLoader {
@@ -31,6 +32,7 @@ public class BlockLoader {
 	public static Block juiceMixer;
 	public static Block Chocake;
 	public static Block oliveBush;
+	public static Block BdiscustingMix;
 	
 	public static boolean Register=false;
 	
@@ -56,6 +58,7 @@ public class BlockLoader {
 		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.water).setUnlocalizedName(BlockLib.bFluidEgg);
 		Bstrawberryjuice = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.water).setUnlocalizedName(BlockLib.bFluidStraw);
 		Bcarrotjuice = new GeneralFluid(FluidLoader.Fcarrotjuice, Material.water).setUnlocalizedName(BlockLib.bFluidCarrot);
+		BdiscustingMix = new GeneralFluid(FluidLoader.FHorribleLiquid, Material.water).setUnlocalizedName(BlockLib.bDisgustingMix);
 
 		
 		
@@ -83,6 +86,7 @@ public class BlockLoader {
 			GameRegistry.registerBlock(Chocake, BlockLib.bCake);
 			GameRegistry.registerBlock(oliveBush, BlockLib.bOliveBush);
 			GameRegistry.registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
+			GameRegistry.registerBlock(BdiscustingMix, BlockLib.bDisgustingMix);
 			
 		}
 		Register=true;

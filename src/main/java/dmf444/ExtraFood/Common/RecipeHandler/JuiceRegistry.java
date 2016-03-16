@@ -34,10 +34,14 @@ public class JuiceRegistry {
 		registerJuice(FluidLoader.Fstrawberryjuice, ItemLoader.strawberry);
 		registerJuice(FluidLoader.Fbananajuice, ItemLoader.banana);
 		registerJuice(FluidLoader.Fcarrotjuice, Items.carrot);
+		registerJuice(FluidLoader.Fwatermelonjuice, Items.melon);
+		registerJuice(FluidLoader.Fapplejuice, Items.apple);
 
 		registerColor(FluidLoader.Fbananajuice, 211, 230, 78);
 		registerColor(FluidLoader.Fstrawberryjuice, 199, 0, 4);
 		registerColor(FluidLoader.Fcarrotjuice, 255, 110, 18);
+		registerColor(FluidLoader.Fwatermelonjuice, 211, 230, 78);
+		registerColor(FluidLoader.Fapplejuice, 237, 291, 98);
 
 
 	}
