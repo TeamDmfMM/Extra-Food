@@ -36,12 +36,20 @@ public class TreeManager implements IWorldGenerator {
 
 
             final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(Xcoord1, Ycoord1, Zcoord1));
-
-            new OrangeTreeGenerator().generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
+            BlockPos blockPos = new BlockPos(Xcoord1, Ycoord1, Zcoord1);
+            if (world.isAirBlock(blockPos.up()) && world.isAirBlock(blockPos)) {
+                new OrangeTreeGenerator().generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
+            }
 
             if(biome == BiomeGenBase.jungle || biome == BiomeGenBase.jungleEdge || biome == BiomeGenBase.jungleHills) {
+                Xcoord1 = x + random.nextInt(16); //where in chuck it generates
+                Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
+                Zcoord1 = z + random.nextInt(16); //where in chunk it generates
                 new BananaWorldGenTrees(false, 6, 3, 0, true).generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
             }else if(shouldTreesSpawn(biome)){
+                Xcoord1 = x + random.nextInt(16); //where in chuck it generates
+                Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
+                Zcoord1 = z + random.nextInt(16); //where in chunk it generates
                 int rand = random.nextInt(100);
                 if(rand > 75) {
                     new OliveWorldGenTrees(false).generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));

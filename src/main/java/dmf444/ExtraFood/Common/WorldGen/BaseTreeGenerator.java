@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.IPlantable;
@@ -59,7 +60,10 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         float current = getLeavesWidthAndLength();
         int[] height = new int[getLeavesCanopyHeight() + 1];
         for (int i = 0; i < getLeavesCanopyHeight(); i++) {
-            height[i] = (int)current;
+            height[i] = MathHelper.ceiling_float_int(current);
+            if (height[i] % 2 == 0 && i != 0) {
+                height[i] -= 1;
+            }
             current -= value;
             if (current < 3) {
                 current = 3;
@@ -74,7 +78,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
             for (int x = 0; x < size; x++) {
                 for (int z = 0; z < size; z++) {
                     if (x == 0 && z == 0 || x == size-1 && z == 0 || x == size-1 && z == size-1 || z == size-1 && x == 0) {
-                        if (rand.nextInt(8) < 7)
+                        if (rand.nextInt(8) < 7 && leafLayer % 2 == 0)
                             continue;
                     }
                     if (x + startx == position.getX() && z + startz == position.getZ()) {
@@ -96,9 +100,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
                 }
             }
         }
-        BlockPos blockPos = position.up(treeHeight + 1);
-        worldIn.setBlockState(blockPos, getLeafBlock());
-        blockPos = blockPos.up();
+        BlockPos blockPos = position.up(treeHeight);
         worldIn.setBlockState(blockPos, getLeafBlock());
         if (hasHangingBlocks()) {
             int hangheight = treeHeight - getLeavesCanopyHeight();
@@ -161,7 +163,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return the minimum number of hanging blocks under tree
      * @see BaseTreeGenerator#hasHangingBlocks()
      */
-    private int getMinimumHangingBlockHeight() {
+    public int getMinimumHangingBlockHeight() {
         return 1;
     }
 
@@ -171,7 +173,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return the maximum number of hanging blocks under tree
      * @see BaseTreeGenerator#hasHangingBlocks()
      */
-    private int getMaximumHangingBlockHeight() {
+    public int getMaximumHangingBlockHeight() {
         return 1;
     }
 
@@ -180,7 +182,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      *
      * @return true if tree has hanging blocks on the edge only
      */
-    private boolean hangingBlockOnEdgeOnly() {
+    public boolean hangingBlockOnEdgeOnly() {
         return true;
     }
 
@@ -234,7 +236,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return the leaf canopy height
      */
     public int getLeavesCanopyHeight() {
-        return 4;
+        return 3;
     }
 
     /**
@@ -243,7 +245,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return minimum height of tree bark
      */
     public int getMinTreeHeight() {
-        return 3;
+        return 4;
     }
 
     /**
@@ -252,18 +254,22 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return maximum height of tree bark
      */
     public int getMaxTreeHeight() {
-        return 6;
+        return 7;
     }
 
     public boolean isReplaceable(World world, BlockPos pos)
     {
         net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
-        return state.getBlock().isAir(world, pos) || state.getBlock().isLeaves(world, pos) || state.getBlock().isWood(world, pos) || hasValidMaterialTypeForReplacing(state.getBlock());
+        return (state.getBlock().isAir(world, pos) || state.getBlock().isLeaves(world, pos) || state.getBlock().isWood(world, pos) || hasValidMaterialTypeForReplacing(state.getBlock())) && !invalidBlock(state.getBlock());
+    }
+
+    private boolean invalidBlock(Block block) {
+        return block == Blocks.water || block == Blocks.dirt || block == Blocks.grass;
     }
 
     protected boolean hasValidMaterialTypeForReplacing(Block block)
     {
         Material material = block.getMaterial();
-        return material == Material.air || material == Material.leaves || block == Blocks.grass || block == Blocks.dirt || block == Blocks.log || block == Blocks.log2 || block == Blocks.sapling || block == Blocks.vine;
+        return material == Material.air || material == Material.leaves || block == Blocks.log || block == Blocks.log2 || block == Blocks.sapling || block == Blocks.vine;
     }
 }
