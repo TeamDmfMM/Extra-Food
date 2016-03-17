@@ -74,16 +74,13 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
             for (int x = 0; x < size; x++) {
                 for (int z = 0; z < size; z++) {
                     if (x == 0 && z == 0 || x == size-1 && z == 0 || x == size-1 && z == size-1 || z == size-1 && x == 0) {
-                        if (rand.nextInt(3) < 2)
+                        if (rand.nextInt(8) < 7)
                             continue;
                     }
                     if (x + startx == position.getX() && z + startz == position.getZ()) {
                         continue;
                     }
                     BlockPos blockPos = new BlockPos(x + startx, layer + position.getY(), z + startz);
-                    if (worldIn.getBlockState(blockPos.down()).getBlock() == Blocks.air && leafLayer != 0) {
-                        continue;
-                    }
                     boolean flag = false;
                     for (EnumFacing facing : EnumFacing.values()) {
                         if (worldIn.getBlockState(blockPos.offset(facing)).getBlock() == getWoodBlock()) {
@@ -99,6 +96,10 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
                 }
             }
         }
+        BlockPos blockPos = position.up(treeHeight + 1);
+        worldIn.setBlockState(blockPos, getLeafBlock());
+        blockPos = blockPos.up();
+        worldIn.setBlockState(blockPos, getLeafBlock());
         if (hasHangingBlocks()) {
             int hangheight = treeHeight - getLeavesCanopyHeight();
             int size = getLeavesWidthAndLength();
@@ -233,7 +234,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
      * @return the leaf canopy height
      */
     public int getLeavesCanopyHeight() {
-        return 3;
+        return 4;
     }
 
     /**
