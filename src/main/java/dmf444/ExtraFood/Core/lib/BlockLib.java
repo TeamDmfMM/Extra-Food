@@ -29,4 +29,7 @@ public class BlockLib {
 	public static String bOliveBush = "OliveTreeSapling";
 	public static String bOliveLeaf = "OliveLeaf";
 	public static String bBlockOrange = "OrangeBlock";
+	public static String bAppleJuice = "AppleJuice";
+	public static String bOrangeJuice = "BOrangeJuice";
+	public static String bMelonJuice = "BMelonJuice";
 }

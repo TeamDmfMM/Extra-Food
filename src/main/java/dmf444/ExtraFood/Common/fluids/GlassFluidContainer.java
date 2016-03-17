@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class GlassFluidContainer extends Item implements IFluidContainerItem{
 
-    private static ArrayList<Fluid> list = new ArrayList();
+    public static ArrayList<Fluid> list = new ArrayList();
 
     public GlassFluidContainer(){
         this.RnR();

@@ -7,6 +7,7 @@ import dmf444.ExtraFood.Common.blocks.Plants.OliveLeaf;
 import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import dmf444.ExtraFood.Core.lib.ModInfo;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -25,29 +26,16 @@ public class ExceptionTextureRegistry {
         registerItemModel(NBTFoodLoader.getItem("pizza"), 0, "NBTpizza");
         registerItemModel(NBTFoodLoader.getItem("muffin"), 0, "NBTmuffin");
 
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice));
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bstrawberryjuice), new cSM(0));
-        ModelLoader.setCustomStateMapper(BlockLoader.Bstrawberryjuice, new cSM(0));
 
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bbananajuice));
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bbananajuice), new cSM(1));
-        ModelLoader.setCustomStateMapper(BlockLoader.Bbananajuice, new cSM(1));
+        registerJuiceTexutre(BlockLoader.Bstrawberryjuice, 0);
+        registerJuiceTexutre(BlockLoader.Bbananajuice, 1);
+        registerJuiceTexutre(BlockLoader.Bcarrotjuice, 2);
+        registerJuiceTexutre(BlockLoader.Beggnog, 3);
+        registerJuiceTexutre(BlockLoader.BdiscustingMix, 4);
+        registerJuiceTexutre(BlockLoader.BappleJuice, 5);
+        registerJuiceTexutre(BlockLoader.BorangeJuice, 6);
+        registerJuiceTexutre(BlockLoader.BwatermelonJuice, 7);
 
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Bcarrotjuice));
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Bcarrotjuice), new cSM(2));
-        ModelLoader.setCustomStateMapper(BlockLoader.Bcarrotjuice, new cSM(2));
-
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.Beggnog));
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.Beggnog), new cSM(3));
-        ModelLoader.setCustomStateMapper(BlockLoader.Beggnog, new cSM(3));
-
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.BdiscustingMix));
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.BdiscustingMix), new cSM(4));
-        ModelLoader.setCustomStateMapper(BlockLoader.BdiscustingMix, new cSM(4));
-
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(BlockLoader.BappleJuice));
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(BlockLoader.BappleJuice), new cSM(5));
-        ModelLoader.setCustomStateMapper(BlockLoader.BappleJuice, new cSM(5));
 
         ModelLoader.setCustomStateMapper(BlockLoader.bananaLeaf, new StateMapperBase() {
             @Override
@@ -96,6 +84,12 @@ public class ExceptionTextureRegistry {
     public static void registerItemModel(final Item item, int meta, final String itemName)
     {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(ModInfo.MId + ":" + itemName, "inventory"));
+    }
+
+    public static void registerJuiceTexutre(Block block, int numInJson){
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(block));
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(block), new cSM(numInJson));
+        ModelLoader.setCustomStateMapper(block, new cSM(numInJson));
     }
 
 

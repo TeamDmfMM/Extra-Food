@@ -50,6 +50,7 @@ public class FluidLoader {
 		FHorribleLiquid = new EdibleFluid("disgustingmix", new ResourceLocation(pre + localize(still, "disgustingMix")), new ResourceLocation(pre + localize(still, "disgustingMix")), -5, 0.6F).setViscosity(3500);
 		Fwatermelonjuice = new EdibleFluid("watermelonjuice", new ResourceLocation(pre+"Fluid_WatermelonJuice"), new ResourceLocation(pre+"Fluid_WatermelonJuice"), 4, 2.0f).setViscosity(1200);
 		Fapplejuice = new EdibleFluid("applejuice", new ResourceLocation(pre+localize(still, "AppleJuice")), new ResourceLocation(pre+localize(flow, "AppleJuice")), 4, 1.0f);
+		Forangejuice = new EdibleFluid("orangejuice", new ResourceLocation(pre+localize(still, "OrangeJuice")), new ResourceLocation(pre+localize(flow, "OrangeJuice")), 4, 1.5f);
 
 
 		FluidContainer = new GlassFluidContainer().setUnlocalizedName(ItemLib.glassContainer);
@@ -65,6 +66,7 @@ public class FluidLoader {
 			FluidRegistry.registerFluid(FHorribleLiquid);
 			FluidRegistry.registerFluid(Fwatermelonjuice);
 			FluidRegistry.registerFluid(Fapplejuice);
+			FluidRegistry.registerFluid(Forangejuice);
 
 			GameRegistry.registerItem(FluidContainer, ItemLib.glassContainer);
 			GlassFluidContainer.createGlassBottles();

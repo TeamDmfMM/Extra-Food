@@ -24,6 +24,14 @@
     "fluid5": {
       "model": "forge:fluid",
       "custom": { "fluid": "applejuice" }
+    },
+    "fluid6": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "orangejuice" }
+    },
+    "fluid7": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "watermelonjuice" }
     }
   }
 }
