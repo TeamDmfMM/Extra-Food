@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.WorldGen;
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -18,7 +19,7 @@ public class OrangeTreeGenerator extends BaseTreeGenerator {
 
     @Override
     IBlockState getHangingBlock() {
-        return Blocks.sponge.getDefaultState();
+        return BlockLoader.OrangeBlock.getDefaultState();
     }
 
     @Override

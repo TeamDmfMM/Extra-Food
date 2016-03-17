@@ -15,7 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemLoader {
 
 	public static Item cheeseWheel;
-	public static Item banana;
+	public static Item banana, orange;
 	public static Item knife, grater, muffinPan, dough;
 	public static Item cheeseSlice;
 	public static Item cookBook;
@@ -140,6 +140,7 @@ public class ItemLoader {
 		gingerbread = new StanFood(9, 5.0F).setUnlocalizedName(ItemLib.iGB);
 		chestnuts = new StanFood(10, 5.0F).setUnlocalizedName(ItemLib.Chestnut);
 		olive = new StanFood(4, 3.0F).setUnlocalizedName(ItemLib.iOlive);
+		orange = new StanFood(5, 3.0F).setUnlocalizedName(ItemLib.Orange);
 		//Temp HDB
 		ChocolateCake = new ItemReed(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
 		
@@ -231,6 +232,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(sandwichCheeseburger, ItemLib.iSandCheeseBurger);
 			GameRegistry.registerItem(sandwichSupremeBurger, ItemLib.iSandSupremeH);
 			GameRegistry.registerItem(olive, ItemLib.iOlive);
+			GameRegistry.registerItem(orange, ItemLib.Orange);
 			//Noel
 			GameRegistry.registerItem(shortbread, ItemLib.iShortB);
 			GameRegistry.registerItem(fruitcake, ItemLib.iFC);
@@ -286,6 +288,7 @@ public class ItemLoader {
 			OreDictionary.registerOre("foodFrenchToast", ItemLoader.frenchToast);
             OreDictionary.registerOre("foodDough", ItemLoader.dough);
 			OreDictionary.registerOre("foodOlive", ItemLoader.olive);
+			OreDictionary.registerOre("foodOrange", ItemLoader.orange);
 			
 		}
 		FRegister=true;

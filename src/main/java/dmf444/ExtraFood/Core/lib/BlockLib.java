@@ -28,4 +28,5 @@ public class BlockLib {
 
 	public static String bOliveBush = "OliveTreeSapling";
 	public static String bOliveLeaf = "OliveLeaf";
+	public static String bBlockOrange = "OrangeBlock";
 }

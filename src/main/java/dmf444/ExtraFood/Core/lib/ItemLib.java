@@ -84,7 +84,7 @@ public class ItemLib {
 	public static String Chestnut = "chestnuts";
 	public static String Cake = "ChocolateCake";
 	public static String iMuffPan = "MuffinPan";
-
+	public static String Orange = "Orange";
 
     //SEASONAL
     public static String iEggnog = "eggnog";
