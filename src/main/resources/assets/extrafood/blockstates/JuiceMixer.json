@@ -4,7 +4,7 @@
     "model": "extrafood:juiceMixer2.obj",
     "transform": {"translation": [0.02, -0.04, 0]},
     "custom": {
-      "flip-v": true
+      "flip-v": false
     }
   },
   "variants": {

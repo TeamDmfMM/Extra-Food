@@ -264,12 +264,12 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
     }
 
     private boolean invalidBlock(Block block) {
-        return block == Blocks.water || block == Blocks.dirt || block == Blocks.grass;
+        return false;
     }
 
     protected boolean hasValidMaterialTypeForReplacing(Block block)
     {
         Material material = block.getMaterial();
-        return material == Material.air || material == Material.leaves || block == Blocks.log || block == Blocks.log2 || block == Blocks.sapling || block == Blocks.vine;
+        return material == Material.air || material == Material.leaves || block == Blocks.log || block == Blocks.log2 || block == Blocks.sapling || block == Blocks.vine || block == Blocks.water || block == Blocks.dirt || block == Blocks.grass;
     }
 }
