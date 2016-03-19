@@ -23,7 +23,7 @@ public class OliveLeaf extends BananaLeaf {
     public static final PropertyInteger  METALVL = PropertyInteger.create("growth", 0, 4);
 
     public OliveLeaf(){
-        this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, 0);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, 0));
     }
 
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
@@ -97,10 +97,9 @@ public class OliveLeaf extends BananaLeaf {
     }
     public IBlockState getStateFromMeta(int meta)
     {
-        int one = Integer.parseInt("" + Integer.toString(meta).charAt(0));
+        int one = (meta != 0) ? Integer.parseInt("" + Integer.toString(meta).charAt(0)) : 1;
         int metaz = meta - (one*10000);
 
-
-        return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((metaz & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((metaz & 8) > 0)).withProperty(METALVL, one-1);
+        return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((metaz & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((metaz & 8) > 0)).withProperty(METALVL, one - 1);
     }
 }

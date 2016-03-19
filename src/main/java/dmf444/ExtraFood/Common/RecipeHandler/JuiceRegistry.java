@@ -53,6 +53,7 @@ public class JuiceRegistry {
 	public float[] getColor(ItemStack i){
 		return this.juicecolors.get(this.getJuiceFromItemStack(i));
 	}
+	public float[] getColor(Fluid f){return this.juicecolors.get(f);}
 
 	public void registerJuice(Fluid fluid, Item item){
 		juices.put(item, fluid);
