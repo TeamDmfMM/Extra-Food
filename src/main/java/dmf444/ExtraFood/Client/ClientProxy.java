@@ -70,7 +70,8 @@ public class ClientProxy extends CommonProxy{
 			WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 			float f = e.player.getBrightness(e.renderPartialTicks);
 			GlStateManager.color(f, f, f, 0.5F);
-			float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
+			//
+			// float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
 			GlStateManager.color(nums[0], nums[1], nums[2], 0.5f);
 			GlStateManager.setFog(2048);
 
