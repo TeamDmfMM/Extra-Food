@@ -80,6 +80,7 @@ public class GuiJuiceMixer extends GuiContainer {
         }
         this.mx = mouseX;
         this.my = mouseY;
+        this.handleTooltips(mx, my);
 
     }
 
@@ -250,6 +251,6 @@ public class GuiJuiceMixer extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRendererObj.drawString(I18n.translateToLocal("gui.JM"), 135, 6, 4210752);
-        this.handleTooltips(mx, my);
+
     }
 }
