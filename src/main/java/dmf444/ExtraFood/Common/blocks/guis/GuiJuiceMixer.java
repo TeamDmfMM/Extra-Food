@@ -32,6 +32,7 @@ import java.util.Arrays;
 public class GuiJuiceMixer extends GuiContainer {
 
     JuiceMixerTileEntity te;
+    int mx, my;
 
     public GuiJuiceMixer(InventoryPlayer inventoryPlayer, JuiceMixerTileEntity tileEntity) {
         super(new JuiceMixerContainer(inventoryPlayer, tileEntity));
@@ -77,8 +78,9 @@ public class GuiJuiceMixer extends GuiContainer {
         {
             ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY);
         }
+        this.mx = mouseX;
+        this.my = mouseY;
 
-        this.handleTooltips(mouseX, mouseY);
     }
 
     private void drawSelector() {
@@ -246,7 +248,8 @@ public class GuiJuiceMixer extends GuiContainer {
 
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int param1, int param2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRendererObj.drawString(I18n.translateToLocal("gui.JM"), 135, 6, 4210752);
+        this.handleTooltips(mx, my);
     }
 }

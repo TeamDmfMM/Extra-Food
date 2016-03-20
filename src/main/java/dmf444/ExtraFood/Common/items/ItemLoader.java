@@ -5,10 +5,7 @@ import dmf444.ExtraFood.Core.lib.ItemLib;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSeeds;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.*;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -145,7 +142,7 @@ public class ItemLoader {
 		olive = new StanFood(4, 3.0F).setUnlocalizedName(ItemLib.iOlive);
 		orange = new StanFood(5, 3.0F).setUnlocalizedName(ItemLib.Orange);
 		//Temp HDB
-		//ChocolateCake = new ItemR(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
+		ChocolateCake = new ItemBlockSpecial(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
 		
 		registerFood();
 	}
@@ -242,7 +239,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(gingerbread, ItemLib.iGB);
 			GameRegistry.registerItem(chestnuts, ItemLib.Chestnut);
 			//Temp
-			//GameRegistry.registerItem(ChocolateCake, ItemLib.Cake);
+			GameRegistry.registerItem(ChocolateCake, ItemLib.Cake);
 			
 			//Register into Ore Dictionary
 			OreDictionary.registerOre("foodHamburger", ItemLoader.cookedHamburger);
