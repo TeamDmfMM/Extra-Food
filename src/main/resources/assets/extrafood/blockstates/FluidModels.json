@@ -1,0 +1,37 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "fluid0": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "strawberryjuice" }
+    },
+    "fluid1": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "bananajuice" }
+    },
+    "fluid2": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "carrotjuice" }
+    },
+    "fluid3": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "eggnog" }
+    },
+    "fluid4": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "disgustingmix" }
+    },
+    "fluid5": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "applejuice" }
+    },
+    "fluid6": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "orangejuice" }
+    },
+    "fluid7": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "watermelonjuice" }
+    }
+  }
+}

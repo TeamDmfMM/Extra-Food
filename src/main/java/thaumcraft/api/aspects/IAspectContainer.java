@@ -55,7 +55,7 @@ public interface IAspectContainer {
 	 * @param amount
 	 * @return
 	 */
-	public boolean doesContainerContainAmount(Aspect tag,int amount);
+	public boolean doesContainerContainAmount(Aspect tag, int amount);
 	
 	/**
 	 * Checks if the tile entity contains all the listed aspects and their amounts

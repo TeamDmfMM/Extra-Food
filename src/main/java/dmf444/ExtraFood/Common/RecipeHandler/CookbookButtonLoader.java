@@ -5,7 +5,7 @@ import dmf444.ExtraFood.Common.blocks.guis.ClickTab;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
-import dmf444.ExtraFood.util.ConfigHandler;
+import dmf444.ExtraFood.Core.util.ConfigHandler;
 import net.minecraft.item.ItemStack;
 
 import java.util.*;
@@ -110,7 +110,7 @@ public class CookbookButtonLoader {
 		this.truth.put("cheesepress", true);
 		this.multiNum.put("cheesepress", 2);
 		AddPage("Bread", 2);
-		AddPage("sandwiches", 17);
+		AddPage("sandwiches", 15);
 		AddPage("spread", 6);
 		AddPage("worldGen", 3);
 		AddPage("butter", 2);

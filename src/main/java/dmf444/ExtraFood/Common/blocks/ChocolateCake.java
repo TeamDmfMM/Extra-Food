@@ -1,25 +1,17 @@
 package dmf444.ExtraFood.Common.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.EFTabs;
 import net.minecraft.block.BlockCake;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ChocolateCake extends BlockCake{    
 
-@SideOnly(Side.CLIENT)
-private IIcon oneSide;
-@SideOnly(Side.CLIENT)
-private IIcon twoSide;
-@SideOnly(Side.CLIENT)
-private IIcon inside;
+
 	protected ChocolateCake()
     {
 		super();
@@ -27,10 +19,12 @@ private IIcon inside;
     }
 	
 	@SideOnly(Side.CLIENT)
-    public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
+    @Override
+    public Item getItem(World world, BlockPos pos)
     {
         return ItemLoader.ChocolateCake;
     }
+    /*
 	@SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
@@ -59,5 +53,5 @@ private IIcon inside;
         this.inside = p_149651_1_.registerIcon("extrafood:cake_inner");
         this.oneSide = p_149651_1_.registerIcon("extrafood:caketop");
         this.twoSide = p_149651_1_.registerIcon("minecraft:cake_bottom");
-    }
+    }*/
 }

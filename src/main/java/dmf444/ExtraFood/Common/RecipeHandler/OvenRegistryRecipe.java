@@ -1,14 +1,13 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodSpecs;
-import dmf444.ExtraFood.util.EFLog;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class OvenRegistryRecipe {
 	public ArrayList<ItemStack> items;
@@ -49,10 +48,10 @@ public class OvenRegistryRecipe {
 			for (String tester : Collections.list(specs.addtypes.keys())){
 				if (ok(i,specs.addtypes.get(tester))){
 					//EFLog.error("Were good here cap'n");
-					if (istack.stackTagCompound == null){
-						istack.stackTagCompound = new NBTTagCompound();
+					if (istack.getTagCompound() == null){
+						istack.setTagCompound(new NBTTagCompound());
 					}
-					istack.stackTagCompound.setBoolean(tester, true);
+					istack.getTagCompound().setBoolean(tester, true);
 					things.add(tester);
 					fine = true;
 				}

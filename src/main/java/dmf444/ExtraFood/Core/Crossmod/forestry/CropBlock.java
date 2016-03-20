@@ -11,18 +11,15 @@
  ******************************************************************************/
 package dmf444.ExtraFood.Core.Crossmod.forestry;
 
-import java.util.Collection;
-import java.util.Vector;
-
+import forestry.api.farming.ICrop;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.client.particle.EntityBreakingFX;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import forestry.api.farming.ICrop;
+
+import java.util.Collection;
 
 public class CropBlock implements ICrop{
 	Block block;
@@ -32,19 +29,19 @@ public class CropBlock implements ICrop{
 	int posY;
 	int posZ;
 
- 	public CropBlock(World world, Block block, int meta,int x,int y, int z) {
+ 	public CropBlock(World world, Block block, int meta, BlockPos pos) {
  		this.world = world;
  		this.block = block;
  		this.meta = meta;
- 		this.posX = x;
- 		this.posY = y;
- 		this.posZ = z;
+ 		this.posX = pos.getX();
+ 		this.posY = pos.getY();
+ 		this.posZ = pos.getZ();
  	} 
  	protected Collection<ItemStack> harvestBlock(int x, int y, int z) {
- 		Collection<ItemStack> harvested = block.getDrops(world, x, y, z, meta, 0);
+ 		Collection<ItemStack> harvested = block.getDrops(world,new BlockPos(x, y, z), block.getStateFromMeta(meta), 0);
  		//Proxies.common.addBlockDestroyEffects(world, pos.x, pos.y, pos.z, block, 0);
- 		Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(x, y, z, block, meta);
- 		world.setBlockToAir(x,y,z); 
+ 		Minecraft.getMinecraft().effectRenderer.addBlockHitEffects(new BlockPos(x, y, z), EnumFacing.UP);
+ 		world.setBlockToAir(new BlockPos(x,y,z));
   		return harvested; 
 
 	}

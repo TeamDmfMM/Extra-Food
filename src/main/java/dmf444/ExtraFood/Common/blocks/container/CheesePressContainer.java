@@ -1,16 +1,15 @@
 package dmf444.ExtraFood.Common.blocks.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CheesePressContainer extends Container {
 
@@ -33,9 +32,9 @@ public class CheesePressContainer extends Container {
     }
 
     @Override
-    public void addCraftingToCrafters(ICrafting crafters)
+    public void onCraftGuiOpened(ICrafting crafters)
     {
-        super.addCraftingToCrafters(crafters);
+        super.onCraftGuiOpened(crafters);
         crafters.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
     }
 

@@ -11,22 +11,17 @@
  ******************************************************************************/
 package dmf444.ExtraFood.Core.Crossmod.forestry;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Vector;
-
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import forestry.api.farming.ICrop;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EffectRenderer;
-import net.minecraft.client.particle.EntityBreakingFX;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import forestry.api.farming.ICrop;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class ClickCrop implements ICrop{
 	Block block;
@@ -36,13 +31,13 @@ public class ClickCrop implements ICrop{
 	int posY;
 	int posZ;
 
- 	public ClickCrop(World world, Block block, int meta,int x,int y, int z) {
+ 	public ClickCrop(World world, Block block, int meta, BlockPos pos) {
  		this.world = world;
  		this.block = block;
  		this.meta = meta;
- 		this.posX = x;
- 		this.posY = y;
- 		this.posZ = z;
+ 		this.posX = pos.getX();
+ 		this.posY = pos.getY();
+ 		this.posZ = pos.getZ();
  	} 
 
 	protected Collection<ItemStack> harvestBlock(int x, int y, int z) {
@@ -55,7 +50,7 @@ public class ClickCrop implements ICrop{
  		
  		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
  				ret.add(new ItemStack(item, 4));
- 		world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+ 		world.setBlockState(new BlockPos(x, y, z), block.getStateFromMeta(0), 2);
 
   		return ret; 
 

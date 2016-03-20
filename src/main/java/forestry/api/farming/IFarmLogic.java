@@ -5,16 +5,15 @@
  ******************************************************************************/
 package forestry.api.farming;
 
-import java.util.Collection;
-
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraftforge.common.util.ForgeDirection;
+import java.util.Collection;
 
 public interface IFarmLogic {
 
@@ -28,14 +27,14 @@ public interface IFarmLogic {
 
 	Collection<ItemStack> collect();
 
-	boolean cultivate(int x, int y, int z, ForgeDirection direction, int extent);
+	boolean cultivate(BlockPos pos, EnumFacing direction, int extent);
 
-	Collection<ICrop> harvest(int x, int y, int z, ForgeDirection direction, int extent);
+	Collection<ICrop> harvest(BlockPos pos, EnumFacing direction, int extent);
 
 	IFarmLogic setManual(boolean manual);
 
 	@SideOnly(Side.CLIENT)
-	IIcon getIcon();
+    Item getIcon();
 
 	ResourceLocation getSpriteSheet();
 	

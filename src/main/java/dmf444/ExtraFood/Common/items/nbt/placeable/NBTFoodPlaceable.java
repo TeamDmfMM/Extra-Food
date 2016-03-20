@@ -1,5 +1,8 @@
 package dmf444.ExtraFood.Common.items.nbt.placeable;
 
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+/*
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -8,7 +11,7 @@ import java.util.List;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import dmf444.ExtraFood.util.TextureUtil;
+import dmf444.ExtraFood.Core.util.TextureUtil;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -253,5 +256,5 @@ public String name;
     		things.add(toAdd);
     	}
     }
-}
+}*/
 

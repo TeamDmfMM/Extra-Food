@@ -1,15 +1,14 @@
 package dmf444.ExtraFood.Common.RecipeHandler;
 
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
-
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 
 public class OvenRegistryItem {
@@ -39,11 +38,11 @@ public class OvenRegistryItem {
 	}
 	public ItemStack createItemStack(ArrayList<ItemStack> add){
 		ItemStack item = this.base.copy();
-		item.stackTagCompound = new NBTTagCompound();
+		item.setTagCompound(new NBTTagCompound());
 		for (ItemStack itemst : add){
 			Item s = itemst.getItem();
 			if (itemsAdditive.get(s) != null){
-				item.stackTagCompound.setBoolean(itemsAdditive.get(s), true);
+				item.getTagCompound().setBoolean(itemsAdditive.get(s), true);
 			}
 		}
 		return item;

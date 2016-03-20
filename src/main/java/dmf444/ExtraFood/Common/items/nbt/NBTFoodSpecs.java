@@ -1,17 +1,10 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import dmf444.ExtraFood.util.EFLog;
+
+import java.util.*;
 
 public class NBTFoodSpecs {
 	public Dictionary<String, ItemStack> addtypes;
@@ -21,8 +14,23 @@ public class NBTFoodSpecs {
 	public String defualtIcon;
 	public float[] defualtHunger;
 	public ArrayList<ArrayList<String>> non;
-	
+	public String hackyModelName = "";
+
+	public NBTFoodSpecs(){
+
+	}
+
+	public void setupModelName(){
+		String tafb = "NBT" + this.name;
+		NBTCount.getInstance().lastId += 1;
+
+		hackyModelName = tafb;
+	}
+
 	public void setup(){
+
+		setupModelName();
+
 		Enumeration<String> enu = additives.keys();
 		ArrayList<String> dohicker = new ArrayList<String>();
 		for (String i : Collections.list(enu)){
@@ -39,8 +47,8 @@ public class NBTFoodSpecs {
 			}
 			ItemFood tItem = (ItemFood) t.getItem();
 			float[] hv = new float[2];
-			hv[0] = tItem.func_150905_g(t) / 4;
-			hv[1] = tItem.func_150906_h(t) / 4;
+			hv[0] = tItem.getHealAmount(t) / 4;
+			hv[1] = tItem.getSaturationModifier(t) / 4;
 			addvals.put(i, hv);
 			
 		}

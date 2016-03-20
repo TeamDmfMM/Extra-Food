@@ -1,15 +1,15 @@
 package dmf444.ExtraFood.Core.Crossmod;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.Crossmod.Waila.WailaConfig;
 import dmf444.ExtraFood.Core.Crossmod.forestry.ForestryFarming;
 import dmf444.ExtraFood.Core.lib.ModInfo;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.Core.util.EFLog;
 import dmfmm.StarvationAhoy.api.StarvationAhoyRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 public class CrossModModules{
 	

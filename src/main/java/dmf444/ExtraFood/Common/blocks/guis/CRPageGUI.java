@@ -1,4 +1,7 @@
 package dmf444.ExtraFood.Common.blocks.guis;
+/*
+import net.minecraft.client.gui.GuiScreen;
+
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -105,7 +108,7 @@ public void renderItems() {
 				/* Items 0-2 Render in top row
 				 * Items 3-5 Render in middle row
 				 * Items 6-8 Render in final row
-				*/
+				*
 		
 				
 			if (items[0] != null){				
@@ -197,5 +200,5 @@ public void renderItems() {
 	}
  
 }
-
+*/
 

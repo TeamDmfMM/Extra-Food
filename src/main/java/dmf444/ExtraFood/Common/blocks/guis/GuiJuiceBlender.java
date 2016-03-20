@@ -1,27 +1,28 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.Fluid;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-
-import codechicken.lib.render.RenderUtils;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.lib.GuiLib;
+import dmf444.ExtraFood.Core.util.EFLog;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.Fluid;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class GuiJuiceBlender extends GuiContainer {
@@ -51,7 +52,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);
 		this.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		this.drawTexturedModelRectFromIcon(x + 147, (int)(y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false),  16, (int)(te.tank.getFluidAmount() * 0.012));
+		this.drawTexturedModalRect(x + 147, (int) (y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false), 16, (int) (te.tank.getFluidAmount() * 0.012));
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
@@ -126,8 +127,8 @@ public class GuiJuiceBlender extends GuiContainer {
 	
 	
 	}
-	protected void mouseMovedOrUp(int par1, int par2, int par3){
-		super.mouseMovedOrUp(par1, par2, par3);
+	protected void mouseReleased(int par1, int par2, int par3){
+		super.mouseReleased(par1, par2, par3);
 		if (par3 == 0){
 			this.mousex = par1;
 			this.mousey = par2;
@@ -138,18 +139,100 @@ public class GuiJuiceBlender extends GuiContainer {
 		int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
 		this.mousex = x - guiLeft;
 		this.mousey = y - guiTop;
-		super.handleMouseInput();
-	}
+        try {
+            super.handleMouseInput();
+        } catch (IOException e) {}
+    }
 	
 	//Taken from BuildCraft... If you own it, ask and I'll remove it
-	public static IIcon getFluidTexture(Fluid fluid, boolean flowing) {
+	public static TextureAtlasSprite getFluidTexture(Fluid fluid, boolean flowing) {
 		if (fluid == null) {
 			return null;
 		}
-		IIcon icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
+		TextureAtlasSprite icon = flowing ? Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFlowing().toString()) : Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getStill().toString());
 		if (icon == null) {
 			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
 		}
 		return icon;
 	}
+
+    public void drawHoveringText(List textLines, int x, int y, FontRenderer font)
+    {
+        if (!textLines.isEmpty())
+        {
+			//EFLog.fatal((int)((Character)('耺')).charValue());
+            GL11.glDisable(32826);
+            RenderHelper.disableStandardItemLighting();
+            GL11.glDisable(2896);
+            GL11.glDisable(2929);
+            int k = 0;
+            Iterator iterator = textLines.iterator();
+
+            while (iterator.hasNext())
+            {
+                String s = (String)iterator.next();
+                int l = font.getStringWidth(s);
+
+                if (l > k)
+                {
+                    k = l;
+                }
+            }
+
+            int j2 = x + 12;
+            int k2 = y - 12;
+            int i1 = 8;
+
+            if (textLines.size() > 1)
+            {
+                i1 += 2 + (textLines.size() - 1) * 10;
+            }
+
+            if (j2 + k > this.width)
+            {
+                j2 -= 28 + k;
+            }
+
+            if (k2 + i1 + 6 > this.height)
+            {
+                k2 = this.height - i1 - 6;
+            }
+
+            this.zLevel = 300.0F;
+            this.itemRender.zLevel = 300.0F;
+            int j1 = -267386864;
+            this.drawGradientRect(j2 - 3, k2 - 4, j2 + k + 3, k2 - 3, j1, j1);
+            this.drawGradientRect(j2 - 3, k2 + i1 + 3, j2 + k + 3, k2 + i1 + 4, j1, j1);
+            this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 + i1 + 3, j1, j1);
+            this.drawGradientRect(j2 - 4, k2 - 3, j2 - 3, k2 + i1 + 3, j1, j1);
+            this.drawGradientRect(j2 + k + 3, k2 - 3, j2 + k + 4, k2 + i1 + 3, j1, j1);
+            int k1 = 1347420415;
+            int l1 = (k1 & 16711422) >> 1 | k1 & -16777216;
+            this.drawGradientRect(j2 - 3, k2 - 3 + 1, j2 - 3 + 1, k2 + i1 + 3 - 1, k1, l1);
+            this.drawGradientRect(j2 + k + 2, k2 - 3 + 1, j2 + k + 3, k2 + i1 + 3 - 1, k1, l1);
+            this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 - 3 + 1, k1, k1);
+            this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
+
+            for (int i2 = 0; i2 < textLines.size(); ++i2)
+            {
+                String s1 = (String)textLines.get(i2);
+                font.drawStringWithShadow(s1, j2, k2, -1);
+
+                if (i2 == 0)
+                {
+                    k2 += 2;
+                }
+
+                k2 += 10;
+            }
+
+            this.zLevel = 0.0F;
+            this.itemRender.zLevel = 0.0F;
+            GL11.glEnable(2896);
+            GL11.glEnable(2929);
+            RenderHelper.enableStandardItemLighting();
+            GL11.glEnable(32826);
+        }
+    }
+
 }

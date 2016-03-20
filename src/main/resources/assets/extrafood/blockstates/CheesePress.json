@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"normal": { "model": "ExtraFood:CheesePress" },
+		
+		"facing=north": { "model": "ExtraFood:CheesePress" },
+        "facing=south": { "model": "ExtraFood:CheesePress", "y": 180 },
+        "facing=west":  { "model": "ExtraFood:CheesePress", "y": 270 },
+        "facing=east":  { "model": "ExtraFood:CheesePress", "y": 90 },
+		"facing=down":  { "model": "ExtraFood:CheesePress", "x": 90 },
+		"facing=up":    { "model": "ExtraFood:CheesePress", "x": 270 }
+	}
+}

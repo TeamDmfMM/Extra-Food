@@ -1,20 +1,20 @@
+
 package dmf444.ExtraFood.Core.Crossmod.NEI;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
+/*
+import codechicken.nei.NEIServerUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+import dmf444.ExtraFood.Common.blocks.guis.CheesePressGUI;
+import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import codechicken.nei.NEIServerUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.TemplateRecipeHandler;
-import codechicken.nei.recipe.TemplateRecipeHandler.CachedRecipe;
-import dmf444.ExtraFood.Common.blocks.guis.CheesePressGUI;
-import dmf444.ExtraFood.Common.items.ItemLoader;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //THIS Class was made at the request of guygames123.
 //Everyone who uses it should thank him for it.
@@ -98,4 +98,5 @@ public class NEICheesePressHandler extends TemplateRecipeHandler{
 		  drawProgressBar(128, 19, 176, 0, 3, 26, 125, 1);
 	  }
 	
-}
+}*/
+

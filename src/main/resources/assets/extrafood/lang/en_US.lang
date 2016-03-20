@@ -10,8 +10,8 @@ item.Cheeseslice.name=Cheese Slice
 item.Cookbook.name=Cookbook
 item.Sausage.name=Sausage
 item.Strawberry.name=Strawberry
-item.strawberrybucket.name=Strawberry Juice Bucket
-item.bucketbanana.name=Banana Juice Bucket
+item.BucketStrawberry.name=Strawberry Juice Bucket
+item.BucketBanana.name=Banana Juice Bucket
 item.BucketCarrot.name=Carrot Juice Bucket
 item.BucketSeaWater.name=Bucket of Sea Water
 item.Veal.name=Veal
@@ -110,14 +110,19 @@ tile.Fcarrotjuice.name=Carrot Juice
 tile.Fbananajuice.name=Banana Juice
 tile.FEggnog.name=Eggnog
 tile.Oven.name=Oven
+tile.JuiceMixer.name=Juice Mixer [WIP]
 tile.Cake.name=Chocolate Cake
-tile.OliveLeaf.name=Olive Leaf
 tile.OliveTreeSapling.name=Olive Sapling
+tile.OliveLeaf.name=Olive Leaf
 
 #Fluid Names ---This is for mod Compatibility
 fluid.strawberryjuice=Strawberry Juice
 fluid.carrotjuice=Carrot Juice
 fluid.bananajuice=Banana Juice
+item.EFbottle.strawberryjuice.name=Bottle of Strawberry Juice
+item.EFbottle.carrotjuice.name=Bottle of Carrot Juice
+item.EFbottle.bananajuice.name=Bottle of Banana Juice
+item.EFbottle.eggnog.name=Bottle of Eggnog
 
 #FORESTRY Intergration Names
 circuit.managedBush=Bush Farm
@@ -129,6 +134,9 @@ gui.JB=Juice Blender
 gui.AC=Auto Cutter
 gui.CP=Cheese Press
 gui.OV=Oven
+gui.JM=Mixer
+button.make=MAKE
+button.delete=DELETE
 
 #--Cook Book Names
 cookbook.Title=Cookbook
@@ -170,14 +178,14 @@ cookbook.fries=<HungerStats|-1|-1|0|4|0.7|French Fries><Crafting|-1|-1|1|frenchF
 cookbook.butterMilk=<HungerStats|-1|-1|0|4|3.6|Butter Milk><Furnace|-1|-1|1|butterMilk>
 cookbook.burger=<HungerStats|-1|-1|0|2.5|0.6|Raw Burger><Crafting|-1|-1|1|BugerRaw><HungerStats|-1|-1|2|3.5|1.6|Cooked Burger><Crafting|-1|-1|3|BurgerCooked><Furnace|-1|-1|4|cookedHamburger>
 cookbook.sandwichBurger=<HungerStats|-1|-1|0|4.5|1.0|Hamburger><Crafting|-1|-1|1|sandwhichHamburger><HungerStats|-1|-1|2|5|12.0|Cheeseburger><Crafting|-1|-1|3|sandwichCheeseburger1><HungerStats|-1|-1|4|7.5|11.2|Supreme Burger><Crafting|-1|-1|5|sandwichSupremeBurger>
-cookbook.autocutter=<TextBlock|-1|-1|0|Realizing the cutting potential of the knife caused you to have a spontaneous good idea! You seem to have automated the knife, and compressed the entire contraption into the size of a block. It seems a little stange to have a knife cut by itself, but eveything will be good if you keep your hands away from it!><Crafting|-1|-1|1|autoCutter><TextBlock|-1|-1|2|In order to use the Autocutter, you must place a knife, with any durability, into the slot furthest to the right. Any item you want to cut, goes into the top slot and once cut, it will output into the bottom slot. This block can be automated with hoppers, input into the top of the block and export from the bottom of the block.><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/AutoCutterGUI1.png|75|65|0|0>
+cookbook.autocutter=<TextBlock|-1|-1|0|Realizing the cutting potential of the knife caused you to have a spontaneous good idea! You seem to have automated the knife, and compressed the entire contraption into the size of a block. It seems a little strange to have a knife cut by itself, but eveything will be good if you keep your hands away from it!><Crafting|-1|-1|1|autoCutter><TextBlock|-1|-1|2|In order to use the Autocutter, you must place a knife, with any durability, into the slot furthest to the right. Any item you want to cut, goes into the top slot and once cut, it will output into the bottom slot. This block can be automated with hoppers, input into the top of the block and export from the bottom of the block.><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/AutoCutterGUI1.png|75|65|0|0>
 cookbook.StrawberryJuice=<TextBlock|-1|-1|0|Made in the juice blender, this drink is the perfect blend of Strawberry. It's even better than the bannana one! It's recommended recipe is 10 strawberries, and put it all into a bucket. If you really want, you can also make it into block and place it on the ground.><HungerStats|-1|-1|1|3|0.8|Strawberry Juice>
-cookbook.CarrotJuice=<TextBlock|-1|-1|0|Like the other juice's this one is also made in the juice blender. It is a strange medly of carrots. As you drink it down, you try to forget it was taken from a zombie. The recommended recipe is 10 carrots in the juice blender, for maximum taste!><HungerStats|-1|-1|1|3|0.9|Carrot Juice>
+cookbook.CarrotJuice=<TextBlock|-1|-1|0|Like the other juice's this one is also made in the juice blender. It is a strange medley of carrots. As you drink it down, you try to forget it was taken from a zombie. The recommended recipe is 10 carrots in the juice blender, for maximum taste!><HungerStats|-1|-1|1|3|0.9|Carrot Juice>
 cookbook.BananaJuice=<TextBlock|-1|-1|0|Why do you do this to yourself? Crushing bananas sounded like a good idea. Then you drank it. It tasted funny. REALLY funny. And yet you consumed it. You've experimented enough to know that you should only put 10 bananas in one bucket at a time.><HungerStats|-1|-1|1|3|0.6|Banana Juice>
 cookbook.SeaWater=<TextBlock|-1|-1|0|As you travel from island to island and your food runs dry, you feel you could eat anything. Seeing animals drink from the rivers, you grab a trusty bucket and drink as well. The water is salty and disgusting but enough to satisfy your hunger.><HungerStats|-1|-1|1|1|0.5>
 cookbook.purifiedWater=<TextBlock|-1|-1|0|The salty water started to bother you. But your creativity helped to find a nice solution! If you put the Sea Water into a furnace, you can get Purified water, wich removes that horrible taste!><HungerStats|-1|-1|1|2|0.5>
 cookbook.juiceblender=<TextBlock|-1|-1|0|The Juice blender was intended to quench your thirst, and it seems to work! You've added in different fruits and have formulated a list of drinkable substances. Maybe you'll find more soon. This block makes all liquid liquids in the game.><Crafting|-1|-1|1|juiceBlender><TextBlock|-1|-1|2|Any item you want to blend goes into the blender (1). Once the blender is done processing the fruit, it will automatically output to the tank. Once the tank has 1000mb of any fluid, you can place a bucket in the top slot (2). The juice blender will automatically remove 1000ml from the tank and put it in a bucket which output to the ><Image|-1|-1|3|extrafood:textures/gui/cookbookimages/JuiceBlenderGUI.png|68|47|0|0><TextBlock|-1|-1|3|bottom slot(3). Automation for this block is top inputs to Fruit blending slot, sides input buckets and bottom pulls out the juices.>
-cookbook.sandwiches=<TextBlock|-1|-1|0|By mixing different foods together, you have created a new array of things to eat. In this newest creation of yours, you've slapped some different items between bread, and created a "Sandwich". These will light up your taste buds and are very easy to craft. You've written down some of the better tasting sandwiches in the><TextBlock|-1|-1|1|following pages.><HungerStats|-1|-1|2|4|9.0|PB&C Sandwich><Crafting|-1|-1|3|sandwichPBN><HungerStats|-1|-1|4|4|9.5|PB&J Sandwich><Crafting|-1|-1|5|sandwichPBJ><HungerStats|-1|-1|6|4|10.0|BLT><Crafting|-1|-1|7|sandwichBLT><HungerStats|-1|-1|8|4.5|5.5|Chocolate><Crafting|-1|-1|9|sandwichC><HungerStats|-1|-1|10|3|3.5|PB Sandwich><Crafting|-1|-1|11|sandwichPB><HungerStats|-1|-1|12|3|1.9|Grilled Cheese><Crafting|-1|-1|13|sandwhichGC><HungerStats|-1|-1|14|3.5|1.0|Sausage Sandwich><Crafting|-1|-1|15|sandwhichS><HungerStats|-1|-1|16|3|1.9|Grilled Cheese Sandwich><Crafting|-1|-1|17|sandwhichGC><HungerStats|-1|-1|18|3|1.4|Bacon Cheese><Crafting|-1|-1|19|sandwhichCB>
+cookbook.sandwiches=<TextBlock|-1|-1|0|By mixing different foods together, you have created a new array of things to eat. In this newest creation of yours, you've slapped some different items between bread, and created a "Sandwich". These will light up your taste buds and are very easy to craft. You've written down some of the better tasting sandwiches in the><TextBlock|-1|-1|1|following pages.><HungerStats|-1|-1|2|4|9.0|PB&C Sandwich><Crafting|-1|-1|3|sandwichPBN><HungerStats|-1|-1|4|4|9.5|PB&J Sandwich><Crafting|-1|-1|5|sandwichPBJ><HungerStats|-1|-1|6|4|10.0|BLT><Crafting|-1|-1|7|sandwichBLT><HungerStats|-1|-1|8|4.5|5.5|Chocolate><Crafting|-1|-1|9|sandwichC><HungerStats|-1|-1|10|3|3.5|PB Sandwich><Crafting|-1|-1|11|sandwichPB><HungerStats|-1|-1|12|3|1.9|Grilled Cheese><Crafting|-1|-1|13|sandwhichGC><HungerStats|-1|-1|14|3.5|1.0|Sausage Sandwich><Crafting|-1|-1|15|sandwhichS><HungerStats|-1|-1|16|3|1.4|Bacon Cheese><Crafting|-1|-1|17|sandwhichCB>
 cookbook.ChoIC=<HungerStats|-1|-1|0|4|0.8|Cho. Ice Cream><Crafting|-1|-1|1|chocolateIceCream>
 cookbook.StrawIC=<HungerStats|-1|-1|0|4.5|2.5|Straw. Ice Cream><Crafting|-1|-1|1|strawberryIceCream>
 cookbook.VanIC=<HungerStats|-1|-1|0|2|0.8|Vanilla Ice Cream><Crafting|-1|-1|1|vanillaIceCream>

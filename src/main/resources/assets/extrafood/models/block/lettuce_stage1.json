@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "extrafood:blocks/Plants/lettuce_stage_1"
+    }
+}

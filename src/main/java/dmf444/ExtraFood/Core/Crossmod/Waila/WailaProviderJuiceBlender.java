@@ -1,20 +1,20 @@
+
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
-import java.util.List;
-
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.IWailaDataProvider;
+import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
+import dmf444.ExtraFood.Core.Packets.ChannelHandler;
+import dmf444.ExtraFood.Core.Packets.PacketJBTank;
+import dmf444.ExtraFood.ExtraFood;
+import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.Core.PacketJBTank;
-import dmf444.ExtraFood.util.EFLog;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+
+import java.util.List;
 
 public class WailaProviderJuiceBlender implements IWailaDataProvider{
 	
@@ -54,11 +54,11 @@ public class WailaProviderJuiceBlender implements IWailaDataProvider{
 	}
 
 	@Override
-	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) {
+	public NBTTagCompound getNBTData(EntityPlayerMP entityPlayerMP, TileEntity te, NBTTagCompound tag, World world, BlockPos blockPos) {
         if (te != null){
         	TileEntityJuiceBlender tileEntity = (TileEntityJuiceBlender) te;
         	if(tileEntity.tank.getFluid() != null){
-        		ExtraFood.JBTanknet.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid().getID(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord), new TargetPoint(tileEntity.getWorldObj().provider.dimensionId, tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 10));
+				ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), new TargetPoint(tileEntity.getWorld().provider.getDimensionId(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), 10));
         	}
         }
         return tag;

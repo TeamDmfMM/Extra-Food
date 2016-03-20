@@ -1,7 +1,6 @@
 package dmf444.ExtraFood.Common.blocks.container;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
 import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +9,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 public class AutoCutterContainer extends Container {
@@ -31,9 +32,9 @@ public class AutoCutterContainer extends Container {
             bindPlayerInventory(inventoryPlayer);
     }
     @Override
-    public void addCraftingToCrafters(ICrafting crafters)
+    public void onCraftGuiOpened(ICrafting crafters)
     {
-        super.addCraftingToCrafters(crafters);
+        super.onCraftGuiOpened(crafters);
         crafters.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
     }
 

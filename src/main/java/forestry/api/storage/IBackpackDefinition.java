@@ -5,10 +5,10 @@
  ******************************************************************************/
 package forestry.api.storage;
 
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public interface IBackpackDefinition {
 
@@ -18,10 +18,15 @@ public interface IBackpackDefinition {
 	String getKey();
 
 	/**
-	 * @param backpack
 	 * @return Human-readable name of the backpack.
 	 */
 	String getName(ItemStack backpack);
+
+	/**
+	 * @deprecated since Forestry 3.0. Use getName(ItemStack backpack).
+	 */
+	@Deprecated
+	String getName();
 
 	/**
 	 * @return Primary colour for the backpack icon.
@@ -43,11 +48,14 @@ public interface IBackpackDefinition {
 
 	/**
 	 * Returns true if the itemstack is a valid item for this backpack type.
-	 * 
-	 * @param player
-	 * @param itemstack
-	 * @return true if the given itemstack is valid for this backpack, false otherwise.
+	 * @deprecated since Forestry 3.4. Use isValidItem(ItemStack itemstack).
 	 */
+	@Deprecated
 	boolean isValidItem(EntityPlayer player, ItemStack itemstack);
+
+	/**
+	 * Returns true if the itemstack is a valid item for this backpack type.
+	 */
+	boolean isValidItem(ItemStack itemstack);
 
 }

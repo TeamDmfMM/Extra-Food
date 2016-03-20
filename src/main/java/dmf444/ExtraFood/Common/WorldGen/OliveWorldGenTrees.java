@@ -1,41 +1,45 @@
 package dmf444.ExtraFood.Common.WorldGen;
 
+
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Common.blocks.Plants.OliveLeaf;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
-
 public class OliveWorldGenTrees extends WorldGenAbstractTree
-{
-    /** The minimum height of a generated tree. */
-    private final int minTreeHeight;
-    /** The metadata value of the wood to use in tree generation. */
-    private final int metaWood;
-    /** The metadata value of the leaves to use in tree generation. */
-    private final int metaLeaves;
-
-    public OliveWorldGenTrees(boolean p_i2027_1_)
     {
-        this(p_i2027_1_, 4, 0, 0, true);
-    }
+        /** The minimum height of a generated tree. */
+        private final int minTreeHeight;
+        /** The metadata value of the wood to use in tree generation. */
+        private final int metaWood;
+        /** The metadata value of the leaves to use in tree generation. */
+        private final int metaLeaves;
 
-    public OliveWorldGenTrees(boolean par1, int treeHeight, int woodType, int leaveType, boolean genVines)
-    {
-        super(par1);
-        this.minTreeHeight = treeHeight;
-        this.metaWood = woodType;
-        this.metaLeaves = leaveType;
-    }
+        public OliveWorldGenTrees(boolean p_i2027_1_)
+        {
+            this(p_i2027_1_, 4, 0, 0, false);
+        }
 
-    public boolean generate(World world, Random rand, int x, int y, int z)
+        public OliveWorldGenTrees(boolean par1, int treeHeight, int woodType, int leaveType, boolean genVines)
+        {
+            super(par1);
+            this.minTreeHeight = treeHeight;
+            this.metaWood = woodType;
+            this.metaLeaves = leaveType;
+        }
+
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
         int l = rand.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
 
@@ -66,14 +70,14 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
                         if (i1 >= 0 && i1 < 256)
                         {
 
-                            if (!this.isReplaceable(world, j1, i1, k1))
+                            if (!this.isReplaceable(world,new BlockPos(j1, i1, k1)))
                             {
-                             //   flag = false;
+                                flag = false;
                             }
                         }
                         else
                         {
-                           // flag = false;
+                            flag = false;
                         }
                     }
                 }
@@ -85,12 +89,10 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
             }
             else
             {
-                Block block2 = world.getBlock(x, y - 1, z);
-
-                boolean isSoil = block2.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
-                boolean notWater = !world.getBlock(x, y, z).equals(Blocks.water) && !world.getBlock(x, y, z).equals(Blocks.flowing_water);
-                if (isSoil && notWater && y < 256 - l) {
-                    block2.onPlantGrow(world, x, y - 1, z, x, y, z);
+                Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).down()).getBlock();
+                boolean isSoil = block2.canSustainPlant(world, pos.down(), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+                if (isSoil && y < 256 - 4 - 1) {
+                    block2.onPlantGrow(world, new BlockPos(x, y - 1, z), new BlockPos(x, y, z));
 
 
                     //BUSH SPAWN!!!
@@ -128,8 +130,8 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
                     placeBlock(world,x+1,y+3, z+1, dab);
 
                     //Top et all
-                    placeBlock(world, x, y, z, Blocks.log);
-                    placeBlock(world, x, y+1, z, Blocks.log);
+                    placeLog(world, x, y, z, Blocks.log);
+                    placeLog(world, x, y+1, z, Blocks.log);
                     placeBlock(world, x, y+4, z, dab);
                     return true;
                 }
@@ -138,11 +140,17 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
             }
         }
 
-        return false;
+                    return false;
     }
 
+        private BlockPos poz(int x, int y, int z){
+            return new BlockPos(x, y, z);
+        }
 
-    private void placeBlock(World world, int x, int y, int z, Block block){
-        this.func_150515_a(world, x, y, z, block);
-    }
+        private void placeBlock(World world, int x, int y, int z, Block block){
+            this.setBlockAndNotifyAdequately(world, poz(x, y, z), block.getDefaultState().withProperty(OliveLeaf.METALVL, 0));
+        }
+        private void placeLog(World world, int x, int y, int z, Block block){
+            this.setBlockAndNotifyAdequately(world, poz(x, y, z), block.getDefaultState());
+        }
 }

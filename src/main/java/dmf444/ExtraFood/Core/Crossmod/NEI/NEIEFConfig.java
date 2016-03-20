@@ -1,8 +1,9 @@
-package dmf444.ExtraFood.Core.Crossmod.NEI;
 
+package dmf444.ExtraFood.Core.Crossmod.NEI;
+/*
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-import dmf444.ExtraFood.util.ConfigHandler;
+import dmf444.ExtraFood.Core.util.ConfigHandler;
 
 public class NEIEFConfig implements IConfigureNEI{
 
@@ -32,4 +33,5 @@ public class NEIEFConfig implements IConfigureNEI{
 		return "1.0";
 	}
 
-}
+}*/
+

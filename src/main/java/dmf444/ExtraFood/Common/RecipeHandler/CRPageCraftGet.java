@@ -102,7 +102,7 @@ public class CRPageCraftGet {
 
         //Oven Ones - Blocks.Carrots is removed in rendering
         this.putRecipe("muffin",new ItemStack(NBTFoodLoader.getItem("muffin")), new ItemStack(ItemLoader.dough), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.muffinPan), new ItemStack(ItemLoader.chocolate), new ItemStack(ItemLoader.strawberry), new ItemStack(ItemLoader.banana), new ItemStack(Items.apple), new ItemStack(ItemLoader.chocolate, 2), new ItemStack(Blocks.carrots));
-        this.putRecipe("pizza", new ItemStack(NBTFoodLoader.getItem("pizza")), new ItemStack(ItemLoader.dough), new ItemStack(ItemLoader.tomato, 2), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.sausage), new ItemStack(Items.cooked_fished), new ItemStack(ItemLoader.cheeseSlice, 2), new ItemStack(ItemLoader.peanut, 3), new ItemStack(Blocks.carrots), new ItemStack(Blocks.carrots));
+        this.putRecipe("pizza", new ItemStack(NBTFoodLoader.getItem("pizza")), new ItemStack(ItemLoader.dough), new ItemStack(ItemLoader.tomato, 2), new ItemStack(Blocks.carrots), new ItemStack(ItemLoader.sausage), new ItemStack(Items.cooked_fish), new ItemStack(ItemLoader.cheeseSlice, 2), new ItemStack(ItemLoader.olive, 3), new ItemStack(Blocks.carrots), new ItemStack(Blocks.carrots));
 		//TODO place the things in here
 	}
 	public ItemStack[] getArray(String itemname){

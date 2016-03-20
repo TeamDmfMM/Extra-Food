@@ -100,7 +100,7 @@ tile.Auto_Cutter.name=Cortador automático
 tile.Juice_Blender.name=Batidora
 tile.StrawberryBush.name=Arbusto de fresas
 tile.BananaLeaf.name=Hoja de Banana
-tile.PeanutBush.name=Arbusto de cacahuetes 
+tile.PeanutBush.name=Arbusto de cacahuetes
 tile.TheWhiteBlock.name=Block of Pure White
 tile.CropLettuce.name=Cosecha de lechuga
 tile.CropTomato.name=Cosecha de tomates
@@ -114,7 +114,7 @@ tile.Cake.name=Tarta de chocolate
 #Fluid Names ---This is for mod Compatibility
 fluid.strawberryjuice=Zumo de fresa
 fluid.carrotjuice=Zumo de zanahoria
-fluid.bananajuice=Zumo de banana 
+fluid.bananajuice=Zumo de banana
 
 #FORESTRY Intergration Names
 circuit.managedBush=Granja de Arbustos

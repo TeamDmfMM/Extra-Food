@@ -1,5 +1,6 @@
-package dmf444.ExtraFood.Core.Crossmod.NEI;
 
+package dmf444.ExtraFood.Core.Crossmod.NEI;
+/*
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -8,11 +9,11 @@ import dmf444.ExtraFood.Common.blocks.guis.GuiJuiceBlender;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -56,9 +57,11 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 		
 	}
 
-	/*
+
+*
 	 * ADD ALL THE ITEMS FOR EACH RECIPE HERE!!!
-	 */
+	 *
+
 	ArrayList<Item> InputItems = new ArrayList<Item>(){{
 		add(ItemLoader.banana);
 		add(ItemLoader.strawberry);
@@ -127,9 +130,9 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 	  @Override
 	  public void drawExtras(int recipeI){
 		 
-		  IIcon juice = GuiJuiceBlender.getFluidTexture(JuiceRegistry.instance.getJuiceFromItemStack(arecipes.get(recipeI).getIngredient().item), false);
+		  TextureAtlasSprite juice = GuiJuiceBlender.getFluidTexture(JuiceRegistry.instance.getJuiceFromItemStack(arecipes.get(recipeI).getIngredient().item), false);
 		  renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		  gui.drawTexturedModelRectFromIcon(147 - 5, (int)((62 - (1000 * 0.012)) - 1), juice, 16, (int)(1000 * 0.012));
+		  gui.drawTexturedModalRect(147 - 5, (int) ((62 - (1000 * 0.012)) - 1), juice, 16, (int) (1000 * 0.012));
 		  renderEngine.bindTexture(GuiLib.JBgui);
 		  gui.drawTexturedModalRect(147 - 5, 17 - 11, 217, 0, 16, 49);
 		  float[] color = JuiceRegistry.instance.getColor(arecipes.get(recipeI).getIngredient().item);
@@ -145,5 +148,6 @@ public class NEIJuiceBlenderHandler extends TemplateRecipeHandler{
 			
 		  //JuiceBlenderRecipe recipe = (JuiceBlenderRecipe) arecipes.get(recipeI);
 	  }
-	  
-}
+
+} */
+

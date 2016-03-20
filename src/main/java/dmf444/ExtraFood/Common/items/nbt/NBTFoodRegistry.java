@@ -1,24 +1,23 @@
 package dmf444.ExtraFood.Common.items.nbt;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
+import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.Hashtable;
+import java.util.*;
 
 public class NBTFoodRegistry {
 	
 	public static NBTFoodRegistry food;
-	
+
 	public ArrayList<NBTFoodSpecs> foods;
 	
 	public NBTFoodSpecs getSpecs(String name){
 		for (NBTFoodSpecs i : foods){
-			if (i.name == name){
+			if (Objects.equals(i.name, name)){
 				return i;
 			}
 		}
@@ -36,8 +35,8 @@ public class NBTFoodRegistry {
 				
 						
 	}
-	private String p = "extrafood:oven/";
-	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(ItemLoader.sausage), "fish", p +"pizzaFish", is(Items.cooked_fished), "olives", p +"pizzaOlive", new ItemStack(ItemLoader.olive, 3), "cheese", p +"pizzaCheese", new ItemStack(ItemLoader.cheeseSlice, 2));
+	private String p = "extrafood:items/oven/";
+	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(ItemLoader.sausage), "fish", p +"pizzaFish", is(Items.cooked_fish), "olives", p +"pizzaOlive", new ItemStack(ItemLoader.olive, 3), "cheese", p +"pizzaCheese", new ItemStack(ItemLoader.cheeseSlice, 2));
 	private Dictionary<String, ArrayList<Object>> Muffin_ADD = dict("chocolate_chip", p +"muffinChocolate", is(ItemLoader.chocolate), "strawberry", p +"muffinStrawberry", is(ItemLoader.strawberry), "banana", p +"muffinBanana", is(ItemLoader.banana), "apple", p +"muffinApple", is(Items.apple), "Doublechocolate", p +"muffinDoubleChocolate", new ItemStack(ItemLoader.chocolate, 2));
 	
 	
@@ -61,7 +60,9 @@ public class NBTFoodRegistry {
 		spec.defualtHunger = dHunger;
 		spec.info = info;
 		spec.non = non;
+		spec.setupModelName();
 		foods.add(spec);
+
 		
 	}
 	public void addFoods(String name, Dictionary<String, ArrayList<Object>> adds, String dIcon, float[] dHunger, ArrayList<ArrayList<String>> non){
@@ -150,9 +151,9 @@ public class NBTFoodRegistry {
 	/**
 	 * Continous list of Info
 	 * 
-	 * @param String item
-	 * @param int Hunger
-	 * @param int Saturation
+	 * String item
+	 * int Hunger
+	 * int Saturation
 	 */
 	public Dictionary<ArrayList<String>, ArrayList<Object>> createInfo(Object... info){
 		Dictionary<ArrayList<String>, ArrayList<Object>> rval = new Hashtable<ArrayList<String>, ArrayList<Object>>();
@@ -206,12 +207,16 @@ public class NBTFoodRegistry {
 	
 	public static ItemStack getPizzaDisplay(){
 		ItemStack bob = new ItemStack(NBTFoodLoader.getItem("pizza"));
-		bob.setTagCompound(((NBTFood) NBTFoodLoader.getItem("pizza")).getNBT("pepperoni", "cheese"));
+		bob.setTagCompound(((NBTFood)(bob.getItem())).getNBT("pepperoni", "cheese"));
+		//bob.setTagCompound();
 		return bob;
 	}
     public static ItemStack getMuffinDisplay(){
         ItemStack bob = new ItemStack(NBTFoodLoader.getItem("muffin"));
-        bob.setTagCompound(((NBTFood) NBTFoodLoader.getItem("muffin")).getNBT("Doublechocolate"));
+		NBTTagCompound tagCompound = new NBTTagCompound();
+		tagCompound.setBoolean("Doublechocolate", true);
+		bob.setTagCompound(tagCompound);
+		EFLog.error(((NBTFood) bob.getItem()).getIconNames(bob).size());
         return bob;
     }
 	

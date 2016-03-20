@@ -1,16 +1,15 @@
 package dmf444.ExtraFood.Common.WorldGen;
 
-import java.util.Random;
-
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.Direction;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 public class BananaWorldGenTrees extends WorldGenAbstractTree
 {
@@ -22,7 +21,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
     private final int metaWood;
     /** The metadata value of the leaves to use in tree generation. */
     private final int metaLeaves;
-    private static final String __OBFID = "CL_00000438";
+
 
     public BananaWorldGenTrees(boolean p_i2027_1_)
     {
@@ -41,8 +40,11 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
      * (non-Javadoc)
      * @see net.minecraft.world.gen.feature.WorldGenerator#generate(net.minecraft.world.World, java.util.Random, int, int, int)
      */
-    public boolean generate(World world, Random rand, int x, int y, int z)
+    public boolean generate(World world, Random rand, BlockPos pos)
     {
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
         int l = rand.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
 
@@ -72,9 +74,8 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            block = world.getBlock(j1, i1, k1);
 
-                            if (!this.isReplaceable(world, j1, i1, k1))
+                            if (!this.isReplaceable(world,new BlockPos(j1, i1, k1)))
                             {
                                 flag = false;
                             }
@@ -93,12 +94,12 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
             }
             else
             {
-                Block block2 = world.getBlock(x, y - 1, z);
+                Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).down()).getBlock();
 
-                boolean isSoil = block2.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
+                boolean isSoil = block2.canSustainPlant(world,new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.sapling);
                 if (isSoil && y < 256 - l - 1)
                 {
-                    block2.onPlantGrow(world, x, y - 1, z, x, y, z);
+                    block2.onPlantGrow(world,new BlockPos(x, y - 1, z), new BlockPos(x, y, z));
                     b0 = 3;
                     byte b1 = 0;
                     int l1;
@@ -121,11 +122,11 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
 
                                 if (Math.abs(j2) != l1 || Math.abs(l2) != l1 || rand.nextInt(2) != 0 && i3 != 0)
                                 {
-                                    Block block1 = world.getBlock(i2, k1, k2);
+                                    Block block1 = world.getBlockState(new BlockPos(i2, k1, k2)).getBlock();
 
-                                    if (block1.isAir(world, i2, k1, k2) || block1.isLeaves(world, i2, k1, k2))
+                                    if (block1.isAir(world, new BlockPos(i2, k1, k2)) || block1.isLeaves(world,new BlockPos(i2, k1, k2)))
                                     {
-                                        this.setBlockAndNotifyAdequately(world, i2, k1, k2, BlockLoader.bananaLeaf, this.metaLeaves);
+                                        this.setBlockAndNotifyAdequately(world, new BlockPos(i2, k1, k2), BlockLoader.bananaLeaf.getDefaultState());
                                     }
                                 }
                             }
@@ -134,11 +135,11 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
 
                     for (k1 = 0; k1 < l; ++k1)
                     {
-                        block = world.getBlock(x, y + k1, z);
+                        BlockPos upN = pos.up(k1);
+                        block = world.getBlockState(upN).getBlock();
 
-                        if (block.isAir(world, x, y + k1, z) || block.isLeaves(world, x, y + k1, z))
-                        {
-                            this.setBlockAndNotifyAdequately(world, x, y + k1, z, Blocks.log, this.metaWood);
+                        if (block.isAir(world,new BlockPos( x, y + k1, z)) || block.isLeaves(world,new BlockPos( x, y + k1, z))) {
+                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + k1, z), Blocks.log.getDefaultState());
                         }
                     }
 
@@ -153,27 +154,29 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
                             {
                                 for (j2 = z - l1; j2 <= z + l1; ++j2)
                                 {
-                                    if (world.getBlock(i2, k1, j2).isLeaves(world, i2, k1, j2))
-                                    {
-                                        if (rand.nextInt(25) == 0 && world.getBlock(i2 - 1, k1, j2).isAir(world, i2, k1 - 1, j2))
+                                    BlockPos blockposL = new BlockPos(i2, k1, j2);
+                                    if (world.getBlockState(blockposL).getBlock().isLeaves(world, blockposL)) {
+                                        BlockPos blockposWest = blockposL.west();
+                                        BlockPos blockposEast = blockposL.east();
+                                        if (rand.nextInt(25) == 0 && world.getBlockState(blockposWest).getBlock().isAir(world,new BlockPos(i2, k1 - 1, j2)))
                                         {
                                             this.growVines(world, i2, k1 - 1, j2, 1);
                                         }
 
-                                        if (rand.nextInt(15) == 0 && world.getBlock(i2 + 1, k1, j2).isAir(world, i2, k1 - 1, j2))
+                                        if (rand.nextInt(15) == 0 && world.getBlockState(blockposEast).getBlock().isAir(world,new BlockPos(i2, k1 - 1, j2)))
                                         {
                                             this.growVines(world, i2, k1 - 1, j2, 1);
                                         }
 
-                                        /*if (par2Random.nextInt(4) == 0 && par1World.isAirBlock(j2, j1 - 1, k2))
+                                        if (rand.nextInt(15) == 0 && world.isAirBlock(new BlockPos(i2, k1 - 1, j2)))
                                         {
-                                            this.growVines(par1World, j2, j1 - 1, k2, 1);
+                                            this.growVines(world, i2, k1 - 1, j2, 1);
                                         }
 
-                                        if (par2Random.nextInt(4) == 0 && par1World.isAirBlock(j2, j1 -1, k2))
+                                        if (rand.nextInt(15) == 0 && world.isAirBlock(new BlockPos(i2, k1 -1, j2)))
                                         {
-                                            this.growVines(par1World, j2, j1 - 1, k2, 1);
-                                        }*/
+                                            this.growVines(world, i2, k1 - 1, j2, 1);
+                                        }
                                     }
                                 }
                             }
@@ -212,9 +215,15 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
     /**
      * Grows vines downward from the given block for a given length. Args: World, x, starty, z, vine-length
      */
-    private void growVines(World par1World, int par2, int par3, int par4, int par5)
+    private void growVines(World world, int x, int y, int z, int length)
     {
-    	this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, BlockLoader.bananaBunch, par5);
+        BlockPos bananaPlace = new BlockPos(x,y,z);
+        if(world.getBlockState(bananaPlace).getBlock() == Blocks.air) {
+            this.setBlockAndNotifyAdequately(world, bananaPlace, BlockLoader.bananaBunch.getDefaultState());
+        } else{
+            this.growVines(world, x, y - 1, z, 1);
+        }
+        //this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, BlockLoader.bananaBunch, par5);
     }
 
 	

@@ -1,32 +1,18 @@
+
 package dmf444.ExtraFood.Core.Crossmod.NEI;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-
-
-
-
-
-
-
-
-
-
-
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+/*
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import dmf444.ExtraFood.ExtraFood;
-import dmf444.ExtraFood.Common.RecipeHandler.RecipeAutoCutter;
-import dmf444.ExtraFood.Common.RecipeHandler.RegistryAutoCutter;
 import dmf444.ExtraFood.Common.blocks.guis.AutoCutterGUI;
 import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.util.EFLog;
+import dmf444.ExtraFood.ExtraFood;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
+
+import java.awt.*;
 
 public class NEIAutoCutterHandler extends TemplateRecipeHandler{
 	public class AutoCutterRecipe extends CachedRecipe{
@@ -123,5 +109,5 @@ public class NEIAutoCutterHandler extends TemplateRecipeHandler{
 		  drawProgressBar(116 - 5, 34 - 11, 176, 0, 10, 28, 100, 1);
 		  AutoCutterRecipe recipe = (AutoCutterRecipe) arecipes.get(recipeI);
 	  }
-}
-	
+}*/
+

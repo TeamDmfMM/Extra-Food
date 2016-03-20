@@ -8,9 +8,11 @@ import dmf444.ExtraFood.Common.blocks.guis.ButtonNextPageGUI;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import dmf444.ExtraFood.ExtraFood;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -54,7 +56,7 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
 	pageTextLeft = StatCollector.translateToLocal("cookbookL." + pagename);
 	pageTextRight = StatCollector.translateToLocal("cookbookR." + pagename);
 	this.items = ExtraFood.crafterPage.getArray(pagename);
-	this.irender = new RenderItem();
+	this.irender = Minecraft.getMinecraft().getRenderItem();
 	pagen = pagename;
 	
 	ris = (ArrayList<CBElement>) this.digestString(StatCollector.translateToLocal("cookbook." + pagename));
@@ -64,40 +66,17 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
 }
 
  public void drawScreen(int par1, int par2, float par3) {
-	 
-	this.drawDefaultBackground();	
+	this.drawDefaultBackground();
 	this.drawBookBackground();
-/*	this.drawTextLeftSide();
-	this.drawTextRightSide();*/
 	this.draw();
-    GL11.glDisable(GL11.GL_LIGHTING);
-    GL11.glDisable(GL11.GL_DEPTH_TEST);
-    GL11.glEnable(GL11.GL_LIGHTING);
-    GL11.glEnable(GL11.GL_DEPTH_TEST);
     super.drawScreen(par1, par2, par3);
  }
- 
-/* protected void drawTextRightSide() {
-	 //parts = string.split("-")
-     int i = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
-     int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
-     this.fontRendererObj.setUnicodeFlag(true);
-	 this.fontRendererObj.drawSplitString(pageTextRight, i + 140, j + 19, 93, 0x0000000);
-     this.fontRendererObj.setUnicodeFlag(false);
-	 }
 
- protected void drawTextLeftSide() {
-	 //parts = string.split("-")
-     int i = (this.width - CookBookGUI.achievementsPaneWidth) / 2;
-     int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
-     this.fontRendererObj.setUnicodeFlag(true);
-	 this.fontRendererObj.drawSplitString(pageTextLeft, i + 28, j + 19, 93, 0x0000000);
-     this.fontRendererObj.setUnicodeFlag(false);
-	 }*/
 
  public void initGui(){
      int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
+     GL11.glPushMatrix();
      if (StatCollector.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
     	 if(Morethanone){
      this.buttonList.add(this.next = new ButtonNextPageGUI(0, i + 221, j + 160, true));
@@ -105,6 +84,7 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
     	}
 	 this.buttonList.add(this.backGUI = new ButtonBackGUI(2, i + 6, j + 2, false));
      }
+     GL11.glPopMatrix();
  }
 
 protected void drawBookBackground() {
@@ -113,10 +93,15 @@ protected void drawBookBackground() {
     int j1 = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
     
     int k1 = j1 - 32;
-	
-    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	GL11.glPushMatrix();
+    GL11.glDisable(GL11.GL_LIGHTING);
+    GL11.glEnable(GL11.GL_BLEND);
+    //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	this.mc.getTextureManager().bindTexture(GuiLib.CBopen);
     this.drawTexturedModalRect(i1, j1, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight + 50);
+    GL11.glEnable(GL11.GL_LIGHTING);
+    GL11.glDisable(GL11.GL_BLEND);
+    GL11.glPopMatrix();
     
  }
 
@@ -124,7 +109,9 @@ public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
 	//System.out.println(args.size());
 	 this.fontRendererObj.setUnicodeFlag(true);
 	//System.out.println("Magical Calling");
-	 GL11.glDisable(GL11.GL_LIGHTING);
+    GL11.glPushMatrix();
+	GL11.glDisable(GL11.GL_LIGHTING);
+    //GL11.glEnable(GL11.GL_BLEND);
 	 int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
 	    int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
    // Check height of block
@@ -152,32 +139,35 @@ public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
     		if (flag == 0){
     			this.fontRendererObj.drawSplitString(p1, x, y, 93, 0x0000000);
     			this.fontRendererObj.setUnicodeFlag(false);
-    			GL11.glEnable(GL11.GL_LIGHTING);
+    			//GL11.glEnable(GL11.GL_LIGHTING);
+                GL11.glDisable(GL11.GL_BLEND);
+                GL11.glPopMatrix();
     			return h;
     		}
     		else {
     			String p2r = p2.substring(1, p2.length());
     			this.fontRendererObj.drawSplitString(p2r, x, y, 93, 0x0000000);
     			this.fontRendererObj.setUnicodeFlag(false);
-    			GL11.glEnable(GL11.GL_LIGHTING);
+    			//GL11.glEnable(GL11.GL_LIGHTING);
+                GL11.glDisable(GL11.GL_BLEND);
+                GL11.glPopMatrix();
     			return -h;
     		}
     	}
-
-    	
-    			
-    
     else {
     	//System.out.println("render" + args.get(0));
     	this.fontRendererObj.drawSplitString((String) args.get(0), x, y, 93, 0x0000000);
     	this.fontRendererObj.setUnicodeFlag(false);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
     	return h;
     }
-    
+
 }
 public int drawElementImage(ArrayList<Object> args, int x, int y, int flag){
 	int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
     int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
+    GL11.glPushMatrix();
     //System.out.println(y + 0 + ":" + j);
 	if (y + (int)args.get(2) < j  + 155){
 		ResourceLocation image = (ResourceLocation) args.get(0);
@@ -190,6 +180,8 @@ public int drawElementImage(ArrayList<Object> args, int x, int y, int flag){
 		GL11.glColor4f(1f, 1f, 1f, 1f);
 		this.drawTexturedModalRect(x, y, xx, yy, w, h);
 		GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
+        GL11.glPopMatrix();
 		return h;
 	}
 	else {
@@ -220,20 +212,18 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     		/* Items 0 is in
     		 * items 1 is out
     		 */
-			if (items[0] != null){				
-			    GL11.glDisable(GL11.GL_LIGHTING);					
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[0], x1 + 16, y1 + 9);
-				GL11.glEnable(GL11.GL_LIGHTING);			
+			if (items[0] != null){
+				RenderHelper.enableStandardItemLighting();
+				this.irender.renderItemIntoGUI(items[0], x1 + 16, y1 + 9);
+
 			}
 			if (items[9] != null){
-			GL11.glDisable(GL11.GL_LIGHTING);
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 16, y1 - 33);
-				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 16, y1 - 33);
-			GL11.glEnable(GL11.GL_LIGHTING);	
+				RenderHelper.enableStandardItemLighting();
+				this.irender.renderItemIntoGUI(items[9], x1 + 16, y1 - 33);
+				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 16, y1 - 33, null);
 			}
-			GL11.glDisable(GL11.GL_LIGHTING);
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), new ItemStack(Items.coal), x1 + 16, y1 + 49);
-			GL11.glEnable(GL11.GL_LIGHTING);
+			RenderHelper.enableStandardItemLighting();
+				this.irender.renderItemIntoGUI(new ItemStack(Items.coal), x1 + 16, y1 + 49);
     	}
     }
     return -150;
@@ -248,7 +238,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
         int y1 = y + 50;
         this.fontRendererObj.setUnicodeFlag(false);
         this.mc.getTextureManager().bindTexture(GuiLib.CBoven);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_LIGHTING);
         this.drawTexturedModalRect(x1 - 25, y1 - 52, 0, 0, CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
@@ -293,10 +283,9 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     
     private void renderItem(ItemStack i, int x, int y){
         if(i != null){
-        	GL11.glDisable(GL11.GL_LIGHTING);
-        	this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), i, x, y);
-        	this.irender.renderItemOverlayIntoGUI(fontRendererObj, this.mc.getTextureManager(), i, x, y);
-        	GL11.glEnable(GL11.GL_LIGHTING);
+			RenderHelper.enableStandardItemLighting();
+        	this.irender.renderItemIntoGUI(i, x, y);
+        	this.irender.renderItemOverlayIntoGUI(fontRendererObj, i, x, y, null);
         }
     }
     private ItemStack conversioncheck(ItemStack i){
@@ -318,10 +307,11 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     int y1 = y + 50;
     this.fontRendererObj.setUnicodeFlag(false);
     this.mc.getTextureManager().bindTexture(GuiLib.CBcraftgrid);
-    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     GL11.glEnable(GL11.GL_BLEND);
     this.drawTexturedModalRect(x1 - 14, y1 - 51, 0, 0,  CookBookGUI.getAchievementsPaneWidth(), CookBookGUI.achievementsPaneHeight);
     GL11.glDisable(GL11.GL_BLEND);
+		RenderHelper.enableStandardItemLighting();
 	ItemStack[] items = ExtraFood.instance.crafterPage.getArray((String) args.get(0).toString());
 	for (ItemStack i : ExtraFood.instance.crafterPage.getArray((String) args.get(0).toString())){
 		if (i != null){
@@ -334,54 +324,54 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
 				
 			if (items[0] != null){				
 		    GL11.glDisable(GL11.GL_LIGHTING);					
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[0], x1 - 3, y1 + 1);
+			this.irender.renderItemIntoGUI(items[0], x1 - 3, y1 + 1);
 			GL11.glEnable(GL11.GL_LIGHTING);			
 			}	
 			if (items[1] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[1], x1 + 18, y1 + 1);
+			this.irender.renderItemIntoGUI(items[1], x1 + 18, y1 + 1);
 				GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[2] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[2], x1 + 40, y1 + 1);
+			this.irender.renderItemIntoGUI(items[2], x1 + 40, y1 + 1);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[3] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[3], x1 - 3, y1 + 22);
+			this.irender.renderItemIntoGUI(items[3], x1 - 3, y1 + 22);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[4] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[4], x1 + 18, y1 + 22);
+			this.irender.renderItemIntoGUI(items[4], x1 + 18, y1 + 22);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[5] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[5], x1 + 40, y1 + 22);
+			this.irender.renderItemIntoGUI(items[5], x1 + 40, y1 + 22);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[6] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[6], x1 - 3, y1 + 43);
+			this.irender.renderItemIntoGUI(items[6], x1 - 3, y1 + 43);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[7] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[7], x1 + 18, y1 + 43);
+			this.irender.renderItemIntoGUI(items[7], x1 + 18, y1 + 43);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			if (items[8] != null){
 			    GL11.glDisable(GL11.GL_LIGHTING);	
-			this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[8], x1 + 40, y1 + 43);
+			this.irender.renderItemIntoGUI(items[8], x1 + 40, y1 + 43);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 			   //Itemstack 9 is the output slot
 			if (items[9] != null){
 			GL11.glDisable(GL11.GL_LIGHTING);
-				this.irender.renderItemIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 19, y1 - 44);
-				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), items[9], x1 + 19, y1 - 44);
+				this.irender.renderItemIntoGUI(items[9], x1 + 19, y1 - 44);
+				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 19, y1 - 44, null);
 			GL11.glEnable(GL11.GL_LIGHTING);	
 			}
 
@@ -408,9 +398,12 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 		this.mc.renderEngine.bindTexture(new ResourceLocation("extrafood:textures/gui/cookbookimages/BookIcons.png"));
 		this.drawTexturedModalRect(x + 3, y + 30, 0, 0, 12, 24);
 		this.drawTexturedModalRect(x + 3, y + 50, 12, 0, 12, 24);
-		GL11.glPopMatrix();
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
 
-		FontRenderer fontr = this.fontRendererObj;
+        GL11.glDisable(GL11.GL_LIGHTING);
+        FontRenderer fontr = this.fontRendererObj;
 		fontr.setUnicodeFlag(true);
 		fontr.drawStringWithShadow("Hunger Stats:", x + 19, y, 0x3333FF);
 		if (args.size() > 2){
@@ -421,8 +414,7 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 		fontr.drawString(String.valueOf(args.get(0)), x + 16 + 50, y + 32, 0x0000000);
 		fontr.drawString(String.valueOf(args.get(1)), x + 16 + 50, y + 52, 0x0000000);
 		fontr.setUnicodeFlag(false);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_BLEND);		
+        GL11.glEnable(GL11.GL_LIGHTING);
 		return -150;
 	}
 }
