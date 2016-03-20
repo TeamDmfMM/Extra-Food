@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
 
 public class TileEntityOven extends TileEntity implements ISidedInventory, ITickable {
@@ -167,7 +167,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 	}
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return null;
     }
 

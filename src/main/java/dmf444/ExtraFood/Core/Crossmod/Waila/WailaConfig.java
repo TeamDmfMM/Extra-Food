@@ -1,6 +1,7 @@
 
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
+/*
 import mcp.mobius.waila.api.IWailaRegistrar;
 import dmf444.ExtraFood.Common.blocks.ChocolateCake;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
@@ -15,3 +16,4 @@ public class WailaConfig {
 	}
 }
 
+*/

@@ -5,7 +5,6 @@ import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.lib.GuiLib;
-import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,7 +12,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -62,9 +61,9 @@ public class GuiJuiceBlender extends GuiContainer {
 		int y = (height - ySize) / 2;
             //draw text and stuff here
             //the parameters for drawString are: string, x, y, color
-            fontRendererObj.drawString(StatCollector.translateToLocal("gui.JB"), 8, 6, 4210752);
+            fontRendererObj.drawString(I18n.translateToLocal("gui.JB"), 8, 6, 4210752);
             //draws "Inventory" or your regional equivalent
-            fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+            fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
 	@Override

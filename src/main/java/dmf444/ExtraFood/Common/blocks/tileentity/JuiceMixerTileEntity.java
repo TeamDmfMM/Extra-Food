@@ -11,10 +11,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.*;
 
@@ -406,7 +406,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return null;
     }
 
@@ -432,11 +432,11 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         }
 
         syncData.setTag("OutputState", output);
-        return new S35PacketUpdateTileEntity(this.getPos(), 1, syncData);
+        return new SPacketUpdateTileEntity(this.getPos(), 1, syncData);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         selected = SelectedTank.values()[pkt.getNbtCompound().getInteger("State")];
         NBTTagCompound compound = pkt.getNbtCompound();

@@ -7,7 +7,7 @@ package forestry.api.world;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface ITreeGenData {

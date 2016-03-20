@@ -2,11 +2,10 @@ package dmf444.ExtraFood.Common.WorldGen;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import net.minecraft.block.state.BlockState;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -57,11 +56,11 @@ public class PeanutWorldGen implements IWorldGenerator {
 
 
                     if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.tallgrass && random.nextInt(3) == 0){
-                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockState(BlockLoader.peanutbush).getBaseState());
+                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockStateContainer(BlockLoader.peanutbush).getBaseState());
 
                     }
                     else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.grass && random.nextInt(3) == 0){
-                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockState(BlockLoader.peanutbush).getBaseState());
+                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockStateContainer(BlockLoader.peanutbush).getBaseState());
 
                     }
 

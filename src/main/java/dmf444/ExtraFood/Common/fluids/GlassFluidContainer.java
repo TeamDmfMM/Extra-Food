@@ -9,7 +9,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -51,7 +51,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
     public String getItemStackDisplayName(ItemStack stack)
     {
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("fluid")){
-            return (StatCollector.translateToLocal("item.EFbottle."+ stack.getTagCompound().getString("fluid") + ".name"));
+            return (I18n.translateToLocal("item.EFbottle."+ stack.getTagCompound().getString("fluid") + ".name"));
         }else {
             return "BOTTLE ERROR, REPORT IMMEDIATELY!";
         }

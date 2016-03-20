@@ -1,7 +1,6 @@
 package dmf444.ExtraFood.Core.Crossmod;
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.Crossmod.Waila.WailaConfig;
 import dmf444.ExtraFood.Core.Crossmod.forestry.ForestryFarming;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.EFLog;
@@ -44,7 +43,7 @@ public class CrossModModules{
 	}
 	if(Loader.isModLoaded("Waila")){
 		Waila = true;
-		FMLInterModComms.sendMessage("Waila", "register", WailaConfig.class.getName() + ".callbackRegister");
+		//FMLInterModComms.sendMessage("Waila", "register", WailaConfig.class.getName() + ".callbackRegister");
 	}
 
 	EFLog.info("Mods Loaded:");

@@ -14,7 +14,7 @@ import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -67,7 +67,7 @@ public class ClientProxy extends CommonProxy{
 			e.setCanceled(true);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/misc/underwater.png"));
 			Tessellator tessellator = Tessellator.getInstance();
-			WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+			VertexBuffer worldrenderer = tessellator.getWorldRenderer();
 			float f = e.player.getBrightness(e.renderPartialTicks);
 			GlStateManager.color(f, f, f, 0.5F);
 			float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());

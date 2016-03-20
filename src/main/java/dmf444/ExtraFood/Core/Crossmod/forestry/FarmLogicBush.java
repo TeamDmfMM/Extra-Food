@@ -13,6 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -243,7 +246,7 @@ public class FarmLogicBush implements IFarmLogic {
 
 	@Override
 	public String getName() {
-		return StatCollector.translateToLocal("managedBush");
+		return I18n.translateToLocal("managedBush");
 	}
  class Vect{
 			public int x;

@@ -7,8 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -124,8 +124,8 @@ public class NBTFood extends ItemFood {
     		}
     	}
     	for (String i : things){
-    		if (StatCollector.canTranslate("add." + name + "." + i)){
-    			text.add("- " + EnumChatFormatting.GREEN.toString() + StatCollector.translateToLocal("add." + name + "." + i));
+    		if (I18n.canTranslate("add." + name + "." + i)){
+    			text.add("- " + TextFormatting.GREEN.toString() + I18n.translateToLocal("add." + name + "." + i));
     		}
     		else{
     			text.add("- " + i);

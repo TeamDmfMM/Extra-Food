@@ -18,7 +18,7 @@ import forestry.api.farming.IFarmHousing;
 import forestry.api.farming.IFarmLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 import java.util.List;
 
@@ -63,12 +63,12 @@ public class Circuit implements ICircuit{
 
 	@Override
 	public void addTooltip(List<String> list) {
-		list.add(StatCollector.translateToLocal(getName()));
+		list.add(I18n.translateToLocal(getName()));
 
 		int i = 1;
 		while (true) {
 			String unlocalizedDescription = getName() + ".description." + i;
-			String description = StatCollector.translateToLocal(unlocalizedDescription);
+			String description = I18n.translateToLocal(unlocalizedDescription);
 			if (description.endsWith(unlocalizedDescription))
 				break;
 			list.add(" - " + description);

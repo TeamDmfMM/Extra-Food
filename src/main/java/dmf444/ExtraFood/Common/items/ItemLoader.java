@@ -1,15 +1,18 @@
 package dmf444.ExtraFood.Common.items;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.Core.lib.ItemLib;
+import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.*;
-import net.minecraft.potion.Potion;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.*;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemLoader {
@@ -98,7 +101,7 @@ public class ItemLoader {
 		steak_kebab = new StanFood(3, 12.4F).setUnlocalizedName(ItemLib.iSKeb);
 		veal_kebab = new StanFood(3, 12.6F).setUnlocalizedName(ItemLib.iVKeb);		
 		sushi = new StanFood(8, 2.6F).setUnlocalizedName(ItemLib.iSushi);
-		rawHamburger = ((ItemFood) new StanFood(5, 0.6F).setUnlocalizedName(ItemLib.iRH)).setPotionEffect(Potion.hunger.id, 30, 0, 0.4F);
+		rawHamburger = ((ItemFood) new StanFood(5, 0.6F).setUnlocalizedName(ItemLib.iRH)).setPotionEffect(new PotionEffect(Potion.getPotionById(17), 10), 0.4F);
 		
 		//Non-balanced foods
 		rawpasta = new ReturnFood(3, 0.3F, Items.bowl).setUnlocalizedName(ItemLib.iPasta);
@@ -114,14 +117,14 @@ public class ItemLoader {
 		fishpieces = new StanFood(4, 0.5F).setUnlocalizedName(ItemLib.iFP);
 		chocolate = new StanFood(4, 1.8F).setUnlocalizedName(ItemLib.iCho);
 		pancakes = new StanFood(6, 1.2F).setUnlocalizedName(ItemLib.iPC);
-		peanutButter = ((ItemFood) new StanFood(3, 4.5F).setUnlocalizedName(ItemLib.iPB)).setPotionEffect(Potion.confusion.id, 10, 0, 0.8F);
+		peanutButter = ((ItemFood) new StanFood(3, 4.5F).setUnlocalizedName(ItemLib.iPB)).setPotionEffect(new PotionEffect(Potion.getPotionById(9), 10), 0.8F);
 		butter = new StanFood(1, 1.0F).setUnlocalizedName(ItemLib.iButter);
 		vanillaIceCream = new DrinkActionFood(4, 0.8F).setUnlocalizedName(ItemLib.iVanIceCream);
 		chocolateIceCream = new DrinkActionFood(8, 0.8F).setUnlocalizedName(ItemLib.iChoIceCream);
 		strawberryIceCream = new DrinkActionFood(9, 2.5F).setUnlocalizedName(ItemLib.iStrawIceCream);
 		chineseFood = new StanFood(7, 5.0F).setUnlocalizedName(ItemLib.iCNF);
-		chocolateSpread = ((ItemFood) new StanFood(8, 4.5F).setUnlocalizedName(ItemLib.iChoSpread)).setPotionEffect(Potion.confusion.id, 10, 0, 0.8F);
-		jelly = ((ItemFood) new StanFood(5, 2.0F).setUnlocalizedName(ItemLib.iJ)).setPotionEffect(Potion.heal.id, 5, 0, 0.1F);
+		chocolateSpread = ((ItemFood) new StanFood(8, 4.5F).setUnlocalizedName(ItemLib.iChoSpread)).setPotionEffect(new PotionEffect(Potion.getPotionById(9), 10), 0.8F);
+		jelly = ((ItemFood) new StanFood(5, 2.0F).setUnlocalizedName(ItemLib.iJ)).setPotionEffect(new PotionEffect(Potion.getPotionById(6), 1), 0.1F);
 		sandwichBLT = new StanFood(8, 10.0F).setUnlocalizedName(ItemLib.iSandBLT);
 		sandwichPBJ = new StanFood(8, 9.5F).setUnlocalizedName(ItemLib.iSandPBJ);
 		sandwichPBN = new StanFood(8, 9.0F).setUnlocalizedName(ItemLib.iSandPBN);
@@ -142,7 +145,7 @@ public class ItemLoader {
 		olive = new StanFood(4, 3.0F).setUnlocalizedName(ItemLib.iOlive);
 		orange = new StanFood(5, 3.0F).setUnlocalizedName(ItemLib.Orange);
 		//Temp HDB
-		ChocolateCake = new ItemReed(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
+		//ChocolateCake = new ItemR(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
 		
 		registerFood();
 	}
@@ -239,7 +242,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(gingerbread, ItemLib.iGB);
 			GameRegistry.registerItem(chestnuts, ItemLib.Chestnut);
 			//Temp
-			GameRegistry.registerItem(ChocolateCake, ItemLib.Cake);
+			//GameRegistry.registerItem(ChocolateCake, ItemLib.Cake);
 			
 			//Register into Ore Dictionary
 			OreDictionary.registerOre("foodHamburger", ItemLoader.cookedHamburger);

@@ -4,7 +4,7 @@ import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 //This class should be renamed, but it was my first mod item EVER, so it will stay. Note:
@@ -29,7 +29,7 @@ public class CheeseWheel extends ItemFood {
 	        par2World.playSoundAtEntity(Player, "random.burp", 0.5F, par2World.rand.nextFloat() * 0.1F + 0.9F);
 	        this.onFoodEaten(par1ItemStack, par2World, Player);
 	        if (!par2World.isRemote) {
-	        Player.addChatComponentMessage(new ChatComponentText(message));
+	        Player.addChatComponentMessage(new TextComponentString(message));
 	        }
 		return par1ItemStack;
 	        

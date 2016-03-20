@@ -8,24 +8,23 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodSpecs;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.model.IBakedModel;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by mincrmatt12. Do not copy this or you will have to face
@@ -77,7 +76,7 @@ public class NBTFoodModel implements IModel, IModelCustomData, IRetexturableMode
     }
 
     @Override
-    public IFlexibleBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
         ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformMap = IPerspectiveAwareModel.MapWrapper.getTransforms(state);
         TRSRTransformation transform = state.apply(Optional.<IModelPart>absent()).or(TRSRTransformation.identity());
 
@@ -96,10 +95,10 @@ public class NBTFoodModel implements IModel, IModelCustomData, IRetexturableMode
             }
         }
 
-        IFlexibleBakedModel model = new ItemLayerModel(objectBuilder.build()).bake(state, format, bakedTextureGetter);
-        builder.addAll(model.getGeneralQuads());
+        IBakedModel model = new ItemLayerModel(objectBuilder.build()).bake(state, format, bakedTextureGetter);
+        builder.addAll(model.getQuads(null, null, 0));
 
-        return new ModelNBTFoodInner(this, builder.build(), base, format, transformMap);
+        return new BakedNBTFoodModel(this, builder.build(), base, format, transformMap);
     }
 
     @Override
@@ -112,26 +111,18 @@ public class NBTFoodModel implements IModel, IModelCustomData, IRetexturableMode
         return this;
     }
 
-    public static class ModelNBTFoodInner extends ItemLayerModel.BakedModel implements ISmartItemModel, IPerspectiveAwareModel {
+    private static final class BakedNBTFoodOverrideHandler extends ItemOverrideList {
 
-        private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
-        private final NBTFoodModel parent;
-        private final Map<ArrayList<String>, IFlexibleBakedModel> cache;
+        public static final BakedNBTFoodOverrideHandler INSTANCE = new BakedNBTFoodOverrideHandler();
 
-        public ModelNBTFoodInner(NBTFoodModel parent, ImmutableList<BakedQuad> quads, TextureAtlasSprite particle, VertexFormat fmt, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
-            super(quads, particle, fmt);
-            this.parent = parent;
-            this.transforms = transforms;
-            this.cache = Maps.newHashMap();
+        public BakedNBTFoodOverrideHandler() {
+            super (ImmutableList.<ItemOverride>of());
         }
 
         @Override
-        public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
-            return MapWrapper.handlePerspective(this, transforms, cameraTransformType);
-        }
+        public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity) {
 
-        @Override
-        public IBakedModel handleItemState(ItemStack stack) {
+            BakedNBTFoodModel model = (BakedNBTFoodModel) originalModel;
 
             ArrayList<String> dtat = new ArrayList<>();
             for (String key : stack.getTagCompound().getKeySet()){
@@ -142,9 +133,9 @@ public class NBTFoodModel implements IModel, IModelCustomData, IRetexturableMode
                 }
             }
 
-            if (!cache.containsKey(dtat)) {
+            if (!model.cache.containsKey(dtat)) {
                 Joiner joiner = Joiner.on(";");
-                IModel model = parent.process(ImmutableMap.of("food", parent.nbtFood.name, "data", joiner.join(dtat)));
+                IModel model2 = model.parent.process(ImmutableMap.of("food", model.parent.nbtFood.name, "data", joiner.join(dtat)));
                 Function<ResourceLocation, TextureAtlasSprite> textureGetter;
                 textureGetter = new Function<ResourceLocation, TextureAtlasSprite>()
                 {
@@ -154,12 +145,55 @@ public class NBTFoodModel implements IModel, IModelCustomData, IRetexturableMode
                     }
                 };
 
-                IFlexibleBakedModel bakedModel = model.bake(new SimpleModelState(transforms), this.getFormat(), textureGetter);
-                cache.put(dtat, bakedModel);
+                IBakedModel bakedModel = model2.bake(new SimpleModelState(model.transforms), model.format, textureGetter);
+                model.cache.put(dtat, bakedModel);
                 return bakedModel;
             }
 
-            return cache.get(dtat);
+            return model.cache.get(dtat);
+
+        }
+    }
+
+    public static class BakedNBTFoodModel implements IPerspectiveAwareModel {
+
+        private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
+        private final NBTFoodModel parent;
+        private final Map<ArrayList<String>, IBakedModel> cache;
+        private final ImmutableList<BakedQuad> quads;
+        private final TextureAtlasSprite particle;
+        private final VertexFormat format;
+
+        public BakedNBTFoodModel(NBTFoodModel parent, ImmutableList<BakedQuad> quads, TextureAtlasSprite particle, VertexFormat fmt, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms) {
+            this.quads = quads;
+            this.particle = particle;
+            this.format = fmt;
+            this.parent = parent;
+            this.transforms = transforms;
+            this.cache = Maps.newHashMap();
+        }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
+            return MapWrapper.handlePerspective(this, transforms, cameraTransformType);
+        }
+
+        @Override
+        public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
+        {
+            if(side == null) return quads;
+            return ImmutableList.of();
+        }
+
+        public boolean isAmbientOcclusion() { return true;  }
+        public boolean isGui3d() { return false; }
+        public boolean isBuiltInRenderer() { return false; }
+        public TextureAtlasSprite getParticleTexture() { return particle; }
+        public ItemCameraTransforms getItemCameraTransforms() { return ItemCameraTransforms.DEFAULT; }
+
+        @Override
+        public ItemOverrideList getOverrides() {
+            return BakedNBTFoodOverrideHandler.INSTANCE;
         }
     }
     public enum ModelLodaer implements ICustomModelLoader

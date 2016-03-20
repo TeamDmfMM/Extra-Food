@@ -7,9 +7,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 
 public class BucketEdible extends ItemBucket {
 	
@@ -33,7 +32,7 @@ public class BucketEdible extends ItemBucket {
 	        Player.getFoodStats().addStats(FoodStat, SaturationLvl);
             world.playSoundAtEntity(Player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 	        if (!world.isRemote) {
-	        Player.addChatComponentMessage(new ChatComponentText("That tasted good!"));
+	        Player.addChatComponentMessage(new TextComponentString("That tasted good!"));
 	        }
 		return stack.stackSize <= 0 ? new ItemStack(Items.bucket) : stack;
 	        

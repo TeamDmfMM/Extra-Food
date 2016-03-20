@@ -3,7 +3,7 @@ package dmf444.ExtraFood.Core.init;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 

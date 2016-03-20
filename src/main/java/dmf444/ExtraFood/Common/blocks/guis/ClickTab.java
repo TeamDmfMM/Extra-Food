@@ -1,12 +1,11 @@
 package dmf444.ExtraFood.Common.blocks.guis;
 
 
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;

@@ -2,17 +2,16 @@ package dmf444.ExtraFood.Common.blocks.Plants;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.blocks.Plants.BananaLeaf;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -55,9 +54,9 @@ public class OliveLeaf extends BananaLeaf {
         }
     }
 
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {CHECK_DECAY, DECAYABLE, METALVL});
+        return new BlockStateContainer(this, new IProperty[] {CHECK_DECAY, DECAYABLE, METALVL});
     }
 
 

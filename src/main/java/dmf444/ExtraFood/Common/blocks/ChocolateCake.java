@@ -4,7 +4,7 @@ package dmf444.ExtraFood.Common.blocks;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.BlockCake;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

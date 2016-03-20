@@ -16,8 +16,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
@@ -116,38 +116,38 @@ public class GuiJuiceMixer extends GuiContainer {
         if (isPointInRegion(7, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input1;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX, mouseY);
             }
         }
         else if (isPointInRegion(32, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input2;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX, mouseY);
             }
         }
         else if (isPointInRegion(57, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input3;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX, mouseY);
             }
         }
         else if (isPointInRegion(101, 37, 16, 30, mouseX, mouseY)){
             if (te.outputState.size() == 0) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
             }
             else {
                 ArrayList<String> strings = new ArrayList<>(Arrays.asList("Contents:"));
                 for (FluidStack fluidStack : te.outputState) {
-                    strings.add(EnumChatFormatting.GREEN + fluidStack.getFluid().getLocalizedName(fluidStack) + ": " + EnumChatFormatting.RED + fluidStack.amount + EnumChatFormatting.WHITE + "mB");
+                    strings.add(TextFormatting.GREEN + fluidStack.getFluid().getLocalizedName(fluidStack) + ": " + TextFormatting.RED + fluidStack.amount + TextFormatting.WHITE + "mB");
                 }
                 drawHoveringText(strings, mouseX, mouseY);
             }
@@ -211,8 +211,8 @@ public class GuiJuiceMixer extends GuiContainer {
         this.buttonList.add(new MixerReleaseButton(0, x + 13, y + 71));
         this.buttonList.add(new MixerReleaseButton(1, x + 13 + 25, y + 71));
         this.buttonList.add(new MixerReleaseButton(2, x + 13 + 50, y + 71));
-        this.buttonList.add(new MixerSquareButton(3, x+121, y+58, StatCollector.translateToLocal("button.make"), false));
-        this.buttonList.add(new MixerSquareButton(4, x+121, y+68, StatCollector.translateToLocal("button.delete"), true));
+        this.buttonList.add(new MixerSquareButton(3, x+121, y+58, I18n.translateToLocal("button.make"), false));
+        this.buttonList.add(new MixerSquareButton(4, x+121, y+68, I18n.translateToLocal("button.delete"), true));
     }
 
     private void drawBkgd() {
@@ -247,6 +247,6 @@ public class GuiJuiceMixer extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-        fontRendererObj.drawString(StatCollector.translateToLocal("gui.JM"), 135, 6, 4210752);
+        fontRendererObj.drawString(I18n.translateToLocal("gui.JM"), 135, 6, 4210752);
     }
 }
