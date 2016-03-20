@@ -24,7 +24,7 @@ public interface IInternalMethodHandler {
 	public int getPlayerWarp(EntityPlayer player, EnumWarpType type);
 	public void markRunicDirty(Entity entity);
 	public boolean completeResearch(EntityPlayer player, String researchkey);
-	public boolean drainAura(World world, BlockPos pos, Aspect aspect,int amount);
+	public boolean drainAura(World world, BlockPos pos, Aspect aspect, int amount);
 	public int drainAuraAvailable(World world, BlockPos pos, Aspect aspect, int amount);
 	public void addAura(World world, BlockPos pos, Aspect aspect, int amount);
 	public void pollute(World world, BlockPos pos, int amount, boolean showEffect);

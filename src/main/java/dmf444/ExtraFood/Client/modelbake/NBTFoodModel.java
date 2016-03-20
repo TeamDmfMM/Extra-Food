@@ -127,7 +127,7 @@ public class NBTFoodModel implements IModel, IModelCustomData, IRetexturableMode
 
         @Override
         public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType) {
-            return IPerspectiveAwareModel.MapWrapper.handlePerspective(this, transforms, cameraTransformType);
+            return MapWrapper.handlePerspective(this, transforms, cameraTransformType);
         }
 
         @Override

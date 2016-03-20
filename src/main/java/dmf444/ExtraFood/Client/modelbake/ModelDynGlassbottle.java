@@ -271,7 +271,7 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
         @Override
         public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
         {
-            return IPerspectiveAwareModel.MapWrapper.handlePerspective(this, transforms, cameraTransformType);
+            return MapWrapper.handlePerspective(this, transforms, cameraTransformType);
         }
     }
 }

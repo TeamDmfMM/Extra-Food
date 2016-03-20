@@ -13,14 +13,14 @@ public interface IArchitect {
 	/**
 	 * Returns a list of blocks that should be highlighted in world.
 	 */
-	public ArrayList<BlockPos> getArchitectBlocks(ItemStack stack, World world, 
-			BlockPos pos, EnumFacing side, EntityPlayer player);
+	public ArrayList<BlockPos> getArchitectBlocks(ItemStack stack, World world,
+												  BlockPos pos, EnumFacing side, EntityPlayer player);
 	
 	/**
 	 * which axis should be displayed. 
 	 */
-	public boolean showAxis(ItemStack stack, World world, EntityPlayer player, EnumFacing side, 
-			EnumAxis axis);
+	public boolean showAxis(ItemStack stack, World world, EntityPlayer player, EnumFacing side,
+							EnumAxis axis);
 	
 	public enum EnumAxis {
 		X, // east / west

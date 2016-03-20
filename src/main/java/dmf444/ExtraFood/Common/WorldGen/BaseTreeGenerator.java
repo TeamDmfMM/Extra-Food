@@ -259,7 +259,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
 
     public boolean isReplaceable(World world, BlockPos pos)
     {
-        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+        IBlockState state = world.getBlockState(pos);
         return (state.getBlock().isAir(world, pos) || state.getBlock().isLeaves(world, pos) || state.getBlock().isWood(world, pos) || hasValidMaterialTypeForReplacing(state.getBlock())) && !invalidBlock(state.getBlock());
     }
 

@@ -1,4 +1,4 @@
-/*
+package dmf444.ExtraFood.Client.MCPatcher;/*
 package dmf444.ExtraFood.Client.MCPatcher;
 
 import com.google.common.eventbus.Subscribe;

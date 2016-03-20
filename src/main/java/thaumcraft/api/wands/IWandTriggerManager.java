@@ -11,7 +11,7 @@ public interface IWandTriggerManager {
 	/**
 	 * This class will be called by wands with the proper parameters. It is up to you to decide what to do with them.
 	 */
-	public boolean performTrigger(World world, ItemStack wand, EntityPlayer player, 
-			BlockPos pos, EnumFacing side, int event);
+	public boolean performTrigger(World world, ItemStack wand, EntityPlayer player,
+								  BlockPos pos, EnumFacing side, int event);
 	
 }
