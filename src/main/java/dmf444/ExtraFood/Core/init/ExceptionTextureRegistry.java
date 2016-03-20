@@ -25,6 +25,7 @@ public class ExceptionTextureRegistry {
         registerItemModel(FluidLoader.FluidContainer, 0, "EFglassBottle");
         registerItemModel(NBTFoodLoader.getItem("pizza"), 0, "NBTpizza");
         registerItemModel(NBTFoodLoader.getItem("muffin"), 0, "NBTmuffin");
+        registerItemModel(Item.getItemFromBlock(BlockLoader.juiceMixer), 0, "JuiceMixer", "inventory");
 
 
         registerJuiceTexutre(BlockLoader.Bstrawberryjuice, 0);
@@ -92,5 +93,9 @@ public class ExceptionTextureRegistry {
         ModelLoader.setCustomStateMapper(block, new cSM(numInJson));
     }
 
+    public static void registerItemModel(final Item item, int meta, final String jsonName, final String variantName)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(ModInfo.MId + ":" + jsonName, variantName));
+    }
 
 }

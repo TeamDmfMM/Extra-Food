@@ -2,6 +2,7 @@ package dmf444.ExtraFood.Common.blocks.Machines;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.ExtraFood;
@@ -11,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
@@ -62,25 +64,34 @@ public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContai
 
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
+    public AxisAlignedBB setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos)
     {
-        EnumFacing dir = world.getBlockState(pos).getValue(this.FACING);
-        switch (dir){
-            case EAST:
-                //this.setBlockBounds(0, 0, 0, 0.8f, 1.15f, 1);
-                break;
-            case WEST:
-                //this.setBlockBounds(0.20f, 0, 0, 1, 1.15f, 1);
-                break;
-            case NORTH:
-                //this.setBlockBounds(0, 0, 0.20f, 1, 1.15f, 1);
-                break;
-            case SOUTH:
-                //this.setBlockBounds(0, 0, 0, 1, 1.15f, 0.8f);
-                break;
-            default:
-                //this.setBlockBounds(0, 0, 0, 1, 1, 1);
+        if((world.getBlockState(pos).getBlock() instanceof BlockJuiceMixer)) {
+            EnumFacing dir = world.getBlockState(pos).getValue(this.FACING);
+            switch (dir) {
+                case EAST:
+                    return new AxisAlignedBB(0, 0, 0, 0.8f, 1.15f, 1);
+                case WEST:
+                    return new AxisAlignedBB(0.20f, 0, 0, 1, 1.15f, 1);
+                case NORTH:
+                    return new AxisAlignedBB(0, 0, 0.20f, 1, 1.15f, 1);
+                case SOUTH:
+                    return new AxisAlignedBB(0, 0, 0, 1, 1.15f, 0.8f);
+                default:
+                    return new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+            }
         }
+        return new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+    }
+
+    /*public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        return setBlockBoundsBasedOnState(worldIn, pos);
+    }*/
+
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return setBlockBoundsBasedOnState(source, pos);
     }
 
 }
