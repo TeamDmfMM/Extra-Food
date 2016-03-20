@@ -1,8 +1,10 @@
 package dmf444.ExtraFood.Common.WorldGen;
 
+import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
@@ -12,8 +14,8 @@ public class TreeManager implements IWorldGenerator {
 
 
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        switch (world.provider.getDimensionId()) {
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        switch (world.provider.getDimension()) {
             case -1:
                 generateNether(world, random, chunkX * 16, chunkZ * 16);
             case 0:
@@ -41,7 +43,7 @@ public class TreeManager implements IWorldGenerator {
                 new OrangeTreeGenerator().generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
             }
 
-            if(biome == BiomeGenBase.jungle || biome == BiomeGenBase.jungleEdge || biome == BiomeGenBase.jungleHills) {
+            if(biome == Biomes.jungle || biome == Biomes.jungleEdge || biome == Biomes.jungleHills) {
                 Xcoord1 = x + random.nextInt(16); //where in chuck it generates
                 Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
                 Zcoord1 = z + random.nextInt(16); //where in chunk it generates
@@ -65,11 +67,12 @@ public class TreeManager implements IWorldGenerator {
     }
 
     private boolean shouldTreesSpawn(BiomeGenBase biome){
-        if(biome == BiomeGenBase.coldTaiga || biome == BiomeGenBase.coldTaigaHills || biome == BiomeGenBase.deepOcean || biome == BiomeGenBase.desert ||
-                biome == BiomeGenBase.desertHills || biome == BiomeGenBase.megaTaiga || biome == BiomeGenBase.river || biome == BiomeGenBase.megaTaigaHills ||
-                biome == BiomeGenBase.ocean || biome == BiomeGenBase.taiga || biome == BiomeGenBase.taigaHills){
+        if(biome == Biomes.coldTaiga || biome == Biomes.coldTaigaHills || biome == Biomes.deepOcean || biome == Biomes.desert ||
+                biome == Biomes.desertHills || biome == Biomes.megaTaiga || biome == Biomes.river || biome == Biomes.megaTaigaHills ||
+                biome == Biomes.ocean || biome == Biomes.taiga || biome == Biomes.taigaHills){
             return false;
         }
         return true;
     }
+
 }

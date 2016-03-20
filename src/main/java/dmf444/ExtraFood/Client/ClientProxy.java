@@ -18,7 +18,7 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.Potion;
+import net.minecraft.init.MobEffects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -67,21 +67,23 @@ public class ClientProxy extends CommonProxy{
 			e.setCanceled(true);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/misc/underwater.png"));
 			Tessellator tessellator = Tessellator.getInstance();
-			VertexBuffer worldrenderer = tessellator.getWorldRenderer();
+			VertexBuffer worldrenderer = tessellator.getBuffer();
 			float f = e.player.getBrightness(e.renderPartialTicks);
 			GlStateManager.color(f, f, f, 0.5F);
-			float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
+			//float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
 			GlStateManager.color(nums[0], nums[1], nums[2], 0.5f);
-			GlStateManager.setFog(2048);
 
-			if (e.player instanceof EntityLivingBase && ((EntityLivingBase)e.player).isPotionActive(Potion.waterBreathing))
-			{
-				GlStateManager.setFogDensity(0.01F);
-			}
-			else
-			{
-				GlStateManager.setFogDensity(0.1F - (float) EnchantmentHelper.getRespiration(e.player) * 0.03F);
-			}
+
+			GlStateManager.setFog(GlStateManager.FogMode.EXP);
+
+			if (((EntityLivingBase)e.player).isPotionActive(MobEffects.waterBreathing))
+            {
+                GlStateManager.setFogDensity(0.01F);
+            }
+            else
+            {
+                GlStateManager.setFogDensity(0.1F - (float)EnchantmentHelper.getRespirationModifier((EntityLivingBase)e.player) * 0.03F);
+            }
 			GlStateManager.enableBlend();
 			GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 			GlStateManager.pushMatrix();

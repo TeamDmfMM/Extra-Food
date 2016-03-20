@@ -2,18 +2,18 @@ package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class BananaLeaf extends BlockLeaves
+public class BananaLeaf extends BlockLeaves implements IBlockColor
 {
 
 
@@ -50,18 +50,9 @@ public class BananaLeaf extends BlockLeaves
         return ColorizerFoliage.getFoliageColorBasic();
     }
 
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
-    {
-        if(pos != null) {
-            return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
-        }else{
-            return ColorizerFoliage.getFoliageColorBasic();
-        }
-    }
 
     @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack stack, int renderPass)
+    public int getColorFromItemstack(ItemStack stack, int renderPass)
     {
         return 4557568;
     }
@@ -100,19 +91,20 @@ public class BananaLeaf extends BlockLeaves
     public BlockPlanks.EnumType getWoodType(int meta) {
         return null;
     }
-    public boolean isOpaqueCube()
+
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
-        return super.shouldSideBeRendered(worldIn, pos, side);
+        return super.shouldSideBeRendered(state, worldIn, pos, side);
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Block par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
 
@@ -122,9 +114,9 @@ public class BananaLeaf extends BlockLeaves
      * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
      * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
      */
-    protected ItemStack createStackedBlock(int par1)
+    protected ItemStack createStackedBlock(IBlockState state)
     {
-        return new ItemStack(Item.getItemFromBlock(this), 1, par1 & 3);
+        return new ItemStack(Item.getItemFromBlock(this), 1, state.getBlock().getMetaFromState(state) & 3);
     }
 
 
@@ -159,5 +151,14 @@ public class BananaLeaf extends BlockLeaves
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
+    }
+
+    @Override
+    public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
+        if(pos != null) {
+            return BiomeColorHelper.getFoliageColorAtPos(world, pos);
+        }else{
+            return ColorizerFoliage.getFoliageColorBasic();
+        }
     }
 }

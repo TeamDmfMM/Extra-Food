@@ -8,7 +8,9 @@ import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
@@ -34,23 +36,23 @@ public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContai
 
     //It's not an opaque cube, so you need this.
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     //It's not a normal block, so you need this too.
-    public boolean isBlockNormalCube() {
+    public boolean isBlockNormalCube(IBlockState state) {
         return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess worldIn, BlockPos pos, EnumFacing side) {
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing side) {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntity tileEntity = world.getTileEntity(pos);
         if (tileEntity == null || player.isSneaking()) {return false;}
 
@@ -65,19 +67,19 @@ public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContai
         EnumFacing dir = world.getBlockState(pos).getValue(this.FACING);
         switch (dir){
             case EAST:
-                this.setBlockBounds(0, 0, 0, 0.8f, 1.15f, 1);
+                //this.setBlockBounds(0, 0, 0, 0.8f, 1.15f, 1);
                 break;
             case WEST:
-                this.setBlockBounds(0.20f, 0, 0, 1, 1.15f, 1);
+                //this.setBlockBounds(0.20f, 0, 0, 1, 1.15f, 1);
                 break;
             case NORTH:
-                this.setBlockBounds(0, 0, 0.20f, 1, 1.15f, 1);
+                //this.setBlockBounds(0, 0, 0.20f, 1, 1.15f, 1);
                 break;
             case SOUTH:
-                this.setBlockBounds(0, 0, 0, 1, 1.15f, 0.8f);
+                //this.setBlockBounds(0, 0, 0, 1, 1.15f, 0.8f);
                 break;
             default:
-                this.setBlockBounds(0, 0, 0, 1, 1, 1);
+                //this.setBlockBounds(0, 0, 0, 1, 1, 1);
         }
     }
 

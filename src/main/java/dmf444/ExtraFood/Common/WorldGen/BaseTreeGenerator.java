@@ -42,7 +42,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         }
         BlockPos down = position.down();
         Block block = worldIn.getBlockState(down).getBlock();
-        if (!block.canSustainPlant(worldIn, down, EnumFacing.UP, (IPlantable) Blocks.sapling)) {
+        if (!block.canSustainPlant(block.getBlockState().getBaseState(), worldIn, down, EnumFacing.UP, (IPlantable) Blocks.sapling)) {
             return false;
         }
 
@@ -260,7 +260,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
     public boolean isReplaceable(World world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
-        return (state.getBlock().isAir(world, pos) || state.getBlock().isLeaves(world, pos) || state.getBlock().isWood(world, pos) || hasValidMaterialTypeForReplacing(state.getBlock())) && !invalidBlock(state.getBlock());
+        return (state.getBlock().isAir(world.getBlockState(pos),world, pos) || state.getBlock().isLeaves(world.getBlockState(pos),world, pos) || state.getBlock().isWood(world, pos) || hasValidMaterialTypeForReplacing(state.getBlock())) && !invalidBlock(state.getBlock());
     }
 
     private boolean invalidBlock(Block block) {
@@ -269,7 +269,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
 
     protected boolean hasValidMaterialTypeForReplacing(Block block)
     {
-        Material material = block.getMaterial();
+        Material material = block.getMaterial(block.getBlockState().getBaseState());
         return material == Material.air || material == Material.leaves || block == Blocks.log || block == Blocks.log2 || block == Blocks.sapling || block == Blocks.vine || block == Blocks.water || block == Blocks.dirt || block == Blocks.grass;
     }
 }

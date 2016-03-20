@@ -22,13 +22,13 @@ public class GeneralFluid extends BlockFluidClassic {
 
     @Override
     public boolean canDisplace(IBlockAccess world, BlockPos pos) {
-        if (world.getBlockState(pos).getBlock().getMaterial().isLiquid()) return false;
+        if (world.getBlockState(pos).getBlock().getMaterial(world.getBlockState(pos)).isLiquid()) return false;
         return super.canDisplace(world, pos);
     }
 
     @Override
     public boolean displaceIfPossible(World world, BlockPos pos) {
-        if (world.getBlockState(pos).getBlock().getMaterial().isLiquid()) return false;
+        if (world.getBlockState(pos).getBlock().getMaterial(world.getBlockState(pos)).isLiquid()) return false;
         return super.displaceIfPossible(world, pos);
     }
 

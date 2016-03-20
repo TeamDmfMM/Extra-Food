@@ -14,8 +14,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
@@ -26,7 +27,7 @@ public class StrawberryBush extends BlockCrops{
         super();
         float f = 0.5F;
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+        //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setHardness(0.0F);
         this.disableStats();
         this.setCreativeTab(EFTabs.INSTANCE);
@@ -34,7 +35,7 @@ public class StrawberryBush extends BlockCrops{
     }
 
     @Override
-    protected boolean canPlaceBlockOn(Block ground)
+    public boolean canPlaceBlockOnSide(World world, BlockPos blockPos, EnumFacing side)
     {
         return true;
     }
@@ -46,8 +47,8 @@ public class StrawberryBush extends BlockCrops{
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ){
-        if (player.inventory.getCurrentItem() != null){
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    if (player.inventory.getCurrentItem() != null){
             ItemStack is = player.inventory.getCurrentItem();
             if (is.getItem() == Items.dye){
                 if (is.getItemDamage() == 15){
@@ -101,14 +102,9 @@ public class StrawberryBush extends BlockCrops{
 
 
 
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
 }
 

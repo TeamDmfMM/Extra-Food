@@ -3,12 +3,18 @@ package dmf444.ExtraFood.Common.fluids;
 import dmf444.ExtraFood.Core.util.EFLog;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -93,36 +99,41 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
         return EnumAction.DRINK;
     }
 
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player){
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
         if (stack.getItem() == this && player.canEat(false)){
-            player.setItemInUse(stack, 32);
-            return stack;
+            player.setActiveHand(hand);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
         else {
-            return stack;
+            return new ActionResult<>(EnumActionResult.FAIL, stack);
         }
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityPlayer Player)
+    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
     {
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("fluid")) {
             if(FluidRegistry.getFluid(stack.getTagCompound().getString("fluid")) instanceof EdibleFluid) {
                 EdibleFluid edibleFluid = (EdibleFluid) FluidRegistry.getFluid(stack.getTagCompound().getString("fluid"));
+
                 --stack.stackSize;
-                Player.getFoodStats().addStats(edibleFluid.HUNGER, edibleFluid.STARVE);
-                world.playSoundAtEntity(Player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-                if (!Player.capabilities.isCreativeMode)
+
+                if (entityLiving instanceof EntityPlayer)
                 {
-                    if (stack.stackSize <= 0)
+                    EntityPlayer player = (EntityPlayer)entityLiving;
+                    player.getFoodStats().addStats(edibleFluid.HUNGER, edibleFluid.STARVE);
+                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.entity_player_burp, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+                    if (!player.capabilities.isCreativeMode)
                     {
-                        return new ItemStack(Items.glass_bottle);
+                        if (stack.stackSize <= 0)
+                        {
+                            return new ItemStack(Items.glass_bottle);
+                        }
+                        player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
                     }
 
-                    Player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
                 }
 
-                return stack;
             }
         }
         return stack;

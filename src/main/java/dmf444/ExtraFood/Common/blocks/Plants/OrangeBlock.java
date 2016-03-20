@@ -25,7 +25,7 @@ public class OrangeBlock extends Block {
 
     public OrangeBlock() {
         super(Material.cactus);
-        this.setBlockBounds(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
+        //this.setBlockBounds(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
 
     }
 

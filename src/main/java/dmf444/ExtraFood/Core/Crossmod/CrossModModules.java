@@ -1,7 +1,6 @@
 package dmf444.ExtraFood.Core.Crossmod;
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.Crossmod.forestry.ForestryFarming;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.EFLog;
 import dmfmm.StarvationAhoy.api.StarvationAhoyRegistry;
@@ -22,7 +21,7 @@ public class CrossModModules{
 	public static void load(){
 	if (Loader.isModLoaded("Thaumcraft")){
 		thaumcraft = true;
-		ThaumcraftAspects.registerThaumAspect();
+		//ThaumcraftAspects.registerThaumAspect();
 		FMLInterModComms.sendMessage("Thaumcraft", "harvestStandardCrop", new ItemStack(BlockLoader.tomatoCrop,1,7));
 		FMLInterModComms.sendMessage("Thaumcraft", "harvestStandardCrop", new ItemStack(BlockLoader.lettuceCrop,1,7));
 		FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(BlockLoader.strawberryBush,1,7));
@@ -38,8 +37,8 @@ public class CrossModModules{
 	}
 	if(Loader.isModLoaded("Forestry")){
 		forestry = true;
-		ForestryFarming.addFarms();
-		ForestryFarming.registerCircut();
+		//ForestryFarming.addFarms();
+		//ForestryFarming.registerCircut();
 	}
 	if(Loader.isModLoaded("Waila")){
 		Waila = true;

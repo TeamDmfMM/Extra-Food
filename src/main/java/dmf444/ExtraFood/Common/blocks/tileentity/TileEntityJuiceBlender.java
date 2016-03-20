@@ -198,7 +198,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
                     setInventorySlotContents(2, FluidContainerRegistryHelper.fillFluidContainer(tank.drain(amount, true), getStackInSlot(1)));
                     setInventorySlotContents(1, null);
                     if (!getWorld().isRemote) {
-                        ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimensionId(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
+                        ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }
                 }
             }

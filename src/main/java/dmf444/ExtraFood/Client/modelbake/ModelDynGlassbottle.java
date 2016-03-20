@@ -6,29 +6,31 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.*;
 import net.minecraftforge.fluids.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Quat4f;
-import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
-
-public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetexturableModel
+public final class ModelDynGlassbottle implements IModel, IModelCustomData, IRetexturableModel
 {
+    public static final ModelResourceLocation LOCATION = new ModelResourceLocation(new ResourceLocation("forge", "dynbucket"), "inventory");
 
     // minimal Z offset to prevent depth-fighting
     private static final float NORTH_Z_BASE = 7.496f / 16f;
@@ -38,16 +40,16 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
 
     public static final IModel MODEL = new ModelDynGlassbottle();
 
-    protected final ResourceLocation baseLocation;
-    protected final ResourceLocation liquidLocation;
-    protected final ResourceLocation coverLocation;
+    private final ResourceLocation baseLocation;
+    private final ResourceLocation liquidLocation;
+    private final ResourceLocation coverLocation;
 
-    protected final Fluid fluid;
-    protected final boolean flipGas;
+    private final Fluid fluid;
+    private final boolean flipGas;
 
     public ModelDynGlassbottle()
     {
-        this(null, null, null, FluidRegistry.WATER, false);
+        this(null, null, null, null, false);
     }
 
     public ModelDynGlassbottle(ResourceLocation baseLocation, ResourceLocation liquidLocation, ResourceLocation coverLocation, Fluid fluid, boolean flipGas)
@@ -80,29 +82,33 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
     }
 
     @Override
-    public IFlexibleBakedModel bake(IModelState state, VertexFormat format,
-                                    Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
+    public IBakedModel bake(IModelState state, VertexFormat format,
+                            Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
     {
 
-        ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformMap = IPerspectiveAwareModel.MapWrapper.getTransforms(state);
+        ImmutableMap<TransformType, TRSRTransformation> transformMap = IPerspectiveAwareModel.MapWrapper.getTransforms(state);
 
         // if the fluid is a gas wi manipulate the initial state to be rotated 180? to turn it upside down
-        if (flipGas && fluid.isGaseous())
+        if (flipGas && fluid != null && fluid.isGaseous())
         {
             state = new ModelStateComposition(state, TRSRTransformation.blockCenterToCorner(new TRSRTransformation(null, new Quat4f(0, 0, 1, 0), null, null)));
         }
 
         TRSRTransformation transform = state.apply(Optional.<IModelPart>absent()).or(TRSRTransformation.identity());
-        TextureAtlasSprite fluidSprite = bakedTextureGetter.apply(fluid.getStill());
+        TextureAtlasSprite fluidSprite = null;
         ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
+
+        if(fluid != null) {
+            fluidSprite = bakedTextureGetter.apply(fluid.getStill());
+        }
 
         if (baseLocation != null)
         {
             // build base (insidest)
-            IFlexibleBakedModel model = (new ItemLayerModel(ImmutableList.of(baseLocation))).bake(state, format, bakedTextureGetter);
-            builder.addAll(model.getGeneralQuads());
+            IBakedModel model = (new ItemLayerModel(ImmutableList.of(baseLocation))).bake(state, format, bakedTextureGetter);
+            builder.addAll(model.getQuads(null, null, 0));
         }
-        if (liquidLocation != null)
+        if (liquidLocation != null && fluidSprite != null)
         {
             TextureAtlasSprite liquid = bakedTextureGetter.apply(liquidLocation);
             // build liquid layer (inside)
@@ -118,7 +124,7 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
         }
 
 
-        return new BakedDynBucketz(this, builder.build(), fluidSprite, format, Maps.immutableEnumMap(transformMap), Maps.<String, IFlexibleBakedModel>newHashMap());
+        return new BakedDynBucketz(this, builder.build(), fluidSprite, format, Maps.immutableEnumMap(transformMap), Maps.<String, IBakedModel>newHashMap());
     }
 
     @Override
@@ -135,7 +141,7 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
      * If the fluid can't be found, water is used
      */
     @Override
-    public IModel process(ImmutableMap<String, String> customData)
+    public ModelDynGlassbottle process(ImmutableMap<String, String> customData)
     {
         String fluidName = customData.get("fluid");
         Fluid fluid = FluidRegistry.getFluid(fluidName);
@@ -166,7 +172,7 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
      * If no liquid is given a hardcoded variant for the bucket is used.
      */
     @Override
-    public IModel retexture(ImmutableMap<String, String> textures)
+    public ModelDynGlassbottle retexture(ImmutableMap<String, String> textures)
     {
 
         ResourceLocation base = baseLocation;
@@ -194,7 +200,7 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
         }
 
         @Override
-        public IModel loadModel(ResourceLocation modelLocation) throws IOException
+        public IModel loadModel(ResourceLocation modelLocation)
         {
             return MODEL;
         }
@@ -206,26 +212,16 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
         }
     }
 
-    // the dynamic bucket is based on the empty bucket
-    protected static class BakedDynBucketz extends ItemLayerModel.BakedModel implements ISmartItemModel, IPerspectiveAwareModel
+    private static final class BakedDynBucketOverrideHandlerz extends ItemOverrideList
     {
-
-        private final ModelDynGlassbottle parent;
-        private final Map<String, IFlexibleBakedModel> cache; // contains all the baked models since they'll never change
-        private final ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms;
-
-        public BakedDynBucketz(ModelDynGlassbottle parent,
-                              ImmutableList<BakedQuad> quads, TextureAtlasSprite particle, VertexFormat format, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms,
-                              Map<String, IFlexibleBakedModel> cache)
+        public static final BakedDynBucketOverrideHandlerz INSTANCE = new BakedDynBucketOverrideHandlerz();
+        private BakedDynBucketOverrideHandlerz()
         {
-            super(quads, particle, format);
-            this.parent = parent;
-            this.transforms = transforms;
-            this.cache = cache;
+            super(ImmutableList.<ItemOverride>of());
         }
 
         @Override
-        public IBakedModel handleItemState(ItemStack stack)
+        public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity)
         {
             FluidStack fluidStack = FluidContainerRegistry.getFluidForFilledItem(stack);
             if(stack.hasTagCompound() && stack.getTagCompound().hasKey("fluid")){
@@ -241,15 +237,19 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
 
             // not a fluid item apparently
             if (fluidStack == null)
-                return this;
+            {
+                // empty bucket
+                return originalModel;
+            }
 
+            BakedDynBucketz model = (BakedDynBucketz)originalModel;
 
             Fluid fluid = fluidStack.getFluid();
             String name = fluid.getName();
 
-            if (!cache.containsKey(name))
+            if (!model.cache.containsKey(name))
             {
-                IModel model = parent.process(ImmutableMap.of("fluid", name));
+                IModel parent = model.parent.process(ImmutableMap.of("fluid", name));
                 Function<ResourceLocation, TextureAtlasSprite> textureGetter;
                 textureGetter = new Function<ResourceLocation, TextureAtlasSprite>()
                 {
@@ -259,18 +259,62 @@ public class ModelDynGlassbottle implements IModel, IModelCustomData, IRetextura
                     }
                 };
 
-                IFlexibleBakedModel bakedModel = model.bake(new SimpleModelState(transforms), this.getFormat(), textureGetter);
-                cache.put(name, bakedModel);
+                IBakedModel bakedModel = parent.bake(new SimpleModelState(model.transforms), model.format, textureGetter);
+                model.cache.put(name, bakedModel);
                 return bakedModel;
             }
 
-            return cache.get(name);
+            return model.cache.get(name);
+        }
+    }
+
+    // the dynamic bucket is based on the empty bucket
+    private static final class BakedDynBucketz implements IPerspectiveAwareModel
+    {
+
+        private final ModelDynGlassbottle parent;
+        // FIXME: guava cache?
+        private final Map<String, IBakedModel> cache; // contains all the baked models since they'll never change
+        private final ImmutableMap<TransformType, TRSRTransformation> transforms;
+        private final ImmutableList<BakedQuad> quads;
+        private final TextureAtlasSprite particle;
+        private final VertexFormat format;
+
+        public BakedDynBucketz(ModelDynGlassbottle parent,
+                               ImmutableList<BakedQuad> quads, TextureAtlasSprite particle, VertexFormat format, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms,
+                               Map<String, IBakedModel> cache)
+        {
+            this.quads = quads;
+            this.particle = particle;
+            this.format = format;
+            this.parent = parent;
+            this.transforms = transforms;
+            this.cache = cache;
         }
 
         @Override
-        public Pair<? extends IFlexibleBakedModel, Matrix4f> handlePerspective(ItemCameraTransforms.TransformType cameraTransformType)
+        public ItemOverrideList getOverrides()
         {
-            return MapWrapper.handlePerspective(this, transforms, cameraTransformType);
+            return BakedDynBucketOverrideHandlerz.INSTANCE;
         }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType)
+        {
+            return IPerspectiveAwareModel.MapWrapper.handlePerspective(this, transforms, cameraTransformType);
+        }
+
+        @Override
+        public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
+        {
+            if(side == null) return quads;
+            return ImmutableList.of();
+        }
+
+        public boolean isAmbientOcclusion() { return true;  }
+        public boolean isGui3d() { return false; }
+        public boolean isBuiltInRenderer() { return false; }
+        public TextureAtlasSprite getParticleTexture() { return particle; }
+        public ItemCameraTransforms getItemCameraTransforms() { return ItemCameraTransforms.DEFAULT; }
     }
 }

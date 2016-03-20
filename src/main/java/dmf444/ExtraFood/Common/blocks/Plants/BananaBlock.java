@@ -21,7 +21,7 @@ public class BananaBlock extends Block {
     public BananaBlock(Material material) {
         super(material);
         this.setCreativeTab(EFTabs.INSTANCE);
-        this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
+        //this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
 
     }
 

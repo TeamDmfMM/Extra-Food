@@ -1,9 +1,12 @@
 package dmf444.ExtraFood.Common.items;
 
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
@@ -21,17 +24,22 @@ public class CheeseWheel extends ItemFood {
 		this.message = msg;
 	}
 	
-	@Override
-	public ItemStack onItemUseFinish(ItemStack par1ItemStack, World par2World, EntityPlayer Player)
-    {
-		 --par1ItemStack.stackSize;
-	        Player.getFoodStats().addStats(8, 0.6F);
-	        par2World.playSoundAtEntity(Player, "random.burp", 0.5F, par2World.rand.nextFloat() * 0.1F + 0.9F);
-	        this.onFoodEaten(par1ItemStack, par2World, Player);
-	        if (!par2World.isRemote) {
-	        Player.addChatComponentMessage(new TextComponentString(message));
-	        }
-		return par1ItemStack;
+
+		@Override
+		public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
+		{
+			--stack.stackSize;
+
+			if (entityLiving instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer)entityLiving;
+				player.getFoodStats().addStats(8, 0.6F);
+				world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.entity_player_burp, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+				if (!world.isRemote) {
+					player.addChatComponentMessage(new TextComponentString(this.message));
+				}
+			}
+		return stack;
 	        
     }
 
