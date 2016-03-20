@@ -1,11 +1,16 @@
 package dmf444.ExtraFood.Client;
 
-import dmf444.ExtraFood.Client.renderer.*;
+import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
+import dmf444.ExtraFood.Client.renderer.CheesePressRenderer;
+import dmf444.ExtraFood.Client.renderer.JuiceBlenderRenderer;
+import dmf444.ExtraFood.Client.renderer.OvenRenderer;
 import dmf444.ExtraFood.Common.CommonProxy;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
-import dmf444.ExtraFood.Common.blocks.tileentity.*;
+import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
+import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
+import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
+import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
-import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -16,7 +21,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -56,6 +60,10 @@ public class ClientProxy extends CommonProxy{
 	@SubscribeEvent
 	public void renderzoverlay(RenderBlockOverlayEvent e){
 		if(e.overlayType == RenderBlockOverlayEvent.OverlayType.WATER && (Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock() instanceof GeneralFluid)) {
+			float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
+			if (nums == null) {
+				return;
+			}
 			e.setCanceled(true);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/misc/underwater.png"));
 			Tessellator tessellator = Tessellator.getInstance();
