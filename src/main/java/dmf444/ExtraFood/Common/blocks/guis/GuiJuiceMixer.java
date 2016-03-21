@@ -80,7 +80,6 @@ public class GuiJuiceMixer extends GuiContainer {
         }
         this.mx = mouseX;
         this.my = mouseY;
-        this.handleTooltips(mx, my);
 
     }
 
@@ -119,40 +118,40 @@ public class GuiJuiceMixer extends GuiContainer {
         if (isPointInRegion(7, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input1;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
         }
         else if (isPointInRegion(32, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input2;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
         }
         else if (isPointInRegion(57, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input3;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", TextFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + TextFormatting.RED + theFluidTank.getFluidAmount() + TextFormatting.WHITE + "mB"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
         }
         else if (isPointInRegion(101, 37, 16, 30, mouseX, mouseY)){
             if (te.outputState.size() == 0) {
-                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(TextFormatting.GREEN + "Empty"), mouseX-this.guiLeft, mouseY-this.guiTop);
             }
             else {
                 ArrayList<String> strings = new ArrayList<>(Arrays.asList("Contents:"));
                 for (FluidStack fluidStack : te.outputState) {
                     strings.add(TextFormatting.GREEN + fluidStack.getFluid().getLocalizedName(fluidStack) + ": " + TextFormatting.RED + fluidStack.amount + TextFormatting.WHITE + "mB");
                 }
-                drawHoveringText(strings, mouseX, mouseY);
+                drawHoveringText(strings, mouseX-this.guiLeft, mouseY-this.guiTop);
             }
         }
     }
@@ -251,6 +250,6 @@ public class GuiJuiceMixer extends GuiContainer {
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRendererObj.drawString(I18n.translateToLocal("gui.JM"), 135, 6, 4210752);
-
+        this.handleTooltips(mx, my);
     }
 }
