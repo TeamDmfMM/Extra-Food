@@ -6,20 +6,34 @@ import dmf444.ExtraFood.Client.renderer.JuiceBlenderRenderer;
 import dmf444.ExtraFood.Client.renderer.OvenRenderer;
 import dmf444.ExtraFood.Common.CommonProxy;
 import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
 import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -34,8 +48,20 @@ public class ClientProxy extends CommonProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(AutoCutterTileEntity.class, new AutoCutterRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJuiceBlender.class, new JuiceBlenderRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOven.class, new OvenRenderer());
-	//	ClientRegistry.bindTileEntitySpecialRenderer(JuiceMixerTileEntity.class, new JuiceMixerRenderer());
-		//JuiceRegistry.instance = new JuiceRegistry();
+		//ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(BlockLoader.autoCutter), 0, AutoCutterTileEntity.class);
+		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
+		{
+			public int colorMultiplier(IBlockState state, IBlockAccess p_186720_2_, BlockPos pos, int tintIndex)
+			{
+				return p_186720_2_ != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(p_186720_2_, pos) : ColorizerFoliage.getFoliageColorBasic();
+			}
+		}, BlockLoader.bananaLeaf);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+			@Override
+			public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+				return 4557568;
+			}
+		}, BlockLoader.bananaLeaf);
 
 		
 		
@@ -47,15 +73,9 @@ public class ClientProxy extends CommonProxy{
 	}
 
 	public void preInit() {
-		//OBJLoader.instance.addDomain(ModInfo.MId);
+		//MinecraftForge.EVENT_BUS.register(new ModelInjector());
 		MinecraftForge.EVENT_BUS.register(this);
-	//	OBJRender.init();
 	}
-
-	/*@SubscribeEvent
-	public void onTextureStitchEvent(TextureStitchEvent event){
-		event.map.registerSprite(new ResourceLocation("extrafood:model/JuiceMixer1"));
-	}*/
 
 	@SubscribeEvent
 	public void renderzoverlay(RenderBlockOverlayEvent e){
@@ -98,6 +118,13 @@ public class ClientProxy extends CommonProxy{
 			GlStateManager.popMatrix();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.disableBlend();
+		}
+	}
+	public class ModelInjector{
+
+		@SubscribeEvent
+		public void bakeModels(ModelBakeEvent event){
+			event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(BlockLoader.autoCutter);
 		}
 	}
 }

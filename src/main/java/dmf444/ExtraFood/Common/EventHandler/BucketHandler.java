@@ -44,8 +44,9 @@ public class BucketHandler {
 
     @SubscribeEvent
     public void onBucketFill(FillBucketEvent event) {
-
-
+        if (event.getTarget() == null) {
+            return;
+        }
             ItemStack result = fillCustomBucket(event.getWorld(), event.getTarget());
 
 

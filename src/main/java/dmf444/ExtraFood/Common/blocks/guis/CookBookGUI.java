@@ -178,7 +178,7 @@ public class CookBookGUI extends GuiScreen {
         				
         				
         				lines.add(pagename);
-        				this.drawHoveringText(lines, mousex, mousey, fontRendererObj);
+        				this.drawHoveringText(lines, mousex, mousey);
         			}
         		}
         		sy += 27;
@@ -298,7 +298,9 @@ public class CookBookGUI extends GuiScreen {
 
         this.mc.getTextureManager().bindTexture(GuiLib.CBback);
         GL11.glPushMatrix();
-		GL11.glScalef(1.2F, 1.2F, 1.2F);
+        GL11.glTranslatef(-((guiMapRight+guiMapLeft)/2), 0, 0);
+        GL11.glScalef(1.2F, 1.2F, 1.2F);
+        GL11.glTranslatef(((guiMapRight+guiMapLeft)/2), 0, 0);
         this.drawTexturedModalRect(i1 - 13, j1 - 2, iox, yox, this.achievementsPaneWidth - 53, this.achievementsPaneHeight - 45);  
         //this.drawTexturedModalRect(i1 -13, j1 + 1, iox, yox, this.achievementsPaneWidth - 62, this.achievementsPaneHeight - 45);  
         GL11.glPopMatrix();       
@@ -478,12 +480,8 @@ public class CookBookGUI extends GuiScreen {
     public static void setAchievementsPaneWidth(int achievementsPaneWidth) {
     	CookBookGUI.achievementsPaneWidth = achievementsPaneWidth;
     }
-
-
-    public void drawHoveringText(List textLines, int x, int y, FontRenderer font)
-    {
-        if (!textLines.isEmpty())
-        {
+    protected void drawHoveringText(List<String> textLines, int x, int y, FontRenderer font) {
+        if (!textLines.isEmpty()) {
             GL11.glDisable(32826);
             RenderHelper.disableStandardItemLighting();
             GL11.glDisable(2896);
@@ -491,13 +489,11 @@ public class CookBookGUI extends GuiScreen {
             int k = 0;
             Iterator iterator = textLines.iterator();
 
-            while (iterator.hasNext())
-            {
-                String s = (String)iterator.next();
+            while (iterator.hasNext()) {
+                String s = (String) iterator.next();
                 int l = font.getStringWidth(s);
 
-                if (l > k)
-                {
+                if (l > k) {
                     k = l;
                 }
             }
@@ -506,18 +502,15 @@ public class CookBookGUI extends GuiScreen {
             int k2 = y - 12;
             int i1 = 8;
 
-            if (textLines.size() > 1)
-            {
+            if (textLines.size() > 1) {
                 i1 += 2 + (textLines.size() - 1) * 10;
             }
 
-            if (j2 + k > this.width)
-            {
+            if (j2 + k > this.width) {
                 j2 -= 28 + k;
             }
 
-            if (k2 + i1 + 6 > this.height)
-            {
+            if (k2 + i1 + 6 > this.height) {
                 k2 = this.height - i1 - 6;
             }
 
@@ -536,13 +529,11 @@ public class CookBookGUI extends GuiScreen {
             this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 - 3 + 1, k1, k1);
             this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
 
-            for (int i2 = 0; i2 < textLines.size(); ++i2)
-            {
-                String s1 = (String)textLines.get(i2);
+            for (int i2 = 0; i2 < textLines.size(); ++i2) {
+                String s1 = (String) textLines.get(i2);
                 font.drawStringWithShadow(s1, j2, k2, -1);
 
-                if (i2 == 0)
-                {
+                if (i2 == 0) {
                     k2 += 2;
                 }
 

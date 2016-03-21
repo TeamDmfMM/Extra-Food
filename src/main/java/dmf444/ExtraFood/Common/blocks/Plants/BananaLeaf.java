@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class BananaLeaf extends BlockLeaves implements IBlockColor
+public class BananaLeaf extends BlockLeaves
 {
 
 
@@ -38,24 +38,6 @@ public class BananaLeaf extends BlockLeaves implements IBlockColor
     }
 
 
-    @SideOnly(Side.CLIENT)
-    public int getBlockColor()
-    {
-        return ColorizerFoliage.getFoliageColorBasic();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(IBlockState state)
-    {
-        return ColorizerFoliage.getFoliageColorBasic();
-    }
-
-
-    @SideOnly(Side.CLIENT)
-    public int getColorFromItemstack(ItemStack stack, int renderPass)
-    {
-        return 4557568;
-    }
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()
     {
@@ -100,7 +82,8 @@ public class BananaLeaf extends BlockLeaves implements IBlockColor
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing side)
     {
-        return super.shouldSideBeRendered(state, worldIn, pos, side);
+        return true;
+        //return super.shouldSideBeRendered(state, worldIn, pos, side);
     }
 
     @SideOnly(Side.CLIENT)
@@ -153,12 +136,4 @@ public class BananaLeaf extends BlockLeaves implements IBlockColor
         return this.getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
     }
 
-    @Override
-    public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-        if(pos != null) {
-            return BiomeColorHelper.getFoliageColorAtPos(world, pos);
-        }else{
-            return ColorizerFoliage.getFoliageColorBasic();
-        }
-    }
 }
