@@ -2,6 +2,8 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistryRecipe;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodSpecs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -91,14 +93,26 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 				}
 				
 			}
-			if (ok == true){
+			if (ok){
 				continue;
 			}
-			if (items[i].stackSize == 1){
+
+			NBTFoodSpecs sepcky = NBTFoodRegistry.food.getSpecs(recipet.food);
+
+			int value = 0;
+			while (sepcky.addtypes.elements().hasMoreElements()) {
+				ItemStack itemStack = sepcky.addtypes.elements().nextElement();
+				if (itemStack.getItem().equals(items[i].getItem())) {
+					value =  itemStack.stackSize;
+					break;
+				}
+			}
+
+			if (items[i].stackSize == value){
 				items[i] = null;
 			}
 			else {
-				items[i].stackSize -= 1;
+				items[i].stackSize -= value;
 			}
 			
 		}

@@ -2,7 +2,8 @@ package dmf444.ExtraFood.Common.WorldGen;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.BlockCrops;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -54,13 +55,13 @@ public class PeanutWorldGen implements IWorldGenerator {
                 for (int ypos = 0; ypos < ys; ypos++){
                     by = world.getChunksLowestHorizon(xx + xpos, zz + ypos);
 
-
+                    IBlockState pie = BlockLoader.peanutbush.getDefaultState().withProperty(BlockCrops.AGE, random.nextInt(7));
                     if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.tallgrass && random.nextInt(3) == 0){
-                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockStateContainer(BlockLoader.peanutbush).getBaseState());
+                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
 
                     }
                     else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.grass && random.nextInt(3) == 0){
-                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), new BlockStateContainer(BlockLoader.peanutbush).getBaseState());
+                        world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
 
                     }
 
