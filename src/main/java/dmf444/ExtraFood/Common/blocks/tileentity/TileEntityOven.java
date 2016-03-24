@@ -94,13 +94,23 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 			if (ok == true){
 				continue;
 			}
-			if (items[i].stackSize == 1){
+			NBTFoodSpecs sepcky = NBTFoodRegistry.food.getSpecs(recipet.food);
+
+			int value = 0;
+			while (sepcky.addtypes.elements().hasMoreElements()) {
+				ItemStack itemStack = sepcky.addtypes.elements().nextElement();
+				if (itemStack.getItem().equals(items[i].getItem())) {
+					value =  itemStack.stackSize;
+					break;
+				}
+			}
+
+			if (items[i].stackSize == value){
 				items[i] = null;
 			}
 			else {
-				items[i].stackSize -= 1;
+				items[i].stackSize -= value;
 			}
-			
 		}
 		setTime(0);
 		going = false;
