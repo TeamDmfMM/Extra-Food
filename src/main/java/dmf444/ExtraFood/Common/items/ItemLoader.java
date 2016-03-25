@@ -20,7 +20,7 @@ public class ItemLoader {
 	public static Item cheeseSlice;
 	public static Item cookBook;
 	public static Item sausage;
-	public static Item strawberry, peanut, olive;
+	public static Item strawberry, peanut, olive, grapes;
 	public static Item bucketstrawberry;
 	public static Item bucketbanana;
 	public static Item bucketcarrot;
@@ -38,7 +38,7 @@ public class ItemLoader {
 	public static Item pork_kebab, steak_kebab, veal_kebab;
 	public static Item rawHamburger, cookedHamburger;
 	public static Item sandwhichHamburger, sandwichCheeseburger, sandwichSupremeBurger;
-	public static Item tomato, lettuce;
+	public static Item tomato, lettuce, pineapple;
 	public static Item rawlettuceSeeds;
 	public static ItemSeeds tomatoSeeds, uselettuceSeeds;
 	public static Item peanutButter, chocolateSpread, jelly;
@@ -49,6 +49,7 @@ public class ItemLoader {
 	public static Item vanillaIceCream, chocolateIceCream, strawberryIceCream, icePop, neoIceCream;
 	public static Item butter, butterMilk;
 	public static Item yogurt, stawberryYogurt;
+	public static Item pineappleSlice;
 	/*Christmas Items*/
 	public static Item shortbread, fruitcake, gingerbread, chestnuts, bucketeggnog;
 	//Temp
@@ -56,9 +57,8 @@ public class ItemLoader {
 	
 	private static boolean IRegister=false;
 	private static boolean FRegister=false;
-	
-	
-	
+
+
 	public static void initiateItems() {
 
 		knife = new Knife().setUnlocalizedName(ItemLib.iK);	
@@ -72,6 +72,7 @@ public class ItemLoader {
 		tomatoSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.tomatoCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iTS).setCreativeTab(EFTabs.INSTANCE);
 		rawlettuceSeeds = new StanItem().setUnlocalizedName(ItemLib.iULS);
 		uselettuceSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iCLS).setCreativeTab(EFTabs.INSTANCE);
+		pineapple = new ItemSeedFood(8, 3.0F, BlockLoader.pineappleCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iPineapple).setCreativeTab(EFTabs.INSTANCE);
 		grater = new Grater().setUnlocalizedName(ItemLib.iGrater);
 		muffinPan = new StanItem().setUnlocalizedName(ItemLib.iMuffPan);
 		dough = new StanItem().setUnlocalizedName(ItemLib.iDough);
@@ -141,6 +142,9 @@ public class ItemLoader {
 		chestnuts = new StanFood(10, 5.0F).setUnlocalizedName(ItemLib.Chestnut);
 		olive = new StanFood(4, 3.0F).setUnlocalizedName(ItemLib.iOlive);
 		orange = new StanFood(5, 3.0F).setUnlocalizedName(ItemLib.Orange);
+		pineappleSlice = new StanFood(2, 1.5f).setUnlocalizedName(ItemLib.iPinappleSlice);
+		grapes = new StanFood(3, 1.2f).setUnlocalizedName(ItemLib.iGrapes);
+
 		//Temp HDB
 		ChocolateCake = new ItemReed(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.Cake).setCreativeTab(EFTabs.INSTANCE);
 		
@@ -157,6 +161,7 @@ public class ItemLoader {
 			GameRegistry.registerItem(tomatoSeeds, ItemLib.iTS);
 			GameRegistry.registerItem(uselettuceSeeds, ItemLib.iCLS);
 			GameRegistry.registerItem(rawlettuceSeeds, ItemLib.iULS);
+			GameRegistry.registerItem(pineapple, ItemLib.iPineapple);
 			GameRegistry.registerItem(bucketstrawberry, ItemLib.iBS);
 			GameRegistry.registerItem(bucketbanana, ItemLib.iBB);
 			GameRegistry.registerItem(bucketcarrot, ItemLib.iBC);
@@ -233,6 +238,8 @@ public class ItemLoader {
 			GameRegistry.registerItem(sandwichSupremeBurger, ItemLib.iSandSupremeH);
 			GameRegistry.registerItem(olive, ItemLib.iOlive);
 			GameRegistry.registerItem(orange, ItemLib.Orange);
+			GameRegistry.registerItem(pineappleSlice, ItemLib.iPinappleSlice);
+			GameRegistry.registerItem(grapes, ItemLib.iGrapes);
 			//Noel
 			GameRegistry.registerItem(shortbread, ItemLib.iShortB);
 			GameRegistry.registerItem(fruitcake, ItemLib.iFC);
@@ -289,6 +296,8 @@ public class ItemLoader {
             OreDictionary.registerOre("foodDough", ItemLoader.dough);
 			OreDictionary.registerOre("foodOlive", ItemLoader.olive);
 			OreDictionary.registerOre("foodOrange", ItemLoader.orange);
+			OreDictionary.registerOre("foodPineappleSlice", ItemLoader.pineappleSlice);
+			OreDictionary.registerOre("foodGrape", ItemLoader.grapes);
 			
 		}
 		FRegister=true;

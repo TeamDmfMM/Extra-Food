@@ -32,4 +32,6 @@ public class BlockLib {
 	public static String bAppleJuice = "AppleJuice";
 	public static String bOrangeJuice = "BOrangeJuice";
 	public static String bMelonJuice = "BMelonJuice";
+	public static String bPineappleCrop = "CropPineapple";
+	public static String bGrapeVine = "GrapeVine";
 }

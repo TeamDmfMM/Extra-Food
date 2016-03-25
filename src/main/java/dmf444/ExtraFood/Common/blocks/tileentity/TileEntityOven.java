@@ -2,6 +2,8 @@ package dmf444.ExtraFood.Common.blocks.tileentity;
 
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistry;
 import dmf444.ExtraFood.Common.RecipeHandler.OvenRegistryRecipe;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
+import dmf444.ExtraFood.Common.items.nbt.NBTFoodSpecs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

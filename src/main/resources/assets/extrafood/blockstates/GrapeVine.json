@@ -1,0 +1,41 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "extrafood:grapeModel"
+  },
+  "variants": {
+    "growth=0": {
+      "model": "extrafood:grapeModel",
+      "textures": {
+        "cross": "extrafood:blocks/Plants/grape_stage_0"
+      }
+    },
+    "growth=1": {
+      "model": "extrafood:grapeModel",
+      "textures": {
+        "cross": "extrafood:blocks/Plants/grape_stage_0"
+      }
+    },
+    "growth=2": {
+      "model": "extrafood:grapeModel",
+      "textures": {
+        "cross": "extrafood:blocks/Plants/grape_stage_1"
+      }
+    },
+    "growth=3": {
+      "model": "extrafood:grapeModel",
+      "textures": {
+        "cross": "extrafood:blocks/Plants/grape_stage_1"
+      }
+    },
+    "growth=4": {
+      "model": "extrafood:grapeModel",
+      "textures": {
+        "cross": "extrafood:blocks/Plants/grape_stage_2"
+      }
+    },
+    "inventory":{
+      "model": "extrafood:GrapeVine"
+    }
+  }
+}

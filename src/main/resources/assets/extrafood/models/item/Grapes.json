@@ -1,7 +1,7 @@
 {
   "parent": "builtin/generated",
   "textures": {
-    "layer0": "ExtraFood:blocks/Zycrafted"
+    "layer0": "ExtraFood:blocks/Plants/grape_stage_2"
   },
   "display": {
     "thirdperson": {

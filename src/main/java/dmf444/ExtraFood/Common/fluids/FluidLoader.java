@@ -26,13 +26,13 @@ public class FluidLoader {
 	//Orange = n
 	//Grape = n
 	//Apple-Grape= 1000ml Apple, 1000ml Grape
-	//Citrus = 500ml Apple, 1000ml Grape, 500ml Tropical
+	//Citrus = 500ml Apple, 1000ml Grape, 500ml pineapple
 	//Pinapple = n
 	//Fruit = 1000mL Apple, 1000ml Watermelon, 500ml Strawberry, 500ml Grape
 	//Mixed berry = 500ml Strawberry, 500ml Grape
 	//Watermelon = n
 	//Strawberry banana = 500ml Strawberry, 500ml Banana
-	//F tropical = (if possible) 500ml Pinapple, 500ml Tropical
+	//F tropical = (if possible) 500ml Pinapple, 500ml Citrus
 
 	public static Item FluidContainer;
     private static final String pre = "extrafood:blocks/fluid/";

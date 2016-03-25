@@ -5,6 +5,7 @@ import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.util.DateUtil;
 import dmf444.ExtraFood.ExtraFood;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -81,6 +82,7 @@ public class CraftingRecipies {
 	//Seed Recipes
 	//GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemLoader.tomatoSeeds, 2), "cropTomato"));
 	GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.uselettuceSeeds, 2), new ItemStack(Items.clay_ball, 1), new ItemStack(ItemLoader.rawlettuceSeeds));
+	GameRegistry.addShapelessRecipe(new ItemStack(BlockLoader.grapeVine), new ItemStack(Blocks.vine), new ItemStack(Items.wheat_seeds));
 	
 	//Seasonal
 	if(DateUtil.isChristmas()){
@@ -102,9 +104,10 @@ public class CraftingRecipies {
 	Cutting(new ItemStack(Items.potato, 1), new ItemStack(ItemLoader.frenchFries, 1));
 	Cutting(new ItemStack(Items.beef, 1), new ItemStack(ItemLoader.rawHamburger, 1));
 	Cutting(new ItemStack(Items.cooked_beef, 1), new ItemStack(ItemLoader.cookedHamburger, 1));
+	Cutting(new ItemStack(ItemLoader.pineapple, 1), new ItemStack(ItemLoader.pineappleSlice, 4));
 	
 	}
-	public static int totalCuts = 8;//Put the total number, subtraction is taken care of in another class
+	public static int totalCuts = 9;//Put the total number, subtraction is taken care of in another class
 	public static void furnacing()
 	{
 		GameRegistry.addSmelting(ItemLoader.bacon, new ItemStack(ItemLoader.cookedBacon, 1), 0.2F);

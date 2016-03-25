@@ -28,7 +28,7 @@ public class BlockLoader {
 	public static Block bananaLeaf, oliveLeaf;
 	public static Block peanutbush;
 	public static Block tomatoCrop;
-	public static Block lettuceCrop;
+	public static Block lettuceCrop, pineappleCrop, grapeVine;
 	public static Block juiceMixer;
 	public static Block Chocake;
 	public static Block oliveBush;
@@ -55,7 +55,10 @@ public class BlockLoader {
 		oliveBush = new OliveTreeSapling().setUnlocalizedName(BlockLib.bOliveBush);
 		oliveLeaf = new OliveLeaf().setUnlocalizedName(BlockLib.bOliveLeaf);
 		OrangeBlock = new OrangeBlock().setUnlocalizedName(BlockLib.bBlockOrange);
+		pineappleCrop = new CropBlock("pineapple").setUnlocalizedName(BlockLib.bPineappleCrop);
+		grapeVine = new GrapeVines().setUnlocalizedName(BlockLib.bGrapeVine);
 
+		//Fluid Blocks
 		Bbananajuice = new GeneralFluid(FluidLoader.Fbananajuice, Material.water).setUnlocalizedName(BlockLib.bFluidBan);
 		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.water).setUnlocalizedName(BlockLib.bFluidEgg);
 		Bstrawberryjuice = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.water).setUnlocalizedName(BlockLib.bFluidStraw);
@@ -64,7 +67,7 @@ public class BlockLoader {
 		BappleJuice = new GeneralFluid(FluidLoader.Fapplejuice, Material.water).setUnlocalizedName(BlockLib.bAppleJuice);
 		BorangeJuice = new GeneralFluid(FluidLoader.Forangejuice, Material.water).setUnlocalizedName(BlockLib.bOrangeJuice);
 		BwatermelonJuice = new GeneralFluid(FluidLoader.Fwatermelonjuice, Material.water).setUnlocalizedName(BlockLib.bMelonJuice);
-		
+
 		
 		registerBlocks();
 	}
@@ -95,6 +98,8 @@ public class BlockLoader {
 			GameRegistry.registerBlock(BappleJuice, BlockLib.bAppleJuice);
 			GameRegistry.registerBlock(BorangeJuice, BlockLib.bOrangeJuice);
 			GameRegistry.registerBlock(BwatermelonJuice, BlockLib.bMelonJuice);
+			GameRegistry.registerBlock(pineappleCrop, BlockLib.bPineappleCrop);
+			GameRegistry.registerBlock(grapeVine, BlockLib.bGrapeVine);
 		}
 		Register=true;
 	}
