@@ -35,6 +35,10 @@ public class ExceptionTextureRegistry {
         registerJuiceTexutre(BlockLoader.BappleJuice, 5);
         registerJuiceTexutre(BlockLoader.BorangeJuice, 6);
         registerJuiceTexutre(BlockLoader.BwatermelonJuice, 7);
+        registerJuiceTexutre(BlockLoader.BpinappleJuice, 8);
+        registerJuiceTexutre(BlockLoader.Bgrapejuice, 9);
+        registerJuiceTexutre(BlockLoader.Bcitusjuice, 10);
+        registerJuiceTexutre(BlockLoader.Bapplegrapejuice, 11);
 
 
         ModelLoader.setCustomStateMapper(BlockLoader.bananaLeaf, new StateMapperBase() {

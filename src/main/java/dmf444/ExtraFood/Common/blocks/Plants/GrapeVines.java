@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.blocks.Plants;
 
+import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.block.Block;
@@ -10,6 +11,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -93,7 +95,9 @@ public class GrapeVines extends Block implements IShearable{
             return false;
         }else{
             //SPAWN ITEM
-
+            if(!world.isRemote) {
+                world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.grapes)));
+            }
             world.setBlockState(pos, this.getDefaultState(), 2);
             world.markBlockForUpdate(pos);
             return true;

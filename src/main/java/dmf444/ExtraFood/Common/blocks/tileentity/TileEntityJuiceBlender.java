@@ -161,7 +161,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
     public boolean ok() {
         if (JuiceRegistry.instance.getJuiceFromItemStack(this.items[0]) != null) {
             if (this.tank.getFluid() != null) {
-                if (this.tank.getFluid().getFluid() == JuiceRegistry.instance.getJuiceFromItemStack(this.items[0])) {
+                if (this.tank.getFluid().getFluid() == JuiceRegistry.instance.getJuiceFromItemStack(this.items[0]) && this.tank.getFluidAmount() < this.tank.getCapacity()) {
                     return true;
                 } else {
                     return false;

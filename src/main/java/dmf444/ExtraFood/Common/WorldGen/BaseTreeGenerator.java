@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Common.WorldGen;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -34,7 +35,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         for (int y = position.getY(); y < position.getY() + 1 + treeHeight; y++){
             for (int x = position.getX() - getLeavesWidthAndLength() / 2; x < position.getX() + getLeavesWidthAndLength() / 2 ; x++) {
                 for (int z = position.getZ() - getLeavesWidthAndLength() / 2; x < position.getZ() + getLeavesWidthAndLength() / 2 ; x++) {
-                    if (!isReplaceable(worldIn, new BlockPos(x, y, z))) {
+                    if (!isReplaceable(worldIn, new BlockPos(x, y, z)) && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.tallgrass && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.double_plant && !(worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockFlower)) {
                         return false;
                     }
                 }

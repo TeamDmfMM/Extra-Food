@@ -25,6 +25,10 @@ public class BlockLib {
     public static String bFluidStraw = "StrawberryJuice";
     public static String bFluidCarrot = "Fcarrotjuice";
 	public static String bDisgustingMix = "FdisgustingMix";
+	public static final String APPLE_GRAPE_JUICE_BLOCK = "FluidappleGrape";
+	public static final String GRAPE_JUICE_BLOCK = "Fluidgrape";
+	public static final String CITRUS_JUICE_BLOCK = "Fluidcitrus";
+	public static final String PINEAPPLE_JUICE_BLOCK = "Fluidpineapple";
 
 	public static String bOliveBush = "OliveTreeSapling";
 	public static String bOliveLeaf = "OliveLeaf";
@@ -34,4 +38,5 @@ public class BlockLib {
 	public static String bMelonJuice = "BMelonJuice";
 	public static String bPineappleCrop = "CropPineapple";
 	public static String bGrapeVine = "GrapeVine";
+	public static final String ORANGE_SAPLING = "OrangeSapling";
 }
