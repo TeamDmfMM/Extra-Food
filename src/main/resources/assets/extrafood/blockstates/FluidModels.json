@@ -48,6 +48,22 @@
     "fluid11":{
       "model": "forge:fluid",
       "custom": { "fluid": "applegrapejuice" }
+    },
+    "fluid12":{
+      "model": "forge:fluid",
+      "custom": {"fluid": "fruitjuice"}
+    },
+    "fluid13":{
+      "model": "forge:fluid",
+      "custom": {"fluid": "mixedberryjuice"}
+    },
+    "fluid14":{
+      "model": "forge:fluid",
+      "custom": {"fluid": "strawberrybananajuice"}
+    },
+    "fluid15":{
+      "model": "forge:fluid",
+      "custom": {"fluid": "tropicaljuice"}
     }
   }
 }

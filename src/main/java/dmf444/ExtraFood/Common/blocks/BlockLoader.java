@@ -31,7 +31,7 @@ public class BlockLoader {
 	public static Block juiceMixer;
 	public static Block Chocake;
 	public static Block oliveBush;
-	public static Block BdiscustingMix, BappleJuice, BorangeJuice, BwatermelonJuice, Bgrapejuice, Bapplegrapejuice, Bcitusjuice, BpinappleJuice;
+	public static Block BdiscustingMix, BappleJuice, BorangeJuice, BwatermelonJuice, Bgrapejuice, Bapplegrapejuice, Bcitusjuice, BpinappleJuice, BfruitJuice, BmixedberryJuice, tropicalJuice, strawberryBananaJuice;
 	public static Block OrangeBlock;
 	
 	public static boolean Register=false;
@@ -71,6 +71,10 @@ public class BlockLoader {
 		Bapplegrapejuice = new GeneralFluid(FluidLoader.Fapplegrapejuice, Material.water).setUnlocalizedName(BlockLib.APPLE_GRAPE_JUICE_BLOCK);
 		Bcitusjuice = new GeneralFluid(FluidLoader.Fcitusjuice, Material.water).setUnlocalizedName(BlockLib.CITRUS_JUICE_BLOCK);
 		BpinappleJuice = new GeneralFluid(FluidLoader.FpinappleJuice, Material.water).setUnlocalizedName(BlockLib.PINEAPPLE_JUICE_BLOCK);
+		BfruitJuice = new GeneralFluid(FluidLoader.Ffruitjuice, Material.water).setUnlocalizedName(BlockLib.FRUIT_JUICE_BLOCK);
+		strawberryBananaJuice = new GeneralFluid(FluidLoader.Fstrawberrybanana, Material.water).setUnlocalizedName(BlockLib.STRAWBERRY_BANANA_JUICE);
+		BmixedberryJuice = new GeneralFluid(FluidLoader.Fmixedberryjuice, Material.water).setUnlocalizedName(BlockLib.MIXED_BERRY_JUICE);
+		tropicalJuice = new GeneralFluid(FluidLoader.Ftropicaljuice, Material.water).setUnlocalizedName(BlockLib.TROPICAL_JUICE);
 
 		
 		registerBlocks();
@@ -109,6 +113,10 @@ public class BlockLoader {
 			GameRegistry.registerBlock(Bcitusjuice, BlockLib.CITRUS_JUICE_BLOCK);
 			GameRegistry.registerBlock(BpinappleJuice, BlockLib.PINEAPPLE_JUICE_BLOCK);
 			GameRegistry.registerBlock(saplingOrange, BlockLib.ORANGE_SAPLING);
+			GameRegistry.registerBlock(BfruitJuice, BlockLib.FRUIT_JUICE_BLOCK);
+			GameRegistry.registerBlock(BmixedberryJuice, BlockLib.MIXED_BERRY_JUICE);
+			GameRegistry.registerBlock(tropicalJuice, BlockLib.TROPICAL_JUICE);
+			GameRegistry.registerBlock(strawberryBananaJuice, BlockLib.STRAWBERRY_BANANA_JUICE);
 		}
 		Register=true;
 	}

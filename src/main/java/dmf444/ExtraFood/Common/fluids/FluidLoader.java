@@ -21,18 +21,6 @@ public class FluidLoader {
 	public static Fluid FEggnog;
 	public static Fluid FHorribleLiquid;
 	public static Fluid Fapplejuice, Forangejuice, Fgrapejuice, Fapplegrapejuice, Fcitusjuice, FpinappleJuice, Ffruitjuice, Fmixedberryjuice, Fwatermelonjuice, Fstrawberrybanana, Ftropicaljuice;
-	//RECIPIES (n=just blender)
-	//Apple=n
-	//Orange = n
-	//Grape = n
-	//Apple-Grape= 1000ml Apple, 1000ml Grape
-	//Citrus = 500ml Apple, 1000ml Grape, 500ml orange
-	//Pinapple = n
-	//Fruit = 1000mL Apple, 1000ml Watermelon, 500ml Strawberry, 500ml Grape
-	//Mixed berry = 500ml Strawberry, 500ml Grape
-	//Watermelon = n
-	//Strawberry banana = 500ml Strawberry, 500ml Banana
-	//F tropical = (if possible) 500ml Pinapple, 500ml Citrus
 
 	public static Item FluidContainer;
     private static final String pre = "extrafood:blocks/fluid/";
@@ -62,10 +50,14 @@ public class FluidLoader {
 		Fwatermelonjuice = new EdibleFluid("watermelonjuice", new ResourceLocation(pre+"Fluid_WatermelonJuice"), new ResourceLocation(pre+"Fluid_WatermelonJuice"), 4, 2.0f).setViscosity(1200);
 		Fapplejuice = new EdibleFluid("applejuice", new ResourceLocation(pre+localize(still, "AppleJuice")), new ResourceLocation(pre+localize(flow, "AppleJuice")), 4, 1.0f);
 		Forangejuice = new EdibleFluid("orangejuice", new ResourceLocation(pre+localize(still, "OrangeJuice")), new ResourceLocation(pre+localize(flow, "OrangeJuice")), 4, 1.5f);
-		Fgrapejuice = new EdibleFluid(GRAPE_JUICE.toLowerCase(), rl(still, GRAPE_JUICE), rl(flow, GRAPE_JUICE), 5, 1.6f);
-		Fapplegrapejuice = new EdibleFluid(APPLE_GRAPE.toLowerCase(), rl(still, APPLE_GRAPE), rl(flow, APPLE_GRAPE), 7, 3.6f);
-		Fcitusjuice = new EdibleFluid(CITRUS_JUICE.toLowerCase(), rl(still, CITRUS_JUICE), rl(flow, CITRUS_JUICE), 6, 4f);
-		FpinappleJuice = new EdibleFluid(PINEAPPLE_JUICE.toLowerCase(), rl(still, PINEAPPLE_JUICE), rl(flow, PINEAPPLE_JUICE), 3, 2f);
+		Fgrapejuice = new EdibleFluid(GRAPE_JUICE, rl(still, GRAPE_JUICE), rl(flow, GRAPE_JUICE), 5, 1.6f);
+		Fapplegrapejuice = new EdibleFluid(APPLE_GRAPE, rl(still, APPLE_GRAPE), rl(flow, APPLE_GRAPE), 7, 3.6f);
+		Fcitusjuice = new EdibleFluid(CITRUS_JUICE, rl(still, CITRUS_JUICE), rl(flow, CITRUS_JUICE), 6, 4f);
+		FpinappleJuice = new EdibleFluid(PINEAPPLE_JUICE, rl(still, PINEAPPLE_JUICE), rl(flow, PINEAPPLE_JUICE), 3, 2f);
+		Ffruitjuice = new EdibleFluid(FRUIT_JUICE, rl(still, FRUIT_JUICE), rl(flow, FRUIT_JUICE), 6, 2.0f);
+		Fmixedberryjuice = new EdibleFluid(MIXED_BERRY_JUICE, rl(still, MIXED_BERRY_JUICE), rl(flow, MIXED_BERRY_JUICE), 6, 7.0f);
+		Fstrawberrybanana = new EdibleFluid(STRAWBERRY_BANANA_JUICE, rl(still, STRAWBERRY_BANANA_JUICE), rl(flow, STRAWBERRY_BANANA_JUICE), 3, 4.0f);
+		Ftropicaljuice = new EdibleFluid(TROPICAL_JUICE, rl(still, TROPICAL_JUICE), rl(flow, TROPICAL_JUICE), 7, 2.0f);
 
 
 		FluidContainer = new GlassFluidContainer().setUnlocalizedName(ItemLib.glassContainer);
@@ -86,6 +78,10 @@ public class FluidLoader {
 			FluidRegistry.registerFluid(Fapplegrapejuice);
 			FluidRegistry.registerFluid(Fcitusjuice);
 			FluidRegistry.registerFluid(FpinappleJuice);
+			FluidRegistry.registerFluid(Ffruitjuice);
+			FluidRegistry.registerFluid(Fmixedberryjuice);
+			FluidRegistry.registerFluid(Fstrawberrybanana);
+			FluidRegistry.registerFluid(Ftropicaljuice);
 
 
 			GameRegistry.registerItem(FluidContainer, ItemLib.glassContainer);

@@ -1,7 +1,7 @@
 package dmf444.ExtraFood.Core.lib;
 
 public class BlockLib {
-	
+
 
 	public static String bBB = "Banana_Bunch";
 	public static String bBS = "Bannana_Sapling";
@@ -29,6 +29,10 @@ public class BlockLib {
 	public static final String GRAPE_JUICE_BLOCK = "Fluidgrape";
 	public static final String CITRUS_JUICE_BLOCK = "Fluidcitrus";
 	public static final String PINEAPPLE_JUICE_BLOCK = "Fluidpineapple";
+	public static final String FRUIT_JUICE_BLOCK = "Fluidfruit";
+	public static final String STRAWBERRY_BANANA_JUICE = "FluidstrawberryBanana";
+	public static final String MIXED_BERRY_JUICE = "FluidmixedBerry";
+	public static final String TROPICAL_JUICE = "Fluidtropical";
 
 	public static String bOliveBush = "OliveTreeSapling";
 	public static String bOliveLeaf = "OliveLeaf";

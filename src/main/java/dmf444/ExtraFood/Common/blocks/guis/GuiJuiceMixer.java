@@ -78,7 +78,7 @@ public class GuiJuiceMixer extends GuiContainer {
             ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY);
         }
 
-        this.handleTooltips(mouseX, mouseY);
+
     }
 
     private void drawSelector() {
@@ -113,43 +113,44 @@ public class GuiJuiceMixer extends GuiContainer {
     }
 
     private void handleTooltips(int mouseX, int mouseY) {
+        int realX = mouseX-this.guiLeft, realY = mouseY-this.guiTop;
         if (isPointInRegion(7, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input1;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), realX, realY);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), realX, realY);
             }
         }
         else if (isPointInRegion(32, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input2;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), realX, realY);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), realX, realY);
             }
         }
         else if (isPointInRegion(57, 6, 18, 62, mouseX, mouseY)) {
             FluidTank theFluidTank = te.input3;
             if (theFluidTank.getFluid() == null) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), realX, realY);
             }
             else {
-                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList("Contents:", EnumChatFormatting.GREEN +theFluidTank.getFluid().getFluid().getLocalizedName(theFluidTank.getFluid()) + ": " + EnumChatFormatting.RED + theFluidTank.getFluidAmount() + EnumChatFormatting.WHITE + "mB"), realX, realY);
             }
         }
         else if (isPointInRegion(101, 37, 16, 30, mouseX, mouseY)){
             if (te.outputState.size() == 0) {
-                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), mouseX, mouseY);
+                drawHoveringText(Arrays.asList(EnumChatFormatting.GREEN + "Empty"), realX, realY);
             }
             else {
                 ArrayList<String> strings = new ArrayList<>(Arrays.asList("Contents:"));
                 for (FluidStack fluidStack : te.outputState) {
                     strings.add(EnumChatFormatting.GREEN + fluidStack.getFluid().getLocalizedName(fluidStack) + ": " + EnumChatFormatting.RED + fluidStack.amount + EnumChatFormatting.WHITE + "mB");
                 }
-                drawHoveringText(strings, mouseX, mouseY);
+                drawHoveringText(strings, realX, realY);
             }
         }
     }
@@ -227,17 +228,14 @@ public class GuiJuiceMixer extends GuiContainer {
     {
         if(isPointInRegion(7, 6, 18, 62, mouseX, mouseY)){
             //Tank 1
-            EFLog.error("Clicked on tank 1");
             ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.LEFT, te.getPos()));
             te.changeSelected(JuiceMixerTileEntity.SelectedTank.LEFT);
         }else if(isPointInRegion(32, 6, 18, 62, mouseX, mouseY)){
             //Tank 2
-            EFLog.error("Clicked on tank 2");
             ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.MIDDLE, te.getPos()));
             te.changeSelected(JuiceMixerTileEntity.SelectedTank.MIDDLE);
         }else if(isPointInRegion(57, 6, 18, 62, mouseX, mouseY)){
             //Tank 3
-            EFLog.fatal("Clicked on tank 3");
             ChannelHandler.EFchannel.sendToServer(new PacketSelector(JuiceMixerTileEntity.SelectedTank.RIGHT, te.getPos()));
             te.changeSelected(JuiceMixerTileEntity.SelectedTank.RIGHT);
         }
@@ -246,7 +244,8 @@ public class GuiJuiceMixer extends GuiContainer {
 
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int param1, int param2) {
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         fontRendererObj.drawString(StatCollector.translateToLocal("gui.JM"), 135, 6, 4210752);
+        this.handleTooltips(mouseX, mouseY);
     }
 }

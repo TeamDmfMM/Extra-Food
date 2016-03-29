@@ -95,9 +95,22 @@ public class RegistryJuiceMixer {
     public RegistryJuiceMixer() {
         recipes = new ArrayList<>();
         validFluids = new ArrayList<>();
-        // TODO: Add recipes
+
+        addRecipe(4, FluidLoader.Fapplegrapejuice, dl(2, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fgrapejuice));
+        addRecipe(4, FluidLoader.Fcitusjuice, dl(1, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fgrapejuice), dl(1, FluidLoader.Forangejuice));
+        addRecipe(6, FluidLoader.Ffruitjuice, dl(2, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fwatermelonjuice), dl(1, FluidLoader.Fstrawberryjuice), dl(1, FluidLoader.Fgrapejuice));
+        addRecipe(2, FluidLoader.Fmixedberryjuice, dl(1, FluidLoader.Fstrawberryjuice), dl(1, FluidLoader.Fgrapejuice));
+        addRecipe(2, FluidLoader.Fstrawberrybanana, dl(1, FluidLoader.Fbananajuice), dl(1, FluidLoader.Fstrawberryjuice));
+        addRecipe(2, FluidLoader.Ftropicaljuice, dl(1, FluidLoader.FpinappleJuice), dl(1, FluidLoader.Fcitusjuice));
+
+        //Apple-Grape= 1000ml Apple, 1000ml Grape
+        //Citrus = 500ml Apple, 1000ml Grape, 500ml orange
+        //Fruit = 1000mL Apple, 1000ml Watermelon, 500ml Strawberry, 500ml Grape
+        //Mixed berry = 500ml Strawberry, 500ml Grape
+        //Strawberry banana = 500ml Strawberry, 500ml Banana
+        //F tropical = (if possible) 500ml Pinapple, 500ml Citrus
         // Test recipe
-        addRecipe(3, FluidLoader.Fstrawberryjuice, dl(1, FluidLoader.Fbananajuice), dl(2, FluidLoader.Fcarrotjuice));
+        //addRecipe(3, FluidLoader.Fstrawberryjuice, dl(1, FluidLoader.Fbananajuice), dl(2, FluidLoader.Fcarrotjuice));
     }
 
     public void addRecipe(int output, Fluid outputFluid, DualObjectLink<Integer, Fluid>... fluids) {

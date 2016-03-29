@@ -8,7 +8,7 @@ import net.minecraftforge.common.util.EnumHelper;
 public class Banners {
 
 
-    public void init() {
+    public static void init() {
         addPattern("cheese", "cw", new ItemStack(ItemLoader.cheeseWheel, 1));
 
     }
