@@ -26,8 +26,6 @@ import java.util.Random;
 public class BananaTreeSapling extends BlockBush implements IGrowable
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
-    //public static final PropertyEnum TYPE = PropertyEnum.create("type", BlockPlanks.EnumType.class);
-    //private static final String __OBFID = "CL_00000305";
 
     public BananaTreeSapling()
     {

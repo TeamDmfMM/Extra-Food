@@ -26,7 +26,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
     private static final int[] slots_top = new int[]{0};
     private static final int[] slots_bottom = new int[]{2};
     private static final int[] slots_sides = new int[]{1};
-    public FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 5);
+    public FluidTank tank = new FluidTank(5000);
     public ItemStack[] items;
     public FluidStack juice;
 

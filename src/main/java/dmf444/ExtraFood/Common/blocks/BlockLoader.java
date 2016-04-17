@@ -8,7 +8,7 @@ import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import dmf444.ExtraFood.Core.lib.BlockLib;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.client.model.ModelFluid;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockLoader {
@@ -70,31 +70,31 @@ public class BlockLoader {
 	}
 	private static void registerBlocks() {
 		if(!Register){
-			GameRegistry.registerBlock(bananaBunch, BlockLib.bBB);
-			GameRegistry.registerBlock(saplingBanana, BlockLib.bBS);
-			GameRegistry.registerBlock(cheesePress, BlockLib.bCP);
-			GameRegistry.registerBlock(autoCutter, BlockLib.bAC);
-			GameRegistry.registerBlock(juiceBlender, BlockLib.bJB);
-			GameRegistry.registerBlock(oven, BlockLib.bO);
-			GameRegistry.registerBlock(whiteout, BlockLib.bTWB);
-			GameRegistry.registerBlock(Bbananajuice, BlockLib.bFluidBan);
-			GameRegistry.registerBlock(Bstrawberryjuice, BlockLib.bFluidStraw);
-			GameRegistry.registerBlock(Beggnog, BlockLib.bFluidEgg);
-            GameRegistry.registerBlock(Bcarrotjuice, BlockLib.bFluidCarrot);
-			GameRegistry.registerBlock(strawberryBush, BlockLib.bSB);
-			GameRegistry.registerBlock(bananaLeaf, BlockLib.bBL);
-			GameRegistry.registerBlock(peanutbush, BlockLib.bPB);
-			GameRegistry.registerBlock(tomatoCrop, BlockLib.bCT);
-			GameRegistry.registerBlock(lettuceCrop, BlockLib.bCL);
-			GameRegistry.registerBlock(juiceMixer, BlockLib.bJM);
-			GameRegistry.registerBlock(Chocake, BlockLib.bCake);
-			GameRegistry.registerBlock(oliveBush, BlockLib.bOliveBush);
-			GameRegistry.registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
-			GameRegistry.registerBlock(BdiscustingMix, BlockLib.bDisgustingMix);
-			GameRegistry.registerBlock(OrangeBlock, BlockLib.bBlockOrange);
-			GameRegistry.registerBlock(BappleJuice, BlockLib.bAppleJuice);
-			GameRegistry.registerBlock(BorangeJuice, BlockLib.bOrangeJuice);
-			GameRegistry.registerBlock(BwatermelonJuice, BlockLib.bMelonJuice);
+			registerBlock(bananaBunch, BlockLib.bBB);
+			registerBlock(saplingBanana, BlockLib.bBS);
+			registerBlock(cheesePress, BlockLib.bCP);
+			registerBlock(autoCutter, BlockLib.bAC);
+			registerBlock(juiceBlender, BlockLib.bJB);
+			registerBlock(oven, BlockLib.bO);
+			registerBlock(whiteout, BlockLib.bTWB);
+			registerBlock(Bbananajuice, BlockLib.bFluidBan);
+			registerBlock(Bstrawberryjuice, BlockLib.bFluidStraw);
+			registerBlock(Beggnog, BlockLib.bFluidEgg);
+            registerBlock(Bcarrotjuice, BlockLib.bFluidCarrot);
+			registerBlock(strawberryBush, BlockLib.bSB);
+			registerBlock(bananaLeaf, BlockLib.bBL);
+			registerBlock(peanutbush, BlockLib.bPB);
+			registerBlock(tomatoCrop, BlockLib.bCT);
+			registerBlock(lettuceCrop, BlockLib.bCL);
+			registerBlock(juiceMixer, BlockLib.bJM);
+			registerBlock(Chocake, BlockLib.bCake);
+			registerBlock(oliveBush, BlockLib.bOliveBush);
+			registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
+			registerBlock(BdiscustingMix, BlockLib.bDisgustingMix);
+			registerBlock(OrangeBlock, BlockLib.bBlockOrange);
+			registerBlock(BappleJuice, BlockLib.bAppleJuice);
+			registerBlock(BorangeJuice, BlockLib.bOrangeJuice);
+			registerBlock(BwatermelonJuice, BlockLib.bMelonJuice);
 		}
 		Register=true;
 	}
@@ -106,6 +106,11 @@ public class BlockLoader {
 		GameRegistry.registerTileEntity(TileEntityOven.class, BlockLib.bO);
 		GameRegistry.registerTileEntity(JuiceMixerTileEntity.class, BlockLib.bJM);
 	}
-	
+
+	private static void registerBlock(Block block, String name){
+		block.setRegistryName(name);
+		GameRegistry.register(block);
+		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
 }
 

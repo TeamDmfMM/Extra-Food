@@ -12,7 +12,6 @@ import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -23,16 +22,13 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -79,8 +75,8 @@ public class ClientProxy extends CommonProxy{
 
 	@SubscribeEvent
 	public void renderzoverlay(RenderBlockOverlayEvent e){
-		if(e.overlayType == RenderBlockOverlayEvent.OverlayType.WATER && (Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock() instanceof GeneralFluid)) {
-			float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
+		if(e.getOverlayType() == RenderBlockOverlayEvent.OverlayType.WATER && (Minecraft.getMinecraft().theWorld.getBlockState(e.getBlockPos()).getBlock() instanceof GeneralFluid)) {
+			float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.getBlockPos()).getBlock()).getFluid());
 			if (nums == null) {
 				return;
 			}
@@ -88,7 +84,7 @@ public class ClientProxy extends CommonProxy{
 			Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/misc/underwater.png"));
 			Tessellator tessellator = Tessellator.getInstance();
 			VertexBuffer worldrenderer = tessellator.getBuffer();
-			float f = e.player.getBrightness(e.renderPartialTicks);
+			float f = e.getPlayer().getBrightness(e.getRenderPartialTicks());
 			GlStateManager.color(f, f, f, 0.5F);
 			//float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
 			GlStateManager.color(nums[0], nums[1], nums[2], 0.5f);
@@ -96,19 +92,19 @@ public class ClientProxy extends CommonProxy{
 
 			GlStateManager.setFog(GlStateManager.FogMode.EXP);
 
-			if (((EntityLivingBase)e.player).isPotionActive(MobEffects.waterBreathing))
+			if (((EntityLivingBase)e.getPlayer()).isPotionActive(MobEffects.waterBreathing))
             {
                 GlStateManager.setFogDensity(0.01F);
             }
             else
             {
-                GlStateManager.setFogDensity(0.1F - (float)EnchantmentHelper.getRespirationModifier((EntityLivingBase)e.player) * 0.03F);
+                GlStateManager.setFogDensity(0.1F - (float)EnchantmentHelper.getRespirationModifier((EntityLivingBase)e.getPlayer()) * 0.03F);
             }
 			GlStateManager.enableBlend();
 			GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 			GlStateManager.pushMatrix();
-			float f7 = -e.player.rotationYaw / 64.0F;
-			float f8 = e.player.rotationPitch / 64.0F;
+			float f7 = -e.getPlayer().rotationYaw / 64.0F;
+			float f8 = e.getPlayer().rotationPitch / 64.0F;
 			worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
 			worldrenderer.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + f7), (double) (4.0F + f8)).endVertex();
 			worldrenderer.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + f7), (double) (4.0F + f8)).endVertex();

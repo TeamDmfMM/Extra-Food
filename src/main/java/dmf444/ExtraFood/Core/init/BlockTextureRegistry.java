@@ -6,8 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -37,12 +37,12 @@ public class BlockTextureRegistry {
 
     private static void registerBlock(String blockName, int meta, String resource){
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        Item itemB = GameRegistry.findItem("extrafood", blockName);
+        Item itemB = Item.itemRegistry.getObject(new ResourceLocation("extrafood", blockName));
         renderItem.getItemModelMesher().register(itemB, meta, new ModelResourceLocation(resource, "inventory"));
     }
     private static void registerBlock(String blockName, int meta){
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        Item itemB = GameRegistry.findItem("extrafood", blockName);
+        Item itemB = Item.itemRegistry.getObject(new ResourceLocation("extrafood", blockName));
         renderItem.getItemModelMesher().register(itemB, meta, new ModelResourceLocation("extrafood:"+ blockName, "inventory"));
     }
 }

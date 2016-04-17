@@ -10,16 +10,16 @@ public class ExtraFood_EventBonemeal {
 
     public void onUseBonemeal(BonemealEvent event)
     {
-            if (event.block == BlockLoader.saplingBanana)
+            if (event.getBlock() == BlockLoader.saplingBanana)
             {
-                    if (!event.world.isRemote)
+                    if (!event.getWorld().isRemote)
                     {
-                            ((BananaTreeSapling)BlockLoader.saplingBanana).grow(event.world, event.pos, event.block.getBlock().getBlockState().getBaseState(), event.world.rand);
+                            ((BananaTreeSapling)BlockLoader.saplingBanana).grow(event.getWorld(), event.getPos(), event.getBlock().getBlock().getBlockState().getBaseState(), event.getWorld().rand);
                     }
                     event.setResult(Event.Result.ALLOW);  //allow the bonemeal consumption and prevent other possible effects
-            } else if(event.block == BlockLoader.oliveBush){
-                if(!event.world.isRemote){
-                    ((OliveTreeSapling)BlockLoader.oliveBush).generateTree(event.world, event.pos, event.block.getBlock().getBlockState().getBaseState(), event.world.rand);
+            } else if(event.getBlock() == BlockLoader.oliveBush){
+                if(!event.getWorld().isRemote){
+                    ((OliveTreeSapling)BlockLoader.oliveBush).generateTree(event.getWorld(), event.getPos(), event.getBlock().getBlock().getBlockState().getBaseState(), event.getWorld().rand);
                 }
             }
     }

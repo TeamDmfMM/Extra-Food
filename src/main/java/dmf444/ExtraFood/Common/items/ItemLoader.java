@@ -6,9 +6,8 @@ import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
-import net.minecraft.potion.*;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -149,26 +148,26 @@ public class ItemLoader {
 	private static void registerItems() {
 		if(!IRegister){
 			
-			GameRegistry.registerItem(knife, ItemLib.iK);
-			GameRegistry.registerItem(cookBook, ItemLib.iCB);
-			GameRegistry.registerItem(grater, ItemLib.iGrater);
-			GameRegistry.registerItem(muffinPan, ItemLib.iMuffPan);
-            GameRegistry.registerItem(dough, ItemLib.iDough);
-			GameRegistry.registerItem(tomatoSeeds, ItemLib.iTS);
-			GameRegistry.registerItem(uselettuceSeeds, ItemLib.iCLS);
-			GameRegistry.registerItem(rawlettuceSeeds, ItemLib.iULS);
-			GameRegistry.registerItem(bucketstrawberry, ItemLib.iBS);
-			GameRegistry.registerItem(bucketbanana, ItemLib.iBB);
-			GameRegistry.registerItem(bucketcarrot, ItemLib.iBC);
-			GameRegistry.registerItem(bucketseaWater, ItemLib.iBSW);
-			GameRegistry.registerItem(bucketpurifiedwater, ItemLib.iBPW);
-			GameRegistry.registerItem(bucketeggnog, "eggnog");
-			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("bananajuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketbanana), new ItemStack(Items.bucket));
-			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("strawberryjuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketstrawberry), new ItemStack(Items.bucket));
-			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("carrotjuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketcarrot), new ItemStack(Items.bucket));
-			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("eggnog", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketeggnog), new ItemStack(Items.bucket));
-			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("water", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketseaWater), new ItemStack(Items.bucket));
-			FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("water", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketpurifiedwater), new ItemStack(Items.bucket));
+			registerItem(knife, ItemLib.iK);
+			registerItem(cookBook, ItemLib.iCB);
+			registerItem(grater, ItemLib.iGrater);
+			registerItem(muffinPan, ItemLib.iMuffPan);
+            registerItem(dough, ItemLib.iDough);
+			registerItem(tomatoSeeds, ItemLib.iTS);
+			registerItem(uselettuceSeeds, ItemLib.iCLS);
+			registerItem(rawlettuceSeeds, ItemLib.iULS);
+			registerItem(bucketstrawberry, ItemLib.iBS);
+			registerItem(bucketbanana, ItemLib.iBB);
+			registerItem(bucketcarrot, ItemLib.iBC);
+			registerItem(bucketseaWater, ItemLib.iBSW);
+			registerItem(bucketpurifiedwater, ItemLib.iBPW);
+			registerItem(bucketeggnog, "eggnog");
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("bananajuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketbanana), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("strawberryjuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketstrawberry), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("carrotjuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketcarrot), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("eggnog", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketeggnog), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("water", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketseaWater), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("water", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketpurifiedwater), new ItemStack(Items.bucket));
 
 			
 
@@ -178,68 +177,68 @@ public class ItemLoader {
 	
 	private static void registerFood() {
 		if(!FRegister){
-			GameRegistry.registerItem(cheeseWheel, ItemLib.iCW);
-			GameRegistry.registerItem(banana, ItemLib.iBan);
-			GameRegistry.registerItem(cheeseSlice, ItemLib.iCS);
-			GameRegistry.registerItem(sausage, ItemLib.iS);
-			GameRegistry.registerItem(strawberry, ItemLib.iST);
-			GameRegistry.registerItem(bacon, ItemLib.iBac);
-			GameRegistry.registerItem(cookedBacon, ItemLib.iCBac);
-			GameRegistry.registerItem(veal, ItemLib.iV);
-			GameRegistry.registerItem(toast, ItemLib.iToastS);
-			GameRegistry.registerItem(slicedBread, ItemLib.iBRS);
-			GameRegistry.registerItem(frenchFries, ItemLib.iFF);
-			GameRegistry.registerItem(egg, ItemLib.iEgg);
-			GameRegistry.registerItem(rawpasta, ItemLib.iPasta);
-			GameRegistry.registerItem(sandwhichS, ItemLib.iSandS);
-			GameRegistry.registerItem(sandwhichCB, ItemLib.iSandCB);
-			GameRegistry.registerItem(sandwhichGC, ItemLib.iSandGC);
-			GameRegistry.registerItem(rawHamburger, ItemLib.iRH);
-			GameRegistry.registerItem(cookedHamburger, ItemLib.iCH);
-			GameRegistry.registerItem(sandwhichHamburger, ItemLib.iSandH);
-			GameRegistry.registerItem(peanut, ItemLib.iP);
-			GameRegistry.registerItem(tomato, ItemLib.iTom);
-			GameRegistry.registerItem(lettuce, ItemLib.iLet);
-			GameRegistry.registerItem(cookedpasta, ItemLib.iCP);
-			GameRegistry.registerItem(meatballs, ItemLib.iMB);
-			GameRegistry.registerItem(meatballpasta, ItemLib.iMBP);
-			GameRegistry.registerItem(sushi, ItemLib.iSushi);
-			GameRegistry.registerItem(fishpieces, ItemLib.iFP);
-			GameRegistry.registerItem(pork_kebab, ItemLib.iPKeb);
-			GameRegistry.registerItem(veal_kebab, ItemLib.iVKeb);
-			GameRegistry.registerItem(steak_kebab, ItemLib.iSKeb);
-			GameRegistry.registerItem(chocolate, ItemLib.iCho);
-			GameRegistry.registerItem(pancakes, ItemLib.iPC);
-			GameRegistry.registerItem(peanutButter, ItemLib.iPB);
-			GameRegistry.registerItem(butter, ItemLib.iButter);
-			GameRegistry.registerItem(strawberryIceCream, ItemLib.iStrawIceCream);
-			GameRegistry.registerItem(vanillaIceCream, ItemLib.iVanIceCream);
-			GameRegistry.registerItem(chocolateIceCream, ItemLib.iChoIceCream);
-			GameRegistry.registerItem(chineseFood, ItemLib.iCNF);
-			GameRegistry.registerItem(chocolateSpread, ItemLib.iChoSpread);
-			GameRegistry.registerItem(jelly, ItemLib.iJ);
-			GameRegistry.registerItem(sandwichBLT, ItemLib.iSandBLT);
-			GameRegistry.registerItem(sandwichPBJ, ItemLib.iSandPBJ);
-			GameRegistry.registerItem(sandwichPBN, ItemLib.iSandPBN);
-			GameRegistry.registerItem(icePop, ItemLib.iPopcicle);
-			GameRegistry.registerItem(neoIceCream, ItemLib.iNeoIceCream);
-			GameRegistry.registerItem(sandwichPB, ItemLib.iSandPeanutB);
-			GameRegistry.registerItem(butterMilk, ItemLib.iButterMilk);
-			GameRegistry.registerItem(yogurt, ItemLib.iYogurt);
-			GameRegistry.registerItem(stawberryYogurt, ItemLib.iStrawYogurt);
-			GameRegistry.registerItem(sandwichC, ItemLib.iChoSandwich);
-			GameRegistry.registerItem(frenchToast, ItemLib.iFrenchToast);
-			GameRegistry.registerItem(sandwichCheeseburger, ItemLib.iSandCheeseBurger);
-			GameRegistry.registerItem(sandwichSupremeBurger, ItemLib.iSandSupremeH);
-			GameRegistry.registerItem(olive, ItemLib.iOlive);
-			GameRegistry.registerItem(orange, ItemLib.Orange);
+			registerItem(cheeseWheel, ItemLib.iCW);
+			registerItem(banana, ItemLib.iBan);
+			registerItem(cheeseSlice, ItemLib.iCS);
+			registerItem(sausage, ItemLib.iS);
+			registerItem(strawberry, ItemLib.iST);
+			registerItem(bacon, ItemLib.iBac);
+			registerItem(cookedBacon, ItemLib.iCBac);
+			registerItem(veal, ItemLib.iV);
+			registerItem(toast, ItemLib.iToastS);
+			registerItem(slicedBread, ItemLib.iBRS);
+			registerItem(frenchFries, ItemLib.iFF);
+			registerItem(egg, ItemLib.iEgg);
+			registerItem(rawpasta, ItemLib.iPasta);
+			registerItem(sandwhichS, ItemLib.iSandS);
+			registerItem(sandwhichCB, ItemLib.iSandCB);
+			registerItem(sandwhichGC, ItemLib.iSandGC);
+			registerItem(rawHamburger, ItemLib.iRH);
+			registerItem(cookedHamburger, ItemLib.iCH);
+			registerItem(sandwhichHamburger, ItemLib.iSandH);
+			registerItem(peanut, ItemLib.iP);
+			registerItem(tomato, ItemLib.iTom);
+			registerItem(lettuce, ItemLib.iLet);
+			registerItem(cookedpasta, ItemLib.iCP);
+			registerItem(meatballs, ItemLib.iMB);
+			registerItem(meatballpasta, ItemLib.iMBP);
+			registerItem(sushi, ItemLib.iSushi);
+			registerItem(fishpieces, ItemLib.iFP);
+			registerItem(pork_kebab, ItemLib.iPKeb);
+			registerItem(veal_kebab, ItemLib.iVKeb);
+			registerItem(steak_kebab, ItemLib.iSKeb);
+			registerItem(chocolate, ItemLib.iCho);
+			registerItem(pancakes, ItemLib.iPC);
+			registerItem(peanutButter, ItemLib.iPB);
+			registerItem(butter, ItemLib.iButter);
+			registerItem(strawberryIceCream, ItemLib.iStrawIceCream);
+			registerItem(vanillaIceCream, ItemLib.iVanIceCream);
+			registerItem(chocolateIceCream, ItemLib.iChoIceCream);
+			registerItem(chineseFood, ItemLib.iCNF);
+			registerItem(chocolateSpread, ItemLib.iChoSpread);
+			registerItem(jelly, ItemLib.iJ);
+			registerItem(sandwichBLT, ItemLib.iSandBLT);
+			registerItem(sandwichPBJ, ItemLib.iSandPBJ);
+			registerItem(sandwichPBN, ItemLib.iSandPBN);
+			registerItem(icePop, ItemLib.iPopcicle);
+			registerItem(neoIceCream, ItemLib.iNeoIceCream);
+			registerItem(sandwichPB, ItemLib.iSandPeanutB);
+			registerItem(butterMilk, ItemLib.iButterMilk);
+			registerItem(yogurt, ItemLib.iYogurt);
+			registerItem(stawberryYogurt, ItemLib.iStrawYogurt);
+			registerItem(sandwichC, ItemLib.iChoSandwich);
+			registerItem(frenchToast, ItemLib.iFrenchToast);
+			registerItem(sandwichCheeseburger, ItemLib.iSandCheeseBurger);
+			registerItem(sandwichSupremeBurger, ItemLib.iSandSupremeH);
+			registerItem(olive, ItemLib.iOlive);
+			registerItem(orange, ItemLib.Orange);
 			//Noel
-			GameRegistry.registerItem(shortbread, ItemLib.iShortB);
-			GameRegistry.registerItem(fruitcake, ItemLib.iFC);
-			GameRegistry.registerItem(gingerbread, ItemLib.iGB);
-			GameRegistry.registerItem(chestnuts, ItemLib.Chestnut);
+			registerItem(shortbread, ItemLib.iShortB);
+			registerItem(fruitcake, ItemLib.iFC);
+			registerItem(gingerbread, ItemLib.iGB);
+			registerItem(chestnuts, ItemLib.Chestnut);
 			//Temp
-			GameRegistry.registerItem(ChocolateCake, ItemLib.Cake);
+			registerItem(ChocolateCake, ItemLib.Cake);
 			
 			//Register into Ore Dictionary
 			OreDictionary.registerOre("foodHamburger", ItemLoader.cookedHamburger);
@@ -292,5 +291,10 @@ public class ItemLoader {
 			
 		}
 		FRegister=true;
+	}
+
+	private static void registerItem(Item item, String name){
+		item.setRegistryName(name);
+		GameRegistry.register(item);
 	}
 }

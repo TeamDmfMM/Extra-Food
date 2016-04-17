@@ -18,7 +18,6 @@ import dmf444.ExtraFood.Core.CraftingRecipies;
 import dmf444.ExtraFood.Core.Crossmod.CrossModModules;
 import dmf444.ExtraFood.Core.GuiHandler;
 import dmf444.ExtraFood.Core.Packets.ChannelHandler;
-import dmf444.ExtraFood.Core.Packets.PacketJBTank;
 import dmf444.ExtraFood.Core.init.BlockTextureRegistry;
 import dmf444.ExtraFood.Core.init.ExceptionTextureRegistry;
 import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
@@ -36,7 +35,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -86,7 +84,7 @@ public class ExtraFood {
 		CrossModModules.preInit();
 		proxy.preInit();
         if (event.getSide() == Side.CLIENT) {
-			OBJLoader.instance.addDomain(ModInfo.MId);
+			OBJLoader.INSTANCE.addDomain(ModInfo.MId);
 			ModelLoaderRegistry.registerLoader(ModelDynGlassbottle.LoaderDynBucketz.instance);
 			ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
             ExceptionTextureRegistry.registerExceptiions();

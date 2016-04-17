@@ -68,7 +68,7 @@ public class FluidLoader {
 			FluidRegistry.registerFluid(Fapplejuice);
 			FluidRegistry.registerFluid(Forangejuice);
 
-			GameRegistry.registerItem(FluidContainer, ItemLib.glassContainer);
+			registerItem(FluidContainer, ItemLib.glassContainer);
 			GlassFluidContainer.createGlassBottles();
 
 		}
@@ -77,4 +77,9 @@ public class FluidLoader {
     private static String localize(String type, String fluid){
         return String.format(type, fluid);
     }
+
+	private static void registerItem(Item item, String name){
+		item.setRegistryName(name);
+		GameRegistry.register(item);
+	}
 }

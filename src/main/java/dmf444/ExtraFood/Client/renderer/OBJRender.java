@@ -88,7 +88,7 @@ public class OBJRender {
         try
         {
             final TextureMap textures = Minecraft.getMinecraft().getTextureMapBlocks();
-            OBJModel modelz = ((OBJModel) OBJLoader.instance.loadModel(new ResourceLocation("extrafood:models/"+resourceName)));
+            OBJModel modelz = ((OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("extrafood:models/"+resourceName)));
             IModel mod = ModelLoaderRegistry.getModel(new ResourceLocation("extrafood:"+resourceName));
             if(modelz != null){
                 modelz.process(ImmutableMap.of("flip-v", "true"));

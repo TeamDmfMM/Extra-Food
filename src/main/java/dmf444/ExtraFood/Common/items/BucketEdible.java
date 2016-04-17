@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.items;
 
+import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,11 +16,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidContainerItem;
 
-public class BucketEdible extends ItemBucket {
+public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 	
 	private int FoodStat;
 	private float SaturationLvl;
+	private Block containedBlock;
 
 	
 	public BucketEdible(int foodBar, float saturation, Block fluidBlock, String localName){
@@ -29,6 +34,7 @@ public class BucketEdible extends ItemBucket {
 
 		this.FoodStat = foodBar;
 		this.SaturationLvl = saturation;
+		this.containedBlock = fluidBlock;
 	}
 
 	@Override
@@ -75,4 +81,28 @@ public class BucketEdible extends ItemBucket {
 		}
 	}
 
+	//THIS MAY NOT BE PROPER IMPLEMENTATION OF IFLUIDCONTAINER. RECHECK LATER.
+	@Override
+	public FluidStack getFluid(ItemStack container) {
+		if(containedBlock instanceof GeneralFluid) {
+			return new FluidStack(((GeneralFluid)containedBlock).getFluid(), 1000);
+		}else{
+			return new FluidStack(FluidRegistry.WATER, 1000);
+		}
+	}
+
+	@Override
+	public int getCapacity(ItemStack container) {
+		return 1000;
+	}
+
+	@Override
+	public int fill(ItemStack container, FluidStack resource, boolean doFill) {
+		return 0;
+	}
+
+	@Override
+	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
+		return null;
+	}
 }
