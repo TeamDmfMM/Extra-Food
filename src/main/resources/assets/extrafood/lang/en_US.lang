@@ -73,6 +73,10 @@ item.muffin.name=Muffin
 item.MuffinPan.name=Muffin Pan
 item.dough.name=Dough
 item.olive.name=Olives
+item.orange.name=Orange
+item.pineapple.name=Pineapple
+item.pineappleSlice.name=Pineapple Slice
+item.Grapes.name=Grapes
 
 ## Additive names
 add.pizza.pepperoni=Pepperoni
@@ -105,24 +109,83 @@ tile.PeanutBush.name=Peanut Bush
 tile.TheWhiteBlock.name=Block of Pure White
 tile.CropLettuce.name=Lettuce Crop
 tile.CropTomato.name=Tomato Crop
+tile.Oven.name=Oven
+tile.JuiceMixer.name=Juice Mixer
+tile.Cake.name=Chocolate Cake
+tile.OliveTreeSapling.name=Olive Sapling
+tile.OliveLeaf.name=Olive Leaf
+tile.OrangeBlock.name=Orange
+tile.GrapeVine.name=Grape Vine
+tile.OrangeSapling.name=Orange Sapling
+
+#Fluid Block Names
 tile.StrawberryJuice.name=Strawberry Juice
 tile.Fcarrotjuice.name=Carrot Juice
 tile.Fbananajuice.name=Banana Juice
 tile.FEggnog.name=Eggnog
-tile.Oven.name=Oven
-tile.JuiceMixer.name=Juice Mixer [WIP]
-tile.Cake.name=Chocolate Cake
-tile.OliveTreeSapling.name=Olive Sapling
-tile.OliveLeaf.name=Olive Leaf
+tile.FdisgustingMix.name=Disgusting Mix
+tile.FluidappleGrape.name=Apple-Grape Juice
+tile.Fluidgrape.name=Grape Juice
+tile.Fluidcitrus.name=Citrus Juice
+tile.Fluidpineapple.name=Pineapple Juice
+tile.Fluidfruit.name=Fruit Juice
+tile.FluidstrawberryBanana.name=Strawberry Banana Juice
+tile.FluidmixedBerry.name=Mixed Berry Juice
+tile.Fluidtropical.name=Tropical Juice
 
 #Fluid Names ---This is for mod Compatibility
 fluid.strawberryjuice=Strawberry Juice
 fluid.carrotjuice=Carrot Juice
 fluid.bananajuice=Banana Juice
+fluid.Eggnog=Eggnog
+fluid.disgustingmix=Disgusting Mix
+fluid.watermelonjuice=Watermelon Juice
+fluid.applejuice=Apple Juice
+fluid.orangejuice=Orange Juice
+fluid.grapejuice=Grape Juice
+fluid.applegrapejuice=Apple-Grape Juice
+fluid.citrusjuice=Citrus Juice
+fluid.pineapplejuice=Pineapple Juice
+fluid.fruitjuice=Fruit Juice
+fluid.mixedberryjuice=Mixed Berry Juice
+fluid.strawberrybananajuice=Strawberry Banana Juice
+fluid.tropicaljuice=Tropical Juice
+
+#Glass Bottle Names
 item.EFbottle.strawberryjuice.name=Bottle of Strawberry Juice
 item.EFbottle.carrotjuice.name=Bottle of Carrot Juice
 item.EFbottle.bananajuice.name=Bottle of Banana Juice
 item.EFbottle.eggnog.name=Bottle of Eggnog
+item.EFbottle.disgustingmix.name=Bottle of a Disgusting Mix
+item.EFbottle.applejuice.name=Bottle of Apple Juice
+item.EFbottle.orangejuice.name=Bottle of Orange Juice
+item.EFbottle.grapejuice.name=Bottle of Grape Juice
+item.EFbottle.applegrapejuice.name=Bottle of Apple-Grape Juice
+item.EFbottle.citrusjuice.name=Bottle of Citrus Juice
+item.EFbottle.pineapplejuice.name=Bottle of Pineapple Juice
+item.EFbottle.fruitjuice.name=Bottle of Fruit Juice
+item.EFbottle.mixedberryjuice.name=Bottle of Mixed Berry Juice
+item.EFbottle.watermelonjuice.name=Bottle of Melon Juice
+item.EFbottle.strawberrybananajuice.name=Bottle of Strawberry-Banana Juice
+item.EFbottle.tropicaljuice.name=Bottle of Tropical Juice
+
+#Banner Names
+item.banner.extrafood_cheese.white=White Cheese Wheel
+item.banner.extrafood_cheese.orange=Orange Cheese Wheel
+item.banner.extrafood_cheese.magenta=Magenta Cheese Wheel
+item.banner.extrafood_cheese.lightBlue=Light Blue Cheese Wheel
+item.banner.extrafood_cheese.yellow=Yellow Cheese Wheel
+item.banner.extrafood_cheese.lime=Lime Cheese Wheel
+item.banner.extrafood_cheese.pink=Pink Cheese Wheel
+item.banner.extrafood_cheese.gray=Gray Cheese Wheel
+item.banner.extrafood_cheese.silver=Gray Cheese Wheel
+item.banner.extrafood_cheese.cyan=Cyan Cheese Wheel
+item.banner.extrafood_cheese.purple=Purple Cheese Wheel
+item.banner.extrafood_cheese.blue=Blue Cheese Wheel
+item.banner.extrafood_cheese.brown=Brown Cheese Wheel
+item.banner.extrafood_cheese.green=Green Cheese Wheel
+item.banner.extrafood_cheese.red=Red Cheese Wheel
+item.banner.extrafood_cheese.black=Black Cheese Wheel
 
 #FORESTRY Intergration Names
 circuit.managedBush=Bush Farm
@@ -155,7 +218,7 @@ cookbook.tabname.oven=Oven
 #<HungerStats|-1|-1|PAGE BY HALFS|HungerBar|Saturation>
 #<Image|-1|-1|PAGE BY HALFS|RecourseLocation|x|y|u|v>
 
-#cookbook.pizza=Pizza is a extremely yummy meal, and it can provide, when eaten whole, up to 5 hunger points. To make pizza, you need to make pizza dough. Pizza dough can be made with two type of bread, whole wheat and regular.
+#cookbook.pizza=Pizza is a extremely yummy meal, and it can provide, when eaten whole, up to 5 hunger points. To make pizza, you need to make pizza dough. Pizza dough can be made with two types of bread, whole wheat and regular.
 
 cookbook.cheesewheel=<TextBlock|-1|-1|0|By pressurizing milk repetitively, one's ability to create new foods such as cheese is formed. Cheese wheels are your first steps to healthy food, and an introduction into the food world. This is made in the Cheese Press.><HungerStats|-1|-1|1|4|5.6|Cheese Wheel>
 cookbook.cheeseslice=<TextBlock|-1|-1|0|Cheese slices are used in many recipes throughout Extra Food. They are mainly used in pizza, and they are also used in sandwiches (notably, the grilled cheese ones.) Their other use is to be a snack, healthier than an entire cheese wheel.><Crafting|-1|-1|1|cheeseslice><HungerStats|-1|-1|2|1|3.0|Cheese Slice>

@@ -1,7 +1,9 @@
 package dmf444.ExtraFood.Core.lib;
 
 public class BlockLib {
-	
+
+	public static String bPineappleCrop = "CropPineapple";
+	public static String bGrapeVine = "GrapeVine";
 
 	public static String bBB = "Banana_Bunch";
 	public static String bBS = "Bannana_Sapling";

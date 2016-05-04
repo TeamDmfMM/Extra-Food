@@ -26,6 +26,8 @@ public class EventsLoader {
 			//Chest Generation
 			//ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.cookBook), 1, 1, 50));
 			//ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.cookBook), 1, 1, 50));
+		    //ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.pineapple), 1, 1, 50));
+
 			//Load the Achivements
 			AchieveLoad.loadAc();
 			MinecraftForge.EVENT_BUS.register(new CraftingAchievements());

@@ -19,7 +19,7 @@ public class ItemLoader {
 	public static Item cheeseSlice;
 	public static Item cookBook;
 	public static Item sausage;
-	public static Item strawberry, peanut, olive;
+	public static Item strawberry, peanut, olive, grapes;
 	public static Item bucketstrawberry;
 	public static Item bucketbanana;
 	public static Item bucketcarrot;
@@ -37,7 +37,7 @@ public class ItemLoader {
 	public static Item pork_kebab, steak_kebab, veal_kebab;
 	public static Item rawHamburger, cookedHamburger;
 	public static Item sandwhichHamburger, sandwichCheeseburger, sandwichSupremeBurger;
-	public static Item tomato, lettuce;
+	public static Item tomato, lettuce, pineapple;
 	public static Item rawlettuceSeeds;
 	public static ItemSeeds tomatoSeeds, uselettuceSeeds;
 	public static Item peanutButter, chocolateSpread, jelly;
@@ -48,6 +48,7 @@ public class ItemLoader {
 	public static Item vanillaIceCream, chocolateIceCream, strawberryIceCream, icePop, neoIceCream;
 	public static Item butter, butterMilk;
 	public static Item yogurt, stawberryYogurt;
+	public static Item pineappleSlice;
 	/*Christmas Items*/
 	public static Item shortbread, fruitcake, gingerbread, chestnuts, bucketeggnog;
 	//Temp
@@ -74,13 +75,16 @@ public class ItemLoader {
 		grater = new Grater().setUnlocalizedName(ItemLib.iGrater);
 		muffinPan = new StanItem().setUnlocalizedName(ItemLib.iMuffPan);
 		dough = new StanItem().setUnlocalizedName(ItemLib.iDough);
+		pineapple = new ItemSeedFood(8, 3.0F, BlockLoader.pineappleCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iPineapple).setCreativeTab(EFTabs.INSTANCE);
 		
 		registerItems();
 	}
 	public static void initiateFoods(){
 		//Semi-balanced foods
+		grapes = new StanFood(3, 1.2f).setUnlocalizedName(ItemLib.iGrapes);
 		sausage = new StanFood(3, 0.9F).setUnlocalizedName(ItemLib.iS);
 		cheeseSlice = new StanFood(2, 3.0F).setUnlocalizedName(ItemLib.iCS);
+		pineappleSlice = new StanFood(2, 1.5f).setUnlocalizedName(ItemLib.iPinappleSlice);
 		cheeseWheel = new CheeseWheel(8, 5.6F, false, "That tasted good!").setUnlocalizedName(ItemLib.iCW);
 		banana = ((ItemFood) new StanFood(4, 0.8F, false).setUnlocalizedName(ItemLib.iBan)).setAlwaysEdible().setMaxStackSize(10);
 		strawberry = ((ItemFood) new StanFood(2, 2.0F, false).setUnlocalizedName(ItemLib.iST)).setAlwaysEdible().setMaxStackSize(32);
@@ -159,6 +163,7 @@ public class ItemLoader {
 			registerItem(bucketstrawberry, ItemLib.iBS);
 			registerItem(bucketbanana, ItemLib.iBB);
 			registerItem(bucketcarrot, ItemLib.iBC);
+			GameRegistry.registerItem(pineapple, ItemLib.iPineapple);
 			registerItem(bucketseaWater, ItemLib.iBSW);
 			registerItem(bucketpurifiedwater, ItemLib.iBPW);
 			registerItem(bucketeggnog, "eggnog");
@@ -177,6 +182,8 @@ public class ItemLoader {
 	
 	private static void registerFood() {
 		if(!FRegister){
+			registerItem(pineappleSlice, ItemLib.iPinappleSlice);
+			registerItem(grapes, ItemLib.iGrapes);
 			registerItem(cheeseWheel, ItemLib.iCW);
 			registerItem(banana, ItemLib.iBan);
 			registerItem(cheeseSlice, ItemLib.iCS);
@@ -257,6 +264,8 @@ public class ItemLoader {
 			OreDictionary.registerOre("foodMeatballs", ItemLoader.meatballs);
 			OreDictionary.registerOre("foodMeatballPasta", ItemLoader.meatballpasta);
 			OreDictionary.registerOre("foodSushi", ItemLoader.sushi);
+			OreDictionary.registerOre("foodPineappleSlice", ItemLoader.pineappleSlice);
+			OreDictionary.registerOre("foodGrape", ItemLoader.grapes);
 			OreDictionary.registerOre("foodStrawberryIceCream", ItemLoader.strawberryIceCream);
 			OreDictionary.registerOre("foodVanillaIceCream", ItemLoader.vanillaIceCream);
 			OreDictionary.registerOre("foodChocolateIceCream", ItemLoader.chocolateIceCream);

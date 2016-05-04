@@ -27,7 +27,6 @@ public class ExceptionTextureRegistry {
         registerItemModel(NBTFoodLoader.getItem("muffin"), 0, "NBTmuffin");
         registerItemModel(Item.getItemFromBlock(BlockLoader.juiceMixer), 0, "JuiceMixer", "inventory");
 
-
         registerJuiceTexutre(BlockLoader.Bstrawberryjuice, 0);
         registerJuiceTexutre(BlockLoader.Bbananajuice, 1);
         registerJuiceTexutre(BlockLoader.Bcarrotjuice, 2);

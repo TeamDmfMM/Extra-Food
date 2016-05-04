@@ -28,7 +28,7 @@ public class BlockLoader {
 	public static Block bananaLeaf, oliveLeaf;
 	public static Block peanutbush;
 	public static Block tomatoCrop;
-	public static Block lettuceCrop;
+	public static Block lettuceCrop, pineappleCrop, grapeVine;
 	public static Block juiceMixer;
 	public static Block Chocake;
 	public static Block oliveBush;
@@ -55,6 +55,8 @@ public class BlockLoader {
 		oliveBush = new OliveTreeSapling().setUnlocalizedName(BlockLib.bOliveBush);
 		oliveLeaf = new OliveLeaf().setUnlocalizedName(BlockLib.bOliveLeaf);
 		OrangeBlock = new OrangeBlock().setUnlocalizedName(BlockLib.bBlockOrange);
+		pineappleCrop = new CropBlock("pineapple").setUnlocalizedName(BlockLib.bPineappleCrop);
+		grapeVine = new GrapeVines().setUnlocalizedName(BlockLib.bGrapeVine);
 
 		Bbananajuice = new GeneralFluid(FluidLoader.Fbananajuice, Material.water).setUnlocalizedName(BlockLib.bFluidBan);
 		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.water).setUnlocalizedName(BlockLib.bFluidEgg);
@@ -95,6 +97,8 @@ public class BlockLoader {
 			registerBlock(BappleJuice, BlockLib.bAppleJuice);
 			registerBlock(BorangeJuice, BlockLib.bOrangeJuice);
 			registerBlock(BwatermelonJuice, BlockLib.bMelonJuice);
+			registerBlock(pineappleCrop, BlockLib.bPineappleCrop);
+			registerBlock(grapeVine, BlockLib.bGrapeVine);
 		}
 		Register=true;
 	}
