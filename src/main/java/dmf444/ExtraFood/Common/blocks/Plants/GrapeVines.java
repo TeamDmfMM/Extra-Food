@@ -1,5 +1,6 @@
 package dmf444.ExtraFood.Common.blocks.Plants;
 
+import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -8,13 +9,13 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -92,7 +93,12 @@ public class GrapeVines extends Block implements IShearable{
         }else{
             //SPAWN ITEM
 
+            if(!world.isRemote) {
+                           world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.grapes)));
+                            }
             world.setBlockState(pos, this.getDefaultState(), 2);
+
+            // world.setBlockState(pos, this.getDefaultState(), 2);
             //  world.markBlockForUpdate(pos);
             return true;
         }
@@ -117,10 +123,6 @@ public class GrapeVines extends Block implements IShearable{
         }
     }
 
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
-        return null;
-    }
 
     @Override
     public boolean isFullCube(IBlockState state) {
