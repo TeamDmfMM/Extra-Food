@@ -95,9 +95,14 @@ public class RegistryJuiceMixer {
     public RegistryJuiceMixer() {
         recipes = new ArrayList<>();
         validFluids = new ArrayList<>();
-        // TODO: Add recipes
+        addRecipe(4, FluidLoader.Fapplegrapejuice, dl(2, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fgrapejuice));
+        addRecipe(4, FluidLoader.Fcitusjuice, dl(1, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fgrapejuice), dl(1, FluidLoader.Forangejuice));
+        addRecipe(6, FluidLoader.Ffruitjuice, dl(2, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fwatermelonjuice), dl(1, FluidLoader.Fstrawberryjuice), dl(1, FluidLoader.Fgrapejuice));
+        addRecipe(2, FluidLoader.Fmixedberryjuice, dl(1, FluidLoader.Fstrawberryjuice), dl(1, FluidLoader.Fgrapejuice));
+        addRecipe(2, FluidLoader.Fstrawberrybanana, dl(1, FluidLoader.Fbananajuice), dl(1, FluidLoader.Fstrawberryjuice));
+        addRecipe(2, FluidLoader.Ftropicaljuice, dl(1, FluidLoader.FpinappleJuice), dl(1, FluidLoader.Fcitusjuice));
         // Test recipe
-        addRecipe(3, FluidLoader.Fstrawberryjuice, dl(1, FluidLoader.Fbananajuice), dl(2, FluidLoader.Fcarrotjuice));
+        //addRecipe(3, FluidLoader.Fstrawberryjuice, dl(1, FluidLoader.Fbananajuice), dl(2, FluidLoader.Fcarrotjuice));
     }
 
     public void addRecipe(int output, Fluid outputFluid, DualObjectLink<Integer, Fluid>... fluids) {

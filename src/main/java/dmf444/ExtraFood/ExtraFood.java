@@ -22,6 +22,7 @@ import dmf444.ExtraFood.Core.init.BlockTextureRegistry;
 import dmf444.ExtraFood.Core.init.ExceptionTextureRegistry;
 import dmf444.ExtraFood.Core.init.ItemTextureRegistry;
 import dmf444.ExtraFood.Core.lib.ModInfo;
+import dmf444.ExtraFood.Core.util.Banners;
 import dmf444.ExtraFood.Core.util.ConfigHandler;
 import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -102,6 +103,7 @@ public class ExtraFood {
 			BlockLoader.initTileEntity();
 		
 			proxy.registerRenderers();
+		Banners.init();
 			this.registryCutter = new RegistryAutoCutter();
 			CraftingRecipies.craftering();
 			CraftingRecipies.furnacing();

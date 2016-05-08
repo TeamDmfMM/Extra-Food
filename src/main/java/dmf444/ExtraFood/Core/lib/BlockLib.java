@@ -39,5 +39,9 @@ public class BlockLib {
 	public static final String GRAPE_JUICE_BLOCK = "Fluidgrape";
 	public static final String CITRUS_JUICE_BLOCK = "Fluidcitrus";
 	public static final String PINEAPPLE_JUICE_BLOCK = "Fluidpineapple";
+	public static final String FRUIT_JUICE_BLOCK = "Fluidfruit";
+	public static final String STRAWBERRY_BANANA_JUICE = "FluidstrawberryBanana";
+	public static final String MIXED_BERRY_JUICE = "FluidmixedBerry";
+	public static final String TROPICAL_JUICE = "Fluidtropical";
 	public static final String ORANGE_SAPLING = "OrangeSapling";
 }

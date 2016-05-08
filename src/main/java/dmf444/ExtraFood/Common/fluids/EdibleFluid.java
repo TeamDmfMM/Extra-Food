@@ -9,7 +9,7 @@ public class EdibleFluid extends Fluid {
     float STARVE;
     
     public EdibleFluid(String fluidName, ResourceLocation still, ResourceLocation flowing, int hunger, float saturation) {
-        super(fluidName, still, flowing);
+        super(fluidName.toLowerCase(), still, flowing);
         this.HUNGER = hunger;
         this.STARVE = saturation;
     }
