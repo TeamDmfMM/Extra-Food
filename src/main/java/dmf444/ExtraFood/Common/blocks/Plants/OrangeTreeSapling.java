@@ -35,7 +35,7 @@ public class OrangeTreeSapling extends BananaTreeSapling{
         worldIn.setBlockState(pos, iblockstate1, 4);
 
 
-        if (!((WorldGenerator)object).generate(worldIn, rand, pos.add(i1, 1, j1)))
+        if (!((WorldGenerator)object).generate(worldIn, rand, pos.add(i1, 0, j1)))
         {
             worldIn.setBlockState(pos, state, 4);
         }

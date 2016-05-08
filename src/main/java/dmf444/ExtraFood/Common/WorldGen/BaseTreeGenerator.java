@@ -34,7 +34,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         }
         for (int y = position.getY(); y < position.getY() + 1 + treeHeight; y++){
             for (int x = position.getX() - getLeavesWidthAndLength() / 2; x < position.getX() + getLeavesWidthAndLength() / 2 ; x++) {
-                for (int z = position.getZ() - getLeavesWidthAndLength() / 2; z < position.getZ() + getLeavesWidthAndLength() / 2 ; x++) {
+                for (int z = position.getZ() - getLeavesWidthAndLength() / 2; z < position.getZ() + getLeavesWidthAndLength() / 2 ; z++) {
                     if (!isReplaceable(worldIn, new BlockPos(x, y, z)) && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.tallgrass && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.double_plant && !(worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockFlower)) {
                        return false;
                     }
