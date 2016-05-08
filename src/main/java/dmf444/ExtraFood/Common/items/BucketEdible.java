@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Common.items;
 
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
+import dmf444.ExtraFood.Core.util.FluidContainerRegistryHelper;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,6 +21,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
+import java.util.ArrayList;
+
 public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 	
 	private int FoodStat;
@@ -35,6 +38,12 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 		this.FoodStat = foodBar;
 		this.SaturationLvl = saturation;
 		this.containedBlock = fluidBlock;
+		try {
+			FluidContainerRegistryHelper.specialCases.get(Items.bucket).add(this);
+		} catch (NullPointerException e) {
+			FluidContainerRegistryHelper.specialCases.put(Items.bucket, new ArrayList<IFluidContainerItem>());
+			FluidContainerRegistryHelper.specialCases.get(Items.bucket).add(this);
+		}
 	}
 
 	@Override
@@ -82,6 +91,7 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 	}
 
 	//THIS MAY NOT BE PROPER IMPLEMENTATION OF IFLUIDCONTAINER. RECHECK LATER.
+	// It wasn't. (tehe dmfderp)
 	@Override
 	public FluidStack getFluid(ItemStack container) {
 		if(containedBlock instanceof GeneralFluid) {
@@ -98,11 +108,35 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 
 	@Override
 	public int fill(ItemStack container, FluidStack resource, boolean doFill) {
+		if (container.getItem() == Items.bucket) {
+			if (containedBlock instanceof GeneralFluid) {
+				if (resource.getFluid() == ((GeneralFluid) containedBlock).getFluid()) {
+					if (doFill) {
+						container.setItem(this);
+						return 1000;
+					}
+					else {
+						return 1000;
+					}
+				}
+			}
+		}
 		return 0;
 	}
 
 	@Override
 	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
+		if (container.getItem() == this) {
+			if (maxDrain > 999) {
+				if (doDrain) {
+					container.setItem(Items.bucket);
+					return new FluidStack(((GeneralFluid)(this.containedBlock)).getFluid(), 1000);
+				}
+				else {
+					return new FluidStack(((GeneralFluid)(this.containedBlock)).getFluid(), 1000);
+				}
+			}
+		}
 		return null;
 	}
 }

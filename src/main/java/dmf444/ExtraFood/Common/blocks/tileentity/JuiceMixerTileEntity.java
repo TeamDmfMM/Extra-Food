@@ -381,7 +381,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
             if (FluidContainerRegistryHelper.isEmptyContainer(getStackInSlot(JuiceMixerContainer.INPUT_2))) {
                 if (outputState.size() == 1) {
                     int amount = FluidContainerRegistryHelper.getContainerCapacity(outputState.get(0), getStackInSlot(JuiceMixerContainer.INPUT_2));
-                    if (drainOutput(amount, false).amount == amount) {
+                    if (drainOutput(amount, false).amount == amount && amount > 0) {
                         if (getStackInSlot(JuiceMixerContainer.OUTPUT_2) == null) {
                             setInventorySlotContents(JuiceMixerContainer.OUTPUT_2, FluidContainerRegistryHelper.fillFluidContainer(drainOutput(amount, true), getStackInSlot(JuiceMixerContainer.INPUT_2)));
                             setInventorySlotContents(JuiceMixerContainer.INPUT_2, null);

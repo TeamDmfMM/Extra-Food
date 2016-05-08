@@ -161,7 +161,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
             return 0;
         }
         else {
-            if (resource.amount != 1000) {
+            if (resource.amount < 1000) {
                 return 0;
             }
             else {
