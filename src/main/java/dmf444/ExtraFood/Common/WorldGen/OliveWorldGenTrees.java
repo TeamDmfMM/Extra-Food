@@ -90,7 +90,7 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
             else
             {
                 Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).down()).getBlock();
-                boolean isSoil = block2.canSustainPlant(world.getBlockState(new BlockPos(x, y - 1, z).down().down()), world, pos.down(), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+                boolean isSoil = block2.canSustainPlant(world.getBlockState(new BlockPos(x, y - 1, z).down()), world, pos.down().down(), EnumFacing.UP, (BlockSapling)Blocks.sapling);
                 if (isSoil && y < 256 - 4 - 1) {
                     //block2.onPlantGrow(world, new BlockPos(x, y - 1, z), new BlockPos(x, y, z));
 
