@@ -71,9 +71,9 @@ public class ExtraFood {
 		NBTFoodLoader.register();
 		if (ConfigHandler.GenBananaTrees){
 		GameRegistry.registerWorldGenerator(treeManager, 0);
-		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
 		}
 
+		MinecraftForge.EVENT_BUS.register(new ExtraFood_EventBonemeal());
 		//GameRegistry.registerWorldGenerator(new OliveTreeManager(), 0);
 		
 		EventsLoader.loadEvents();

@@ -4,9 +4,11 @@ import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.Plants.GrapeVines;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ExtraFood_EventBonemeal {
 
+    @SubscribeEvent
     public void onUseBonemeal(BonemealEvent event)
     {
         if(event.getBlock().getBlock().equals(BlockLoader.grapeVine)){

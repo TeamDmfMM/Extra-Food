@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -123,6 +124,16 @@ public class GrapeVines extends Block implements IShearable{
         }
     }
 
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return new AxisAlignedBB(0, 0.8f, 0, 1, 1, 1);
+    }
 
     @Override
     public boolean isFullCube(IBlockState state) {
