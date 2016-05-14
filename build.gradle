@@ -37,7 +37,7 @@ group= "dmf444.ExtraFood" // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = "ExtraFood"
 
 minecraft {
-    version = "1.9-12.16.0.1834-1.9"
+    version = "1.9-12.16.1.1887"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -62,20 +62,22 @@ dependencies {
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    // exclude xcf files, as they are for development only
+    exclude '**/*.xcf'
+
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
+        include '*.info'
+
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'mod_version': project.version, 'minecraft_version': project.config.minecraft_version
     }
-        
+
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*.info'
     }
 }
