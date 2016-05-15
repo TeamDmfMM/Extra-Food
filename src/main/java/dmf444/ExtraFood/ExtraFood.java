@@ -25,8 +25,6 @@ import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.Banners;
 import dmf444.ExtraFood.Core.util.ConfigHandler;
 import dmf444.ExtraFood.Core.util.EFLog;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -85,11 +83,7 @@ public class ExtraFood {
 		CrossModModules.preInit();
 		proxy.preInit();
         if (event.getSide() == Side.CLIENT) {
-			OBJLoader.INSTANCE.addDomain(ModInfo.MId);
-			ModelLoaderRegistry.registerLoader(ModelDynGlassbottle.LoaderDynBucketz.instance);
-			ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
             ExceptionTextureRegistry.registerExceptiions();
-
         }
 		
 		EFLog.info("Cleared EF's Registry");

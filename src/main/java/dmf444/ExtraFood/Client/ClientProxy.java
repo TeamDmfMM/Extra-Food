@@ -1,5 +1,7 @@
 package dmf444.ExtraFood.Client;
 
+import dmf444.ExtraFood.Client.modelbake.ModelDynGlassbottle;
+import dmf444.ExtraFood.Client.modelbake.NBTFoodModel;
 import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
 import dmf444.ExtraFood.Client.renderer.CheesePressRenderer;
 import dmf444.ExtraFood.Client.renderer.JuiceBlenderRenderer;
@@ -12,6 +14,7 @@ import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityOven;
 import dmf444.ExtraFood.Common.fluids.GeneralFluid;
+import dmf444.ExtraFood.Core.lib.ModInfo;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -31,6 +34,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -70,6 +75,9 @@ public class ClientProxy extends CommonProxy{
 
 	public void preInit() {
 		//MinecraftForge.EVENT_BUS.register(new ModelInjector());
+		OBJLoader.INSTANCE.addDomain(ModInfo.MId);
+		ModelLoaderRegistry.registerLoader(ModelDynGlassbottle.LoaderDynBucketz.instance);
+		ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 

@@ -23,6 +23,8 @@ import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fluids.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.vecmath.Matrix4f;
@@ -31,6 +33,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+@SideOnly(Side.CLIENT)
 public final class ModelDynGlassbottle implements IModel, IModelCustomData, IRetexturableModel
 {
     public static final ModelResourceLocation LOCATION = new ModelResourceLocation(new ResourceLocation("forge", "dynbucket"), "inventory");

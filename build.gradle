@@ -37,7 +37,7 @@ group= "dmf444.ExtraFood" // http://maven.apache.org/guides/mini/guide-naming-co
 archivesBaseName = "ExtraFood"
 
 minecraft {
-    version = "1.9-12.16.1.1887"
+    version = "1.9-12.16.1.1899"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
