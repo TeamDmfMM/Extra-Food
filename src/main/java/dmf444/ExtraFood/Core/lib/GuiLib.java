@@ -9,7 +9,7 @@ public class GuiLib {
     public static final ResourceLocation arrowsGUI = new ResourceLocation(i, "textures/gui/ArrowsBF.png");
     public static final ResourceLocation CPgui = new ResourceLocation(i, "textures/gui/cheese_press.png");
     public static final ResourceLocation CBborder = new ResourceLocation(i, "textures/gui/cookbookgui.png");
-    public static final ResourceLocation CBback = new ResourceLocation(i, "textures/gui/cookbook_background1.png");
+    public static final ResourceLocation CBback = new ResourceLocation(i, "textures/gui/cookbook_backgroundAA.png");
     public static final ResourceLocation CBopen = new ResourceLocation(i, "textures/gui/book_texture.png");
     public static final ResourceLocation CBfurnace = new ResourceLocation(i, "textures/gui/FurnaceBookGUI.png");
     public static final ResourceLocation CBcraftgrid = new ResourceLocation(i, "textures/gui/craftingbookGUI1.png");

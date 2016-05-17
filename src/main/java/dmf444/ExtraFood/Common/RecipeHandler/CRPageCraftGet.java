@@ -50,10 +50,10 @@ public class CRPageCraftGet {
 		this.putRecipe("cookBook5", new Object[] {" b ", " l ", " f " , 'b', Items.book, 'l', Items.leather, 'f', Items.fish}, new ItemStack(ItemLoader.cookBook, 1));
 		*/
 		this.putRecipe("whiteout", new Object[] {"www", "www", "www" , 'w', new ItemStack(Items.dye, 1, 15)}, new ItemStack(BlockLoader.whiteout));
-		this.putRecipe("vanillaIceCream", new Object[] {" i ", "bm ", " s " , 'i', Blocks.ice, 'b', new ItemStack(Items.dye, 1, 15), 'm', Items.milk_bucket, 's', new ItemStack(ItemLoader.slicedBread)}, new ItemStack(ItemLoader.vanillaIceCream));
-		this.putRecipe("chocolateIceCream", new Object[] {" i ", "cm ", " s " , 'i', Blocks.ice, 'c', new ItemStack(ItemLoader.chocolate), 'm', Items.milk_bucket, 's', new ItemStack(ItemLoader.slicedBread)}, new ItemStack(ItemLoader.chocolateIceCream));
-		this.putRecipe("strawberryIceCream", new Object[] {" i ", "tm ", " s " , 'i', Blocks.ice, 't', new ItemStack(ItemLoader.strawberry), 'm', Items.milk_bucket, 's', new ItemStack(ItemLoader.slicedBread)}, new ItemStack(ItemLoader.strawberryIceCream));
-		this.putRecipe("icePop", new Object[] {" i ", " s " , 'i', Blocks.ice, 's', new ItemStack(Items.stick)}, new ItemStack(ItemLoader.icePop));
+		this.putRecipe("vanillaIceCream", new Object[] {" i ", "bm ", " s " , 'i', new ItemStack(Blocks.ice), 'b', new ItemStack(Items.dye, 1, 15), 'm', Items.milk_bucket, 's', new ItemStack(ItemLoader.slicedBread)}, new ItemStack(ItemLoader.vanillaIceCream));
+		this.putRecipe("chocolateIceCream", new Object[] {" i ", "cm ", " s " , 'i', new ItemStack(Blocks.ice), 'c', new ItemStack(ItemLoader.chocolate), 'm', Items.milk_bucket, 's', new ItemStack(ItemLoader.slicedBread)}, new ItemStack(ItemLoader.chocolateIceCream));
+		this.putRecipe("strawberryIceCream", new Object[] {" i ", "tm ", " s " , 'i', new ItemStack(Blocks.ice), 't', new ItemStack(ItemLoader.strawberry), 'm', Items.milk_bucket, 's', new ItemStack(ItemLoader.slicedBread)}, new ItemStack(ItemLoader.strawberryIceCream));
+		this.putRecipe("icePop", new Object[] {" i ", " s " , 'i', new ItemStack(Blocks.ice), 's', new ItemStack(Items.stick)}, new ItemStack(ItemLoader.icePop));
 		this.putRecipe("neoIceCream", new Object[] {"vcs", " b " , 'v', new ItemStack(ItemLoader.vanillaIceCream), 'c', new ItemStack(ItemLoader.chocolateIceCream), 's', new ItemStack(ItemLoader.strawberryIceCream), 'b', Items.bowl}, new ItemStack(ItemLoader.neoIceCream));
 		this.putRecipe("chocolateSpread", new Object[] {"gc ", "sb " , 'g', new ItemStack(ItemLoader.grater), 'c', new ItemStack(ItemLoader.chocolate), 's', Items.bowl, 'b', new ItemStack(ItemLoader.butter)}, new ItemStack(ItemLoader.chocolateSpread));
 		this.putRecipe("butter", new ItemStack(ItemLoader.butter), new ItemStack(ItemLoader.butterMilk.setContainerItem(Items.bucket)));

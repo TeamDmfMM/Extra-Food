@@ -298,10 +298,10 @@ public class CookBookGUI extends GuiScreen {
 
         this.mc.getTextureManager().bindTexture(GuiLib.CBback);
         GL11.glPushMatrix();
-        GL11.glTranslatef(-((guiMapRight+guiMapLeft)/2), 0, 0);
+        GL11.glTranslatef(((this.width - this.achievementsPaneWidth)/2), 0, 0);
         GL11.glScalef(1.2F, 1.2F, 1.2F);
-        GL11.glTranslatef(((guiMapRight+guiMapLeft)/2), 0, 0);
-        this.drawTexturedModalRect(i1 - 13, j1 - 2, iox, yox, this.achievementsPaneWidth - 53, this.achievementsPaneHeight - 45);  
+        GL11.glTranslatef(-((this.width - this.achievementsPaneWidth)/2), 0, 0);
+        this.drawTexturedModalRect(i1 + 3, j1 -2, iox, yox, this.achievementsPaneWidth - 53, this.achievementsPaneHeight - 45);
         //this.drawTexturedModalRect(i1 -13, j1 + 1, iox, yox, this.achievementsPaneWidth - 62, this.achievementsPaneHeight - 45);  
         GL11.glPopMatrix();       
        // GL11.glEnable(GL11.GL_DEPTH_TEST);
