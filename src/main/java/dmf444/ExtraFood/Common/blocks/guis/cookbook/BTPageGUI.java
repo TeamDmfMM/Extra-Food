@@ -223,7 +223,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
 				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 16, y1 - 33, null);
 			}
 			RenderHelper.enableStandardItemLighting();
-				this.irender.renderItemIntoGUI(new ItemStack(Items.coal), x1 + 16, y1 + 49);
+				this.irender.renderItemIntoGUI(new ItemStack(Items.COAL), x1 + 16, y1 + 49);
     	}
     }
     return -150;
@@ -290,7 +290,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     }
     private ItemStack conversioncheck(ItemStack i){
     	//EFLog.fatal(i);
-    		if(i.getItem() == Item.getItemFromBlock(Blocks.carrots)){
+    		if(i.getItem() == Item.getItemFromBlock(Blocks.CARROTS)){
     			return null;
     		}
     	return i;

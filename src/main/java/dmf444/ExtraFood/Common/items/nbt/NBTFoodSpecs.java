@@ -41,7 +41,7 @@ public class NBTFoodSpecs {
 		Dictionary<String, float[]> addvals = new Hashtable<String, float[]>();
 		for (String i : dohicker){
 			ItemStack t = addtypes.get(i);
-			if (t.getItem() == Items.redstone){
+			if (t.getItem() == Items.REDSTONE){
 				addvals.put(i, new float[] {0,0});
 				continue;
 			}

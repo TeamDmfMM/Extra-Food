@@ -66,16 +66,16 @@ public class ItemLoader {
 		bucketstrawberry = new BucketEdible(6, 0.8F, BlockLoader.Bstrawberryjuice, ItemLib.iBS);
 		bucketbanana = new BucketEdible(6, 0.6F, BlockLoader.Bbananajuice, ItemLib.iBB);
 		bucketcarrot = new BucketEdible(6, 0.9F, BlockLoader.Bcarrotjuice, ItemLib.iBC);
-		bucketseaWater = new BucketEdible(2, 0.5F, Blocks.water, ItemLib.iBSW);
-		bucketpurifiedwater = new BucketEdible(4, 0.5F, Blocks.water, ItemLib.iBPW);
+		bucketseaWater = new BucketEdible(2, 0.5F, Blocks.WATER, ItemLib.iBSW);
+		bucketpurifiedwater = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.iBPW);
 		bucketeggnog = new BucketEdible(9, 5.0F, BlockLoader.Beggnog, ItemLib.iEggnog);
-		tomatoSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.tomatoCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iTS).setCreativeTab(EFTabs.INSTANCE);
+		tomatoSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.tomatoCrop, Blocks.FARMLAND).setUnlocalizedName(ItemLib.iTS).setCreativeTab(EFTabs.INSTANCE);
 		rawlettuceSeeds = new StanItem().setUnlocalizedName(ItemLib.iULS);
-		uselettuceSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iCLS).setCreativeTab(EFTabs.INSTANCE);
+		uselettuceSeeds = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.FARMLAND).setUnlocalizedName(ItemLib.iCLS).setCreativeTab(EFTabs.INSTANCE);
 		grater = new Grater().setUnlocalizedName(ItemLib.iGrater);
 		muffinPan = new StanItem().setUnlocalizedName(ItemLib.iMuffPan);
 		dough = new StanItem().setUnlocalizedName(ItemLib.iDough);
-		pineapple = new ItemSeedFood(8, 3.0F, BlockLoader.pineappleCrop, Blocks.farmland).setUnlocalizedName(ItemLib.iPineapple).setCreativeTab(EFTabs.INSTANCE);
+		pineapple = new ItemSeedFood(8, 3.0F, BlockLoader.pineappleCrop, Blocks.FARMLAND).setUnlocalizedName(ItemLib.iPineapple).setCreativeTab(EFTabs.INSTANCE);
 		
 		registerItems();
 	}
@@ -104,16 +104,16 @@ public class ItemLoader {
 		rawHamburger = ((ItemFood) new StanFood(5, 0.6F).setUnlocalizedName(ItemLib.iRH)).setPotionEffect(new PotionEffect(Potion.getPotionById(17), 10), 0.4F);
 		
 		//Non-balanced foods
-		rawpasta = new ReturnFood(3, 0.3F, Items.bowl).setUnlocalizedName(ItemLib.iPasta);
+		rawpasta = new ReturnFood(3, 0.3F, Items.BOWL).setUnlocalizedName(ItemLib.iPasta);
 		sandwhichS = new StanFood(7, 1.0F).setUnlocalizedName(ItemLib.iSandS);
 		sandwhichCB = new StanFood(6, 1.4F).setUnlocalizedName(ItemLib.iSandCB);
 		sandwhichGC = new StanFood(6, 1.9F).setUnlocalizedName(ItemLib.iSandGC);
 		cookedHamburger = new StanFood(7, 1.6F).setUnlocalizedName(ItemLib.iCH);
 		sandwhichHamburger = new StanFood(9, 1.0F).setUnlocalizedName(ItemLib.iSandH);
 		peanut = ((ItemFood) new StanFood(1, 0.2F).setUnlocalizedName(ItemLib.iP)).setAlwaysEdible();
-		cookedpasta = new ReturnFood(6, 1.3F, Items.bowl).setUnlocalizedName(ItemLib.iCP);
+		cookedpasta = new ReturnFood(6, 1.3F, Items.BOWL).setUnlocalizedName(ItemLib.iCP);
 		meatballs = new StanFood(3, 0.4F).setUnlocalizedName(ItemLib.iMB);
-		meatballpasta = new ReturnFood(12, 1.4F, Items.bowl).setUnlocalizedName(ItemLib.iMBP);
+		meatballpasta = new ReturnFood(12, 1.4F, Items.BOWL).setUnlocalizedName(ItemLib.iMBP);
 		fishpieces = new StanFood(4, 0.5F).setUnlocalizedName(ItemLib.iFP);
 		chocolate = new StanFood(4, 1.8F).setUnlocalizedName(ItemLib.iCho);
 		pancakes = new StanFood(6, 1.2F).setUnlocalizedName(ItemLib.iPC);
@@ -129,11 +129,11 @@ public class ItemLoader {
 		sandwichPBJ = new StanFood(8, 9.5F).setUnlocalizedName(ItemLib.iSandPBJ);
 		sandwichPBN = new StanFood(8, 9.0F).setUnlocalizedName(ItemLib.iSandPBN);
 		icePop = new DrinkActionFood(5, 3.3F).setUnlocalizedName(ItemLib.iPopcicle);
-		neoIceCream = new ReturnFood(8, 4.5F, Items.bowl).setUnlocalizedName(ItemLib.iNeoIceCream);
+		neoIceCream = new ReturnFood(8, 4.5F, Items.BOWL).setUnlocalizedName(ItemLib.iNeoIceCream);
 		sandwichPB = new StanFood(6, 3.5F).setUnlocalizedName(ItemLib.iSandPeanutB);
-		butterMilk = new ReturnFood(8, 3.6F, Items.bucket).setUnlocalizedName(ItemLib.iButterMilk);
-		yogurt = new ReturnFood(5, 6.3F, Items.bowl).setUnlocalizedName(ItemLib.iYogurt);
-		stawberryYogurt = new ReturnFood(5, 6.8F, Items.bowl).setUnlocalizedName(ItemLib.iStrawYogurt);
+		butterMilk = new ReturnFood(8, 3.6F, Items.BUCKET).setUnlocalizedName(ItemLib.iButterMilk);
+		yogurt = new ReturnFood(5, 6.3F, Items.BOWL).setUnlocalizedName(ItemLib.iYogurt);
+		stawberryYogurt = new ReturnFood(5, 6.8F, Items.BOWL).setUnlocalizedName(ItemLib.iStrawYogurt);
 		sandwichC = new StanFood(9, 5.5F).setUnlocalizedName(ItemLib.iChoSandwich);
 		frenchToast = new StanFood(7, 2.7F).setUnlocalizedName(ItemLib.iFrenchToast);
 		sandwichCheeseburger = new StanFood(10, 12.0F).setUnlocalizedName(ItemLib.iSandCheeseBurger);
@@ -171,8 +171,8 @@ public class ItemLoader {
 			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("strawberryjuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketstrawberry), new ItemStack(Items.bucket));
 			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("carrotjuice", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketcarrot), new ItemStack(Items.bucket));
 			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("eggnog", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketeggnog), new ItemStack(Items.bucket));
-			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("water", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketseaWater), new ItemStack(Items.bucket));
-			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("water", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketpurifiedwater), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("WATER", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketseaWater), new ItemStack(Items.bucket));
+			//FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluidStack("WATER", FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(bucketpurifiedWATER), new ItemStack(Items.bucket));
 
 			
 

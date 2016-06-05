@@ -411,7 +411,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound syncData = new NBTTagCompound();
         syncData.setInteger("State", selected.toInt());
@@ -452,7 +452,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         NBTTagCompound fluidTank1 = new NBTTagCompound();
         input1.writeToNBT(fluidTank1);
@@ -487,6 +487,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         }
 
         compound.setTag("Inventory", inventory);
+        return compound;
     }
 
     @Override

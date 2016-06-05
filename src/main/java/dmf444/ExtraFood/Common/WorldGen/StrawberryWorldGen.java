@@ -56,11 +56,11 @@ public class StrawberryWorldGen implements IWorldGenerator {
 
 
                     IBlockState pie = BlockLoader.strawberryBush.getDefaultState();
-                    if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.tallgrass && random.nextInt(3) == 0){
+                    if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.TALLGRASS && random.nextInt(3) == 0){
                         world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
                         //EFLog.error("xx: " + xx + xpos + " zz: " + zz + ypos);
                     }
-                    else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.grass && random.nextInt(3) == 0){
+                    else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.GRASS && random.nextInt(3) == 0){
                         world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
                         //EFLog.error("xx: " + xx + " zz: " + zz  + "Y:" + by);
                     }

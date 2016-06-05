@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class AutoCutter extends BlockContainerRotate {
 
     public AutoCutter() {
-        super(Material.wood);
+        super(Material.WOOD);
     }
 
     @Override

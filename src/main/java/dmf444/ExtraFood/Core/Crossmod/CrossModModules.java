@@ -1,6 +1,8 @@
 package dmf444.ExtraFood.Core.Crossmod;
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
+import dmf444.ExtraFood.Core.Crossmod.Forestry.ForestryFarming;
+import dmf444.ExtraFood.Core.Crossmod.Waila.WailaConfig;
 import dmf444.ExtraFood.Core.lib.ModInfo;
 import dmf444.ExtraFood.Core.util.EFLog;
 import dmfmm.StarvationAhoy.api.StarvationAhoyRegistry;
@@ -35,14 +37,14 @@ public class CrossModModules{
 		info.setString("modDisplayName", "Extra Food");
 		FMLInterModComms.sendRuntimeMessage(ModInfo.MId, "VersionChecker", "addCurseCheck", info);
 	}
-	if(Loader.isModLoaded("Forestry")){
+	if(Loader.isModLoaded("forestry")){
 		forestry = true;
-		//ForestryFarming.addFarms();
-		//ForestryFarming.registerCircut();
+		ForestryFarming.addFarms();
+		ForestryFarming.registerCircut();
 	}
 	if(Loader.isModLoaded("Waila")){
 		Waila = true;
-		//FMLInterModComms.sendMessage("Waila", "register", WailaConfig.class.getName() + ".callbackRegister");
+		FMLInterModComms.sendMessage("Waila", "register", WailaConfig.class.getName() + ".callbackRegister");
 	}
 
 	EFLog.info("Mods Loaded:");

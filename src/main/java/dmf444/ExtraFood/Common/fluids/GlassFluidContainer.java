@@ -122,14 +122,14 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
                 {
                     EntityPlayer player = (EntityPlayer)entityLiving;
                     player.getFoodStats().addStats(edibleFluid.HUNGER, edibleFluid.STARVE);
-                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.entity_player_burp, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+                    world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
                     if (!player.capabilities.isCreativeMode)
                     {
                         if (stack.stackSize <= 0)
                         {
-                            return new ItemStack(Items.glass_bottle);
+                            return new ItemStack(Items.GLASS_BOTTLE);
                         }
-                        player.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
+                        player.inventory.addItemStackToInventory(new ItemStack(Items.GLASS_BOTTLE));
                     }
 
                 }
@@ -157,7 +157,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
 
     @Override
     public int fill(ItemStack container, FluidStack resource, boolean doFill) {
-        if (container.getItem() != Items.glass_bottle) {
+        if (container.getItem() != Items.GLASS_BOTTLE) {
             return 0;
         }
         else {
@@ -191,7 +191,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem{
             else {
                 FluidStack previous = getFluid(container);
                 if (doDrain) {
-                    container.setItem(Items.glass_bottle);
+                    container.setItem(Items.GLASS_BOTTLE);
                     container.setTagCompound(null);
                 }
                 return previous;

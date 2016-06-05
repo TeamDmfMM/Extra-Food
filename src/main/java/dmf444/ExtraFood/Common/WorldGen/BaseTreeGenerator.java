@@ -35,7 +35,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         for (int y = position.getY(); y < position.getY() + 1 + treeHeight; y++){
             for (int x = position.getX() - getLeavesWidthAndLength() / 2; x < position.getX() + getLeavesWidthAndLength() / 2 ; x++) {
                 for (int z = position.getZ() - getLeavesWidthAndLength() / 2; z < position.getZ() + getLeavesWidthAndLength() / 2 ; z++) {
-                    if (!isReplaceable(worldIn, new BlockPos(x, y, z)) && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.tallgrass && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.double_plant && !(worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockFlower)) {
+                    if (!isReplaceable(worldIn, new BlockPos(x, y, z)) && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.TALLGRASS && worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() != Blocks.DOUBLE_PLANT && !(worldIn.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockFlower)) {
                        return false;
                     }
                 }
@@ -43,7 +43,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         }
         BlockPos down = position.down();
         Block block = worldIn.getBlockState(down).getBlock();
-        if (!block.canSustainPlant(block.getBlockState().getBaseState(), worldIn, down, EnumFacing.UP, (IPlantable) Blocks.sapling)) {
+        if (!block.canSustainPlant(block.getBlockState().getBaseState(), worldIn, down, EnumFacing.UP, (IPlantable) Blocks.SAPLING)) {
             return false;
         }
 
@@ -271,6 +271,6 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
     protected boolean hasValidMaterialTypeForReplacing(Block block)
     {
         Material material = block.getMaterial(block.getBlockState().getBaseState());
-        return material == Material.air || material == Material.leaves || block == Blocks.log || block == Blocks.log2 || block == Blocks.sapling || block == Blocks.vine || block == Blocks.water || block == Blocks.dirt || block == Blocks.grass;
+        return material == Material.AIR || material == Material.LEAVES || block == Blocks.LOG || block == Blocks.LOG2 || block == Blocks.SAPLING || block == Blocks.VINE || block == Blocks.WATER || block == Blocks.DIRT || block == Blocks.GRASS;
     }
 }

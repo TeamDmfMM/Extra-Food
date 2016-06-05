@@ -4,6 +4,7 @@ package dmf444.ExtraFood.Common.blocks.guis;
 import dmf444.ExtraFood.Core.lib.GuiLib;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.Item;
@@ -85,22 +86,29 @@ public int type = 0;
 
 
 	public void drawButton(Minecraft m, int p1, int p2){
-			GL11.glPushMatrix();
-			m.getTextureManager().bindTexture(GuiLib.CBborder);
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_BLEND);
-			this.drawTexturedModalRect(xPosition, yPosition, 2, 204, 22, 22);
-			if (stack == null){
-				this.rinder.renderItemIntoGUI(new ItemStack(this.item), xPosition + 3, yPosition + 2);
-				}else{
-					RenderHelper.enableStandardItemLighting();
-					this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
 
-			}
+		//Box Background
+		GL11.glPushMatrix();
+		m.getTextureManager().bindTexture(GuiLib.CBborder);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_BLEND);
+		this.drawTexturedModalRect(xPosition, yPosition, 2, 204, 22, 22);
+		GL11.glPopMatrix();
 
+		GL11.glPushMatrix();
+		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_LIGHTING);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glPopMatrix();
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		RenderHelper.enableStandardItemLighting();
+		RenderHelper.enableGUIStandardItemLighting();
+		if (stack == null){
+			this.rinder.renderItemIntoGUI(new ItemStack(this.item), xPosition + 3, yPosition + 2);
+		}else{
+			this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
+		}
+
+		GL11.glPopMatrix();
 	}
 
 

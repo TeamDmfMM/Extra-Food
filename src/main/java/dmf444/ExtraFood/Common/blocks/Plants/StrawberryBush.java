@@ -50,7 +50,7 @@ public class StrawberryBush extends BlockCrops{
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
     if (player.inventory.getCurrentItem() != null){
             ItemStack is = player.inventory.getCurrentItem();
-            if (is.getItem() == Items.dye){
+            if (is.getItem() == Items.DYE){
                 if (is.getItemDamage() == 15){
                     return false;
                 }

@@ -96,7 +96,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
             {
                 Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).down()).getBlock();
 
-                boolean isSoil = block2.canSustainPlant(world.getBlockState(new BlockPos(x, y-1, z)), world,new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+                boolean isSoil = block2.canSustainPlant(world.getBlockState(new BlockPos(x, y-1, z)), world,new BlockPos(x, y - 1, z), EnumFacing.UP, (BlockSapling)Blocks.SAPLING);
                 if (isSoil && y < 256 - l - 1)
                 {
                     block2.onPlantGrow(world.getBlockState(new BlockPos(x, y-1, z)), world,new BlockPos(x, y - 1, z), new BlockPos(x, y, z));
@@ -139,7 +139,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
                         block = world.getBlockState(upN).getBlock();
 
                         if (block.isAir(world.getBlockState(new BlockPos( x, y + k1, z)), world,new BlockPos( x, y + k1, z)) || block.isLeaves(world.getBlockState(new BlockPos( x, y + k1, z)),world,new BlockPos( x, y + k1, z))) {
-                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + k1, z), Blocks.log.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, new BlockPos(x, y + k1, z), Blocks.LOG.getDefaultState());
                         }
                     }
 
@@ -218,7 +218,7 @@ public class BananaWorldGenTrees extends WorldGenAbstractTree
     private void growVines(World world, int x, int y, int z, int length)
     {
         BlockPos bananaPlace = new BlockPos(x,y,z);
-        if(world.getBlockState(bananaPlace).getBlock() == Blocks.air) {
+        if(world.getBlockState(bananaPlace).getBlock() == Blocks.AIR) {
             this.setBlockAndNotifyAdequately(world, bananaPlace, BlockLoader.bananaBunch.getDefaultState());
         } else{
             this.growVines(world, x, y - 1, z, 1);

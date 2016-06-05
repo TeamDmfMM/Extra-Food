@@ -20,7 +20,7 @@ public class BlockJuiceBlender extends BlockContainerRotate{
 
 
     public BlockJuiceBlender() {
-        super(Material.rock);
+        super(Material.ROCK);
     }
 
     @Override

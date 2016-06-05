@@ -112,7 +112,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
 
         NBTTagList itemList = new NBTTagList();
@@ -126,6 +126,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
             }
         }
         tagCompound.setTag("Inventory", itemList);
+        return tagCompound;
     }
 
 
@@ -259,7 +260,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     }
     public boolean canExtractItem(int slot, ItemStack item, EnumFacing direction)
     {
-        return direction != EnumFacing.DOWN || slot != 2 || item.getItem() == Items.bucket;
+        return direction != EnumFacing.DOWN || slot != 2 || item.getItem() == Items.BUCKET;
     }
     public int[] getSlotsForFace(EnumFacing side)
     {

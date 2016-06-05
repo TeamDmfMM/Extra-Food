@@ -172,7 +172,7 @@ public class GuiJuiceMixer extends GuiContainer {
             return -1;
         }
         TextureAtlasSprite tas = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluidTank.getFluid().getFluid().getStill().toString());
-        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         int height = (int)(((float)h / fluidTank.getCapacity()) * fluidTank.getFluid().amount);
         int full = height / 16;
         int semi = height % 16;
@@ -191,7 +191,7 @@ public class GuiJuiceMixer extends GuiContainer {
             return -1;
         }
         TextureAtlasSprite tas = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluidTank.getFluid().getStill().toString());
-        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
         int height = (int)(((float)h / cap) * fluidTank.amount);
         int full = height / 16;
         int semi = height % 16;

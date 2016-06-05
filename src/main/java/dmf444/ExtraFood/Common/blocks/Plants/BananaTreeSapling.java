@@ -73,7 +73,7 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
 
 
 
-        IBlockState iblockstate1 = Blocks.air.getDefaultState();
+        IBlockState iblockstate1 = Blocks.AIR.getDefaultState();
         worldIn.setBlockState(pos, iblockstate1, 4);
 
 

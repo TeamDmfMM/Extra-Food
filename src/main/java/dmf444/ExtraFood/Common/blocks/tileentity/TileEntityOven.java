@@ -248,7 +248,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 	    }
 
 	    @Override
-	    public void writeToNBT(NBTTagCompound tagCompound) {
+	    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
 	            super.writeToNBT(tagCompound);
 	                            
 	            NBTTagList itemList = new NBTTagList();
@@ -262,6 +262,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 	                    }
 	            }
 	            tagCompound.setTag("Inventory", itemList);
+			return tagCompound;
 	    }
 
 		public int getTime() {

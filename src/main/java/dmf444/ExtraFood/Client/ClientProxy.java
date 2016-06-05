@@ -100,7 +100,7 @@ public class ClientProxy extends CommonProxy{
 
 			GlStateManager.setFog(GlStateManager.FogMode.EXP);
 
-			if (((EntityLivingBase)e.getPlayer()).isPotionActive(MobEffects.waterBreathing))
+			if (((EntityLivingBase)e.getPlayer()).isPotionActive(MobEffects.WATER_BREATHING))
             {
                 GlStateManager.setFogDensity(0.01F);
             }

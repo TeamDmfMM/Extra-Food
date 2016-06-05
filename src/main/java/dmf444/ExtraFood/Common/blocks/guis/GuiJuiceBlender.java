@@ -50,7 +50,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		//System.out.println("drawing rebbryrbtwckut");
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);
-		this.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
+		this.mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		this.drawTexturedModalRect(x + 147, (int) (y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false), 16, (int) (te.tank.getFluidAmount() * 0.012));
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -150,7 +150,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		}
 		TextureAtlasSprite icon = flowing ? Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFlowing().toString()) : Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getStill().toString());
 		if (icon == null) {
-			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
+			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE)).getAtlasSprite("missingno");
 		}
 		return icon;
 	}

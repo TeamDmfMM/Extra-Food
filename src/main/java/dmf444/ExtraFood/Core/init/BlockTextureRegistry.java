@@ -40,12 +40,12 @@ public class BlockTextureRegistry {
 
     private static void registerBlock(String blockName, int meta, String resource){
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        Item itemB = Item.itemRegistry.getObject(new ResourceLocation("extrafood", blockName));
+        Item itemB = Item.REGISTRY.getObject(new ResourceLocation("extrafood", blockName));
         renderItem.getItemModelMesher().register(itemB, meta, new ModelResourceLocation(resource, "inventory"));
     }
     private static void registerBlock(String blockName, int meta){
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        Item itemB = Item.itemRegistry.getObject(new ResourceLocation("extrafood", blockName));
+        Item itemB = Item.REGISTRY.getObject(new ResourceLocation("extrafood", blockName));
         renderItem.getItemModelMesher().register(itemB, meta, new ModelResourceLocation("extrafood:"+ blockName, "inventory"));
     }
 }

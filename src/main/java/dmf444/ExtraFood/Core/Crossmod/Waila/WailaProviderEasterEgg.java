@@ -1,4 +1,4 @@
-/*
+
 
 package dmf444.ExtraFood.Core.Crossmod.Waila;
 
@@ -47,4 +47,4 @@ public class WailaProviderEasterEgg implements IWailaDataProvider{
     }
 
 
-}*/
+}

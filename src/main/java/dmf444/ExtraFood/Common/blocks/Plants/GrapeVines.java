@@ -41,13 +41,13 @@ public class GrapeVines extends Block implements IShearable{
     public static final PropertyInteger GROWTH = PropertyInteger.create("growth", 0, 4);
 
     public GrapeVines() {
-        super(Material.vine);
+        super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(GROWTH, 0));
         this.setCreativeTab(EFTabs.INSTANCE);
         this.setTickRandomly(true);
        // this.setBlockBounds(0, 0.8f, 0, 1, 1, 1);
         this.setHardness(0.0F);
-        this.setStepSound(SoundType.GROUND);
+        this.setSoundType(SoundType.GROUND);
         this.disableStats();
     }
 
@@ -110,17 +110,19 @@ public class GrapeVines extends Block implements IShearable{
     {
         this.checkAndDropBlock(world, pos, state);
     }
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor)
     {
-        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
-        this.checkAndDropBlock(worldIn, pos, state);
+        super.onNeighborChange(world, pos, neighbor);
+        if (world instanceof World) {
+            this.checkAndDropBlock((World) world, pos, world.getBlockState(pos));
+        }
     }
 
     protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)
     {
-        if (world.getBlockState(pos.up()).getBlock() == Blocks.air) {
+        if (world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
             this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockState(pos, Blocks.air.getDefaultState(), 3);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 
@@ -158,7 +160,7 @@ public class GrapeVines extends Block implements IShearable{
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
         List<ItemStack> itemStacks = new ArrayList<>();
-        itemStacks.add(new ItemStack(Blocks.vine));
+        itemStacks.add(new ItemStack(Blocks.VINE));
         return itemStacks;
     }
 

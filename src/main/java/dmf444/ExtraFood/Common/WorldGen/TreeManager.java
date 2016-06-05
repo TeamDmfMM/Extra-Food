@@ -3,7 +3,7 @@ package dmf444.ExtraFood.Common.WorldGen;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -37,13 +37,13 @@ public class TreeManager implements IWorldGenerator {
             int Zcoord1 = z + random.nextInt(16); //where in chunk it generates
 
 
-            final BiomeGenBase biome = world.getBiomeGenForCoords(new BlockPos(Xcoord1, Ycoord1, Zcoord1));
+            final Biome biome = world.getBiomeGenForCoords(new BlockPos(Xcoord1, Ycoord1, Zcoord1));
             BlockPos blockPos = new BlockPos(Xcoord1, Ycoord1, Zcoord1);
             if (world.isAirBlock(blockPos.up()) && world.isAirBlock(blockPos)) {
                 new OrangeTreeGenerator().generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));
             }
 
-            if(biome == Biomes.jungle || biome == Biomes.jungleEdge || biome == Biomes.jungleHills) {
+            if(biome == Biomes.JUNGLE || biome == Biomes.JUNGLE_EDGE || biome == Biomes.JUNGLE_HILLS) {
                 Xcoord1 = x + random.nextInt(16); //where in chuck it generates
                 Ycoord1 = random.nextInt(89) + 49; //arg = randge + = min
                 Zcoord1 = z + random.nextInt(16); //where in chunk it generates
@@ -66,10 +66,10 @@ public class TreeManager implements IWorldGenerator {
 
     }
 
-    private boolean shouldTreesSpawn(BiomeGenBase biome){
-        if(biome == Biomes.coldTaiga || biome == Biomes.coldTaigaHills || biome == Biomes.deepOcean || biome == Biomes.desert ||
-                biome == Biomes.desertHills || biome == Biomes.megaTaiga || biome == Biomes.river || biome == Biomes.megaTaigaHills ||
-                biome == Biomes.ocean || biome == Biomes.taiga || biome == Biomes.taigaHills){
+    private boolean shouldTreesSpawn(Biome biome){
+        if(biome == Biomes.COLD_TAIGA || biome == Biomes.COLD_TAIGA_HILLS || biome == Biomes.DEEP_OCEAN || biome == Biomes.DESERT ||
+                biome == Biomes.DESERT_HILLS || biome == Biomes.MUTATED_TAIGA_COLD || biome == Biomes.RIVER || biome == Biomes.MUTATED_TAIGA ||
+                biome == Biomes.OCEAN || biome == Biomes.TAIGA || biome == Biomes.TAIGA_HILLS){
             return false;
         }
         return true;

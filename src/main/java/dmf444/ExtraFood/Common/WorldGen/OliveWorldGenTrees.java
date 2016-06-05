@@ -90,7 +90,7 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
             else
             {
                 Block block2 = world.getBlockState(new BlockPos(x, y - 1, z).down()).getBlock();
-                boolean isSoil = block2.canSustainPlant(world.getBlockState(new BlockPos(x, y - 1, z).down()), world, pos.down().down(), EnumFacing.UP, (BlockSapling)Blocks.sapling);
+                boolean isSoil = block2.canSustainPlant(world.getBlockState(new BlockPos(x, y - 1, z).down()), world, pos.down().down(), EnumFacing.UP, (BlockSapling)Blocks.SAPLING);
                 if (isSoil && y < 256 - 4 - 1) {
                     //block2.onPlantGrow(world, new BlockPos(x, y - 1, z), new BlockPos(x, y, z));
 
@@ -130,8 +130,8 @@ public class OliveWorldGenTrees extends WorldGenAbstractTree
                     placeBlock(world,x+1,y+3, z+1, dab);
 
                     //Top et all
-                    placeLog(world, x, y, z, Blocks.log);
-                    placeLog(world, x, y+1, z, Blocks.log);
+                    placeLog(world, x, y, z, Blocks.LOG);
+                    placeLog(world, x, y+1, z, Blocks.LOG);
                     placeBlock(world, x, y+4, z, dab);
                     return true;
                 }

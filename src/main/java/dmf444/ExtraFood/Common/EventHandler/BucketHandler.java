@@ -37,7 +37,7 @@ public class BucketHandler {
     	buckets.put(BlockLoader.Bstrawberryjuice, ItemLoader.bucketstrawberry);
     	buckets.put(BlockLoader.Bcarrotjuice, ItemLoader.bucketcarrot);
     	if(ConfigHandler.overrideWater){
-    		buckets.put(Blocks.water, ItemLoader.bucketseaWater);
+    		buckets.put(Blocks.WATER, ItemLoader.bucketseaWater);
     	}
     }
 

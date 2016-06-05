@@ -50,7 +50,7 @@ public class NBTFood extends ItemFood {
 	    {
 	        --stack.stackSize;
 	        player.getFoodStats().addStats(getHunger(stack), getSaturation(stack));
-			world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.entity_player_burp, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 	        this.onFoodEaten(stack, world, player);
 	        return stack;
 	    }

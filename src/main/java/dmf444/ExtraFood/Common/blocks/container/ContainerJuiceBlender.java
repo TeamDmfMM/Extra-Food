@@ -58,8 +58,8 @@ public class ContainerJuiceBlender extends Container{
 	public void detectAndSendChanges(){
 		super.detectAndSendChanges();		
 		//EFLog.fatal("MONONINOMA");
-		for (int i = 0; i < this.crafters.size(); ++i){
-			if (crafters.get(i) instanceof EntityPlayerMP){
+		for (int i = 0; i < this.listeners.size(); ++i){
+			if (listeners.get(i) instanceof EntityPlayerMP){
 				if (tileEntity.tank.getFluid() != null){
 					ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), new NetworkRegistry.TargetPoint(tileEntity.getWorld().provider.getDimension(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), 10));
 					//ExtraFood.JBTanknet.sendTo(new PacketJBTank(tileEntity.tank.getFluidAmount(), tileEntity.tank.getFluid().tag, tileEntity.tank.getFluid().getFluid(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ()), (EntityPlayerMP) crafters.get(i));

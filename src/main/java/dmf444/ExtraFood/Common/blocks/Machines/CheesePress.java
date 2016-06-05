@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 public class CheesePress extends BlockContainerRotate {
 
     public CheesePress() {
-        super(Material.rock);
+        super(Material.ROCK);
 
 
     }

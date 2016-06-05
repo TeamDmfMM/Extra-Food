@@ -34,7 +34,7 @@ public class CheeseWheel extends ItemFood {
 			{
 				EntityPlayer player = (EntityPlayer)entityLiving;
 				player.getFoodStats().addStats(8, 0.6F);
-				world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.entity_player_burp, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+				world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 				if (!world.isRemote) {
 					player.addChatComponentMessage(new TextComponentString(this.message));
 				}

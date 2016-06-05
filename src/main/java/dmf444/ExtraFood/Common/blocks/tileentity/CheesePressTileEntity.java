@@ -101,7 +101,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
 
         NBTTagList itemList = new NBTTagList();
@@ -115,6 +115,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
             }
         }
         tagCompound.setTag("Inventory", itemList);
+        return tagCompound;
     }
 
     @Override
@@ -126,7 +127,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         if (i == 3){ return false;}
-        return itemstack.getItem() == Items.milk_bucket;
+        return itemstack.getItem() == Items.MILK_BUCKET;
     }
 
     @Override
@@ -152,7 +153,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     public boolean areItemsCorrect() {
         for (int i = 0; i < 3; i++) {
             if (this.getStackInSlot(i) != null) {
-                if (this.getStackInSlot(i).getItem() != Items.milk_bucket) {
+                if (this.getStackInSlot(i).getItem() != Items.MILK_BUCKET) {
                     return false;
                 }
             } else {
@@ -176,7 +177,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
         this.inv[1] = null;
         this.inv[2] = null;
         if (inv[0] == null && inv[1] == null && inv[2] == null) {
-            ItemStack ist = new ItemStack(Items.bucket, 1);
+            ItemStack ist = new ItemStack(Items.BUCKET, 1);
             for (int i = 0; i < 3; i++) {
                 this.inv[i] = ist.copy();
             }
@@ -261,7 +262,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
 
     @Override
     public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
-        return item.getItem() == ItemLoader.cheeseWheel || item.getItem() == Items.bucket;
+        return item.getItem() == ItemLoader.cheeseWheel || item.getItem() == Items.BUCKET;
     }
 
 }

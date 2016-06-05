@@ -19,7 +19,7 @@ public class Oven extends BlockContainerRotate {
 
 
     public Oven() {
-        super(Material.wood);
+        super(Material.WOOD);
 
     }
 

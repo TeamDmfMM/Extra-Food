@@ -15,13 +15,13 @@ import net.minecraft.world.World;
 public class Whiteout extends Block {
 
 	public Whiteout() {
-		super(Material.clay);
-		this.setCreativeTab(CreativeTabs.tabDecorations);
+		super(Material.CLAY);
+		this.setCreativeTab(CreativeTabs.DECORATIONS);
 		//this.setLightLevel(0.875F);
 	}
 
 	@Override
-	 public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, Entity entity)
+	 public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		if(entity instanceof EntityEnderman){
 			entity.attackEntityFrom(DamageSource.drown, 4.0F);

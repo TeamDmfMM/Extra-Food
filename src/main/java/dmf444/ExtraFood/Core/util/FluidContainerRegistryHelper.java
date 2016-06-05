@@ -22,7 +22,7 @@ public class FluidContainerRegistryHelper {
 
 
     static {
-        specialCases.put(Items.glass_bottle, new ArrayList() {{ add(FluidLoader.FluidContainer); }});
+        specialCases.put(Items.GLASS_BOTTLE, new ArrayList() {{ add(FluidLoader.FluidContainer); }});
     }
 
     public static boolean isFilledContainer(ItemStack stackInSlot) {

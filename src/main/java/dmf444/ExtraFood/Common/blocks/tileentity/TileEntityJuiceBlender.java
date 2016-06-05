@@ -119,9 +119,9 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-        if (slot == 0 && itemstack.getItem() != Items.bucket) {
+        if (slot == 0 && itemstack.getItem() != Items.BUCKET) {
             return true;
-        } else if (slot == 1 && itemstack.getItem() == Items.bucket) {
+        } else if (slot == 1 && itemstack.getItem() == Items.BUCKET) {
             return true;
         }
         return false;
@@ -222,7 +222,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     }
 
-    public void writeToNBT(NBTTagCompound tag) {
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         NBTTagList t = new NBTTagList();
         int s = 0;
         for (ItemStack i : items) {
@@ -256,6 +256,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 			tag.setInteger("Tracker", outputint);
 			tank.writeToNBT(tag);
 		 	*/
+        return tag;
     }
 
     public void readFromNBT(NBTTagCompound tag) {

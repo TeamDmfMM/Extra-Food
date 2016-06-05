@@ -39,10 +39,10 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 		this.SaturationLvl = saturation;
 		this.containedBlock = fluidBlock;
 		try {
-			FluidContainerRegistryHelper.specialCases.get(Items.bucket).add(this);
+			FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
 		} catch (NullPointerException e) {
-			FluidContainerRegistryHelper.specialCases.put(Items.bucket, new ArrayList<IFluidContainerItem>());
-			FluidContainerRegistryHelper.specialCases.get(Items.bucket).add(this);
+			FluidContainerRegistryHelper.specialCases.put(Items.BUCKET, new ArrayList<IFluidContainerItem>());
+			FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
 		}
 	}
 
@@ -55,13 +55,13 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 		{
 			EntityPlayer player = (EntityPlayer)entityLiving;
 			player.getFoodStats().addStats(FoodStat, SaturationLvl);
-			world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.entity_player_burp, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 			if (!world.isRemote) {
 				player.addChatComponentMessage(new TextComponentString("That tasted good!"));
 			}
 		}
 
-		return stack.stackSize <= 0 ? new ItemStack(Items.bucket) : stack;
+		return stack.stackSize <= 0 ? new ItemStack(Items.BUCKET) : stack;
 
 	}
 	@Override
@@ -108,7 +108,7 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 
 	@Override
 	public int fill(ItemStack container, FluidStack resource, boolean doFill) {
-		if (container.getItem() == Items.bucket) {
+		if (container.getItem() == Items.BUCKET) {
 			if (containedBlock instanceof GeneralFluid) {
 				if (resource.getFluid() == ((GeneralFluid) containedBlock).getFluid()) {
 					if (doFill) {
@@ -129,7 +129,7 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 		if (container.getItem() == this) {
 			if (maxDrain > 999) {
 				if (doDrain) {
-					container.setItem(Items.bucket);
+					container.setItem(Items.BUCKET);
 					return new FluidStack(((GeneralFluid)(this.containedBlock)).getFluid(), 1000);
 				}
 				else {

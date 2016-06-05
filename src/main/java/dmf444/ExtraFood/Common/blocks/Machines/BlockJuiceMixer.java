@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContainerRotate
 
     public BlockJuiceMixer() {
-        super(Material.iron);
+        super(Material.IRON);
         this.setCreativeTab(EFTabs.INSTANCE);
     }
 
