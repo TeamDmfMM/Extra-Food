@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -73,6 +74,7 @@ public class FarmLogicBush implements IFarmLogic {
 
 		AxisAlignedBB harvestBox = getHarvestBox(world, housing, false);
 
+
 		List<Entity> list = world.getEntitiesWithinAABB(Entity.class, harvestBox);
 
 		int i;
@@ -125,7 +127,7 @@ public class FarmLogicBush implements IFarmLogic {
 	}
 
 	private boolean maintainSoil(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
-		if (!farmHousing.getFarmInventory().hasResources(resource))
+		if (farmHousing.getFarmInventory().hasResources(resource))
 			return false;
 
 		for (int i = 0; i < extent; i++) {
@@ -161,7 +163,7 @@ public class FarmLogicBush implements IFarmLogic {
 	}
 
 	protected boolean maintainGermlings(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
-
+		pos = pos.up();
 		for (int i = 0; i < extent; i++) {
 			BlockPos position = translateWithOffset(pos, direction, i);
 			if (!world.isAirBlock(position) && !this.isReplaceableBlock(world, position))
@@ -180,7 +182,7 @@ public class FarmLogicBush implements IFarmLogic {
 	public boolean isAcceptedGround(ItemStack itemStack) {
 		if(itemStack.getItem() == resource[1].getItem() || itemStack.getItem() == resource[0].getItem()){
 			return false;
-			}else if(itemStack.getItem() != groundblock.getItem()){
+			}else if(itemStack.getItem() == groundblock.getItem()){
 			return true;
 			}else{
 				return false;
@@ -209,13 +211,27 @@ public class FarmLogicBush implements IFarmLogic {
 
 
 	private boolean trySetCrop(World world, IFarmHousing farmHousing, BlockPos position) {
-
-		for (IFarmable candidate : germlings)
-			if (farmHousing.plantGermling(candidate, world, position))
-				return true;
-
+		if(contains(farmHousing.getFarmInventory().getGermlingsInventory(), resource[0])){
+			farmHousing.plantGermling(germlings[0], world, position);
+			return true;
+		}else if(contains(farmHousing.getFarmInventory().getGermlingsInventory(), resource[1])){
+ 			farmHousing.plantGermling(germlings[1], world, position);
+			return true;
+		}
 		return false;
 	}
+
+	private boolean contains(IInventory inv, ItemStack stack){
+		for(int i=0; i < inv.getSizeInventory(); i++){
+			if(inv.getStackInSlot(i) != null){
+				if(inv.getStackInSlot(i).getItem().equals(stack.getItem())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public Collection<ICrop> harvest(World world, BlockPos pos, FarmDirection direction, int extent) {
 

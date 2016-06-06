@@ -12,12 +12,14 @@
 
 package dmf444.ExtraFood.Core.Crossmod.Forestry;
 
+import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import forestry.api.farming.ICrop;
 import forestry.api.farming.IFarmable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -58,10 +60,10 @@ public class FarmClick implements IFarmable{
 
 	@Override
 	public boolean isGermling(ItemStack itemstack) {
-		if(itemstack.getItem() == ItemLoader.strawberry || itemstack.getItem() == ItemLoader.peanut)
-			return false;
-		else
+		if(itemstack.getItem() == Item.getItemFromBlock(BlockLoader.strawberryBush) || itemstack.getItem() == Item.getItemFromBlock(BlockLoader.peanutbush))
 			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -71,7 +73,8 @@ public class FarmClick implements IFarmable{
 
 	@Override
 	public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, BlockPos pos) {
-		return germling.copy().onItemUse(player, world, pos, player.getActiveHand(), EnumFacing.UP, 0, 0, 0).equals(EnumActionResult.SUCCESS);
+		IBlockState state = this.farmBlocks.getDefaultState();
+		return world.setBlockState(pos, state, 2);
 
 	}
 

@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 
@@ -88,15 +89,15 @@ public class StrawberryBush extends BlockCrops{
         }
     }
 
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock){
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor){
         boolean drop = false; //False don't drop. True break
 
-        if(!world.isSideSolid(pos.down(), EnumFacing.UP)){
+        if(!world.isSideSolid(pos.down(), EnumFacing.UP, true)){
             drop = true;
         }
         if(drop == true){
-            this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockToAir(pos);
+            this.dropBlockAsItem((World) world, pos, world.getBlockState(pos), 0);
+            ((World)world).setBlockToAir(pos);
         }
     }
 
