@@ -1,6 +1,7 @@
 package dmf444.ExtraFood.Client;
 
 import dmf444.ExtraFood.Client.modelbake.ModelDynGlassbottle;
+import dmf444.ExtraFood.Client.modelbake.ModelLoaderz;
 import dmf444.ExtraFood.Client.modelbake.NBTFoodModel;
 import dmf444.ExtraFood.Client.renderer.AutoCutterRenderer;
 import dmf444.ExtraFood.Client.renderer.CheesePressRenderer;
@@ -75,7 +76,8 @@ public class ClientProxy extends CommonProxy{
 
 	public void preInit() {
 		//MinecraftForge.EVENT_BUS.register(new ModelInjector());
-		OBJLoader.INSTANCE.addDomain(ModInfo.MId);
+		//OBJLoader.INSTANCE.addDomain(ModInfo.MId);
+		ModelLoaderRegistry.registerLoader(ModelLoaderz.INSTANCE);
 		ModelLoaderRegistry.registerLoader(ModelDynGlassbottle.LoaderDynBucketz.instance);
 		ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
 		MinecraftForge.EVENT_BUS.register(this);

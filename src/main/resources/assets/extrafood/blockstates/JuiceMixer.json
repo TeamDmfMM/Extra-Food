@@ -16,9 +16,9 @@
       "inventory": [{
         "transform": {
           "gui": {
-            "scale": [0.8, 0.8, 0.8],
+            "scale": [0.625, 0.625, 0.625],
             "translation": [0.02, -0.1, 0],
-            "rotation": {"y": 225},
+            "rotation": {"y": -45},
             "rotation": {"x": 30}
           },
           "firstperson": {

@@ -450,6 +450,10 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
             this.outputState.add(FluidStack.loadFluidStackFromNBT(fluidStackCompound));
         }
     }
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
+    }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
