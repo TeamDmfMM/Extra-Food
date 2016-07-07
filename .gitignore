@@ -17,6 +17,8 @@
 *.classpath
 *.project
 
+.idea/
+.idea
 
 
 # Windows image file caches
