@@ -1,4 +1,11 @@
-ExtraFood1.7
+---
+
+This 1.7.10 legacy (on the 1.7.10-legacy branch). See branches in the wiki for more information.
+
+---
+
+
+ExtraFood
 ============
  Want to be cool? Hip? Get beta builds?
  This is the repository where we put together the latest and greatest code
