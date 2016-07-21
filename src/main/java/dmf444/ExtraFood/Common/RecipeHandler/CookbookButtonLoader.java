@@ -3,6 +3,7 @@ package dmf444.ExtraFood.Common.RecipeHandler;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.blocks.guis.ClickTab;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
+import dmf444.ExtraFood.Common.fluids.FluidLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Common.items.nbt.NBTFoodRegistry;
 import dmf444.ExtraFood.Core.util.ConfigHandler;
@@ -96,6 +97,12 @@ public class CookbookButtonLoader {
             t.buttons.add(new ClickTab(4, 8, NBTFoodRegistry.getMuffinDisplay(), "muffin", "dough"));
 		t.display = new ItemStack(BlockLoader.oven);
 		this.buttons.add(t);
+
+		t = new CookbookTab("juiceMixer");
+			t.buttons.add(new ClickTab(6, 6, new ItemStack(FluidLoader.FluidContainer), "containers"));
+			t.buttons.add(new ClickTab(4, 6, new ItemStack(BlockLoader.juiceMixer), "mixer"));
+
+
 
 		//TODO on add book page, add multi buttons
 		  //this.truth.put("knife", true);
