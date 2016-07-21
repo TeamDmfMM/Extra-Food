@@ -128,12 +128,20 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem{
 	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
 		if (container.getItem() == this) {
 			if (maxDrain > 999) {
-				if (doDrain) {
-					container.setItem(Items.BUCKET);
-					return new FluidStack(((GeneralFluid)(this.containedBlock)).getFluid(), 1000);
-				}
-				else {
-					return new FluidStack(((GeneralFluid)(this.containedBlock)).getFluid(), 1000);
+				if(this.containedBlock instanceof GeneralFluid) {
+					if (doDrain) {
+						container.setItem(Items.BUCKET);
+						return new FluidStack(((GeneralFluid) (this.containedBlock)).getFluid(), 1000);
+					} else {
+						return new FluidStack(((GeneralFluid) (this.containedBlock)).getFluid(), 1000);
+					}
+				}else{
+					if (doDrain) {
+						container.setItem(Items.BUCKET);
+						return new FluidStack(FluidRegistry.WATER, 1000);
+					} else {
+						return new FluidStack(FluidRegistry.WATER, 1000);
+					}
 				}
 			}
 		}
