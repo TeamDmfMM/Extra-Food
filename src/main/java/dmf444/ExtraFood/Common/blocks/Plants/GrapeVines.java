@@ -127,7 +127,7 @@ public class GrapeVines extends Block implements IShearable{
     }
 
     @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
         return NULL_AABB;
     }
