@@ -99,9 +99,9 @@ public class CookbookButtonLoader {
 		this.buttons.add(t);
 
 		t = new CookbookTab("juiceMixer");
-			t.buttons.add(new ClickTab(6, 6, new ItemStack(FluidLoader.FluidContainer), "containers"));
+			//t.buttons.add(new ClickTab(6, 6, new ItemStack(FluidLoader.FluidContainer), "containers"));
 			t.buttons.add(new ClickTab(4, 6, new ItemStack(BlockLoader.juiceMixer), "mixer"));
-			t.buttons.add(new ClickTab(7, 3, new ItemStack(FluidLoader.FluidContainer), "juices"));
+			//t.buttons.add(new ClickTab(7, 3, new ItemStack(FluidLoader.FluidContainer), "juices"));
 		t.display = new ItemStack(BlockLoader.juiceMixer);
 		this.buttons.add(t);
 
