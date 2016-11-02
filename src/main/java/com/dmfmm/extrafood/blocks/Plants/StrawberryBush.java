@@ -2,6 +2,7 @@ package com.dmfmm.extrafood.blocks.Plants;
 
 
 
+import com.dmfmm.extrafood.init.BlockLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.BlockCrops;
@@ -42,7 +43,7 @@ public class StrawberryBush extends BlockCrops{
     @Override
     protected Item getSeed()
     {
-        return Item.getItemFromBlock(BlockLoader.strawberryBush);
+        return Item.getItemFromBlock(BlockLoader.STRAWBERRY_BUSH);
     }
 
     @Override

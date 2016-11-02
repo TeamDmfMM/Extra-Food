@@ -1,6 +1,8 @@
 package com.dmfmm.extrafood.utilities.tabs;
 
 
+import com.dmfmm.extrafood.items.nbt.NBTFood;
+import com.dmfmm.extrafood.items.nbt.NBTFoodLoader;
 import com.dmfmm.extrafood.library.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

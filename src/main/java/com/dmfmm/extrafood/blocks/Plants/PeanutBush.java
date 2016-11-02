@@ -1,5 +1,6 @@
 package com.dmfmm.extrafood.blocks.Plants;
 
+import com.dmfmm.extrafood.init.BlockLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -20,7 +21,7 @@ public class PeanutBush extends StrawberryBush {
     @Override
     protected Item getSeed()
     {
-        return Item.getItemFromBlock(BlockLoader.peanutbush);
+        return Item.getItemFromBlock(BlockLoader.PEANUT_BUSH);
     }
 
     @Override

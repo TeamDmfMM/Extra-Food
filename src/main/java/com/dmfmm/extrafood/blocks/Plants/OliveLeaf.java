@@ -1,6 +1,7 @@
 package com.dmfmm.extrafood.blocks.Plants;
 
 
+import com.dmfmm.extrafood.init.BlockLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -36,7 +37,7 @@ public class OliveLeaf extends BananaLeaf {
     }
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(BlockLoader.oliveBush);
+        return Item.getItemFromBlock(BlockLoader.OLIVE_BUSH);
     }
 
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {

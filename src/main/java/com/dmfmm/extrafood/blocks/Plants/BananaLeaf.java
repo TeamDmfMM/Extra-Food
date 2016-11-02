@@ -1,6 +1,7 @@
 package com.dmfmm.extrafood.blocks.Plants;
 
 
+import com.dmfmm.extrafood.init.BlockLoader;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -55,7 +56,7 @@ public class BananaLeaf extends BlockLeaves
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(BlockLoader.saplingBanana);
+        return Item.getItemFromBlock(BlockLoader.BANANA_SAPLING);
     }
 
     /**

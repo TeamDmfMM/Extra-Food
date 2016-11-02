@@ -4,12 +4,16 @@ package com.dmfmm.extrafood.init;
 import com.dmfmm.extrafood.items.*;
 import com.dmfmm.extrafood.library.ItemLib;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.lang.reflect.Field;
 
 public class ItemLoader {
 
@@ -106,6 +110,19 @@ public class ItemLoader {
     public static final Item CHESTNUTS = new StanFood(ItemLib.CHESTNUTS, 10, 5.0F);
     public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.CHOCOLATE_CAKE_BLOCK).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
 
+
+    public static void registerItems(){
+        try{
+            for(Field field : BlockLoader.class.getDeclaredFields()){
+                if(field.get(null) instanceof Block){
+                    GameRegistry.register((Block)field.get(null));
+
+                }
+            }
+        }catch (Exception e){
+
+        }
+    }
 
     public static void registerOreDictionary() {
         if(!FRegister){

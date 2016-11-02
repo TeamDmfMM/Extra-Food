@@ -12,6 +12,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import java.lang.reflect.Field;
+
 public class BlockLoader {
 
 
@@ -56,7 +58,16 @@ public class BlockLoader {
 
 
     private static void registerBlocks() {
+        try{
+            for(Field field : BlockLoader.class.getDeclaredFields()){
+                if(field.get(null) instanceof Block){
+                    registerBlock((Block)field.get(null));
 
+                }
+            }
+        }catch (Exception e){
+
+        }
     }
 
 
