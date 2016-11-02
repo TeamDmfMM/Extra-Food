@@ -1,8 +1,6 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import net.minecraft.block.material.Material;
+import com.dmfmm.extrafood.init.ItemLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -15,8 +13,8 @@ public class PeanutBush extends StrawberryBush {
 
 
 
-	public PeanutBush(Material material){
-		super(material);
+	public PeanutBush(String name){
+		super(name);
 	}
 
     @Override
@@ -32,7 +30,7 @@ public class PeanutBush extends StrawberryBush {
             case 7:
             case 8:
                 if (!world.isRemote) {
-                    ItemStack item1 = new ItemStack(ItemLoader.peanut, 4);
+                    ItemStack item1 = new ItemStack(ItemLoader.PEANUT, 4);
                     Entity Ientity1 = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item1);
                     world.spawnEntityInWorld(Ientity1);
                     world.setBlockState(pos, state.getBlock().getStateFromMeta(0), 2);

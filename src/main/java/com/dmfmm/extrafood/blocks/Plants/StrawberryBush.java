@@ -1,10 +1,9 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
 
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
-import net.minecraft.block.Block;
+
+import com.dmfmm.extrafood.init.ItemLoader;
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,14 +23,13 @@ import net.minecraft.world.World;
 public class StrawberryBush extends BlockCrops{
 
 
-    public StrawberryBush(Material material){
+    public StrawberryBush(String name){
         super();
-        float f = 0.5F;
+        this.setRegistryName(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
-        //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setHardness(0.0F);
         this.disableStats();
-        this.setCreativeTab(EFTabs.INSTANCE);
+        this.setCreativeTab(ExtraFoodTab.INSTANCE);
         this.setTickRandomly(true);
     }
 
@@ -71,7 +69,7 @@ public class StrawberryBush extends BlockCrops{
             case 5:
             case 6:
                 if (!world.isRemote) {
-                    ItemStack item = new ItemStack(ItemLoader.strawberry, 2);
+                    ItemStack item = new ItemStack(ItemLoader.STRAWBERRY, 2);
                     Entity Ientity = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item);
                     world.spawnEntityInWorld(Ientity);
                     world.setBlockState(pos, getDefaultState(), 2);
@@ -80,7 +78,7 @@ public class StrawberryBush extends BlockCrops{
             case 7:
             case 8:
                 if (!world.isRemote) {
-                    ItemStack item1 = new ItemStack(ItemLoader.strawberry, 4);
+                    ItemStack item1 = new ItemStack(ItemLoader.STRAWBERRY, 4);
                     Entity Ientity1 = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item1);
                     world.spawnEntityInWorld(Ientity1);
                     world.setBlockState(pos, getDefaultState(), 2);

@@ -1,4 +1,4 @@
-package dmf444.ExtraFood.Common.blocks;
+package com.dmfmm.extrafood.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,10 +14,10 @@ import net.minecraft.world.World;
 
 public class Whiteout extends Block {
 
-	public Whiteout() {
+	public Whiteout(String name) {
 		super(Material.CLAY);
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
-		//this.setLightLevel(0.875F);
+		this.setRegistryName(name);
 	}
 
 	@Override

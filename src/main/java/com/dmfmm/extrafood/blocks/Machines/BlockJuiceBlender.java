@@ -1,8 +1,8 @@
-package dmf444.ExtraFood.Common.blocks.Machines;
+package com.dmfmm.extrafood.blocks.Machines;
 
-import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
-import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
-import dmf444.ExtraFood.ExtraFood;
+
+import com.dmfmm.extrafood.ExtraFood;
+import com.dmfmm.extrafood.blocks.BlockContainerRotate;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,11 +16,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 
-public class BlockJuiceBlender extends BlockContainerRotate{
+public class BlockJuiceBlender extends BlockContainerRotate {
 
 
-    public BlockJuiceBlender() {
-        super(Material.ROCK);
+    public BlockJuiceBlender(String name) {
+        super(Material.ROCK, name);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class BlockJuiceBlender extends BlockContainerRotate{
         if (tileEntity == null || player.isSneaking()) {
             return false;
         }
-        player.openGui(ExtraFood.instance, 3, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(ExtraFood.INSTANCE, 3, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 

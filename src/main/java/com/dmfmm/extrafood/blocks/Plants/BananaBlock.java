@@ -1,7 +1,8 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
+
+import com.dmfmm.extrafood.init.ItemLoader;
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,9 +20,10 @@ import java.util.Random;
 public class BananaBlock extends Block {
 
 
-    public BananaBlock(Material material) {
+    public BananaBlock(Material material, String name) {
         super(material);
-        this.setCreativeTab(EFTabs.INSTANCE);
+        this.setCreativeTab(ExtraFoodTab.INSTANCE);
+        this.setRegistryName(name);
         //this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
 
     }
@@ -47,7 +49,7 @@ public class BananaBlock extends Block {
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return ItemLoader.banana;
+        return ItemLoader.BANANA;
     }
     public int quantityDropped(Random rand) {
         return rand.nextInt(7) +3;

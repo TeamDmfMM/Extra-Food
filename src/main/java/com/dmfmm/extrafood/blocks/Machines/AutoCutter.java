@@ -1,8 +1,8 @@
-package dmf444.ExtraFood.Common.blocks.Machines;
+package com.dmfmm.extrafood.blocks.Machines;
 
-import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
-import dmf444.ExtraFood.Common.blocks.tileentity.AutoCutterTileEntity;
-import dmf444.ExtraFood.ExtraFood;
+
+import com.dmfmm.extrafood.ExtraFood;
+import com.dmfmm.extrafood.blocks.BlockContainerRotate;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 
 public class AutoCutter extends BlockContainerRotate {
 
-    public AutoCutter() {
-        super(Material.WOOD);
+    public AutoCutter(String name) {
+        super(Material.WOOD, name);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class AutoCutter extends BlockContainerRotate {
             return false;
         }
         //code to open gui explained later
-        player.openGui(ExtraFood.instance, 1, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(ExtraFood.INSTANCE, 1, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 

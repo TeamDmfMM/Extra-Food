@@ -1,23 +1,20 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
+
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -30,11 +27,12 @@ public class BananaLeaf extends BlockLeaves
 {
 
 
-    public BananaLeaf()
+    public BananaLeaf(String name)
     {
         super();
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
-        this.setCreativeTab(EFTabs.INSTANCE);
+        this.setCreativeTab(ExtraFoodTab.INSTANCE);
+        this.setRegistryName(name);
     }
 
 

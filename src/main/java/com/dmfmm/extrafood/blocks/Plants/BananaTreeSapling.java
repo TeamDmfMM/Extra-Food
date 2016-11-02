@@ -1,7 +1,7 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.WorldGen.BananaWorldGenTrees;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
+
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
@@ -27,12 +27,11 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 
-    public BananaTreeSapling()
+    public BananaTreeSapling(String name)
     {
-        float f = 0.4F;
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
-        //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
-        this.setCreativeTab(EFTabs.INSTANCE);
+        this.setCreativeTab(ExtraFoodTab.INSTANCE);
+        this.setRegistryName(name);
     }
 
     /**

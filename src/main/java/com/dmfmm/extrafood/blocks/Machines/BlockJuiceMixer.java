@@ -1,11 +1,10 @@
-package dmf444.ExtraFood.Common.blocks.Machines;
+package com.dmfmm.extrafood.blocks.Machines;
 
 
-import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.blocks.tileentity.JuiceMixerTileEntity;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
-import dmf444.ExtraFood.ExtraFood;
+
+import com.dmfmm.extrafood.ExtraFood;
+import com.dmfmm.extrafood.blocks.BlockContainerRotate;
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,11 +19,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContainerRotate
+public class BlockJuiceMixer  extends BlockContainerRotate {
 
-    public BlockJuiceMixer() {
-        super(Material.IRON);
-        this.setCreativeTab(EFTabs.INSTANCE);
+    public BlockJuiceMixer(String name) {
+        super(Material.IRON, name);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class BlockJuiceMixer  extends BlockContainerRotate{//extends BlockContai
         TileEntity tileEntity = world.getTileEntity(pos);
         if (tileEntity == null || player.isSneaking()) {return false;}
 
-        player.openGui(ExtraFood.instance, 4, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(ExtraFood.INSTANCE, 4, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
 
 

@@ -17,19 +17,20 @@ public class ItemLoader {
 
     public static final Item KNIFE = new Knife().setUnlocalizedName(ItemLib.iK);
     public static final Item COOKBOOK = new Cookbook().setUnlocalizedName(ItemLib.iCB);
-    public static final Item BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, BlockLoader.Bstrawberryjuice, ItemLib.iBS);
-    public static final Item BUCKET_BANANA = new BucketEdible(6, 0.6F, BlockLoader.Bbananajuice, ItemLib.iBB);
-    public static final Item BUCKET_CARROT = new BucketEdible(6, 0.9F, BlockLoader.Bcarrotjuice, ItemLib.iBC);
-    public static final Item BUCKET_SEA_WATER = new BucketEdible(2, 0.5F, Blocks.WATER, ItemLib.iBSW);
-    public static final Item BUCKET_PURIFIED_WATER = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.iBPW);
-    public static final Item BUCKET_EGGNOG = new BucketEdible(9, 5.0F, BlockLoader.Beggnog, ItemLib.iEggnog);
-    public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.tomatoCrop, Blocks.FARMLAND).setUnlocalizedName(ItemLib.iTS).setCreativeTab(EFTabs.INSTANCE);
-    public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS, true);
-    public static final Item LETTUCE_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.lettuceCrop, Blocks.FARMLAND).setUnlocalizedName(ItemLib.iCLS).setCreativeTab(EFTabs.INSTANCE);
     public static final Item GRATER = new Grater().setUnlocalizedName(ItemLib.iGrater);
+    public static final Item BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, BlockLoader.STRAWBERRY_JUICE_BLOCK, ItemLib.STRAWBERRY_BUCKET);
+    public static final Item BUCKET_BANANA = new BucketEdible(6, 0.6F, BlockLoader.BANANA_JUICE_BLOCK, ItemLib.BANANA_BUCKET);
+    public static final Item BUCKET_CARROT = new BucketEdible(6, 0.9F, BlockLoader.CARROT_JUICE_BLOCK, ItemLib.CARROT_BUCKET);
+    public static final Item BUCKET_SEA_WATER = new BucketEdible(2, 0.5F, Blocks.WATER, ItemLib.SEA_WATER_BUCKET);
+    public static final Item BUCKET_PURIFIED_WATER = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.PURIFIED_WATER_BUCKET);
+    public static final Item BUCKET_EGGNOG = new BucketEdible(9, 5.0F, BlockLoader.EGGNOG_FLUID_BLOCK, ItemLib.EGGNOG);
+    public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.TOMATO_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.TOMATO_SEED).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS, true);
+    public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.PINEAPPLE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.PINEAPPLE).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item LETTUCE_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.LETTUCE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.COATED_LETTUCE_SEEDS).setCreativeTab(ExtraFoodTab.INSTANCE);
     public static final Item MUFFIN_PAN = new GenericItem(ItemLib.MUFFIN_PAN, true);
     public static final Item DOUGH = new GenericItem(ItemLib.DOUGH, true);
-    public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.pineappleCrop, Blocks.FARMLAND).setUnlocalizedName(ItemLib.iPineapple).setCreativeTab(EFTabs.INSTANCE);
+
 
     //Semi-balanced foods
     public static final Item GRAPES = new StanFood(ItemLib.GRAPES, 3, 1.2f);
@@ -103,7 +104,7 @@ public class ItemLoader {
     public static final Item FRUIT_CAKE = new StanFood(ItemLib.FRUIT_CAKE, 12, 5.0F);
     public static final Item GINGER_BREAD = new StanFood(ItemLib.GINGER_BREAD, 9, 5.0F);
     public static final Item CHESTNUTS = new StanFood(ItemLib.CHESTNUTS, 10, 5.0F);
-    public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.Chocake).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.CHOCOLATE_CAKE_BLOCK).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
 
 
     public static void registerOreDictionary() {

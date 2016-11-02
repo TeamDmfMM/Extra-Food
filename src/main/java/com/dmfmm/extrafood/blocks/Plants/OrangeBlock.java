@@ -1,6 +1,6 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.items.ItemLoader;
+import com.dmfmm.extrafood.init.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,9 +24,9 @@ import java.util.Random;
 public class OrangeBlock extends Block {
 
 
-    public OrangeBlock() {
+    public OrangeBlock(String name) {
         super(Material.CACTUS);
-        //this.setBlockBounds(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
+        this.setRegistryName(name);
 
     }
 
@@ -49,7 +49,7 @@ public class OrangeBlock extends Block {
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return ItemLoader.orange;
+        return ItemLoader.ORANGE;
     }
 
     public int quantityDropped(Random rand) {

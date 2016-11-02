@@ -1,7 +1,8 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.items.ItemLoader;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
+
+import com.dmfmm.extrafood.init.ItemLoader;
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -40,15 +41,16 @@ public class GrapeVines extends Block implements IShearable{
 
     public static final PropertyInteger GROWTH = PropertyInteger.create("growth", 0, 4);
 
-    public GrapeVines() {
+    public GrapeVines(String name) {
         super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(GROWTH, 0));
-        this.setCreativeTab(EFTabs.INSTANCE);
+        this.setCreativeTab(ExtraFoodTab.INSTANCE);
         this.setTickRandomly(true);
        // this.setBlockBounds(0, 0.8f, 0, 1, 1, 1);
         this.setHardness(0.0F);
         this.setSoundType(SoundType.GROUND);
         this.disableStats();
+        this.setRegistryName(name);
     }
 
     @Override
@@ -95,7 +97,7 @@ public class GrapeVines extends Block implements IShearable{
             //SPAWN ITEM
 
             if(!world.isRemote) {
-                           world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.grapes)));
+                           world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.GRAPES)));
                             }
             world.setBlockState(pos, this.getDefaultState(), 2);
 

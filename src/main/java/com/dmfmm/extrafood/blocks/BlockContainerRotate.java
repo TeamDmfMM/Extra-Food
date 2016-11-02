@@ -1,5 +1,6 @@
-package dmf444.ExtraFood.Common.blocks;
+package com.dmfmm.extrafood.blocks;
 
+import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import dmf444.ExtraFood.Core.util.BPHelp;
 import net.minecraft.block.Block;
@@ -80,9 +81,10 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         }
     }
 
-    public BlockContainerRotate(Material material) {
+    public BlockContainerRotate(Material material, String name) {
         super(material);
-        this.setCreativeTab(EFTabs.INSTANCE);
+        this.setCreativeTab(ExtraFoodTab.INSTANCE);
+        this.setRegistryName(name);
     }
 
     public static EnumFacing getFacing(World worldIn, BlockPos blockPos) {

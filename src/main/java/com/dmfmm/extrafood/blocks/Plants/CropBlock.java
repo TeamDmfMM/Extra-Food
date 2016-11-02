@@ -1,6 +1,7 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
-import dmf444.ExtraFood.Common.items.ItemLoader;
+
+import com.dmfmm.extrafood.init.ItemLoader;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
@@ -18,9 +19,10 @@ public class CropBlock extends BlockCrops {
      * This is modified from original to allow multiple types of plants
      */
 
-    public CropBlock(String s ) {
+    public CropBlock(String s,  String name) {
         super();
         Crop = s;
+        this.setRegistryName(name);
     }
 
     public CropBlock(Item c, Item s) {
@@ -34,11 +36,11 @@ public class CropBlock extends BlockCrops {
     //Seeds
     protected Item getSeed() {
         if (Crop == "tomato") {
-            return ItemLoader.tomatoSeeds;
+            return ItemLoader.TOMATO_SEEDS;
         } else if (Crop == "lettuce") {
-            return ItemLoader.rawlettuceSeeds;
+            return ItemLoader.RAW_LETTUCE_SEEDS;
         } else if (Crop == "pineapple") {
-            return ItemLoader.pineapple;
+            return ItemLoader.PINEAPPLE;
         } else if (seed != null) {
             return this.seed;
         }
@@ -48,11 +50,11 @@ public class CropBlock extends BlockCrops {
     protected Item getCrop()
     {
         if(Crop == "tomato"){
-            return ItemLoader.tomato;
+            return ItemLoader.TOMATO;
         }else if (Crop == "lettuce") {
-            return ItemLoader.lettuce;
+            return ItemLoader.LETTUCE;
         }else if(Crop == "pineapple"){
-            return ItemLoader.pineapple;
+            return ItemLoader.PINEAPPLE;
         }else if(this.crop != null){
             return this.crop;
         }

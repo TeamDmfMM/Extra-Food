@@ -1,8 +1,7 @@
-package dmf444.ExtraFood.Common.blocks.Plants;
+package com.dmfmm.extrafood.blocks.Plants;
 
 
-import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Common.items.ItemLoader;
+import com.dmfmm.extrafood.init.ItemLoader;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -22,7 +21,8 @@ public class OliveLeaf extends BananaLeaf {
 
     public static final PropertyInteger  METALVL = PropertyInteger.create("growth", 0, 4);
 
-    public OliveLeaf(){
+    public OliveLeaf(String name){
+        super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, 0));
     }
 
@@ -45,7 +45,7 @@ public class OliveLeaf extends BananaLeaf {
             return false;
         } else{
             if(!world.isRemote) {
-                EntityItem olives = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.olive));
+                EntityItem olives = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.OLIVE));
                 world.spawnEntityInWorld(olives);
             }
             world.setBlockToAir(pos);

@@ -1,8 +1,8 @@
-package dmf444.ExtraFood.Common.blocks.Machines;
+package com.dmfmm.extrafood.blocks.Machines;
 
-import dmf444.ExtraFood.Common.blocks.BlockContainerRotate;
-import dmf444.ExtraFood.Common.blocks.tileentity.CheesePressTileEntity;
-import dmf444.ExtraFood.ExtraFood;
+
+import com.dmfmm.extrafood.ExtraFood;
+import com.dmfmm.extrafood.blocks.BlockContainerRotate;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 
 public class CheesePress extends BlockContainerRotate {
 
-    public CheesePress() {
-        super(Material.ROCK);
+    public CheesePress(String name) {
+        super(Material.ROCK, name);
 
 
     }
@@ -56,7 +56,7 @@ public class CheesePress extends BlockContainerRotate {
             return false;
         }
         //code to open gui explained later
-        player.openGui(ExtraFood.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(ExtraFood.INSTANCE, 0, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 
