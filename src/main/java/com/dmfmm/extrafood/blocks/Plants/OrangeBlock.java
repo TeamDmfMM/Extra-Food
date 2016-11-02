@@ -1,10 +1,14 @@
-package com.dmfmm.extrafood.blocks.Plants;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,24 +25,26 @@ public class OrangeBlock extends Block {
 
 
     public OrangeBlock() {
-        super(Material.cactus);
-        this.setBlockBounds(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
+        super(Material.CACTUS);
+        //this.setBlockBounds(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
 
     }
 
-    public boolean isOpaqueCube() {
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return new AxisAlignedBB(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
+    }
+
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
-        return null;
-    }
-
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
-
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
@@ -51,8 +57,8 @@ public class OrangeBlock extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer() {
-        return EnumWorldBlockLayer.CUTOUT_MIPPED;
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
 

@@ -1,4 +1,4 @@
-package com.dmfmm.extrafood.blocks.Plants;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
@@ -6,9 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,26 +22,26 @@ public class BananaBlock extends Block {
     public BananaBlock(Material material) {
         super(material);
         this.setCreativeTab(EFTabs.INSTANCE);
-        this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
+        //this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
 
     }
 
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
-        return null;
+        return NULL_AABB;
     }
 
-    public boolean renderAsNormalBlock()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return false;
+        return new AxisAlignedBB(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
     }
 
-    public boolean isFullCube()
+    public boolean isFullCube(IBlockState state)
     {
         return false;
     }
@@ -53,9 +54,9 @@ public class BananaBlock extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return EnumWorldBlockLayer.CUTOUT_MIPPED;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
 

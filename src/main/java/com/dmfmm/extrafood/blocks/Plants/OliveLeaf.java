@@ -1,17 +1,18 @@
-package com.dmfmm.extrafood.blocks.Plants;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -19,7 +20,7 @@ import java.util.Random;
 
 public class OliveLeaf extends BananaLeaf {
 
-    public static final PropertyInteger METALVL = PropertyInteger.create("growth", 0, 4);
+    public static final PropertyInteger  METALVL = PropertyInteger.create("growth", 0, 4);
 
     public OliveLeaf(){
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, 0));
@@ -38,8 +39,7 @@ public class OliveLeaf extends BananaLeaf {
         return Item.getItemFromBlock(BlockLoader.oliveBush);
     }
 
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         int meta = ((Integer)world.getBlockState(pos).getValue(METALVL)).intValue();
         if(meta < 4){
             return false;
@@ -54,9 +54,9 @@ public class OliveLeaf extends BananaLeaf {
         }
     }
 
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, new IProperty[] {CHECK_DECAY, DECAYABLE, METALVL});
+        return new BlockStateContainer(this, new IProperty[] {CHECK_DECAY, DECAYABLE, METALVL});
     }
 
 

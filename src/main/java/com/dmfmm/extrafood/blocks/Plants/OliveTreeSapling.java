@@ -1,9 +1,9 @@
-package com.dmfmm.extrafood.blocks.Plants;
+package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.WorldGen.OliveWorldGenTrees;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -16,7 +16,7 @@ public class OliveTreeSapling extends BananaTreeSapling {
 
 
     public OliveTreeSapling(){
-        this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.7F, 0.8F);
+        //this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.7F, 0.8F);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class OliveTreeSapling extends BananaTreeSapling {
 
 
 
-        IBlockState iblockstate1 = Blocks.air.getDefaultState();
+        IBlockState iblockstate1 = Blocks.AIR.getDefaultState();
         worldIn.setBlockState(pos, iblockstate1, 4);
 
 
