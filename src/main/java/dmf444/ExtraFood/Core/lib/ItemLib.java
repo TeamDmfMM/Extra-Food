@@ -1,9 +1,9 @@
 package dmf444.ExtraFood.Core.lib;
 
 import dmf444.ExtraFood.Core.util.ConfigHandler;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemLib {
+	//static EntityPlayer entityplayer;
 
 
 
@@ -92,6 +92,8 @@ public class ItemLib {
     public static String iEggnog = "eggnog";
 	public static String iOlive = "olive";
 	public static String glassContainer = "EFglassBottle";
+
+
 
 
 	//Special ones

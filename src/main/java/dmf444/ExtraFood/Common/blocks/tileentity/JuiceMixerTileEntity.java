@@ -11,10 +11,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.*;
 
@@ -381,7 +381,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
             if (FluidContainerRegistryHelper.isEmptyContainer(getStackInSlot(JuiceMixerContainer.INPUT_2))) {
                 if (outputState.size() == 1) {
                     int amount = FluidContainerRegistryHelper.getContainerCapacity(outputState.get(0), getStackInSlot(JuiceMixerContainer.INPUT_2));
-                    if (drainOutput(amount, false).amount == amount) {
+                    if (drainOutput(amount, false).amount == amount && amount > 0) {
                         if (getStackInSlot(JuiceMixerContainer.OUTPUT_2) == null) {
                             setInventorySlotContents(JuiceMixerContainer.OUTPUT_2, FluidContainerRegistryHelper.fillFluidContainer(drainOutput(amount, true), getStackInSlot(JuiceMixerContainer.INPUT_2)));
                             setInventorySlotContents(JuiceMixerContainer.INPUT_2, null);
@@ -406,12 +406,12 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return null;
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound syncData = new NBTTagCompound();
         syncData.setInteger("State", selected.toInt());
@@ -432,11 +432,11 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         }
 
         syncData.setTag("OutputState", output);
-        return new S35PacketUpdateTileEntity(this.getPos(), 1, syncData);
+        return new SPacketUpdateTileEntity(this.getPos(), 1, syncData);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         selected = SelectedTank.values()[pkt.getNbtCompound().getInteger("State")];
         NBTTagCompound compound = pkt.getNbtCompound();
@@ -450,9 +450,13 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
             this.outputState.add(FluidStack.loadFluidStackFromNBT(fluidStackCompound));
         }
     }
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
+    }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         NBTTagCompound fluidTank1 = new NBTTagCompound();
         input1.writeToNBT(fluidTank1);
@@ -487,6 +491,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         }
 
         compound.setTag("Inventory", inventory);
+        return compound;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class OrangeTreeGenerator extends BaseTreeGenerator {
 
     @Override
     protected IBlockState getLeafBlockWithoutCheckDecay() {
-        return Blocks.leaves2.getStateFromMeta(1).withProperty(BlockLeaves.CHECK_DECAY, false).withProperty(BlockLeaves.DECAYABLE, true);
+        return Blocks.LEAVES2.getStateFromMeta(1).withProperty(BlockLeaves.CHECK_DECAY, false).withProperty(BlockLeaves.DECAYABLE, true);
     }
 
     @Override
@@ -29,11 +29,11 @@ public class OrangeTreeGenerator extends BaseTreeGenerator {
 
     @Override
     IBlockState getLeafBlock() {
-        return Blocks.leaves2.getStateFromMeta(1);
+        return Blocks.LEAVES2.getStateFromMeta(1);
     }
 
     @Override
     IBlockState getWoodBlock() {
-        return Blocks.log.getStateFromMeta(1);
+        return Blocks.LOG.getStateFromMeta(1);
     }
 }

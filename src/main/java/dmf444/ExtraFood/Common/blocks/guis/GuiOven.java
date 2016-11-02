@@ -2,10 +2,10 @@ package dmf444.ExtraFood.Common.blocks.guis;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 import org.lwjgl.opengl.GL11;
 
@@ -36,9 +36,9 @@ public class GuiOven extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
             //draw text and stuff here
             //the parameters for drawString are: string, x, y, color
-            fontRendererObj.drawString(StatCollector.translateToLocal("gui.OV"), 7, 5, 4210752);
+            fontRendererObj.drawString(I18n.translateToLocal("gui.OV"), 7, 5, 4210752);
             //draws "Inventory" or your regional equivalent
-            fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+            fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
             this.drawCookItem();
             this.drawProgressBar();
             this.drawInGlass();

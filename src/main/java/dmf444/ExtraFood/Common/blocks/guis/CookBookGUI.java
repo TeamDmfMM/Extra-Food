@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.translation.I18n;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -169,8 +169,8 @@ public class CookBookGUI extends GuiScreen {
         			if (mousey >= cy && mousey <= cy + 26){
         				List lines = new ArrayList<String>();
         				String pagename;
-        				if (StatCollector.canTranslate("cookbook.tabname." + cookbooktab.name)){
-        					pagename = StatCollector.translateToLocal("cookbook.tabname." + cookbooktab.name);
+        				if (I18n.canTranslate("cookbook.tabname." + cookbooktab.name)){
+        					pagename = I18n.translateToLocal("cookbook.tabname." + cookbooktab.name);
         				}
         				else {
         					pagename = cookbooktab.name;
@@ -178,7 +178,7 @@ public class CookBookGUI extends GuiScreen {
         				
         				
         				lines.add(pagename);
-        				this.drawHoveringText(lines, mousex, mousey, fontRendererObj);
+        				this.drawHoveringText(lines, mousex, mousey);
         			}
         		}
         		sy += 27;
@@ -193,7 +193,7 @@ public class CookBookGUI extends GuiScreen {
     
     protected void drawTitle()
     {
-		String mainGUI = StatCollector.translateToLocal("cookbook.Title");
+		String mainGUI = I18n.translateToLocal("cookbook.Title");
         int i = (this.width - this.achievementsPaneWidth) / 2;
         int j = (this.height - this.achievementsPaneHeight) / 2;
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -298,8 +298,10 @@ public class CookBookGUI extends GuiScreen {
 
         this.mc.getTextureManager().bindTexture(GuiLib.CBback);
         GL11.glPushMatrix();
-		GL11.glScalef(1.2F, 1.2F, 1.2F);
-        this.drawTexturedModalRect(i1 - 13, j1 - 2, iox, yox, this.achievementsPaneWidth - 53, this.achievementsPaneHeight - 45);  
+        GL11.glTranslatef(((this.width - this.achievementsPaneWidth)/2), 0, 0);
+        GL11.glScalef(1.2F, 1.2F, 1.2F);
+        GL11.glTranslatef(-((this.width - this.achievementsPaneWidth)/2), 0, 0);
+        this.drawTexturedModalRect(i1 + 3, j1 -2, iox, yox, this.achievementsPaneWidth - 53, this.achievementsPaneHeight - 45);
         //this.drawTexturedModalRect(i1 -13, j1 + 1, iox, yox, this.achievementsPaneWidth - 62, this.achievementsPaneHeight - 45);  
         GL11.glPopMatrix();       
        // GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -442,23 +444,23 @@ public class CookBookGUI extends GuiScreen {
         GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST); //3154, 4354
         GlStateManager.disableLighting();
             //GL11.glDisable(GL11.GL_LIGHTING);
-        tess.getWorldRenderer().begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_COLOR);
+        tess.getBuffer().begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_COLOR);
     	for(double t=0.0;t<=1;t+=0.09)  
     	{  
     	    int x = (int) (  (1-t)*(1-t)*startX + 2*(1-t)*t*bezierX+t*t*endX);  
     	    int y = (int) (  (1-t)*(1-t)*startY + 2*(1-t)*t*bezierY+t*t*endY);
 
         //plot something @  x,y coordinate here...
-            // tess.getWorldRenderer().pos(x, y, t);
-        tess.getWorldRenderer().color(0.0f, 0.0f, 0.3f, 1.0f);
+            // tess.getBuffer().pos(x, y, t);
+        tess.getBuffer().color(0.0f, 0.0f, 0.3f, 1.0f);
 
-        tess.getWorldRenderer().endVertex();
-        //tess.getWorldRenderer().setBrightness(100);
+        tess.getBuffer().endVertex();
+        //tess.getBuffer().setBrightness(100);
 
 
     }
     GL11.glColor4d(1, 1, 1, 1);
-    tess.getWorldRenderer().finishDrawing();
+    tess.getBuffer().finishDrawing();
 
     //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ZERO);//770, 771
     GL11.glDisable(GL11.GL_LINE_SMOOTH);//2848
@@ -478,12 +480,8 @@ public class CookBookGUI extends GuiScreen {
     public static void setAchievementsPaneWidth(int achievementsPaneWidth) {
     	CookBookGUI.achievementsPaneWidth = achievementsPaneWidth;
     }
-
-
-    public void drawHoveringText(List textLines, int x, int y, FontRenderer font)
-    {
-        if (!textLines.isEmpty())
-        {
+    protected void drawHoveringText(List<String> textLines, int x, int y, FontRenderer font) {
+        if (!textLines.isEmpty()) {
             GL11.glDisable(32826);
             RenderHelper.disableStandardItemLighting();
             GL11.glDisable(2896);
@@ -491,13 +489,11 @@ public class CookBookGUI extends GuiScreen {
             int k = 0;
             Iterator iterator = textLines.iterator();
 
-            while (iterator.hasNext())
-            {
-                String s = (String)iterator.next();
+            while (iterator.hasNext()) {
+                String s = (String) iterator.next();
                 int l = font.getStringWidth(s);
 
-                if (l > k)
-                {
+                if (l > k) {
                     k = l;
                 }
             }
@@ -506,18 +502,15 @@ public class CookBookGUI extends GuiScreen {
             int k2 = y - 12;
             int i1 = 8;
 
-            if (textLines.size() > 1)
-            {
+            if (textLines.size() > 1) {
                 i1 += 2 + (textLines.size() - 1) * 10;
             }
 
-            if (j2 + k > this.width)
-            {
+            if (j2 + k > this.width) {
                 j2 -= 28 + k;
             }
 
-            if (k2 + i1 + 6 > this.height)
-            {
+            if (k2 + i1 + 6 > this.height) {
                 k2 = this.height - i1 - 6;
             }
 
@@ -536,13 +529,11 @@ public class CookBookGUI extends GuiScreen {
             this.drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 - 3 + 1, k1, k1);
             this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
 
-            for (int i2 = 0; i2 < textLines.size(); ++i2)
-            {
-                String s1 = (String)textLines.get(i2);
+            for (int i2 = 0; i2 < textLines.size(); ++i2) {
+                String s1 = (String) textLines.get(i2);
                 font.drawStringWithShadow(s1, j2, k2, -1);
 
-                if (i2 == 0)
-                {
+                if (i2 == 0) {
                     k2 += 2;
                 }
 

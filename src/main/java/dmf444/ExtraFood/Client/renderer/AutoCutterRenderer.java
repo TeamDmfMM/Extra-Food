@@ -25,9 +25,9 @@ public class AutoCutterRenderer extends TileEntitySpecialRenderer {
     //This is setting the initial location.
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             int i = te.getBlockMetadata();
-    		
+
     		short short1 = 0;
-    		
+
     		if (i == 2)
             {
                 short1 = 360;

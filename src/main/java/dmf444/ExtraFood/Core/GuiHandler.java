@@ -5,7 +5,7 @@ import dmf444.ExtraFood.Common.blocks.guis.*;
 import dmf444.ExtraFood.Common.blocks.tileentity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 

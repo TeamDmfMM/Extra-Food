@@ -3,67 +3,99 @@
   "variants": {
     "fluid0": {
       "model": "forge:fluid",
-      "custom": { "fluid": "strawberryjuice" }
+      "custom": {
+        "fluid": "strawberryjuice"
+      }
     },
     "fluid1": {
       "model": "forge:fluid",
-      "custom": { "fluid": "bananajuice" }
+      "custom": {
+        "fluid": "bananajuice"
+      }
     },
     "fluid2": {
       "model": "forge:fluid",
-      "custom": { "fluid": "carrotjuice" }
+      "custom": {
+        "fluid": "carrotjuice"
+      }
     },
     "fluid3": {
       "model": "forge:fluid",
-      "custom": { "fluid": "eggnog" }
+      "custom": {
+        "fluid": "eggnog"
+      }
     },
     "fluid4": {
       "model": "forge:fluid",
-      "custom": { "fluid": "disgustingmix" }
+      "custom": {
+        "fluid": "disgustingmix"
+      }
     },
     "fluid5": {
       "model": "forge:fluid",
-      "custom": { "fluid": "applejuice" }
+      "custom": {
+        "fluid": "applejuice"
+      }
     },
     "fluid6": {
       "model": "forge:fluid",
-      "custom": { "fluid": "orangejuice" }
+      "custom": {
+        "fluid": "orangejuice"
+      }
     },
     "fluid7": {
       "model": "forge:fluid",
-      "custom": { "fluid": "watermelonjuice" }
+      "custom": {
+        "fluid": "watermelonjuice"
+      }
     },
-    "fluid8":{
+    "fluid8": {
       "model": "forge:fluid",
-      "custom": { "fluid": "pineapplejuice" }
+      "custom": {
+        "fluid": "pineapplejuice"
+      }
     },
-    "fluid9":{
+    "fluid9": {
       "model": "forge:fluid",
-      "custom": { "fluid": "grapejuice" }
+      "custom": {
+        "fluid": "grapejuice"
+      }
     },
-    "fluid10":{
+    "fluid10": {
       "model": "forge:fluid",
-      "custom": { "fluid": "citrusjuice" }
+      "custom": {
+        "fluid": "citrusjuice"
+      }
     },
-    "fluid11":{
+    "fluid11": {
       "model": "forge:fluid",
-      "custom": { "fluid": "applegrapejuice" }
+      "custom": {
+        "fluid": "applegrapejuice"
+      }
     },
-    "fluid12":{
+    "fluid12": {
       "model": "forge:fluid",
-      "custom": {"fluid": "fruitjuice"}
+      "custom": {
+        "fluid": "fruitjuice"
+      }
     },
-    "fluid13":{
+    "fluid13": {
       "model": "forge:fluid",
-      "custom": {"fluid": "mixedberryjuice"}
+      "custom": {
+        "fluid": "mixedberryjuice"
+      }
     },
-    "fluid14":{
+    "fluid14": {
       "model": "forge:fluid",
-      "custom": {"fluid": "strawberrybananajuice"}
+      "custom": {
+        "fluid": "strawberrybananajuice"
+      }
     },
-    "fluid15":{
+    "fluid15": {
       "model": "forge:fluid",
-      "custom": {"fluid": "tropicaljuice"}
+      "custom": {
+        "fluid": "tropicaljuice"
+      }
     }
   }
 }

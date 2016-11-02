@@ -36,8 +36,8 @@ public class NBTFoodRegistry {
 						
 	}
 	private String p = "extrafood:items/oven/";
-	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(ItemLoader.sausage), "fish", p +"pizzaFish", is(Items.cooked_fish), "olives", p +"pizzaOlive", new ItemStack(ItemLoader.olive, 3), "cheese", p +"pizzaCheese", new ItemStack(ItemLoader.cheeseSlice, 2));
-	private Dictionary<String, ArrayList<Object>> Muffin_ADD = dict("chocolate_chip", p +"muffinChocolate", is(ItemLoader.chocolate), "strawberry", p +"muffinStrawberry", is(ItemLoader.strawberry), "banana", p +"muffinBanana", is(ItemLoader.banana), "apple", p +"muffinApple", is(Items.apple), "Doublechocolate", p +"muffinDoubleChocolate", new ItemStack(ItemLoader.chocolate, 2));
+	private Dictionary<String, ArrayList<Object>> Pizza_ADD = dict("pepperoni", p +"pizzaPepperoni", is(ItemLoader.sausage), "fish", p +"pizzaFish", is(Items.COOKED_FISH), "olives", p +"pizzaOlive", new ItemStack(ItemLoader.olive, 3), "cheese", p +"pizzaCheese", new ItemStack(ItemLoader.cheeseSlice, 2));
+	private Dictionary<String, ArrayList<Object>> Muffin_ADD = dict("chocolate_chip", p +"muffinChocolate", is(ItemLoader.chocolate), "strawberry", p +"muffinStrawberry", is(ItemLoader.strawberry), "banana", p +"muffinBanana", is(ItemLoader.banana), "apple", p +"muffinApple", is(Items.APPLE), "Doublechocolate", p +"muffinDoubleChocolate", new ItemStack(ItemLoader.chocolate, 2));
 	
 	
 	private Dictionary<ArrayList<String>, ArrayList<Object>> Muffin_Type = createInfo("chocolate_chip", 8, 4, "strawberry", 10, 4,"Doublechocolate", 12, 2, "apple", 10, 5, "banana", 10, 6);//, "banana", "chocolate_chip", 15, 6
@@ -91,7 +91,7 @@ public class NBTFoodRegistry {
 		Dictionary<String,ItemStack> d = new Hashtable<String,ItemStack>();
 		for (String i : Collections.list(to.keys())){
 			if (to.get(i).get(1) == null){
-				d.put(i, new ItemStack(Items.redstone));
+				d.put(i, new ItemStack(Items.REDSTONE));
 			}
 			else {
 				d.put(i, (ItemStack) to.get(i).get(1));

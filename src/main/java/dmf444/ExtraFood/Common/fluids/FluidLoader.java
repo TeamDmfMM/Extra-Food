@@ -21,13 +21,24 @@ public class FluidLoader {
 	public static Fluid FEggnog;
 	public static Fluid FHorribleLiquid;
 	public static Fluid Fapplejuice, Forangejuice, Fgrapejuice, Fapplegrapejuice, Fcitusjuice, FpinappleJuice, Ffruitjuice, Fmixedberryjuice, Fwatermelonjuice, Fstrawberrybanana, Ftropicaljuice;
+	//RECIPIES (n=just blender)
+	//Apple=n
+	//Orange = n
+	//Grape = n
+	//Apple-Grape= 1000ml Apple, 1000ml Grape
+	//Citrus = 500ml Apple, 1000ml Grape, 500ml orange
+	//Pinapple = n
+	//Fruit = 1000mL Apple, 1000ml Watermelon, 500ml Strawberry, 500ml Grape
+	//Mixed berry = 500ml Strawberry, 500ml Grape
+	//Watermelon = n
+	//Strawberry banana = 500ml Strawberry, 500ml Banana
+	//F tropical = (if possible) 500ml Pinapple, 500ml Citrus
 
 	public static Item FluidContainer;
     private static final String pre = "extrafood:blocks/fluid/";
     private static final String still = "Fluid_%s_Still";
     private static final String flow = "Fluid_%s_Flow";
 
-	//Fluid Names for Convinience
 	private static final String GRAPE_JUICE = "GrapeJuice";
 	private static final String APPLE_GRAPE = "AppleGrapeJuice";
 	private static final String CITRUS_JUICE = "CitrusJuice";
@@ -36,7 +47,6 @@ public class FluidLoader {
 	private static final String MIXED_BERRY_JUICE = "MixedBerryJuice";
 	private static final String STRAWBERRY_BANANA_JUICE = "StrawberryBananaJuice";
 	private static final String TROPICAL_JUICE = "TropicalJuice";
-
 
 	
 	public static boolean Registate=false;
@@ -58,7 +68,6 @@ public class FluidLoader {
 		Fmixedberryjuice = new EdibleFluid(MIXED_BERRY_JUICE, rl(still, MIXED_BERRY_JUICE), rl(flow, MIXED_BERRY_JUICE), 6, 7.0f);
 		Fstrawberrybanana = new EdibleFluid(STRAWBERRY_BANANA_JUICE, rl(still, STRAWBERRY_BANANA_JUICE), rl(flow, STRAWBERRY_BANANA_JUICE), 3, 4.0f);
 		Ftropicaljuice = new EdibleFluid(TROPICAL_JUICE, rl(still, TROPICAL_JUICE), rl(flow, TROPICAL_JUICE), 7, 2.0f);
-
 
 		FluidContainer = new GlassFluidContainer().setUnlocalizedName(ItemLib.glassContainer);
 		
@@ -83,8 +92,7 @@ public class FluidLoader {
 			FluidRegistry.registerFluid(Fstrawberrybanana);
 			FluidRegistry.registerFluid(Ftropicaljuice);
 
-
-			GameRegistry.registerItem(FluidContainer, ItemLib.glassContainer);
+			registerItem(FluidContainer, ItemLib.glassContainer);
 			GlassFluidContainer.createGlassBottles();
 
 		}
@@ -94,7 +102,11 @@ public class FluidLoader {
         return String.format(type, fluid);
     }
 
-	private static ResourceLocation rl(String type, String name){
-		return new ResourceLocation(pre + localize(type, name));
+	private static void registerItem(Item item, String name){
+		item.setRegistryName(name);
+		GameRegistry.register(item);
 	}
+	private static ResourceLocation rl(String type, String name){
+			return new ResourceLocation(pre + localize(type, name));
+		}
 }

@@ -4,6 +4,9 @@ import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class DrinkActionFood extends StanFood{
@@ -51,11 +54,12 @@ public class DrinkActionFood extends StanFood{
 	    /**
 	     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
 	     */
-	    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player)
+	    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
 	    {
 	    	if (player.canEat(false)){
-	    		player.setItemInUse(itemstack, this.getMaxItemUseDuration(itemstack));
+	    		player.setActiveHand(hand);
+				return new ActionResult<>(EnumActionResult.SUCCESS, itemstack);
 	    	}
-	        return itemstack;
+	        return new ActionResult<>(EnumActionResult.FAIL,  itemstack);
 	    }
 }

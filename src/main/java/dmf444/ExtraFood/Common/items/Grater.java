@@ -31,7 +31,7 @@ public class Grater extends StanItem {
 
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
     {
-        ItemStack mat = new ItemStack(Items.iron_ingot);
+        ItemStack mat = new ItemStack(Items.IRON_INGOT);
         if (mat != null && net.minecraftforge.oredict.OreDictionary.itemMatches(mat, repair, false)) return true;
         return super.getIsRepairable(toRepair, repair);
     }

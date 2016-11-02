@@ -8,6 +8,7 @@ import dmf444.ExtraFood.Common.fluids.GeneralFluid;
 import dmf444.ExtraFood.Core.lib.BlockLib;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockLoader {
@@ -37,7 +38,7 @@ public class BlockLoader {
 	public static boolean Register=false;
 	
 	public static void initiateBlocks() {
-		bananaBunch = new BananaBlock(Material.cactus).setUnlocalizedName(BlockLib.bBB);
+		bananaBunch = new BananaBlock(Material.CACTUS).setUnlocalizedName(BlockLib.bBB);
 		saplingBanana = new BananaTreeSapling().setUnlocalizedName(BlockLib.bBS);
 		cheesePress = new CheesePress().setUnlocalizedName(BlockLib.bCP).setHardness(1.5F);
 		autoCutter = new AutoCutter().setUnlocalizedName(BlockLib.bAC).setHardness(2.0F);
@@ -45,78 +46,77 @@ public class BlockLoader {
 		oven = new Oven().setUnlocalizedName(BlockLib.bO);
 		whiteout = new Whiteout().setUnlocalizedName(BlockLib.bTWB).setHardness(1.5F);
         bananaLeaf = new BananaLeaf().setUnlocalizedName(BlockLib.bBL);
-        peanutbush = new PeanutBush(Material.plants).setUnlocalizedName(BlockLib.bPB);
+        peanutbush = new PeanutBush(Material.PLANTS).setUnlocalizedName(BlockLib.bPB);
         tomatoCrop = new CropBlock("tomato").setUnlocalizedName(BlockLib.bCT);
         lettuceCrop = new CropBlock("lettuce").setUnlocalizedName(BlockLib.bCL);
         juiceMixer = new BlockJuiceMixer().setUnlocalizedName(BlockLib.bJM);
         Chocake = new ChocolateCake().setUnlocalizedName(BlockLib.bCake);
-        strawberryBush = new StrawberryBush(Material.plants).setUnlocalizedName(BlockLib.bSB);
+        strawberryBush = new StrawberryBush(Material.PLANTS).setUnlocalizedName(BlockLib.bSB);
 		oliveBush = new OliveTreeSapling().setUnlocalizedName(BlockLib.bOliveBush);
 		oliveLeaf = new OliveLeaf().setUnlocalizedName(BlockLib.bOliveLeaf);
 		OrangeBlock = new OrangeBlock().setUnlocalizedName(BlockLib.bBlockOrange);
 		pineappleCrop = new CropBlock("pineapple").setUnlocalizedName(BlockLib.bPineappleCrop);
-		grapeVine = new GrapeVines().setUnlocalizedName(BlockLib.bGrapeVine);
 		saplingOrange = new OrangeTreeSapling().setUnlocalizedName(BlockLib.ORANGE_SAPLING);
+		grapeVine = new GrapeVines().setUnlocalizedName(BlockLib.bGrapeVine);
 
-		//Fluid Blocks
-		Bbananajuice = new GeneralFluid(FluidLoader.Fbananajuice, Material.water).setUnlocalizedName(BlockLib.bFluidBan);
-		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.water).setUnlocalizedName(BlockLib.bFluidEgg);
-		Bstrawberryjuice = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.water).setUnlocalizedName(BlockLib.bFluidStraw);
-		Bcarrotjuice = new GeneralFluid(FluidLoader.Fcarrotjuice, Material.water).setUnlocalizedName(BlockLib.bFluidCarrot);
-		BdiscustingMix = new GeneralFluid(FluidLoader.FHorribleLiquid, Material.water).setUnlocalizedName(BlockLib.bDisgustingMix);
-		BappleJuice = new GeneralFluid(FluidLoader.Fapplejuice, Material.water).setUnlocalizedName(BlockLib.bAppleJuice);
-		BorangeJuice = new GeneralFluid(FluidLoader.Forangejuice, Material.water).setUnlocalizedName(BlockLib.bOrangeJuice);
-		BwatermelonJuice = new GeneralFluid(FluidLoader.Fwatermelonjuice, Material.water).setUnlocalizedName(BlockLib.bMelonJuice);
-		Bgrapejuice = new GeneralFluid(FluidLoader.Fgrapejuice, Material.water).setUnlocalizedName(BlockLib.GRAPE_JUICE_BLOCK);
-		Bapplegrapejuice = new GeneralFluid(FluidLoader.Fapplegrapejuice, Material.water).setUnlocalizedName(BlockLib.APPLE_GRAPE_JUICE_BLOCK);
-		Bcitusjuice = new GeneralFluid(FluidLoader.Fcitusjuice, Material.water).setUnlocalizedName(BlockLib.CITRUS_JUICE_BLOCK);
-		BpinappleJuice = new GeneralFluid(FluidLoader.FpinappleJuice, Material.water).setUnlocalizedName(BlockLib.PINEAPPLE_JUICE_BLOCK);
-		BfruitJuice = new GeneralFluid(FluidLoader.Ffruitjuice, Material.water).setUnlocalizedName(BlockLib.FRUIT_JUICE_BLOCK);
-		strawberryBananaJuice = new GeneralFluid(FluidLoader.Fstrawberrybanana, Material.water).setUnlocalizedName(BlockLib.STRAWBERRY_BANANA_JUICE);
-		BmixedberryJuice = new GeneralFluid(FluidLoader.Fmixedberryjuice, Material.water).setUnlocalizedName(BlockLib.MIXED_BERRY_JUICE);
-		tropicalJuice = new GeneralFluid(FluidLoader.Ftropicaljuice, Material.water).setUnlocalizedName(BlockLib.TROPICAL_JUICE);
-
+		Bbananajuice = new GeneralFluid(FluidLoader.Fbananajuice, Material.WATER).setUnlocalizedName(BlockLib.bFluidBan);
+		Beggnog = new GeneralFluid(FluidLoader.FEggnog, Material.WATER).setUnlocalizedName(BlockLib.bFluidEgg);
+		Bstrawberryjuice = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.WATER).setUnlocalizedName(BlockLib.bFluidStraw);
+		Bcarrotjuice = new GeneralFluid(FluidLoader.Fcarrotjuice, Material.WATER).setUnlocalizedName(BlockLib.bFluidCarrot);
+		BdiscustingMix = new GeneralFluid(FluidLoader.FHorribleLiquid, Material.WATER).setUnlocalizedName(BlockLib.bDisgustingMix);
+		BappleJuice = new GeneralFluid(FluidLoader.Fapplejuice, Material.WATER).setUnlocalizedName(BlockLib.bAppleJuice);
+		BorangeJuice = new GeneralFluid(FluidLoader.Forangejuice, Material.WATER).setUnlocalizedName(BlockLib.bOrangeJuice);
+		BwatermelonJuice = new GeneralFluid(FluidLoader.Fwatermelonjuice, Material.WATER).setUnlocalizedName(BlockLib.bMelonJuice);
+		Bgrapejuice = new GeneralFluid(FluidLoader.Fgrapejuice, Material.WATER).setUnlocalizedName(BlockLib.GRAPE_JUICE_BLOCK);
+		Bapplegrapejuice = new GeneralFluid(FluidLoader.Fapplegrapejuice, Material.WATER).setUnlocalizedName(BlockLib.APPLE_GRAPE_JUICE_BLOCK);
+		Bcitusjuice = new GeneralFluid(FluidLoader.Fcitusjuice, Material.WATER).setUnlocalizedName(BlockLib.CITRUS_JUICE_BLOCK);
+		BpinappleJuice = new GeneralFluid(FluidLoader.FpinappleJuice, Material.WATER).setUnlocalizedName(BlockLib.PINEAPPLE_JUICE_BLOCK);
+		BfruitJuice = new GeneralFluid(FluidLoader.Ffruitjuice, Material.WATER).setUnlocalizedName(BlockLib.FRUIT_JUICE_BLOCK);
+		strawberryBananaJuice = new GeneralFluid(FluidLoader.Fstrawberrybanana, Material.WATER).setUnlocalizedName(BlockLib.STRAWBERRY_BANANA_JUICE);
+		BmixedberryJuice = new GeneralFluid(FluidLoader.Fmixedberryjuice, Material.WATER).setUnlocalizedName(BlockLib.MIXED_BERRY_JUICE);
+		tropicalJuice = new GeneralFluid(FluidLoader.Ftropicaljuice, Material.WATER).setUnlocalizedName(BlockLib.TROPICAL_JUICE);
+		
 		
 		registerBlocks();
 	}
 	private static void registerBlocks() {
 		if(!Register){
-			GameRegistry.registerBlock(bananaBunch, BlockLib.bBB);
-			GameRegistry.registerBlock(saplingBanana, BlockLib.bBS);
-			GameRegistry.registerBlock(cheesePress, BlockLib.bCP);
-			GameRegistry.registerBlock(autoCutter, BlockLib.bAC);
-			GameRegistry.registerBlock(juiceBlender, BlockLib.bJB);
-			GameRegistry.registerBlock(oven, BlockLib.bO);
-			GameRegistry.registerBlock(whiteout, BlockLib.bTWB);
-			GameRegistry.registerBlock(Bbananajuice, BlockLib.bFluidBan);
-			GameRegistry.registerBlock(Bstrawberryjuice, BlockLib.bFluidStraw);
-			GameRegistry.registerBlock(Beggnog, BlockLib.bFluidEgg);
-            GameRegistry.registerBlock(Bcarrotjuice, BlockLib.bFluidCarrot);
-			GameRegistry.registerBlock(strawberryBush, BlockLib.bSB);
-			GameRegistry.registerBlock(bananaLeaf, BlockLib.bBL);
-			GameRegistry.registerBlock(peanutbush, BlockLib.bPB);
-			GameRegistry.registerBlock(tomatoCrop, BlockLib.bCT);
-			GameRegistry.registerBlock(lettuceCrop, BlockLib.bCL);
-			GameRegistry.registerBlock(juiceMixer, BlockLib.bJM);
-			GameRegistry.registerBlock(Chocake, BlockLib.bCake);
-			GameRegistry.registerBlock(oliveBush, BlockLib.bOliveBush);
-			GameRegistry.registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
-			GameRegistry.registerBlock(BdiscustingMix, BlockLib.bDisgustingMix);
-			GameRegistry.registerBlock(OrangeBlock, BlockLib.bBlockOrange);
-			GameRegistry.registerBlock(BappleJuice, BlockLib.bAppleJuice);
-			GameRegistry.registerBlock(BorangeJuice, BlockLib.bOrangeJuice);
-			GameRegistry.registerBlock(BwatermelonJuice, BlockLib.bMelonJuice);
-			GameRegistry.registerBlock(pineappleCrop, BlockLib.bPineappleCrop);
-			GameRegistry.registerBlock(grapeVine, BlockLib.bGrapeVine);
-			GameRegistry.registerBlock(Bapplegrapejuice, BlockLib.APPLE_GRAPE_JUICE_BLOCK);
-			GameRegistry.registerBlock(Bgrapejuice, BlockLib.GRAPE_JUICE_BLOCK);
-			GameRegistry.registerBlock(Bcitusjuice, BlockLib.CITRUS_JUICE_BLOCK);
-			GameRegistry.registerBlock(BpinappleJuice, BlockLib.PINEAPPLE_JUICE_BLOCK);
-			GameRegistry.registerBlock(saplingOrange, BlockLib.ORANGE_SAPLING);
-			GameRegistry.registerBlock(BfruitJuice, BlockLib.FRUIT_JUICE_BLOCK);
-			GameRegistry.registerBlock(BmixedberryJuice, BlockLib.MIXED_BERRY_JUICE);
-			GameRegistry.registerBlock(tropicalJuice, BlockLib.TROPICAL_JUICE);
-			GameRegistry.registerBlock(strawberryBananaJuice, BlockLib.STRAWBERRY_BANANA_JUICE);
+			registerBlock(bananaBunch, BlockLib.bBB);
+			registerBlock(saplingBanana, BlockLib.bBS);
+			registerBlock(cheesePress, BlockLib.bCP);
+			registerBlock(autoCutter, BlockLib.bAC);
+			registerBlock(juiceBlender, BlockLib.bJB);
+			registerBlock(oven, BlockLib.bO);
+			registerBlock(whiteout, BlockLib.bTWB);
+			registerBlock(Bbananajuice, BlockLib.bFluidBan);
+			registerBlock(Bstrawberryjuice, BlockLib.bFluidStraw);
+			registerBlock(Beggnog, BlockLib.bFluidEgg);
+            registerBlock(Bcarrotjuice, BlockLib.bFluidCarrot);
+			registerBlock(strawberryBush, BlockLib.bSB);
+			registerBlock(bananaLeaf, BlockLib.bBL);
+			registerBlock(peanutbush, BlockLib.bPB);
+			registerBlock(tomatoCrop, BlockLib.bCT);
+			registerBlock(lettuceCrop, BlockLib.bCL);
+			registerBlock(juiceMixer, BlockLib.bJM);
+			registerBlock(Chocake, BlockLib.bCake);
+			registerBlock(oliveBush, BlockLib.bOliveBush);
+			registerBlock(oliveLeaf, BlockLib.bOliveLeaf);
+			registerBlock(BdiscustingMix, BlockLib.bDisgustingMix);
+			registerBlock(OrangeBlock, BlockLib.bBlockOrange);
+			registerBlock(BappleJuice, BlockLib.bAppleJuice);
+			registerBlock(BorangeJuice, BlockLib.bOrangeJuice);
+			registerBlock(BwatermelonJuice, BlockLib.bMelonJuice);
+			registerBlock(pineappleCrop, BlockLib.bPineappleCrop);
+			registerBlock(grapeVine, BlockLib.bGrapeVine);
+			registerBlock(Bapplegrapejuice, BlockLib.APPLE_GRAPE_JUICE_BLOCK);
+			registerBlock(Bgrapejuice, BlockLib.GRAPE_JUICE_BLOCK);
+			registerBlock(Bcitusjuice, BlockLib.CITRUS_JUICE_BLOCK);
+			registerBlock(BpinappleJuice, BlockLib.PINEAPPLE_JUICE_BLOCK);
+			registerBlock(saplingOrange, BlockLib.ORANGE_SAPLING);
+			registerBlock(BfruitJuice, BlockLib.FRUIT_JUICE_BLOCK);
+			registerBlock(BmixedberryJuice, BlockLib.MIXED_BERRY_JUICE);
+			registerBlock(tropicalJuice, BlockLib.TROPICAL_JUICE);
+			registerBlock(strawberryBananaJuice, BlockLib.STRAWBERRY_BANANA_JUICE);
 		}
 		Register=true;
 	}
@@ -128,6 +128,11 @@ public class BlockLoader {
 		GameRegistry.registerTileEntity(TileEntityOven.class, BlockLib.bO);
 		GameRegistry.registerTileEntity(JuiceMixerTileEntity.class, BlockLib.bJM);
 	}
-	
+
+	private static void registerBlock(Block block, String name){
+		block.setRegistryName(name);
+		GameRegistry.register(block);
+		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
 }
 

@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,9 +22,9 @@ public class CheesePressContainer extends Container {
 
             //the Slot constructor takes the IInventory and the slot number in that it binds to
             //and the x-y coordinates it resides on-screen
-            this.addSlotToContainer(new SlotFilter(te, INPUT_1, 54, 20, Items.milk_bucket));
-            this.addSlotToContainer(new SlotFilter(te, INPUT_2, 78, 20, Items.milk_bucket));
-            this.addSlotToContainer(new SlotFilter(te, INPUT_3, 102, 20, Items.milk_bucket));
+            this.addSlotToContainer(new SlotFilter(te, INPUT_1, 54, 20, Items.MILK_BUCKET));
+            this.addSlotToContainer(new SlotFilter(te, INPUT_2, 78, 20, Items.MILK_BUCKET));
+            this.addSlotToContainer(new SlotFilter(te, INPUT_3, 102, 20, Items.MILK_BUCKET));
             this.addSlotToContainer(new SlotCheesePressOutput(te, OUTPUT, 78, 54));
 
             //commonly used vanilla code that adds the player's inventory
@@ -32,10 +32,10 @@ public class CheesePressContainer extends Container {
     }
 
     @Override
-    public void onCraftGuiOpened(ICrafting crafters)
+    public void addListener(IContainerListener listener)
     {
-        super.onCraftGuiOpened(crafters);
-        crafters.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
+        super.addListener(listener);
+        listener.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
     }
 
     /**
@@ -46,9 +46,9 @@ public class CheesePressContainer extends Container {
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (int i = 0; i < this.listeners.size(); ++i)
         {
-            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+            IContainerListener icrafting = (IContainerListener) this.listeners.get(i);
 
             if (this.localTime != this.tileEntity.getTotalTime())
             {

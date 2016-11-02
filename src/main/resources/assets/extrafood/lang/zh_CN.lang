@@ -1,5 +1,5 @@
 #Tab Name
-itemGroup.ExtraFood=更多食物
+itemGroup.ExtraFood=额外食物
 itemGroup.ExtraFood.OvenFood=烘焙食物
 
 #Item Names
@@ -73,6 +73,10 @@ item.muffin.name=玛芬蛋糕
 item.MuffinPan.name=玛芬盘
 item.dough.name=生面团
 item.olive.name=橄榄
+item.orange.name=橘子
+item.pineapple.name=菠萝
+item.pineappleSlice.name=菠萝片
+item.Grapes.name=葡萄
 
 ## Additive names
 add.pizza.pepperoni=意大利辣香肠
@@ -105,31 +109,97 @@ tile.PeanutBush.name=花生灌木
 tile.TheWhiteBlock.name=纯白方块
 tile.CropLettuce.name=生菜作物
 tile.CropTomato.name=番茄作物
+tile.Oven.name=烤箱
+tile.JuiceMixer.name=果汁混合器
+tile.Cake.name=巧克力蛋糕
+tile.OliveTreeSapling.name=橄榄树苗
+tile.OliveLeaf.name=橄榄树叶
+tile.OrangeBlock.name=Orange
+tile.GrapeVine.name=葡萄藤蔓
+tile.OrangeSapling.name=橘子树苗
+
+#Fluid Block Names
 tile.StrawberryJuice.name=草莓汁
 tile.Fcarrotjuice.name=胡萝卜汁
 tile.Fbananajuice.name=香蕉汁
 tile.FEggnog.name=蛋奶酒
-tile.Oven.name=烤箱
-tile.JuiceMixer.name=果汁混合器 [WIP]
-tile.Cake.name=巧克力蛋糕
-tile.OliveTreeSapling.name=橄榄树苗
-tile.OliveLeaf.name=橄榄树叶
+tile.FdisgustingMix.name=失败的混合物
+tile.FluidappleGrape.name=苹果葡萄汁
+tile.Fluidgrape.name=葡萄汁
+tile.Fluidcitrus.name=柑橘汁
+tile.Fluidpineapple.name=菠萝汁
+tile.Fluidfruit.name=水果汁
+tile.FluidstrawberryBanana.name=草莓香蕉汁
+tile.FluidmixedBerry.name=混合浆果汁
+tile.Fluidtropical.name=热带果汁
 
 #Fluid Names ---This is for mod Compatibility
-fluid.strawberryjuice=Strawberry Juice
-fluid.carrotjuice=Carrot Juice
-fluid.bananajuice=Banana Juice
+fluid.strawberryjuice=草莓汁
+fluid.carrotjuice=胡萝卜汁
+fluid.bananajuice=香蕉汁
+fluid.Eggnog=蛋奶酒
+fluid.disgustingmix=失败的混合物
+fluid.watermelonjuice=西瓜汁
+fluid.applejuice=苹果汁
+fluid.orangejuice=橘子汁
+fluid.grapejuice=葡萄汁
+fluid.applegrapejuice=苹果葡萄汁
+fluid.citrusjuice=柑橘汁
+fluid.pineapplejuice=菠萝汁
+fluid.fruitjuice=水果汁
+fluid.mixedberryjuice=混合浆果汁
+fluid.strawberrybananajuice=草莓香蕉汁
+fluid.tropicaljuice=热带果汁
+
+#Glass Bottle Names
+item.EFbottle.strawberryjuice.name=草莓汁瓶
+item.EFbottle.carrotjuice.name=胡萝卜汁瓶
+item.EFbottle.bananajuice.name=香蕉汁瓶
+item.EFbottle.eggnog.name=蛋奶酒瓶
+item.EFbottle.disgustingmix.name=失败的混合物瓶
+item.EFbottle.applejuice.name=苹果汁瓶
+item.EFbottle.orangejuice.name=橘子汁瓶
+item.EFbottle.grapejuice.name=葡萄汁瓶
+item.EFbottle.applegrapejuice.name=苹果葡萄汁瓶
+item.EFbottle.citrusjuice.name=柑橘汁瓶
+item.EFbottle.pineapplejuice.name=菠萝汁瓶
+item.EFbottle.fruitjuice.name=水果汁瓶
+item.EFbottle.mixedberryjuice.name=混合浆果汁瓶
+item.EFbottle.watermelonjuice.name=西瓜汁瓶
+item.EFbottle.strawberrybananajuice.name=草莓香蕉汁瓶
+item.EFbottle.tropicaljuice.name=热带果汁瓶
+
+#Banner Names
+item.banner.extrafood_cheese.white=白色奶酪轮
+item.banner.extrafood_cheese.orange=橙色奶酪轮
+item.banner.extrafood_cheese.magenta=品红色奶酪轮
+item.banner.extrafood_cheese.lightBlue=淡蓝色奶酪轮
+item.banner.extrafood_cheese.yellow=黄色奶酪轮
+item.banner.extrafood_cheese.lime=黄绿色奶酪轮
+item.banner.extrafood_cheese.pink=粉色奶酪轮
+item.banner.extrafood_cheese.gray=灰色奶酪轮
+item.banner.extrafood_cheese.silver=淡灰色奶酪轮
+item.banner.extrafood_cheese.cyan=青色奶酪轮
+item.banner.extrafood_cheese.purple=紫色奶酪轮
+item.banner.extrafood_cheese.blue=蓝色奶酪轮
+item.banner.extrafood_cheese.brown=棕色奶酪轮
+item.banner.extrafood_cheese.green=绿色奶酪轮
+item.banner.extrafood_cheese.red=红色奶酪轮
+item.banner.extrafood_cheese.black=黑色奶酪轮
 
 #FORESTRY Intergration Names
-circuit.managedBush=Bush Farm
-managedBush=Managed Bush Farm
-for.circuit.managedBush=Bush Farm
+circuit.managedBush=灌木农场
+managedBush=手动灌木农场
+for.circuit.managedBush=灌木农场
 
 #--GUI's
 gui.JB=果汁搅拌机
 gui.AC=自动切割机
 gui.CP=压酪机
 gui.OV=烤箱
+gui.JM=混合器
+button.make=混合
+button.delete=清空
 
 #--Cook Book Names
 cookbook.Title=烹饪手册

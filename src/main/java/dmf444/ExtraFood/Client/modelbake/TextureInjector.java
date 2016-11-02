@@ -23,14 +23,14 @@ public class TextureInjector {
     public void sticherEventPre(TextureStitchEvent.Pre event) {
         for (NBTFoodSpecs spec : NBTFoodRegistry.food.foods){
 
-            event.map.registerSprite(new ResourceLocation(spec.defualtIcon));
+            event.getMap().registerSprite(new ResourceLocation(spec.defualtIcon));
 
             Enumeration<String> enumt = spec.additives.elements();
 
             while (enumt.hasMoreElements()) {
                 String s = enumt.nextElement();
 
-                event.map.registerSprite(new ResourceLocation(s));
+                event.getMap().registerSprite(new ResourceLocation(s));
             }
 
         }

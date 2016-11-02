@@ -14,8 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 
@@ -25,8 +27,8 @@ public class StrawberryBush extends BlockCrops{
     public StrawberryBush(Material material){
         super();
         float f = 0.5F;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
+        //this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setHardness(0.0F);
         this.disableStats();
         this.setCreativeTab(EFTabs.INSTANCE);
@@ -34,7 +36,7 @@ public class StrawberryBush extends BlockCrops{
     }
 
     @Override
-    protected boolean canPlaceBlockOn(Block ground)
+    public boolean canPlaceBlockOnSide(World world, BlockPos blockPos, EnumFacing side)
     {
         return true;
     }
@@ -46,10 +48,10 @@ public class StrawberryBush extends BlockCrops{
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ){
-        if (player.inventory.getCurrentItem() != null){
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    if (player.inventory.getCurrentItem() != null){
             ItemStack is = player.inventory.getCurrentItem();
-            if (is.getItem() == Items.dye){
+            if (is.getItem() == Items.DYE){
                 if (is.getItemDamage() == 15){
                     return false;
                 }
@@ -87,28 +89,23 @@ public class StrawberryBush extends BlockCrops{
         }
     }
 
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock){
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor){
         boolean drop = false; //False don't drop. True break
 
-        if(!world.isSideSolid(pos.down(), EnumFacing.UP)){
+        if(!world.isSideSolid(pos.down(), EnumFacing.UP, true)){
             drop = true;
         }
         if(drop == true){
-            this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockToAir(pos);
+            this.dropBlockAsItem((World) world, pos, world.getBlockState(pos), 0);
+            ((World)world).setBlockToAir(pos);
         }
     }
 
 
 
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
 }
 

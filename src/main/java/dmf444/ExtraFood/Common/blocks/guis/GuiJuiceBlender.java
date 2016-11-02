@@ -5,7 +5,6 @@ import dmf444.ExtraFood.Common.RecipeHandler.JuiceRegistry;
 import dmf444.ExtraFood.Common.blocks.container.ContainerJuiceBlender;
 import dmf444.ExtraFood.Common.blocks.tileentity.TileEntityJuiceBlender;
 import dmf444.ExtraFood.Core.lib.GuiLib;
-import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,7 +12,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -51,7 +50,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		//System.out.println("drawing rebbryrbtwckut");
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_BLEND);
-		this.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
+		this.mc.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		this.drawTexturedModalRect(x + 147, (int) (y + 11 + (62 - (te.tank.getFluidAmount() * 0.012))), this.getFluidTexture(te.tank.getFluid().getFluid(), false), 16, (int) (te.tank.getFluidAmount() * 0.012));
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -62,9 +61,9 @@ public class GuiJuiceBlender extends GuiContainer {
 		int y = (height - ySize) / 2;
             //draw text and stuff here
             //the parameters for drawString are: string, x, y, color
-            fontRendererObj.drawString(StatCollector.translateToLocal("gui.JB"), 8, 6, 4210752);
+            fontRendererObj.drawString(I18n.translateToLocal("gui.JB"), 8, 6, 4210752);
             //draws "Inventory" or your regional equivalent
-            fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+            fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
 	@Override
@@ -151,7 +150,7 @@ public class GuiJuiceBlender extends GuiContainer {
 		}
 		TextureAtlasSprite icon = flowing ? Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getFlowing().toString()) : Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.getStill().toString());
 		if (icon == null) {
-			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getAtlasSprite("missingno");
+			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE)).getAtlasSprite("missingno");
 		}
 		return icon;
 	}

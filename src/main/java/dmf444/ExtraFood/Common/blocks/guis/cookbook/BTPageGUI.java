@@ -13,13 +13,13 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import org.lwjgl.opengl.GL11;
 
 import java.lang.reflect.InvocationTargetException;
@@ -53,13 +53,13 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
  public BTPageGUI(String pagename, Boolean multipg, int multiplePG) {
 
 	 //This will be used to call the name of the page from the .lang file
-	pageTextLeft = StatCollector.translateToLocal("cookbookL." + pagename);
-	pageTextRight = StatCollector.translateToLocal("cookbookR." + pagename);
+	pageTextLeft = I18n.translateToLocal("cookbookL." + pagename);
+	pageTextRight = I18n.translateToLocal("cookbookR." + pagename);
 	this.items = ExtraFood.crafterPage.getArray(pagename);
 	this.irender = Minecraft.getMinecraft().getRenderItem();
 	pagen = pagename;
 	
-	ris = (ArrayList<CBElement>) this.digestString(StatCollector.translateToLocal("cookbook." + pagename));
+	ris = (ArrayList<CBElement>) this.digestString(I18n.translateToLocal("cookbook." + pagename));
 	this.pagesAllowed = CookbookButtonLoader.bookButton.NumOfPages(pagename);
 	this.Morethanone = (CookbookButtonLoader.bookButton.NumOfPages(pagename) > 1 ? true : false);
 	
@@ -77,7 +77,7 @@ ArrayList<ArrayList<Object>> p3r = new ArrayList<ArrayList<Object>>();
      int i = (this.width - CookBookGUI.getAchievementsPaneWidth()) / 2;
      int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
      GL11.glPushMatrix();
-     if (StatCollector.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
+     if (I18n.translateToLocal("cookbook." + pagen + "2") != "cookbook." + pagen + "2"){
     	 if(Morethanone){
      this.buttonList.add(this.next = new ButtonNextPageGUI(0, i + 221, j + 160, true));
 	 this.buttonList.add(this.backpage = new ButtonNextPageGUI(1, i + 13, j + 160, false));
@@ -223,7 +223,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
 				this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 16, y1 - 33, null);
 			}
 			RenderHelper.enableStandardItemLighting();
-				this.irender.renderItemIntoGUI(new ItemStack(Items.coal), x1 + 16, y1 + 49);
+				this.irender.renderItemIntoGUI(new ItemStack(Items.COAL), x1 + 16, y1 + 49);
     	}
     }
     return -150;
@@ -290,7 +290,7 @@ public int drawElementFurnace(ArrayList<Object> args, int x, int y, int flag){
     }
     private ItemStack conversioncheck(ItemStack i){
     	//EFLog.fatal(i);
-    		if(i.getItem() == Item.getItemFromBlock(Blocks.carrots)){
+    		if(i.getItem() == Item.getItemFromBlock(Blocks.CARROTS)){
     			return null;
     		}
     	return i;
@@ -424,7 +424,7 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 		if(page < pagesAllowed){
 		page+= 2;
 		//if (StatCollector.translateToLocal("cookbook." + pagen + page) != "cookbook." + pagen + page){
-		this.pageTextLeft = StatCollector.translateToLocal(StatCollector.translateToLocal("cookbook." + pagen + page));
+		this.pageTextLeft = I18n.translateToLocal(I18n.translateToLocal("cookbook." + pagen + page));
 		}
 		//else {
 		//	page--;
@@ -432,11 +432,11 @@ public int drawElementHungerStats(ArrayList<Object> args, int x, int y, int flag
 	}
 	if (button.id == 1){
 		page-= 2;
-		if (StatCollector.translateToLocal("cookbook." + pagen + page) != "cookbook." + pagen + page && page > 0){
-		this.pageTextLeft = StatCollector.translateToLocal("cookbook." + pagen + page);
+		if (I18n.translateToLocal("cookbook." + pagen + page) != "cookbook." + pagen + page && page > 0){
+		this.pageTextLeft = I18n.translateToLocal("cookbook." + pagen + page);
 		}
 		else if (page <= 0){
-			this.pageTextLeft = StatCollector.translateToLocal("cookbook." + pagen);
+			this.pageTextLeft = I18n.translateToLocal("cookbook." + pagen);
 			page = 0;
 		}
 	}	

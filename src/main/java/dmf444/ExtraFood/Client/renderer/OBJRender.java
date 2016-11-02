@@ -5,10 +5,12 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.client.resources.IReloadableResourceManager;
@@ -18,7 +20,6 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.Attributes;
-import net.minecraftforge.client.model.IFlexibleBakedModel;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -34,7 +35,7 @@ import java.util.Map;
  * Created by David on 1/10/2016.
  */
 public class OBJRender {
-    static Map<String, IFlexibleBakedModel> loadedModels = Maps.newHashMap();
+    static Map<String, IBakedModel> loadedModels = Maps.newHashMap();
 
     // A vertex format with normals that doesn't break the OBJ loader.
     // FIXME: Replace with DefaultvertexFormats.POSITION_TEX_COLOR_NORMAL when it works.
@@ -66,28 +67,28 @@ public class OBJRender {
         }
     }
 
-    public static void renderModel(IFlexibleBakedModel model, int color)
+    public static void renderModel(IBakedModel model, int color)
     {
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        worldrenderer.begin(GL11.GL_QUADS, model.getFormat());
-        for (BakedQuad bakedquad : model.getGeneralQuads())
+        VertexBuffer worldrenderer = tessellator.getBuffer();
+        worldrenderer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
+        for (BakedQuad bakedquad : model.getQuads(null, null, 0))
         {
             LightUtil.renderQuadColor(worldrenderer, bakedquad, color);
         }
         tessellator.draw();
     }
 
-    public static IFlexibleBakedModel loadModel(String resourceName)
+    public static IBakedModel loadModel(String resourceName)
     {
-        IFlexibleBakedModel model = loadedModels.get(resourceName);
+        IBakedModel model = loadedModels.get(resourceName);
         if (model != null)
             return model;
 
         try
         {
             final TextureMap textures = Minecraft.getMinecraft().getTextureMapBlocks();
-            OBJModel modelz = ((OBJModel) OBJLoader.instance.loadModel(new ResourceLocation("extrafood:models/"+resourceName)));
+            OBJModel modelz = ((OBJModel) OBJLoader.INSTANCE.loadModel(new ResourceLocation("extrafood:models/"+resourceName)));
             IModel mod = ModelLoaderRegistry.getModel(new ResourceLocation("extrafood:"+resourceName));
             if(modelz != null){
                 modelz.process(ImmutableMap.of("flip-v", "true"));
@@ -120,6 +121,9 @@ public class OBJRender {
         catch (IOException e)
         {
             throw new ReportedException(new CrashReport("Error loading custom model " + resourceName, e));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
 }

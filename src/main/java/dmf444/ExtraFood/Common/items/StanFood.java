@@ -3,8 +3,7 @@ package dmf444.ExtraFood.Common.items;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
 import net.minecraft.item.ItemFood;
 
-//import net.minecraft.client.renderer.texture.IIconRegister;
-//import net.minecraft.util.IIcon;
+
 
 public class StanFood extends ItemFood {
 	
@@ -17,16 +16,6 @@ public class StanFood extends ItemFood {
 		super(foodBar, saturation, false);
 		this.setCreativeTab(EFTabs.INSTANCE);
 	}
-
-    /*
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        itemIcon = iconRegister.registerIcon("extrafood:" + this.getUnlocalizedName().substring(5)); 
-    }*/
-    
-
 
 
 }

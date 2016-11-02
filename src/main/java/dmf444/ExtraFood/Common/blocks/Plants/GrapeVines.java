@@ -2,34 +2,33 @@ package dmf444.ExtraFood.Common.blocks.Plants;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
-import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+//import net.minecraft.util.EnumWorldBlockLayer;
+
+//import net.minecraft.util.AxisAlignedBB;
 
 /**
  * Created by TeamDMFMM on 3/24/2016. Code originally written
@@ -42,13 +41,13 @@ public class GrapeVines extends Block implements IShearable{
     public static final PropertyInteger GROWTH = PropertyInteger.create("growth", 0, 4);
 
     public GrapeVines() {
-        super(Material.vine);
+        super(Material.VINE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(GROWTH, 0));
         this.setCreativeTab(EFTabs.INSTANCE);
         this.setTickRandomly(true);
-        this.setBlockBounds(0, 0.8f, 0, 1, 1, 1);
+       // this.setBlockBounds(0, 0.8f, 0, 1, 1, 1);
         this.setHardness(0.0F);
-        this.setStepSound(soundTypeGrass);
+        this.setSoundType(SoundType.GROUND);
         this.disableStats();
     }
 
@@ -59,7 +58,7 @@ public class GrapeVines extends Block implements IShearable{
 
         if (world.getLightFromNeighbors(pos.up()) >= 9)
         {
-            int i = ((Integer)state.getValue(GROWTH)).intValue();
+            int i = (Integer) state.getValue(GROWTH);
 
             if (i < 4) {
                 if (rand.nextInt((int)(25.0F / 2) + 1) == 0) {
@@ -81,67 +80,76 @@ public class GrapeVines extends Block implements IShearable{
                     facing = EnumFacing.SOUTH;
                     foundAvaiable = true;
                 }
-                if(foundAvaiable && facing != null){
+                if(foundAvaiable){
                     world.setBlockState(pos.offset(facing), this.getDefaultState(), 2);
-                    world.markBlockForUpdate(pos.offset(facing));
+                   // world.markBlockForUpdate(pos.offset(facing)); real vines make no notify, so me no make notify
                 }
             }
         }
     }
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
-
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (world.getBlockState(pos).getValue(GROWTH) != 4) {
             return false;
         }else{
             //SPAWN ITEM
+
             if(!world.isRemote) {
-                world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.grapes)));
-            }
+                           world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.grapes)));
+                            }
             world.setBlockState(pos, this.getDefaultState(), 2);
-            world.markBlockForUpdate(pos);
+
+            // world.setBlockState(pos, this.getDefaultState(), 2);
+            //  world.markBlockForUpdate(pos);
             return true;
         }
-
-
     }
+
+
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         this.checkAndDropBlock(world, pos, state);
     }
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor)
     {
-        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
-        this.checkAndDropBlock(worldIn, pos, state);
+        super.onNeighborChange(world, pos, neighbor);
+        if (world instanceof World) {
+            this.checkAndDropBlock((World) world, pos, world.getBlockState(pos));
+        }
     }
 
     protected void checkAndDropBlock(World world, BlockPos pos, IBlockState state)
     {
-        if (world.getBlockState(pos.up()).getBlock() == Blocks.air || world.getBlockState(pos.up()).getBlock().getBlockBoundsMinY() != 0) {
+        if (world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
             this.dropBlockAsItem(world, pos, state, 0);
-            world.setBlockState(pos, Blocks.air.getDefaultState(), 3);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
         }
     }
 
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
-        return null;
+        return NULL_AABB;
     }
 
-    public boolean isOpaqueCube()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return new AxisAlignedBB(0, 0.8f, 0, 1, 1, 1);
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
-    public boolean isFullCube()
-    {
-        return false;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
-    {
-        return EnumWorldBlockLayer.CUTOUT;
+    @Override
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
     }
 
     @Override
@@ -152,22 +160,22 @@ public class GrapeVines extends Block implements IShearable{
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
         List<ItemStack> itemStacks = new ArrayList<>();
-        itemStacks.add(new ItemStack(Blocks.vine));
+        itemStacks.add(new ItemStack(Blocks.VINE));
         return itemStacks;
     }
 
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(GROWTH, Integer.valueOf(meta));
+        return this.getDefaultState().withProperty(GROWTH, meta);
     }
 
     public int getMetaFromState(IBlockState state)
     {
-        return ((Integer)state.getValue(GROWTH)).intValue();
+        return (Integer) state.getValue(GROWTH);
     }
 
-    protected BlockState createBlockState()
-    {
-        return new BlockState(this, new IProperty[] {GROWTH});
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, GROWTH);
     }
 }

@@ -2,12 +2,12 @@ package dmf444.ExtraFood.Common.WorldGen;
 
 
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
-import dmf444.ExtraFood.Core.util.EFLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
@@ -18,8 +18,8 @@ public class StrawberryWorldGen implements IWorldGenerator {
 
 
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-        switch(world.provider.getDimensionId()){
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        switch(world.provider.getDimension()){
             case -1: generateNether(world, random, chunkX * 16, chunkZ * 16);
             case 0: generateSurface(world, random, chunkX * 16, chunkZ * 16);
             case 1: generateEnd(world, random, chunkX * 16, chunkZ * 16);
@@ -56,11 +56,11 @@ public class StrawberryWorldGen implements IWorldGenerator {
 
 
                     IBlockState pie = BlockLoader.strawberryBush.getDefaultState();
-                    if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.tallgrass && random.nextInt(3) == 0){
+                    if (world.getBlockState(new BlockPos(xx + xpos, by, zz + ypos)).getBlock() == Blocks.TALLGRASS && random.nextInt(3) == 0){
                         world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
                         //EFLog.error("xx: " + xx + xpos + " zz: " + zz + ypos);
                     }
-                    else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.grass && random.nextInt(3) == 0){
+                    else if (world.getBlockState(new BlockPos(xx + xpos, by - 1, zz + ypos)).getBlock() == Blocks.GRASS && random.nextInt(3) == 0){
                         world.setBlockState(new BlockPos(xx + xpos, by, zz + ypos), pie);
                         //EFLog.error("xx: " + xx + " zz: " + zz  + "Y:" + by);
                     }

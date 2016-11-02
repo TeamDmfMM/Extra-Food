@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
 
 public class TileEntityOven extends TileEntity implements ISidedInventory, ITickable {
@@ -93,9 +93,10 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 				}
 				
 			}
-			if (ok == true){
+			if (ok){
 				continue;
 			}
+
 			NBTFoodSpecs sepcky = NBTFoodRegistry.food.getSpecs(recipet.food);
 
 			int value = 0;
@@ -113,6 +114,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 			else {
 				items[i].stackSize -= value;
 			}
+			
 		}
 		setTime(0);
 		going = false;
@@ -179,7 +181,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 	}
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return null;
     }
 
@@ -246,7 +248,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 	    }
 
 	    @Override
-	    public void writeToNBT(NBTTagCompound tagCompound) {
+	    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
 	            super.writeToNBT(tagCompound);
 	                            
 	            NBTTagList itemList = new NBTTagList();
@@ -260,6 +262,7 @@ public class TileEntityOven extends TileEntity implements ISidedInventory, ITick
 	                    }
 	            }
 	            tagCompound.setTag("Inventory", itemList);
+			return tagCompound;
 	    }
 
 		public int getTime() {

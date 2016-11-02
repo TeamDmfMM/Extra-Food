@@ -1,5 +1,5 @@
 package dmf444.ExtraFood.Core.Crossmod;
-
+/*
 import net.minecraft.item.ItemStack;
 
 
@@ -11,7 +11,8 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import dmf444.ExtraFood.Common.blocks.BlockLoader;
 import dmf444.ExtraFood.Common.items.ItemLoader;
-
+*/
+/*
 public class ThaumcraftAspects {
 	
 	//ThaumcraftApi.registerObjectTag(new ItemStack(Blocks.cobblestone), (new AspectList()).add(Aspect.ENTROPY, 1).add(Aspect.EARTH, 1));
@@ -51,3 +52,4 @@ public class ThaumcraftAspects {
 		return new ItemStack(block, 1);
 	}
 }
+*/

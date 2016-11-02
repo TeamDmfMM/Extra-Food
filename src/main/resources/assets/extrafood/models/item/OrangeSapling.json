@@ -1,5 +1,5 @@
 {
-  "parent": "builtin/generated",
+  "parent": "item/generated",
   "textures": {
     "layer0": "ExtraFood:blocks/Sapling_Orange"
   },
@@ -12,7 +12,7 @@
     "firstperson": {
       "rotation": [ 0, -135, 25 ],
       "translation": [ 0, 4, 2 ],
-      "scale": [ 1.7, 1.7, 1.7 ]
+     "scale": [ 1.7, 1.7, 1.7 ]
     }
   }
 }

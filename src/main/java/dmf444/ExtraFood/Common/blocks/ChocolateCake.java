@@ -3,8 +3,9 @@ package dmf444.ExtraFood.Common.blocks;
 
 import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.block.BlockCake;
-import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,9 +21,9 @@ public class ChocolateCake extends BlockCake{
 	
 	@SideOnly(Side.CLIENT)
     @Override
-    public Item getItem(World world, BlockPos pos)
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
     {
-        return ItemLoader.ChocolateCake;
+        return new ItemStack(ItemLoader.ChocolateCake, 1);
     }
     /*
 	@SideOnly(Side.CLIENT)

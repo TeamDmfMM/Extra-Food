@@ -1,12 +1,15 @@
 package dmf444.ExtraFood.Common.items;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import dmf444.ExtraFood.ExtraFood;
 import dmf444.ExtraFood.Common.blocks.guis.CookBookGUI;
+import dmf444.ExtraFood.ExtraFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Cookbook extends StanItem {
 
@@ -16,11 +19,11 @@ public class Cookbook extends StanItem {
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
 
 				// open the inventory:
 				player.openGui(ExtraFood.instance, CookBookGUI.GUI_ID, world, 0, 0, 0);
-		return stack;
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 		}
     @SideOnly(Side.CLIENT)
 

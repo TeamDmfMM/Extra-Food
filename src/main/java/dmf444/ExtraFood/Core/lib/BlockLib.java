@@ -2,6 +2,8 @@ package dmf444.ExtraFood.Core.lib;
 
 public class BlockLib {
 
+	public static String bPineappleCrop = "CropPineapple";
+	public static String bGrapeVine = "GrapeVine";
 
 	public static String bBB = "Banana_Bunch";
 	public static String bBS = "Bannana_Sapling";
@@ -25,6 +27,14 @@ public class BlockLib {
     public static String bFluidStraw = "StrawberryJuice";
     public static String bFluidCarrot = "Fcarrotjuice";
 	public static String bDisgustingMix = "FdisgustingMix";
+
+	public static String bOliveBush = "OliveTreeSapling";
+	public static String bOliveLeaf = "OliveLeaf";
+	public static String bBlockOrange = "OrangeBlock";
+	public static String bAppleJuice = "AppleJuice";
+	public static String bOrangeJuice = "BOrangeJuice";
+	public static String bMelonJuice = "BMelonJuice";
+
 	public static final String APPLE_GRAPE_JUICE_BLOCK = "FluidappleGrape";
 	public static final String GRAPE_JUICE_BLOCK = "Fluidgrape";
 	public static final String CITRUS_JUICE_BLOCK = "Fluidcitrus";
@@ -33,14 +43,5 @@ public class BlockLib {
 	public static final String STRAWBERRY_BANANA_JUICE = "FluidstrawberryBanana";
 	public static final String MIXED_BERRY_JUICE = "FluidmixedBerry";
 	public static final String TROPICAL_JUICE = "Fluidtropical";
-
-	public static String bOliveBush = "OliveTreeSapling";
-	public static String bOliveLeaf = "OliveLeaf";
-	public static String bBlockOrange = "OrangeBlock";
-	public static String bAppleJuice = "AppleJuice";
-	public static String bOrangeJuice = "BOrangeJuice";
-	public static String bMelonJuice = "BMelonJuice";
-	public static String bPineappleCrop = "CropPineapple";
-	public static String bGrapeVine = "GrapeVine";
 	public static final String ORANGE_SAPLING = "OrangeSapling";
 }

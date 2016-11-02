@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -33,9 +32,9 @@ public class JuiceRegistry {
 		
 		registerJuice(FluidLoader.Fstrawberryjuice, ItemLoader.strawberry);
 		registerJuice(FluidLoader.Fbananajuice, ItemLoader.banana);
-		registerJuice(FluidLoader.Fcarrotjuice, Items.carrot);
-		registerJuice(FluidLoader.Fwatermelonjuice, Items.melon);
-		registerJuice(FluidLoader.Fapplejuice, Items.apple);
+		registerJuice(FluidLoader.Fcarrotjuice, Items.CARROT);
+		registerJuice(FluidLoader.Fwatermelonjuice, Items.MELON);
+		registerJuice(FluidLoader.Fapplejuice, Items.APPLE);
 		registerJuice(FluidLoader.Forangejuice, ItemLoader.orange);
 		registerJuice(FluidLoader.Fgrapejuice, ItemLoader.grapes);
 		registerJuice(FluidLoader.FpinappleJuice, ItemLoader.pineapple);

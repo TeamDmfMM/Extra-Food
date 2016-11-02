@@ -8,6 +8,7 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,10 +18,11 @@ import java.util.Map;
  */
 public class FluidContainerRegistryHelper {
 
-    private static Map<Item, IFluidContainerItem> specialCases = new HashMap<>();
+    public static Map<Item, ArrayList<IFluidContainerItem>> specialCases = new HashMap<>();
+
 
     static {
-        specialCases.put(Items.glass_bottle, (IFluidContainerItem) FluidLoader.FluidContainer);
+        specialCases.put(Items.GLASS_BOTTLE, new ArrayList() {{ add(FluidLoader.FluidContainer); }});
     }
 
     public static boolean isFilledContainer(ItemStack stackInSlot) {
@@ -77,8 +79,14 @@ public class FluidContainerRegistryHelper {
 
     public static int getContainerCapacity(FluidStack fluidStack, ItemStack stackInSlot) {
         if (specialCases.containsKey(stackInSlot.getItem())) {
-            IFluidContainerItem iFluidContainerItem = specialCases.get(stackInSlot.getItem());
-            return iFluidContainerItem.getCapacity(stackInSlot);
+            ArrayList<IFluidContainerItem> iFluidContainerItems = specialCases.get(stackInSlot.getItem());
+            int result = 0;
+            for (IFluidContainerItem iFluidContainerItem : iFluidContainerItems) {
+                result = Math.max(iFluidContainerItem.fill(stackInSlot, fluidStack, false), result);
+            }
+            if (result > 0) {
+                return result;
+            }
         }
         if (stackInSlot.getItem() instanceof IFluidContainerItem) {
             return ((IFluidContainerItem) stackInSlot.getItem()).getCapacity(stackInSlot);
@@ -90,11 +98,13 @@ public class FluidContainerRegistryHelper {
 
     public static ItemStack fillFluidContainer(FluidStack fluidStack, ItemStack stackInSlot) {
         if (specialCases.containsKey(stackInSlot.getItem())) {
-            IFluidContainerItem iFluidContainerItem = specialCases.get(stackInSlot.getItem());
+            ArrayList<IFluidContainerItem> iFluidContainerItems = specialCases.get(stackInSlot.getItem());
             ItemStack working = stackInSlot.copy();
-            int amt = iFluidContainerItem.fill(working, fluidStack, true);
-            if (amt != 0) {
-                return working;
+            for (IFluidContainerItem iFluidContainerItem : iFluidContainerItems) {
+                int amt = iFluidContainerItem.fill(working, fluidStack, true);
+                if (amt != 0) {
+                    return working;
+                }
             }
         }
         if (stackInSlot.getItem() instanceof IFluidContainerItem) {

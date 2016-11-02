@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -26,7 +26,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
     private static final int[] slots_top = new int[]{0};
     private static final int[] slots_bottom = new int[]{2};
     private static final int[] slots_sides = new int[]{1};
-    public FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 5);
+    public FluidTank tank = new FluidTank(5000);
     public ItemStack[] items;
     public FluidStack juice;
 
@@ -90,7 +90,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
     }
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return null;
     }
 
@@ -119,9 +119,9 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-        if (slot == 0 && itemstack.getItem() != Items.bucket) {
+        if (slot == 0 && itemstack.getItem() != Items.BUCKET) {
             return true;
-        } else if (slot == 1 && itemstack.getItem() == Items.bucket) {
+        } else if (slot == 1 && itemstack.getItem() == Items.BUCKET) {
             return true;
         }
         return false;
@@ -198,7 +198,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
                     setInventorySlotContents(2, FluidContainerRegistryHelper.fillFluidContainer(tank.drain(amount, true), getStackInSlot(1)));
                     setInventorySlotContents(1, null);
                     if (!getWorld().isRemote) {
-                        ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimensionId(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
+                        ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }
                 }
             }
@@ -222,7 +222,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 
     }
 
-    public void writeToNBT(NBTTagCompound tag) {
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         NBTTagList t = new NBTTagList();
         int s = 0;
         for (ItemStack i : items) {
@@ -256,6 +256,7 @@ public class TileEntityJuiceBlender extends TileEntity implements ISidedInventor
 			tag.setInteger("Tracker", outputint);
 			tank.writeToNBT(tag);
 		 	*/
+        return tag;
     }
 
     public void readFromNBT(NBTTagCompound tag) {

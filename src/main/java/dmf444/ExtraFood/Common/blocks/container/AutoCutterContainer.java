@@ -6,7 +6,7 @@ import dmf444.ExtraFood.Common.items.ItemLoader;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,9 +32,9 @@ public class AutoCutterContainer extends Container {
             bindPlayerInventory(inventoryPlayer);
     }
     @Override
-    public void onCraftGuiOpened(ICrafting crafters)
+    public void addListener(IContainerListener crafters)
     {
-        super.onCraftGuiOpened(crafters);
+        super.addListener(crafters);
         crafters.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
     }
 
@@ -46,9 +46,9 @@ public class AutoCutterContainer extends Container {
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (int i = 0; i < this.listeners.size(); ++i)
         {
-            ICrafting icrafting = (ICrafting)this.crafters.get(i);
+            IContainerListener icrafting = (IContainerListener) this.listeners.get(i);
 
             if (this.localTime != this.tileEntity.getTotalTime())
             {

@@ -3,12 +3,14 @@ package dmf444.ExtraFood.Common.items.nbt;
 import dmf444.ExtraFood.Core.util.Tabs.OvenFoodTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -48,7 +50,7 @@ public class NBTFood extends ItemFood {
 	    {
 	        --stack.stackSize;
 	        player.getFoodStats().addStats(getHunger(stack), getSaturation(stack));
-	        world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 	        this.onFoodEaten(stack, world, player);
 	        return stack;
 	    }
@@ -124,8 +126,8 @@ public class NBTFood extends ItemFood {
     		}
     	}
     	for (String i : things){
-    		if (StatCollector.canTranslate("add." + name + "." + i)){
-    			text.add("- " + EnumChatFormatting.GREEN.toString() + StatCollector.translateToLocal("add." + name + "." + i));
+    		if (I18n.canTranslate("add." + name + "." + i)){
+    			text.add("- " + TextFormatting.GREEN.toString() + I18n.translateToLocal("add." + name + "." + i));
     		}
     		else{
     			text.add("- " + i);

@@ -29,7 +29,7 @@ public class NBTFoodLoader {
 				continue;
 			}
 			else {
-				GameRegistry.registerItem(foods.get(food), "NBT" + food);
+				registerItem(foods.get(food), "NBT" + food);
 			}
 		}
 	}
@@ -38,5 +38,9 @@ public class NBTFoodLoader {
 		return foods.get(name);
 	}
 
+	private static void registerItem(Item item, String name){
+		item.setRegistryName(name);
+		GameRegistry.register(item);
+	}
 }
 	
