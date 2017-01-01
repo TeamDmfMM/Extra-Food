@@ -57,7 +57,7 @@ public class BlockLoader {
     public static final Block TROPICAL_JUICE_BLOCK = new GeneralFluid(FluidLoader.Ftropicaljuice, Material.WATER, BlockLib.TROPICAL_JUICE);
 
 
-    private static void registerBlocks() {
+    public static void registerBlocks() {
         try{
             for(Field field : BlockLoader.class.getDeclaredFields()){
                 if(field.get(null) instanceof Block){

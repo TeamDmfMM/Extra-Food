@@ -4,6 +4,7 @@ package com.dmfmm.extrafood.blocks.Machines;
 
 import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.blocks.BlockContainerRotate;
+import com.dmfmm.extrafood.tileentities.JuiceMixerTileEntity;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -27,7 +28,6 @@ public class BlockJuiceMixer  extends BlockContainerRotate {
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        // TODO Auto-generated method stub
         return new JuiceMixerTileEntity();
     }
     /*public int getRenderType() {

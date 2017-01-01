@@ -1,6 +1,7 @@
 package com.dmfmm.extrafood.blocks.Plants;
 
 
+import com.dmfmm.extrafood.worldgen.gen.OliveTreeGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +25,7 @@ public class OliveTreeSapling extends BananaTreeSapling {
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new OliveWorldGenTrees(false, 6, 3, 3, true);
+        Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new OliveTreeGenerator();
         int i1 = 0;
         int j1 = 0;
 

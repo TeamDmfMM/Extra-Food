@@ -3,6 +3,7 @@ package com.dmfmm.extrafood.blocks.Machines;
 
 import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.blocks.BlockContainerRotate;
+import com.dmfmm.extrafood.tileentities.CheesePressTileEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

@@ -3,6 +3,7 @@ package com.dmfmm.extrafood.blocks.Machines;
 
 import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.blocks.BlockContainerRotate;
+import com.dmfmm.extrafood.tileentities.OvenTileEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +27,7 @@ public class Oven extends BlockContainerRotate {
     //Make sure you set this as your TileEntity class relevant for the block!
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileEntityOven();
+        return new OvenTileEntity();
     }
 
     //You don't want the normal render type, or it wont render properly.

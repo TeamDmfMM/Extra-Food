@@ -1,6 +1,8 @@
 package com.dmfmm.extrafood.library;
 
 
+import com.dmfmm.extrafood.utilities.ConfigHandler;
+
 public class ItemLib {
 
     public static final String CHEESE_WHEEL = "Cheese_Wheel";

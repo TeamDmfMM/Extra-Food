@@ -2,6 +2,7 @@ package com.dmfmm.extrafood.blocks.Plants;
 
 
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
+import com.dmfmm.extrafood.worldgen.gen.BananaTreeGenerator;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
@@ -66,7 +67,7 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new BananaWorldGenTrees(false, 6, 3, 3, true);
+        Object object = rand.nextInt(14) == 0 ? new WorldGenBigTree(true) :  new BananaTreeGenerator();
         int i1 = 0;
         int j1 = 0;
 

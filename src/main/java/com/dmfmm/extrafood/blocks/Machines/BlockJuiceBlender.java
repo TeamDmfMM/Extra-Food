@@ -3,6 +3,7 @@ package com.dmfmm.extrafood.blocks.Machines;
 
 import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.blocks.BlockContainerRotate;
+import com.dmfmm.extrafood.tileentities.JuiceBlenderTileEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +37,7 @@ public class BlockJuiceBlender extends BlockContainerRotate {
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileEntityJuiceBlender();
+        return new JuiceBlenderTileEntity();
     }
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.INVISIBLE;

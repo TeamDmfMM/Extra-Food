@@ -19,9 +19,9 @@ public class ItemLoader {
 
     private static boolean FRegister=false;
 
-    public static final Item KNIFE = new Knife().setUnlocalizedName(ItemLib.iK);
-    public static final Item COOKBOOK = new Cookbook().setUnlocalizedName(ItemLib.iCB);
-    public static final Item GRATER = new Grater().setUnlocalizedName(ItemLib.iGrater);
+    public static final Item KNIFE = new Knife().setUnlocalizedName(ItemLib.KNIFE);
+    public static final Item COOKBOOK = new CookBook().setUnlocalizedName(ItemLib.COOKBOOK);
+    public static final Item GRATER = new Grater().setUnlocalizedName(ItemLib.GRATER);
     public static final Item BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, BlockLoader.STRAWBERRY_JUICE_BLOCK, ItemLib.STRAWBERRY_BUCKET);
     public static final Item BUCKET_BANANA = new BucketEdible(6, 0.6F, BlockLoader.BANANA_JUICE_BLOCK, ItemLib.BANANA_BUCKET);
     public static final Item BUCKET_CARROT = new BucketEdible(6, 0.9F, BlockLoader.CARROT_JUICE_BLOCK, ItemLib.CARROT_BUCKET);
