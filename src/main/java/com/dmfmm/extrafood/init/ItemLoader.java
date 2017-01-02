@@ -113,9 +113,9 @@ public class ItemLoader {
 
     public static void registerItems(){
         try{
-            for(Field field : BlockLoader.class.getDeclaredFields()){
-                if(field.get(null) instanceof Block){
-                    GameRegistry.register((Block)field.get(null));
+            for(Field field : ItemLoader.class.getDeclaredFields()){
+                if(field.get(null) instanceof Item){
+                    GameRegistry.register((Item)field.get(null));
 
                 }
             }

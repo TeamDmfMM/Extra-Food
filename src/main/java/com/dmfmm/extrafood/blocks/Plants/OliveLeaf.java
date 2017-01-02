@@ -93,7 +93,7 @@ public class OliveLeaf extends BananaLeaf {
                 addenum = 50000;
                 break;
     }
-        return addenum+i;
+        return /*addenum+*/i;
     }
     public IBlockState getStateFromMeta(int meta)
     {

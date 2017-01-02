@@ -1,8 +1,6 @@
 package com.dmfmm.extrafood.blocks;
 
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
-import dmf444.ExtraFood.Core.util.Tabs.EFTabs;
-import dmf444.ExtraFood.Core.util.BPHelp;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -18,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -109,11 +108,11 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, entity, stack);
-        world.setBlockState(pos, state.withProperty(FACING, BPHelp.getFFE(world, pos, entity, true)), 2);
+        world.setBlockState(pos, state.withProperty(FACING, getFFE(world, pos, entity, true)), 2);
     }
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, BPHelp.getFFE(worldIn, pos, placer, true));
+        return this.getDefaultState().withProperty(FACING, getFFE(worldIn, pos, placer, true));
     }
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
@@ -186,6 +185,27 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, new IProperty[] {FACING});
+    }
+
+
+    public static EnumFacing getFFE/*getFacingFromEntity*/(World world, BlockPos clickedBlock, EntityLivingBase entityIn, boolean safe)
+    {
+        if (MathHelper.abs((float)entityIn.posX - (float)clickedBlock.getX()) < 2.0F && MathHelper.abs((float)entityIn.posZ - (float)clickedBlock.getZ()) < 2.0F)
+        {
+            double d0 = entityIn.posY + (double)entityIn.getEyeHeight();
+
+            if (d0 - (double)clickedBlock.getY() > 2.0D)
+            {
+                return  safe ? EnumFacing.SOUTH :EnumFacing.UP;
+            }
+
+            if ((double)clickedBlock.getY() - d0 > 0.0D)
+            {
+                return safe ? EnumFacing.SOUTH: EnumFacing.DOWN;
+            }
+        }
+
+        return entityIn.getHorizontalFacing().getOpposite();
     }
 
 }
