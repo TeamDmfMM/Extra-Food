@@ -28,10 +28,10 @@ public class ItemLoader {
     public static final Item BUCKET_SEA_WATER = new BucketEdible(2, 0.5F, Blocks.WATER, ItemLib.SEA_WATER_BUCKET);
     public static final Item BUCKET_PURIFIED_WATER = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.PURIFIED_WATER_BUCKET);
     public static final Item BUCKET_EGGNOG = new BucketEdible(9, 5.0F, BlockLoader.EGGNOG_FLUID_BLOCK, ItemLib.EGGNOG);
-    public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.TOMATO_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.TOMATO_SEED).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.TOMATO_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.TOMATO_SEED).setRegistryName(ItemLib.TOMATO_SEED).setCreativeTab(ExtraFoodTab.INSTANCE);
     public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS, true);
-    public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.PINEAPPLE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.PINEAPPLE).setCreativeTab(ExtraFoodTab.INSTANCE);
-    public static final Item LETTUCE_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.LETTUCE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.COATED_LETTUCE_SEEDS).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.PINEAPPLE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.PINEAPPLE).setRegistryName(ItemLib.PINEAPPLE).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item LETTUCE_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.LETTUCE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.COATED_LETTUCE_SEEDS).setRegistryName(ItemLib.COATED_LETTUCE_SEEDS).setCreativeTab(ExtraFoodTab.INSTANCE);
     public static final Item MUFFIN_PAN = new GenericItem(ItemLib.MUFFIN_PAN, true);
     public static final Item DOUGH = new GenericItem(ItemLib.DOUGH, true);
 
@@ -108,19 +108,19 @@ public class ItemLoader {
     public static final Item FRUIT_CAKE = new StanFood(ItemLib.FRUIT_CAKE, 12, 5.0F);
     public static final Item GINGER_BREAD = new StanFood(ItemLib.GINGER_BREAD, 9, 5.0F);
     public static final Item CHESTNUTS = new StanFood(ItemLib.CHESTNUTS, 10, 5.0F);
-    public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.CHOCOLATE_CAKE_BLOCK).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
+    public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.CHOCOLATE_CAKE_BLOCK).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setRegistryName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
 
 
     public static void registerItems(){
         try{
             for(Field field : ItemLoader.class.getDeclaredFields()){
-                if(field.get(null) instanceof Item){
+                if(field.get(null) instanceof Item && !(field.get(null) instanceof StanFood) && !(field.get(null) instanceof BucketEdible)){
                     GameRegistry.register((Item)field.get(null));
 
                 }
             }
         }catch (Exception e){
-
+            System.out.println("HELELELELELELE");
         }
     }
 

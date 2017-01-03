@@ -1,6 +1,7 @@
 package com.dmfmm.extrafood.items;
 
 import com.dmfmm.extrafood.init.ItemLoader;
+import com.dmfmm.extrafood.library.ItemLib;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -18,7 +19,7 @@ public class Knife extends GenericItem {
 
     public Knife()
     {
-        super("knife", true);
+        super(ItemLib.KNIFE, true);
         this.maxStackSize = 1;
         this.setMaxDamage(10);
         //this.setTextureName("extrafood:knife");

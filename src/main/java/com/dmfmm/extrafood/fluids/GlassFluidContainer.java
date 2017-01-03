@@ -1,9 +1,11 @@
 package com.dmfmm.extrafood.fluids;
 
+import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.init.FluidLoader;
 import com.dmfmm.extrafood.library.ItemLib;
 import com.dmfmm.extrafood.utilities.EFLog;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,10 +21,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

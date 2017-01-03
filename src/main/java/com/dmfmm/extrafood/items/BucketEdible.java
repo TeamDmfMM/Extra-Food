@@ -1,10 +1,13 @@
 package com.dmfmm.extrafood.items;
 
 
+import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.fluids.GeneralFluid;
+import com.dmfmm.extrafood.library.ModInfo;
 import com.dmfmm.extrafood.utilities.FluidContainerRegistryHelper;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -18,9 +21,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.ArrayList;
 
@@ -34,6 +40,7 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
     public BucketEdible(int foodBar, float saturation, Block fluidBlock, String localName){
         super(fluidBlock);
         this.setCreativeTab(ExtraFoodTab.INSTANCE);
+        this.setRegistryName(localName);
         this.setUnlocalizedName(localName);
 
         this.FoodStat = foodBar;
@@ -44,6 +51,11 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
         } catch (NullPointerException e) {
             FluidContainerRegistryHelper.specialCases.put(Items.BUCKET, new ArrayList<IFluidContainerItem>());
             FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
+        }
+
+        GameRegistry.register(this);
+        if(ExtraFood.side == Side.CLIENT){
+            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName().toString(), "inventory"));
         }
     }
 

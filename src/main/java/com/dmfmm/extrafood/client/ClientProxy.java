@@ -1,5 +1,6 @@
 package com.dmfmm.extrafood.client;
 
+import com.dmfmm.extrafood.blocks.Plants.OliveLeaf;
 import com.dmfmm.extrafood.client.modelbake.GlassBottle.ModelDynGlassBottle;
 import com.dmfmm.extrafood.client.modelbake.NBTFood.NBTFoodModel;
 import com.dmfmm.extrafood.client.renderer.AutoCutterRender;
@@ -9,22 +10,31 @@ import com.dmfmm.extrafood.client.renderer.OvenRender;
 import com.dmfmm.extrafood.crafting.JuiceRegistry;
 import com.dmfmm.extrafood.fluids.GeneralFluid;
 import com.dmfmm.extrafood.init.BlockLoader;
+import com.dmfmm.extrafood.init.FluidLoader;
+import com.dmfmm.extrafood.items.nbt.NBTFoodLoader;
+import com.dmfmm.extrafood.library.ModInfo;
 import com.dmfmm.extrafood.tileentities.AutoCutterTileEntity;
 import com.dmfmm.extrafood.tileentities.CheesePressTileEntity;
 import com.dmfmm.extrafood.tileentities.JuiceBlenderTileEntity;
 import com.dmfmm.extrafood.tileentities.OvenTileEntity;
 import com.dmfmm.extrafood.utilities.proxy.CommonProxy;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -33,6 +43,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -84,6 +95,11 @@ public class ClientProxy extends CommonProxy{
         ModelLoaderRegistry.registerLoader(ModelDynGlassBottle.LoaderDynBucketz.instance);
         ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
         MinecraftForge.EVENT_BUS.register(this);
+
+        ModelLoader.setCustomModelResourceLocation(FluidLoader.FLUID_CONTAINER, 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "EFglassBottle", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(NBTFoodLoader.getItem("pizza"), 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "NBTpizza", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(NBTFoodLoader.getItem("muffin"), 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "NBTmuffin", "inventory"));
+        addTextureCalls();
     }
 
     @SubscribeEvent
@@ -136,5 +152,73 @@ public class ClientProxy extends CommonProxy{
             event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(BlockLoader.AUTO_CUTTER);
         }
     }
+
+
+    private void addTextureCalls(){
+        registerJuiceTexutre(BlockLoader.STRAWBERRY_JUICE_BLOCK, 0);
+        registerJuiceTexutre(BlockLoader.BANANA_JUICE_BLOCK, 1);
+        registerJuiceTexutre(BlockLoader.CARROT_JUICE_BLOCK, 2);
+        registerJuiceTexutre(BlockLoader.EGGNOG_FLUID_BLOCK, 3);
+        registerJuiceTexutre(BlockLoader.DISCUSTING_MIX_FLUID_BLOCK, 4);
+        registerJuiceTexutre(BlockLoader.APPLE_JUICE_BLOCK, 5);
+        registerJuiceTexutre(BlockLoader.ORANGE_JUICE_BLOCK, 6);
+        registerJuiceTexutre(BlockLoader.WATERMELON_JUICE_BLOCK, 7);
+        registerJuiceTexutre(BlockLoader.PINEAPPLE_JUICE_BLOCK, 8);
+        registerJuiceTexutre(BlockLoader.GRAPE_JUICE_BLOCK, 9);
+        registerJuiceTexutre(BlockLoader.CITRUS_JUICE_BLOCK, 10);
+        registerJuiceTexutre(BlockLoader.APPLE_GRAPE_JUICE_BLOCK, 11);
+        registerJuiceTexutre(BlockLoader.FRUIT_JUICE_BLOCK, 12);
+        registerJuiceTexutre(BlockLoader.MIXED_BERRY_JUICE_BLOCK, 13);
+        registerJuiceTexutre(BlockLoader.STRAWBERRY_JUICE_BLOCK, 14);
+        registerJuiceTexutre(BlockLoader.TROPICAL_JUICE_BLOCK, 15);
+
+
+        ModelLoader.setCustomStateMapper(BlockLoader.BANANA_LEAF, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState p_178132_1_) {
+                return new ModelResourceLocation("extrafood:BananaLeaf", "normal");
+            }
+        });
+
+        ModelLoader.setCustomStateMapper(BlockLoader.OLIVE_LEAF, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState p_178132_1_) {
+                return new ModelResourceLocation("extrafood:OliveLeaf", getGrowthLVL(p_178132_1_));
+            }
+            private String getGrowthLVL(IBlockState state){
+                int lvl = ((Integer)state.getValue(OliveLeaf.METALVL)).intValue();
+                return "growth=" + lvl;
+            }
+        });
+
+    }
+
+    public static class cSM extends StateMapperBase implements ItemMeshDefinition {
+
+        private int fn;
+
+        public cSM(int fluidNum){
+            this.fn = fluidNum;
+        }
+
+        @Override
+        protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+            String number = "fluid" + Integer.toString(this.fn);
+            return new ModelResourceLocation("extrafood:FluidModels", number);
+        }
+
+        @Override
+        public ModelResourceLocation getModelLocation(ItemStack stack) {
+            String number = "fluid" + Integer.toString(this.fn);
+            return new ModelResourceLocation("extrafood:FluidModels", number);
+        }
+    }
+
+    public static void registerJuiceTexutre(Block block, int numInJson){
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(block));
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(block), new cSM(numInJson));
+        ModelLoader.setCustomStateMapper(block, new cSM(numInJson));
+    }
+
 }
 

@@ -2,6 +2,7 @@ package com.dmfmm.extrafood.items;
 
 import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.client.gui.cookbook.CookBookGUI;
+import com.dmfmm.extrafood.library.ItemLib;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -14,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CookBook extends GenericItem {
 
     public CookBook() {
-        super("Cookbook", true);
+        super(ItemLib.COOKBOOK, true);
         //this.setTextureName("extrafood:Cookbook");
         // TODO Auto-generated constructor stub
     }

@@ -1,6 +1,6 @@
 #Tab Name
-itemGroup.ExtraFood=Extra Food
-itemGroup.ExtraFood.OvenFood=Oven Baked Food
+itemGroup.extrafood=Extra Food
+itemGroup.extrafood.OvenFood=Oven Baked Food
 
 #Item Names
 item.Cheese_Wheel.name=Cheese Wheel
