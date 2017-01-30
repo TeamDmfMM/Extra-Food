@@ -11,13 +11,11 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class GenericItem extends Item{
 
-    public GenericItem(String itemName, boolean autoLoad){
+    public GenericItem(String itemName){
         super();
         this.setCreativeTab(ExtraFoodTab.INSTANCE);
         this.setRegistryName(itemName);
+        this.setUnlocalizedName(itemName);
 
-        if(ExtraFood.side == Side.CLIENT && autoLoad){
-            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + this.getRegistryName()));
-        }
     }
 }

@@ -27,6 +27,7 @@ public class StrawberryBush extends BlockCrops{
     public StrawberryBush(String name){
         super();
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
         this.setHardness(0.0F);
         this.disableStats();

@@ -33,6 +33,7 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
         this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
         this.setCreativeTab(ExtraFoodTab.INSTANCE);
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 
     /**

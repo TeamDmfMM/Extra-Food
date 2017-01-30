@@ -23,6 +23,7 @@ public class CropBlock extends BlockCrops {
         super();
         Crop = s;
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 
     public CropBlock(Item c, Item s) {

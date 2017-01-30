@@ -19,9 +19,9 @@ public class ItemLoader {
 
     private static boolean FRegister=false;
 
-    public static final Item KNIFE = new Knife().setUnlocalizedName(ItemLib.KNIFE);
-    public static final Item COOKBOOK = new CookBook().setUnlocalizedName(ItemLib.COOKBOOK);
-    public static final Item GRATER = new Grater().setUnlocalizedName(ItemLib.GRATER);
+    public static final Item KNIFE = new Knife();
+    public static final Item COOKBOOK = new CookBook();
+    public static final Item GRATER = new Grater();
     public static final Item BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, BlockLoader.STRAWBERRY_JUICE_BLOCK, ItemLib.STRAWBERRY_BUCKET);
     public static final Item BUCKET_BANANA = new BucketEdible(6, 0.6F, BlockLoader.BANANA_JUICE_BLOCK, ItemLib.BANANA_BUCKET);
     public static final Item BUCKET_CARROT = new BucketEdible(6, 0.9F, BlockLoader.CARROT_JUICE_BLOCK, ItemLib.CARROT_BUCKET);
@@ -29,11 +29,11 @@ public class ItemLoader {
     public static final Item BUCKET_PURIFIED_WATER = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.PURIFIED_WATER_BUCKET);
     public static final Item BUCKET_EGGNOG = new BucketEdible(9, 5.0F, BlockLoader.EGGNOG_FLUID_BLOCK, ItemLib.EGGNOG);
     public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.TOMATO_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.TOMATO_SEED).setRegistryName(ItemLib.TOMATO_SEED).setCreativeTab(ExtraFoodTab.INSTANCE);
-    public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS, true);
+    public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS);
     public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.PINEAPPLE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.PINEAPPLE).setRegistryName(ItemLib.PINEAPPLE).setCreativeTab(ExtraFoodTab.INSTANCE);
     public static final Item LETTUCE_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.LETTUCE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.COATED_LETTUCE_SEEDS).setRegistryName(ItemLib.COATED_LETTUCE_SEEDS).setCreativeTab(ExtraFoodTab.INSTANCE);
-    public static final Item MUFFIN_PAN = new GenericItem(ItemLib.MUFFIN_PAN, true);
-    public static final Item DOUGH = new GenericItem(ItemLib.DOUGH, true);
+    public static final Item MUFFIN_PAN = new GenericItem(ItemLib.MUFFIN_PAN);
+    public static final Item DOUGH = new GenericItem(ItemLib.DOUGH);
 
 
     //Semi-balanced foods

@@ -25,6 +25,7 @@ public class OliveLeaf extends BananaLeaf {
     public OliveLeaf(String name){
         super(name);
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)).withProperty(METALVL, 0));
+        this.setUnlocalizedName(name);
     }
 
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)

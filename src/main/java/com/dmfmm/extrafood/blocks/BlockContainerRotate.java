@@ -84,6 +84,7 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         super(material);
         this.setCreativeTab(ExtraFoodTab.INSTANCE);
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 
     public static EnumFacing getFacing(World worldIn, BlockPos blockPos) {

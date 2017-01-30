@@ -14,19 +14,25 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-/*
-// for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
-plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.2"
-}
-*/
-version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
 
-sourceCompatibility = targetCompatibility = "1.6" // Need this here so eclipse task generates correctly.
+
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+
+version = config.mod_version
+group= "dmf444.ExtraFood"
+archivesBaseName = "ExtraFood"
+
+
+sourceCompatibility = targetCompatibility = "1.7" // Need this here so eclipse task generates correctly.
 compileJava {
-    sourceCompatibility = targetCompatibility = "1.6"
+    sourceCompatibility = targetCompatibility = "1.7"
 }
 
 minecraft {
@@ -41,6 +47,7 @@ minecraft {
     mappings = "snapshot_20160518"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
+version = "${config.minecraft_version}-${config.mod_version}.${System.getenv("DRONE_BUILD_NUMBER") ?: config.build_number}"
 
 dependencies {
     // you may put jars on which you depend on in ./libs
@@ -68,20 +75,23 @@ dependencies {
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    // exclude xcf files, as they are for development only
+    exclude '**/*.xcf'
+
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
+        include '*.info'
+
+
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'mod_version': project.version, 'minecraft_version': project.config.minecraft_version
     }
-        
+
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*.info'
     }
+
 }

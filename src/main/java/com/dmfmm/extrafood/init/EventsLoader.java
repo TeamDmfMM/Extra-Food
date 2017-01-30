@@ -3,6 +3,7 @@ package com.dmfmm.extrafood.init;
 import com.dmfmm.extrafood.events.AchievementsEvent;
 import com.dmfmm.extrafood.events.BucketEvent;
 import com.dmfmm.extrafood.events.ConfigChangeEvent;
+import com.dmfmm.extrafood.events.EFBonemealEvent;
 import com.dmfmm.extrafood.utilities.EFAchievementPage;
 import com.dmfmm.extrafood.worldgen.spawn.BushSpawner;
 import com.dmfmm.extrafood.worldgen.spawn.TreeSpawner;
@@ -33,6 +34,9 @@ public class EventsLoader {
         //Add Seeds to the grass list
         MinecraftForge.addGrassSeed(new ItemStack(ItemLoader.TOMATO_SEEDS), 20);
         MinecraftForge.addGrassSeed(new ItemStack(ItemLoader.RAW_LETTUCE_SEEDS), 25);
+
+        //Bonemeal
+        MinecraftForge.EVENT_BUS.register(new EFBonemealEvent());
 
         //Chest Generation
         //ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.cookBook), 1, 1, 50));

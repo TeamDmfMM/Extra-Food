@@ -1,7 +1,9 @@
 package com.dmfmm.extrafood.items;
 
+import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.init.ItemLoader;
 import com.dmfmm.extrafood.library.ItemLib;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -10,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -19,11 +22,12 @@ public class Knife extends GenericItem {
 
     public Knife()
     {
-        super(ItemLib.KNIFE, true);
+        super(ItemLib.KNIFE);
         this.maxStackSize = 1;
         this.setMaxDamage(10);
         //this.setTextureName("extrafood:knife");
         this.setContainerItem(this);
+
     }
 
     public Item setNoRepair() {

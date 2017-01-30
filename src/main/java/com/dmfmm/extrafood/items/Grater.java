@@ -8,7 +8,7 @@ public class Grater extends GenericItem {
 
     public Grater()
     {
-        super(ItemLib.GRATER, true);
+        super(ItemLib.GRATER);
         this.maxStackSize = 1;
         this.setMaxDamage(150);
         //this.setTextureName("extrafood:grater");

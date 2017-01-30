@@ -17,6 +17,7 @@ public class ChocolateCake extends BlockCake{
     {
         super();
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 	
 	@SideOnly(Side.CLIENT)

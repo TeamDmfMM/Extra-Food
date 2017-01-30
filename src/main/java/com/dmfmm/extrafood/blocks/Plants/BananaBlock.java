@@ -24,6 +24,7 @@ public class BananaBlock extends Block {
         super(material);
         this.setCreativeTab(ExtraFoodTab.INSTANCE);
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
         //this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1.0F, 0.8F);
 
     }
@@ -33,7 +34,7 @@ public class BananaBlock extends Block {
         return false;
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
         return NULL_AABB;
     }

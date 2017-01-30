@@ -27,10 +27,11 @@ public class OrangeBlock extends Block {
     public OrangeBlock(String name) {
         super(Material.CACTUS);
         this.setRegistryName(name);
+        this.setUnlocalizedName(name);
 
     }
 
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return new AxisAlignedBB(0.2F, 0.4F, 0.2F, 0.8F, 1.0F, 0.8F);
     }

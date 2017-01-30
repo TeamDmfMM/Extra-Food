@@ -18,6 +18,7 @@ public class Whiteout extends Block {
 		super(Material.CLAY);
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 		this.setRegistryName(name);
+		this.setUnlocalizedName(name);
 	}
 
 	@Override
