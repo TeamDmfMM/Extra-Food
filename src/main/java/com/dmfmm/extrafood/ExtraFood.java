@@ -49,7 +49,6 @@ public class ExtraFood {
         ConfigHandler.init(new File(event.getModConfigurationDirectory(), ModInfo.MOD_ID + ".cfg"));
 
         FluidLoader.initiateFluids();
-        BlockLoader.registerBlocks();
         ItemLoader.registerItems();
         NBTFoodLoader.initiateItems();
         NBTFoodLoader.register();

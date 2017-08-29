@@ -53,7 +53,7 @@ public class PacketSelector implements IMessage{
 
         @Override
         public IMessage onMessage(PacketSelector message, MessageContext ctx) {
-            World world = ctx.getServerHandler().playerEntity.worldObj;
+            World world = ctx.getServerHandler().playerEntity.world;
 
             TileEntity tile = world.getTileEntity(message.pos);
             if(tile instanceof JuiceMixerTileEntity){

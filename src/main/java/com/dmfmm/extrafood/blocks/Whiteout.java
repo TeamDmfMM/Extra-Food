@@ -25,7 +25,7 @@ public class Whiteout extends Block {
 	 public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		if(entity instanceof EntityEnderman){
-			entity.attackEntityFrom(DamageSource.drown, 4.0F);
+			entity.attackEntityFrom(DamageSource.DROWN, 4.0F);
 		}
 	}
 	@Override

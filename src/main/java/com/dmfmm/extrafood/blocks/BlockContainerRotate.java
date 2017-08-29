@@ -30,55 +30,6 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public enum RelativeDirection {
-        LEFT(-1),
-        RIGHT(1),
-        FRONT(0),
-        DOWN(-10),
-        UP(-11),
-        BACK(-2);
-
-        // Index in EnumFacing.HORIZONTALS relative to facing
-        private int relativeIndex;
-
-        RelativeDirection(int relative) {
-            relativeIndex = relative;
-        }
-
-        public int getRelativeIndex() {
-            return this.relativeIndex;
-        }
-
-        public EnumFacing getTrueDirection(EnumFacing in) {
-            int facingIndex = in.getHorizontalIndex();
-            if (facingIndex == -1) {
-                if (in == EnumFacing.DOWN) {
-                    return EnumFacing.DOWN;
-                }
-                else {
-                    return EnumFacing.UP;
-                }
-            }
-            facingIndex += relativeIndex;
-            facingIndex %= 4;
-            return EnumFacing.HORIZONTALS[facingIndex];
-        }
-
-        public static RelativeDirection getRelativeDirection(EnumFacing in, EnumFacing forwards) {
-            int index = in.getHorizontalIndex() - forwards.getHorizontalIndex();
-            for (RelativeDirection r : RelativeDirection.values()) {
-                if (r.getRelativeIndex() == index) {
-                    return r;
-                }
-            }
-            if (in == EnumFacing.DOWN) {
-                return DOWN;
-            }
-            else {
-                return UP;
-            }
-        }
-    }
 
     public BlockContainerRotate(Material material, String name) {
         super(material);
@@ -87,16 +38,12 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         this.setUnlocalizedName(name);
     }
 
-    public static EnumFacing getFacing(World worldIn, BlockPos blockPos) {
-        IBlockState blockState = worldIn.getBlockState(blockPos);
-        EnumFacing facingIn = blockState.getValue(FACING);
-        return facingIn;
-    }
-
-    public static EnumFacing getTrueDirectionFromRelative(RelativeDirection relativeDirection, World worldIn, BlockPos blockPos) {
-        IBlockState blockState = worldIn.getBlockState(blockPos);
-        EnumFacing facingIn = blockState.getValue(FACING);
-        return relativeDirection.getTrueDirection(facingIn);
+    public static EnumFacing getTrueFacing(BlockPos pos, EntityLivingBase placer) {
+        EnumFacing facing = EnumFacing.getDirectionFromEntityLiving(pos, placer);
+        if(facing == EnumFacing.UP || facing == EnumFacing.DOWN){
+            facing = placer.getHorizontalFacing().getOpposite();
+        }
+        return facing;
     }
 
     //Make sure you set this as your TileEntity class relevant for the block!
@@ -109,11 +56,11 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         super.onBlockPlacedBy(world, pos, state, entity, stack);
-        world.setBlockState(pos, state.withProperty(FACING, getFFE(world, pos, entity, true)), 2);
+        world.setBlockState(pos, state.withProperty(FACING, getTrueFacing(pos, entity)), 2);
     }
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, getFFE(worldIn, pos, placer, true));
+        return this.getDefaultState().withProperty(FACING, getTrueFacing(pos, placer));
     }
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
@@ -133,14 +80,14 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack item = inventory.getStackInSlot(i);
 
-            if (item != null && item.stackSize > 0) {
+            if (item != null && item.getCount() > 0) {
                 float rx = rand.nextFloat() * 0.8F + 0.1F;
                 float ry = rand.nextFloat() * 0.8F + 0.1F;
                 float rz = rand.nextFloat() * 0.8F + 0.1F;
 
                 EntityItem entityItem = new EntityItem(world,
                         pos.getX() + rx, pos.getY() + ry, pos.getZ() + rz,
-                        new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+                        new ItemStack(item.getItem(), item.getCount(), item.getItemDamage()));
 
                 if (item.hasTagCompound()) {
                     entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
@@ -150,20 +97,13 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
                 entityItem.motionX = rand.nextGaussian() * factor;
                 entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
                 entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                item.stackSize = 0;
+                world.spawnEntity(entityItem);
+                item.setCount(0);
             }
         }
         EntityItem e = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this));
-        world.spawnEntityInWorld(e);
+        world.spawnEntity(e);
 
-    }
-
-    //Copy for 1.8
-    @SideOnly(Side.CLIENT)
-    public IBlockState getStateForEntityRender(IBlockState state)
-    {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.SOUTH);
     }
 
     public IBlockState getStateFromMeta(int meta)
@@ -189,24 +129,5 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
     }
 
 
-    public static EnumFacing getFFE/*getFacingFromEntity*/(World world, BlockPos clickedBlock, EntityLivingBase entityIn, boolean safe)
-    {
-        if (MathHelper.abs((float)entityIn.posX - (float)clickedBlock.getX()) < 2.0F && MathHelper.abs((float)entityIn.posZ - (float)clickedBlock.getZ()) < 2.0F)
-        {
-            double d0 = entityIn.posY + (double)entityIn.getEyeHeight();
-
-            if (d0 - (double)clickedBlock.getY() > 2.0D)
-            {
-                return  safe ? EnumFacing.SOUTH :EnumFacing.UP;
-            }
-
-            if ((double)clickedBlock.getY() - d0 > 0.0D)
-            {
-                return safe ? EnumFacing.SOUTH: EnumFacing.DOWN;
-            }
-        }
-
-        return entityIn.getHorizontalFacing().getOpposite();
-    }
 
 }

@@ -53,7 +53,7 @@ public class PacketReleaseFluid implements IMessage{
 
         @Override
         public IMessage onMessage(PacketReleaseFluid message, MessageContext ctx) {
-            World world = ctx.getServerHandler().playerEntity.worldObj;
+            World world = ctx.getServerHandler().playerEntity.world;
 
             TileEntity tile = world.getTileEntity(message.pos);
             if(tile instanceof JuiceMixerTileEntity){

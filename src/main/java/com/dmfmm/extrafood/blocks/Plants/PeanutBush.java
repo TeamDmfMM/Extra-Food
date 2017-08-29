@@ -33,7 +33,7 @@ public class PeanutBush extends StrawberryBush {
                 if (!world.isRemote) {
                     ItemStack item1 = new ItemStack(ItemLoader.PEANUT, 4);
                     Entity Ientity1 = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item1);
-                    world.spawnEntityInWorld(Ientity1);
+                    world.spawnEntity(Ientity1);
                     world.setBlockState(pos, state.getBlock().getStateFromMeta(0), 2);
                     break;
                 }

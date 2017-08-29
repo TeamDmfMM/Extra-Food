@@ -61,7 +61,7 @@ public abstract class BaseTreeGenerator extends WorldGenerator {
         float current = getLeavesWidthAndLength();
         int[] height = new int[getLeavesCanopyHeight() + 1];
         for (int i = 0; i < getLeavesCanopyHeight(); i++) {
-            height[i] = MathHelper.ceiling_float_int(current);
+            height[i] = MathHelper.ceil(current);
             if (height[i] % 2 == 0 && i != 0) {
                 height[i] -= 1;
             }

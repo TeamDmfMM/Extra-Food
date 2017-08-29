@@ -27,7 +27,7 @@ public class OvenFoodTab extends CreativeTabs {
 
 
     @Override
-    public Item getTabIconItem() {
-        return this.getIconItemStack().getItem();
+    public ItemStack getTabIconItem() {
+        return this.getIconItemStack();
     }
 }

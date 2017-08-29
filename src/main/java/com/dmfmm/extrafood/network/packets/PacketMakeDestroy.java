@@ -50,7 +50,7 @@ public class PacketMakeDestroy implements IMessage {
 
         @Override
         public IMessage onMessage(PacketMakeDestroy message, MessageContext ctx) {
-            World world = ctx.getServerHandler().playerEntity.worldObj;
+            World world = ctx.getServerHandler().playerEntity.world;
 
             TileEntity tile = world.getTileEntity(message.pos);
             if(tile instanceof JuiceMixerTileEntity){

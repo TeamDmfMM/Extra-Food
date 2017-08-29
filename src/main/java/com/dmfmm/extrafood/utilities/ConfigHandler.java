@@ -10,6 +10,8 @@ public class ConfigHandler {
     public static Configuration config;
 
     //ALL CONFIGS MUST BE PROTECTED!!!
+    //^ that's what happens when you read java for dummies...
+    //  and think you know it all
     public static boolean GenBananaTrees;
     public static boolean FeelLikeAure;
     public static boolean useNEI;

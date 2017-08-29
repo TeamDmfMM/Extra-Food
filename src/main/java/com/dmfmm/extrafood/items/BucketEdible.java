@@ -3,7 +3,6 @@ package com.dmfmm.extrafood.items;
 
 import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.fluids.GeneralFluid;
-import com.dmfmm.extrafood.library.ModInfo;
 import com.dmfmm.extrafood.utilities.FluidContainerRegistryHelper;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import net.minecraft.block.Block;
@@ -24,13 +23,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class BucketEdible extends ItemBucket implements IFluidContainerItem {
+public class BucketEdible extends ItemBucket implements IFluidHandlerItem{
 
     private int FoodStat;
     private float SaturationLvl;
@@ -53,7 +55,6 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
             FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
         }
 
-        GameRegistry.register(this);
         if(ExtraFood.side == Side.CLIENT){
             ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName().toString(), "inventory"));
         }
@@ -158,6 +159,34 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
                 }
             }
         }
+        return null;
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getContainer() {
+        return null;
+    }
+
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return new IFluidTankProperties[0];
+    }
+
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        return 0;
+    }
+
+    @Nullable
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
         return null;
     }
 }

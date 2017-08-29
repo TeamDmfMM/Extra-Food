@@ -48,8 +48,8 @@ public class StrawberryBush extends BlockCrops{
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-    if (player.inventory.getCurrentItem() != null){
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+    if (player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem() != ItemStack.EMPTY){
             ItemStack is = player.inventory.getCurrentItem();
             if (is.getItem() == Items.DYE){
                 if (is.getItemDamage() == 15){
@@ -73,7 +73,7 @@ public class StrawberryBush extends BlockCrops{
                 if (!world.isRemote) {
                     ItemStack item = new ItemStack(ItemLoader.STRAWBERRY, 2);
                     Entity Ientity = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item);
-                    world.spawnEntityInWorld(Ientity);
+                    world.spawnEntity(Ientity);
                     world.setBlockState(pos, getDefaultState(), 2);
                     break;
                 }
@@ -82,7 +82,7 @@ public class StrawberryBush extends BlockCrops{
                 if (!world.isRemote) {
                     ItemStack item1 = new ItemStack(ItemLoader.STRAWBERRY, 4);
                     Entity Ientity1 = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), item1);
-                    world.spawnEntityInWorld(Ientity1);
+                    world.spawnEntity(Ientity1);
                     world.setBlockState(pos, getDefaultState(), 2);
                     break;
                 }

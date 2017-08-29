@@ -111,7 +111,7 @@ public class BTPageGUI extends GuiScreen {
         int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
         // Check height of block
         int w = 93;
-        int h = this.fontRendererObj.splitStringWidth((String) args.get(0), w);
+        int h = this.fontRendererObj.getWordWrappedHeight((String) args.get(0), w);
         if (h + y > j + 155){
             //System.out.println("render" + args.get(0));
             // do splitting stuff
@@ -127,9 +127,9 @@ public class BTPageGUI extends GuiScreen {
                 p1 = p1.substring(0, p1.length() - 1
                 );
                 ii--;
-                h = this.fontRendererObj.splitStringWidth((String) p1, w);
+                h = this.fontRendererObj.getWordWrappedHeight((String) p1, w);
             }
-            h = this.fontRendererObj.splitStringWidth((String) p1, w);
+            h = this.fontRendererObj.getWordWrappedHeight((String) p1, w);
 
             if (flag == 0){
                 this.fontRendererObj.drawSplitString(p1, x, y, 93, 0x0000000);

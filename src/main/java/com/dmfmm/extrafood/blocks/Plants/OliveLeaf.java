@@ -41,16 +41,16 @@ public class OliveLeaf extends BananaLeaf {
         return Item.getItemFromBlock(BlockLoader.OLIVE_BUSH);
     }
 
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         int meta = ((Integer)world.getBlockState(pos).getValue(METALVL)).intValue();
         if(meta < 4){
             return false;
         } else{
             if(!world.isRemote) {
                 EntityItem olives = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.OLIVE));
-                world.spawnEntityInWorld(olives);
+                world.spawnEntity(olives);
             }
-            world.setBlockToAir(pos);
+            //world.setBlockToAir(pos);
             world.setBlockState(pos, state.withProperty(METALVL, 1));
             return true;
         }

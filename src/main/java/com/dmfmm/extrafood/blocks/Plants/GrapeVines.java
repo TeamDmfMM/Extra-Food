@@ -91,19 +91,16 @@ public class GrapeVines extends Block implements IShearable{
         }
     }
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (world.getBlockState(pos).getValue(GROWTH) != 4) {
             return false;
         }else{
             //SPAWN ITEM
 
             if(!world.isRemote) {
-                           world.spawnEntityInWorld(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.GRAPES)));
-                            }
+                world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.GRAPES)));
+            }
             world.setBlockState(pos, this.getDefaultState(), 2);
-
-            // world.setBlockState(pos, this.getDefaultState(), 2);
-            //  world.markBlockForUpdate(pos);
             return true;
         }
     }
@@ -130,7 +127,7 @@ public class GrapeVines extends Block implements IShearable{
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         return NULL_AABB;
     }
