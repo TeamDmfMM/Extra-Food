@@ -50,7 +50,7 @@ public class OliveLeaf extends BananaLeaf {
                 EntityItem olives = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemLoader.OLIVE));
                 world.spawnEntity(olives);
             }
-            world.setBlockToAir(pos);
+            //world.setBlockToAir(pos);
             world.setBlockState(pos, state.withProperty(METALVL, 1));
             return true;
         }

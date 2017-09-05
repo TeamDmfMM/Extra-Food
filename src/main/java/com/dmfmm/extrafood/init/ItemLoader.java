@@ -10,11 +10,14 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.lang.reflect.Field;
 
+@Mod.EventBusSubscriber
 public class ItemLoader {
 
     private static boolean FRegister=false;
@@ -111,12 +114,11 @@ public class ItemLoader {
     public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.CHOCOLATE_CAKE_BLOCK).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setRegistryName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
 
 
-    public static void registerItems(){
+    public static void registerItems(RegistryEvent.Register<Item> register){
         try{
             for(Field field : ItemLoader.class.getDeclaredFields()){
-                if(field.get(null) instanceof Item && !(field.get(null) instanceof StanFood) && !(field.get(null) instanceof BucketEdible)){
-                    GameRegistry.register((Item)field.get(null));
-
+                if(field.get(null) instanceof Item){
+                    register.getRegistry().register(((Item)field.get(null)));
                 }
             }
         }catch (Exception e){

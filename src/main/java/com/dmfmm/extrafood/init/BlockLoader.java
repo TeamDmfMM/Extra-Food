@@ -9,11 +9,17 @@ import com.dmfmm.extrafood.fluids.GeneralFluid;
 import com.dmfmm.extrafood.library.BlockLib;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 import java.lang.reflect.Field;
 
+@Mod.EventBusSubscriber
 public class BlockLoader {
 
 
@@ -57,22 +63,29 @@ public class BlockLoader {
     public static final Block TROPICAL_JUICE_BLOCK = new GeneralFluid(FluidLoader.Ftropicaljuice, Material.WATER, BlockLib.TROPICAL_JUICE);
 
 
-    public static void registerBlocks() {
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        IForgeRegistry registry = event.getRegistry();
         try{
             for(Field field : BlockLoader.class.getDeclaredFields()){
                 if(field.get(null) instanceof Block){
-                    registerBlock((Block)field.get(null));
-
+                    registry.register((Block)field.get(null));
                 }
             }
-        }catch (Exception e){
-
-        }
+        }catch (Exception e){ }
     }
 
-
-    private static void registerBlock(Block block){
-        GameRegistry.register(block);
-        GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+    @SubscribeEvent
+    public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
+        IForgeRegistry registry = event.getRegistry();
+        try{
+            for(Field field : BlockLoader.class.getDeclaredFields()){
+                if(field.get(null) instanceof Block){
+                    Block block = ((Block) field.get(null));
+                    registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+                }
+            }
+        }catch (Exception e){}
     }
+
 }

@@ -20,7 +20,6 @@ public class OrangeTreeSapling extends BananaTreeSapling{
 
     public OrangeTreeSapling(String name){
         super(name);
-        //this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.7F, 0.8F);
     }
 
     @Override

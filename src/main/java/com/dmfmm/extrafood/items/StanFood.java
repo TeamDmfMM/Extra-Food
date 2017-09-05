@@ -18,7 +18,6 @@ public class StanFood extends ItemFood{
         this.setRegistryName(itemName);
         this.setUnlocalizedName(itemName);
 
-        GameRegistry.register(this);
 
         if(ExtraFood.side == Side.CLIENT){
             if(!customLoader) {
