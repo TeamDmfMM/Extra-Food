@@ -44,8 +44,8 @@ public class BushSpawner implements IWorldGenerator {
 
     private void generateSurface(World world, Random random, int x, int z) {
         if (random.nextInt(45) == 0){
-            int xs = MathHelper.getRandomIntegerInRange(random, 1, 3);
-            int ys = MathHelper.getRandomIntegerInRange(random, 1, 3);
+            int xs = (random.nextInt() * 3) + 1;
+            int ys = (random.nextInt() * 3) + 1;;
             int xx = x + random.nextInt(15);
             int zz = z + random.nextInt(15);
             int by = world.getChunksLowestHorizon(xx, zz);//MM12 and I argued over this! //USED IN CHUNCK.recheckGaps

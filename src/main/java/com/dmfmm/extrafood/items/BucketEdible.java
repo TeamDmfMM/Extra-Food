@@ -2,10 +2,8 @@ package com.dmfmm.extrafood.items;
 
 
 import com.dmfmm.extrafood.ExtraFood;
-import com.dmfmm.extrafood.fluids.GeneralFluid;
-import com.dmfmm.extrafood.library.ModInfo;
-import com.dmfmm.extrafood.utilities.FluidContainerRegistryHelper;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
+import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,18 +17,15 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.ArrayList;
 
-public class BucketEdible extends ItemBucket implements IFluidContainerItem {
+public class BucketEdible extends ItemBucket {
 
     private int FoodStat;
     private float SaturationLvl;
@@ -46,12 +41,13 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
         this.FoodStat = foodBar;
         this.SaturationLvl = saturation;
         this.containedBlock = fluidBlock;
-        try {
+
+        /*try {
             FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
         } catch (NullPointerException e) {
             FluidContainerRegistryHelper.specialCases.put(Items.BUCKET, new ArrayList<IFluidContainerItem>());
             FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
-        }
+        }*/
 
         GameRegistry.register(this);
         if(ExtraFood.side == Side.CLIENT){
@@ -62,19 +58,16 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)
     {
-        --stack.stackSize;
+        stack.shrink(1);
 
         if (entityLiving instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer)entityLiving;
             player.getFoodStats().addStats(FoodStat, SaturationLvl);
             world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-            if (!world.isRemote) {
-                player.addChatComponentMessage(new TextComponentString("That tasted good!"));
-            }
         }
 
-        return stack.stackSize <= 0 ? new ItemStack(Items.BUCKET) : stack;
+        return stack.getCount() <= 0 ? new ItemStack(Items.BUCKET) : stack;
 
     }
     @Override
@@ -92,72 +85,25 @@ public class BucketEdible extends ItemBucket implements IFluidContainerItem {
         return EnumAction.DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand){
-        ItemStack t = super.onItemRightClick(itemStack, world, player, hand).getResult();
+
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand){
+        ItemStack t = super.onItemRightClick(world, player, hand).getResult();
         if (t.getItem() == this){
             player.setActiveHand(hand);
-            return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
         }
         else {
             return new ActionResult<>(EnumActionResult.FAIL, t);
         }
     }
 
-    //THIS MAY NOT BE PROPER IMPLEMENTATION OF IFLUIDCONTAINER. RECHECK LATER.
-    // It wasn't. (tehe dmfderp)
-    @Override
-    public FluidStack getFluid(ItemStack container) {
-        if(containedBlock instanceof GeneralFluid) {
-            return new FluidStack(((GeneralFluid)containedBlock).getFluid(), 1000);
-        }else{
-            return new FluidStack(FluidRegistry.WATER, 1000);
-        }
-    }
 
-    @Override
-    public int getCapacity(ItemStack container) {
-        return 1000;
-    }
+    public static class EFFluidHandlerItemStackSimple extends FluidHandlerItemStackSimple{
 
-    @Override
-    public int fill(ItemStack container, FluidStack resource, boolean doFill) {
-        if (container.getItem() == Items.BUCKET) {
-            if (containedBlock instanceof GeneralFluid) {
-                if (resource.getFluid() == ((GeneralFluid) containedBlock).getFluid()) {
-                    if (doFill) {
-                        container.setItem(this);
-                        return 1000;
-                    }
-                    else {
-                        return 1000;
-                    }
-                }
-            }
+        public EFFluidHandlerItemStackSimple(@Nonnull ItemStack container, int capacity) {
+            super(container, 1000);
         }
-        return 0;
-    }
 
-    @Override
-    public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
-        if (container.getItem() == this) {
-            if (maxDrain > 999) {
-                if(this.containedBlock instanceof GeneralFluid) {
-                    if (doDrain) {
-                        container.setItem(Items.BUCKET);
-                        return new FluidStack(((GeneralFluid) (this.containedBlock)).getFluid(), 1000);
-                    } else {
-                        return new FluidStack(((GeneralFluid) (this.containedBlock)).getFluid(), 1000);
-                    }
-                }else{
-                    if (doDrain) {
-                        container.setItem(Items.BUCKET);
-                        return new FluidStack(FluidRegistry.WATER, 1000);
-                    } else {
-                        return new FluidStack(FluidRegistry.WATER, 1000);
-                    }
-                }
-            }
-        }
-        return null;
+
     }
 }

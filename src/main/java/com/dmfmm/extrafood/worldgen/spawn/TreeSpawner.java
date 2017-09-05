@@ -41,7 +41,7 @@ public class TreeSpawner implements IWorldGenerator {
             int Zcoord1 = z + random.nextInt(16); //where in chunk it generates
 
 
-            final Biome biome = world.getBiomeGenForCoords(new BlockPos(Xcoord1, Ycoord1, Zcoord1));
+            final Biome biome = world.getBiome(new BlockPos(Xcoord1, Ycoord1, Zcoord1));
             BlockPos blockPos = new BlockPos(Xcoord1, Ycoord1, Zcoord1);
             if (world.isAirBlock(blockPos.up()) && world.isAirBlock(blockPos)) {
                 new OrangeTreeGenerator().generate(world, random, new BlockPos(Xcoord1, Ycoord1, Zcoord1));

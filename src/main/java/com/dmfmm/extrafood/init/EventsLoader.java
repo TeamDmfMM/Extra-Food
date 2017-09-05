@@ -5,11 +5,8 @@ import com.dmfmm.extrafood.events.BucketEvent;
 import com.dmfmm.extrafood.events.ConfigChangeEvent;
 import com.dmfmm.extrafood.events.EFBonemealEvent;
 import com.dmfmm.extrafood.utilities.EFAchievementPage;
-import com.dmfmm.extrafood.worldgen.spawn.BushSpawner;
-import com.dmfmm.extrafood.worldgen.spawn.TreeSpawner;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created by TeamDMFMM on 12/31/2016. Code originally written
@@ -25,8 +22,8 @@ public class EventsLoader {
         MinecraftForge.EVENT_BUS.register(new ConfigChangeEvent());
 
         //Generate Bushes
-        GameRegistry.registerWorldGenerator(BushSpawner.INSTANCE, 0);
-        GameRegistry.registerWorldGenerator(TreeSpawner.INSTANCE, 0);
+        //GameRegistry.registerWorldGenerator(BushSpawner.INSTANCE, 0);
+        //GameRegistry.registerWorldGenerator(TreeSpawner.INSTANCE, 0);
 
         //Bucket Pickup Handler
         MinecraftForge.EVENT_BUS.register(BucketEvent.INSTANCE);

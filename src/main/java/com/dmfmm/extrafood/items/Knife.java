@@ -45,7 +45,7 @@ public class Knife extends GenericItem {
         ItemStack copiedStack = itemstack.copy();
 
         copiedStack.setItemDamage(copiedStack.getItemDamage() + 1);
-        copiedStack.stackSize = 1;
+        copiedStack.setCount(1);
         return copiedStack;
     }
 
@@ -70,23 +70,23 @@ public class Knife extends GenericItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity){
-        if(!entity.worldObj.isRemote){
+        if(!entity.world.isRemote){
             if(entity instanceof EntityPig){
-                int PigDropA = MathHelper.getRandomIntegerInRange(itemRand, 3, 6);
+                int PigDropA = MathHelper.getInt(itemRand, 3, 6);
                 ItemStack item = new ItemStack(ItemLoader.BACON, PigDropA);
                 //EFLog.debug("BACON SPAWN2");
-                Entity Ientity = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, item);
-                entity.worldObj.spawnEntityInWorld(Ientity);
+                Entity Ientity = new EntityItem(entity.world, entity.posX, entity.posY, entity.posZ, item);
+                entity.world.spawnEntity(Ientity);
                 ((EntityPig) entity).setHealth(0);
                 stack.damageItem(2, player);
                 return false;
             } else if (entity instanceof EntityCow){
                 if(((EntityCow) entity).isChild()){
-                    int BabyCowDropA = MathHelper.getRandomIntegerInRange(itemRand, 1, 3);
+                    int BabyCowDropA = MathHelper.getInt(itemRand, 1, 3);
                     ItemStack item = new ItemStack(ItemLoader.VEAL, BabyCowDropA);
                     //EFLog.debug("BACON SPAWN2");
-                    Entity Ientity = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, item);
-                    entity.worldObj.spawnEntityInWorld(Ientity);
+                    Entity Ientity = new EntityItem(entity.world, entity.posX, entity.posY, entity.posZ, item);
+                    entity.world.spawnEntity(Ientity);
                     ((EntityCow) entity).setHealth(0);
                     stack.damageItem(2, player);
                     return false;

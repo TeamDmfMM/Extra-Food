@@ -17,8 +17,9 @@ public class SlotCheesePressOutput extends Slot {
         // TODO Auto-generated constructor stub
     }
     @Override
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack){
-        par1EntityPlayer.addStat(EFAchievementPage.AQUIRE_CHEESE, 1);
+    public ItemStack onTake(EntityPlayer player, ItemStack stack){
+        player.addStat(EFAchievementPage.AQUIRE_CHEESE, 1);
+        return super.onTake(player, stack);
     }
     @Override
     public boolean isItemValid(ItemStack i){

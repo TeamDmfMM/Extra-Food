@@ -93,7 +93,7 @@ public class PacketJBTank implements IMessage{
         public IMessage onMessage(PacketJBTank message, MessageContext ctx) {
 
 
-            World w = Minecraft.getMinecraft().theWorld;
+            World w = Minecraft.getMinecraft().world;
             if (w.isBlockLoaded(new BlockPos(message.x, message.y, message.z))){
                 JuiceBlenderTileEntity b = (JuiceBlenderTileEntity) w.getTileEntity(new BlockPos(message.x, message.y, message.z));
                 if(!message.FluidBlock.equals("ZIBBITY")) {

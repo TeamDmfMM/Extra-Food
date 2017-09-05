@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * Created by mincrmatt12. Do not copy this or you will have to face
@@ -32,7 +31,7 @@ public class JuiceMixerContainer extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return tile.isUseableByPlayer(player);
+        return tile.isUsableByPlayer(player);
     }
 
     protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {

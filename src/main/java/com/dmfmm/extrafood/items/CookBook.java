@@ -25,11 +25,11 @@ public class CookBook extends GenericItem {
         }
     }
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
 
         // open the inventory:
         player.openGui(ExtraFood.INSTANCE, CookBookGUI.GUI_ID, world, 0, 0, 0);
-        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
     }
     @SideOnly(Side.CLIENT)
 

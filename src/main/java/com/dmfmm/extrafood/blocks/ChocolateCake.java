@@ -20,7 +20,7 @@ public class ChocolateCake extends BlockCake{
         this.setUnlocalizedName(name);
     }
 	
-	@SideOnly(Side.CLIENT)
+	  @SideOnly(Side.CLIENT)
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state)
     {

@@ -50,7 +50,7 @@ public class CheesePressRender extends TileEntitySpecialRenderer {
         }
         GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
         //Use in 1.6.2  this
-        ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/BlockCheesePress.png"));
+        ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/blockcheesepress.png"));
         //the ':' is very important
         //binding the textures
         Minecraft.getMinecraft().renderEngine.bindTexture(textures);

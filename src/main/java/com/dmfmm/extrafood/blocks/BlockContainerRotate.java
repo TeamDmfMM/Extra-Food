@@ -93,12 +93,6 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         return facingIn;
     }
 
-    public static EnumFacing getTrueDirectionFromRelative(RelativeDirection relativeDirection, World worldIn, BlockPos blockPos) {
-        IBlockState blockState = worldIn.getBlockState(blockPos);
-        EnumFacing facingIn = blockState.getValue(FACING);
-        return relativeDirection.getTrueDirection(facingIn);
-    }
-
     //Make sure you set this as your TileEntity class relevant for the block!
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
@@ -111,7 +105,7 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         super.onBlockPlacedBy(world, pos, state, entity, stack);
         world.setBlockState(pos, state.withProperty(FACING, getFFE(world, pos, entity, true)), 2);
     }
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return this.getDefaultState().withProperty(FACING, getFFE(worldIn, pos, placer, true));
     }
@@ -133,14 +127,14 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             ItemStack item = inventory.getStackInSlot(i);
 
-            if (item != null && item.stackSize > 0) {
+            if (item != null && item.getCount() > 0) {
                 float rx = rand.nextFloat() * 0.8F + 0.1F;
                 float ry = rand.nextFloat() * 0.8F + 0.1F;
                 float rz = rand.nextFloat() * 0.8F + 0.1F;
 
                 EntityItem entityItem = new EntityItem(world,
                         pos.getX() + rx, pos.getY() + ry, pos.getZ() + rz,
-                        new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+                        new ItemStack(item.getItem(), item.getCount(), item.getItemDamage()));
 
                 if (item.hasTagCompound()) {
                     entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
@@ -150,21 +144,15 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
                 entityItem.motionX = rand.nextGaussian() * factor;
                 entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
                 entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                item.stackSize = 0;
+                world.spawnEntity(entityItem);
+                item.setCount(0);
             }
         }
         EntityItem e = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this));
-        world.spawnEntityInWorld(e);
+        world.spawnEntity(e);
 
     }
 
-    //Copy for 1.8
-    @SideOnly(Side.CLIENT)
-    public IBlockState getStateForEntityRender(IBlockState state)
-    {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.SOUTH);
-    }
 
     public IBlockState getStateFromMeta(int meta)
     {

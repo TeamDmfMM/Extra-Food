@@ -71,7 +71,7 @@ public class AutoCutterContainer extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return tileEntity.isUseableByPlayer(player);
+        return tileEntity.isUsableByPlayer(player);
     }
 
 
@@ -144,7 +144,7 @@ public class AutoCutterContainer extends Container {
                 return null;
             }
 
-            if (itemstackR.stackSize == 0)
+            if (itemstackR == ItemStack.EMPTY)
             {
                 slot.putStack((ItemStack)null);
             }
@@ -153,12 +153,12 @@ public class AutoCutterContainer extends Container {
                 slot.onSlotChanged();
             }
 
-            if (itemstackR.stackSize == stack.stackSize)
+            if (itemstackR.getCount() == stack.getCount())
             {
                 return null;
             }
 
-            slot.onPickupFromSlot(player, itemstackR);
+            slot.onTake(player, itemstackR);
         }
         return stack;
     }

@@ -244,8 +244,8 @@ public class CookBookGUI extends GuiScreen {
 
     protected void genDasBookBackground(int par1, int par2, float par3)
     {
-        int k = MathHelper.floor_double(this.field_74117_m + (this.guiMapX - this.field_74117_m) * (double)par3);
-        int l = MathHelper.floor_double(this.field_74115_n + (this.guiMapY - this.field_74115_n) * (double)par3);
+        int k = MathHelper.floor(this.field_74117_m + (this.guiMapX - this.field_74117_m) * (double)par3);
+        int l = MathHelper.floor(this.field_74115_n + (this.guiMapY - this.field_74115_n) * (double)par3);
 
         if (k < guiMapTop)
         {

@@ -35,6 +35,11 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     }
 
     @Override
+    public boolean isEmpty() {
+        return inv[0].isEmpty();
+    }
+
+    @Override
     public ItemStack getStackInSlot(int slot) {
 
         return inv[slot];
@@ -44,8 +49,8 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     public void setInventorySlotContents(int slot, ItemStack stack) {
 
         inv[slot] = stack;
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
+        if (stack != null && stack.getCount() > getInventoryStackLimit()) {
+            stack.setCount(getInventoryStackLimit());
         }
     }
 
@@ -53,11 +58,11 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
-            if (stack.stackSize <= amt) {
+            if (stack.getCount() <= amt) {
                 setInventorySlotContents(slot, null);
             } else {
                 stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
+                if (stack.getCount() == 0) {
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -80,8 +85,8 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getTileEntity(this.pos) == this && player.getDistanceSq(new BlockPos(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5)) < 64;
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return world.getTileEntity(this.pos) == this && player.getDistanceSq(new BlockPos(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5)) < 64;
     }
 
 
@@ -94,7 +99,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
             NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
-                inv[slot] = ItemStack.loadItemStackFromNBT(tag);
+                inv[slot] = new ItemStack(tag);
             }
         }
     }
@@ -160,7 +165,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
             }
         }
         if (this.getStackInSlot(3) != null) {
-            if (this.getStackInSlot(3).stackSize == 64 || this.getStackInSlot(3).getItem() != ItemLoader.CHEESE_WHEEL) {
+            if (this.getStackInSlot(3).getCount() == 64 || this.getStackInSlot(3).getItem() != ItemLoader.CHEESE_WHEEL) {
                 return false;
             }
         }
@@ -168,10 +173,6 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     }
 
     public void makeCheese() {
-        //if (!this.worldObj.isRemote){
-        //this.decrStackSize(0, 1);
-        //this.decrStackSize(1, 1);
-        //this.decrStackSize(2, 1);
         this.inv[0] = null;
         this.inv[1] = null;
         this.inv[2] = null;
@@ -182,7 +183,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
             }
         }
         if (this.inv[3] != null) {
-            this.inv[3].stackSize += 1;
+            this.inv[3].grow(1);
         } else {
             ItemStack is = new ItemStack(ItemLoader.CHEESE_WHEEL, 1);
             this.inv[3] = is.copy();

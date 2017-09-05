@@ -21,7 +21,7 @@ public class Grater extends GenericItem {
         ItemStack copiedStack = itemstack.copy();
 
         copiedStack.setItemDamage(copiedStack.getItemDamage() + 1);
-        copiedStack.stackSize = 1;
+        copiedStack.setCount(1);
         return copiedStack;
     }
 

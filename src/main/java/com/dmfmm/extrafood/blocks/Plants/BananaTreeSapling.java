@@ -3,6 +3,7 @@ package com.dmfmm.extrafood.blocks.Plants;
 
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
 import com.dmfmm.extrafood.worldgen.gen.BananaTreeGenerator;
+import com.sun.istack.internal.NotNull;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
@@ -13,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -88,16 +90,16 @@ public class BananaTreeSapling extends BlockBush implements IGrowable
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
-    public int damageDropped(int p_149692_1_)
+    public int damageDropped(IBlockState state)
     {
-        return MathHelper.clamp_int(p_149692_1_ & 7, 0, 5);
+        return MathHelper.clamp(state.getBlock().getMetaFromState(state) & 7, 0, 5);
     }
 
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs par2, List par3)
+    public void getSubBlocks(Item item, CreativeTabs par2, NonNullList<ItemStack> par3)
     {
         par3.add(new ItemStack(item, 1, 0));
 

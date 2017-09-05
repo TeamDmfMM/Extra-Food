@@ -26,7 +26,6 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     private static final int[] slots_top = new int[] {0};
     private static final int[] slots_bottom = new int[] {2, 1};
     private static final int[] slots_sides = new int[] {1};
-    private int numOfPlayers;
 
     public float knifeAngle;
     private int totalTime;
@@ -41,6 +40,10 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
         return inv.length;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return inv[0].isEmpty();
+    }
 
 
     public ItemStack getStackInSlot(int slot) {
@@ -50,8 +53,8 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
     public void setInventorySlotContents(int slot, ItemStack stack) {
         inv[slot] = stack;
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
+        if (stack != null && stack.getCount() > getInventoryStackLimit()) {
+            stack.setCount(getInventoryStackLimit());
         }
     }
 
@@ -60,11 +63,11 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
-            if (stack.stackSize <= amt) {
+            if (stack.getCount() <= amt) {
                 setInventorySlotContents(slot, null);
             } else {
                 stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
+                if (stack.getCount() == 0) {
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -88,9 +91,8 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
 
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getTileEntity(new BlockPos(pos.getX(), pos.getY(), pos.getZ())) == this &&
-                player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return world.getTileEntity(new BlockPos(pos.getX(), pos.getY(), pos.getZ())) == this && player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
     }
 
 
@@ -103,7 +105,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
             NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
-                inv[slot] = ItemStack.loadItemStackFromNBT(tag);
+                inv[slot] = new ItemStack(tag);
             }
         }
     }
@@ -176,7 +178,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
                         ItemStack l = ExtraFood.registryCutter.getItemOutput(this.inv[0]);
                         if (this.inv[1] != null) {//5
                             if (this.inv[1].getItem() == l.getItem()) {
-                                return this.inv[1].stackSize < 64 - l.stackSize;
+                                return this.inv[1].getCount() < 64 - l.getCount();
                             }
                         }
                         else {
@@ -241,10 +243,10 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
             this.inv[1] = l.copy();
         }
         else if(this.inv[1].getItem() == l.getItem()) {
-            this.inv[1].stackSize += l.stackSize;
+            this.inv[1].grow(l.getCount());
         }
-        --this.inv[0].stackSize;
-        if (this.inv[0].stackSize <= 0)
+        this.inv[0].shrink(1);
+        if (this.inv[0].getCount() <= 0)
         {
             this.inv[0] = null;
         }

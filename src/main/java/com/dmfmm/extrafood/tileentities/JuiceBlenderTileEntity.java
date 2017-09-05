@@ -2,9 +2,6 @@ package com.dmfmm.extrafood.tileentities;
 
 import com.dmfmm.extrafood.crafting.JuiceRegistry;
 import com.dmfmm.extrafood.init.ItemLoader;
-import com.dmfmm.extrafood.network.ChannelHandler;
-import com.dmfmm.extrafood.network.packets.PacketJBTank;
-import com.dmfmm.extrafood.utilities.FluidContainerRegistryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -13,13 +10,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fluids.*;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 
 
-public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventory, IFluidHandler, ITickable {
+public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventory, /*IFluidHandler,*/ITickable {
 
 
     private static final int[] slots_top = new int[]{0};
@@ -38,9 +35,15 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
     }
 
 
+
     @Override
     public int getSizeInventory() {
         return 3;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 
 
@@ -54,11 +57,11 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
-            if (stack.stackSize <= amt) {
+            if (stack.getCount() <= amt) {
                 setInventorySlotContents(slot, null);
             } else {
                 stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
+                if (stack.getCount() == 0) {
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -101,8 +104,8 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
 
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
     }
 
 
@@ -152,8 +155,8 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
 
 
         items[slot] = stack;
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
+        if (stack != null && stack.getCount() > getInventoryStackLimit()) {
+            stack.setCount(getInventoryStackLimit());
         }
     }
 
@@ -191,7 +194,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         }
         if (this.items[1] != null) {
             // FILL THE BUCKET
-            if (FluidContainerRegistryHelper.isEmptyContainer(this.items[1])) {
+            /*if (FluidContainerRegistryHelper.isEmptyContainer(this.items[1])) {
                 int amount = FluidContainerRegistryHelper.getContainerCapacity(this.tank.getFluid(), this.items[1]);
                 if (amount == tank.drain(amount, false).amount) {
                     setInventorySlotContents(2, FluidContainerRegistryHelper.fillFluidContainer(tank.drain(amount, true), getStackInSlot(1)));
@@ -200,7 +203,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
                         ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }
                 }
-            }
+            }*/
         }
     }
 
@@ -212,10 +215,10 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         } else {
             this.tank.getFluid().amount += 100;
         }
-        if (this.items[0].stackSize == 1) {
+        if (this.items[0].getCount() == 1) {
             this.items[0] = null;
         } else {
-            this.items[0].stackSize -= 1;
+            this.items[0].shrink(1);
         }
 
 
@@ -242,7 +245,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         super.writeToNBT(tag);
 
 
-		/* if (this.tank != null)
+		 if (this.tank != null)
             {
 			 this.tank.writeToNBT(tag);
 	        }
@@ -250,7 +253,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
 	        {
 	        	tag.setString("Fluid", "");
 	        }
-		 super.writeToNBT(tag);*/
+		 super.writeToNBT(tag);
 		/*super.writeToNBT(tag);
 			tag.setInteger("Tracker", outputint);
 			tank.writeToNBT(tag);
@@ -266,7 +269,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         for (s = 0; s < itl.tagCount(); s++) {
             NBTTagCompound t = itl.getCompoundTagAt(s);
             if (t != null) {
-                items[t.getInteger("Slot")] = ItemStack.loadItemStackFromNBT(t);
+                items[t.getInteger("Slot")] = new ItemStack(t);
             }
         }
         super.readFromNBT(tag);
@@ -276,7 +279,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         //EFLog.error(tank.getFluidAmount());
     }
 
-
+/*
     @Override
     public int fill(EnumFacing facing, FluidStack resource, boolean doFill) {
         // TODO Auto-generated method stub
@@ -316,7 +319,7 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
     @Override
     public FluidTankInfo[] getTankInfo(EnumFacing facing) {
         return new FluidTankInfo[]{tank.getInfo()};
-    }
+    }*/
 
 
     @Override

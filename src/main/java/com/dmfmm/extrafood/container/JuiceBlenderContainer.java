@@ -111,17 +111,21 @@ public class JuiceBlenderContainer extends Container{
                 return null;
             }
 
-
-            if (itemstackR.stackSize == 0) {
+            if (itemstackR == ItemStack.EMPTY)
+            {
                 slot.putStack((ItemStack)null);
-            } else {
+            }
+            else
+            {
                 slot.onSlotChanged();
             }
 
-            if (itemstackR.stackSize == stack.stackSize) {
+            if (itemstackR.getCount() == stack.getCount())
+            {
                 return null;
             }
-            slot.onPickupFromSlot(player, itemstackR);
+
+            slot.onTake(player, itemstackR);
         }
         return stack;
     }

@@ -1,27 +1,24 @@
 package com.dmfmm.extrafood.tileentities;
 
-import com.dmfmm.extrafood.blocks.BlockContainerRotate;
 import com.dmfmm.extrafood.container.JuiceMixerContainer;
 import com.dmfmm.extrafood.crafting.JuiceMixerRegistry;
-import com.dmfmm.extrafood.utilities.FluidContainerRegistryHelper;
+import java.util.ArrayList;
+import java.util.Arrays;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fluids.*;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, ITickable, IInventory{
+public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,*/ ITickable, IInventory {
 
     public enum SelectedTank {
         LEFT(0),
@@ -57,7 +54,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public SelectedTank selected;
     private ItemStack[] inv;
 
-    public JuiceMixerTileEntity(){
+    public JuiceMixerTileEntity() {
         inv = new ItemStack[4];
         selected = SelectedTank.LEFT;
         input1 = new FluidTank(2000);
@@ -65,6 +62,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         input3 = new FluidTank(2000);
         outputState = new ArrayList<>();
     }
+
     public void handleMakeDestroy(int id) {
         switch (id){
             case 0:
@@ -127,9 +125,10 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public void changeSelected(SelectedTank tank){
         selected = tank;
     }
-    @Override
+
+    /*@Override
     public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
                 return input1.fill(resource, doFill);
             case RIGHT:
@@ -146,7 +145,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
                 if (input1.getFluid().isFluidEqual(resource)) {
                     return input1.drain(resource.amount, doDrain);
@@ -173,7 +172,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
                 return null;
 
         }
-    }
+    }*/
 
     public FluidStack drainOutput(int maxDrain, boolean doDrain) {
         FluidStack fluid = outputState.get(0);
@@ -200,9 +199,9 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         return stack;
     }
 
-    @Override
+    /*@Override
     public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
                 return input1.drain(maxDrain, doDrain);
             case BACK:
@@ -218,7 +217,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public boolean canFill(EnumFacing from, Fluid fluid) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
             case BACK:
             case RIGHT:
@@ -230,7 +229,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
 
     @Override
     public boolean canDrain(EnumFacing from, Fluid fluid) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
+        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
             case BACK:
             case RIGHT:
@@ -246,22 +245,18 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
 
     @Override
-    public FluidTankInfo[] getTankInfo(EnumFacing from) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(worldObj, pos))) {
-            case LEFT:
-                return new FluidTankInfo[] {new FluidTankInfo(input1.getFluid(), input1.getFluidAmount())};
-            case BACK:
-                return new FluidTankInfo[] {new FluidTankInfo(input2.getFluid(), input2.getFluidAmount())};
-            case RIGHT:
-                return new FluidTankInfo[] {new FluidTankInfo(input3.getFluid(), input3.getFluidAmount())};
-            default:
-                return new FluidTankInfo[0];
-        }
-    }
+    public IFluidTankProperties[] getTankProperties() {
+        return new IFluidTankProperties[] {new FluidTankProperties(input1.getFluid(), input1.getFluidAmount()), new FluidTankProperties(input2.getFluid(), input2.getFluidAmount()), new FluidTankProperties(input3.getFluid(), input3.getFluidAmount())};
+    }*/
 
     @Override
     public int getSizeInventory() {
         return inv.length;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 
     @Override
@@ -273,11 +268,11 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
-            if (stack.stackSize <= amt) {
+            if (stack.getCount() <= amt) {
                 setInventorySlotContents(slot, null);
             } else {
                 stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
+                if (stack.getCount() == 0) {
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -297,8 +292,8 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         inv[index] = stack;
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
+        if (stack != null && stack.getCount() > getInventoryStackLimit()) {
+            stack.setCount(getInventoryStackLimit());
         }
     }
 
@@ -308,7 +303,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         return true;
     }
 
@@ -350,7 +345,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
     @Override
     public void update() {
         if (getStackInSlot(JuiceMixerContainer.INPUT_1) != null) {
-            if (FluidContainerRegistryHelper.isFilledContainer(getStackInSlot(JuiceMixerContainer.INPUT_1))) {
+            /*if (FluidContainerRegistryHelper.isFilledContainer(getStackInSlot(JuiceMixerContainer.INPUT_1))) {
                 FluidStack toAdd = FluidContainerRegistryHelper.getFluidForFilledItem(getStackInSlot(JuiceMixerContainer.INPUT_1));
 
                 if (toAdd != null) {
@@ -388,11 +383,8 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
                         }
                     }
                 }
-            }
+            }*/
         }
-
-
-
     }
 
     @Override
@@ -513,7 +505,7 @@ public class JuiceMixerTileEntity extends TileEntity implements IFluidHandler, I
         for (int inventoryListIndex = 0; inventoryListIndex < inventoryList.tagCount(); inventoryListIndex++) {
             NBTTagCompound stackCompound = inventoryList.getCompoundTagAt(inventoryListIndex);
             int slot = stackCompound.getInteger("Slot");
-            inv[slot] = ItemStack.loadItemStackFromNBT(stackCompound);
+            inv[slot] = new ItemStack(stackCompound);
         }
     }
 }

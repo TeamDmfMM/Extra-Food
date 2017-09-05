@@ -49,7 +49,7 @@ public class AutoCutterRender extends TileEntitySpecialRenderer {
         }
         GL11.glRotatef((float)short1, 0.0F, 1.0F, 0.0F);
         //Use in 1.6.2  this
-        ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/BlockAutoCutter.png"));
+        ResourceLocation textures = (new ResourceLocation("extrafood:textures/blocks/blockautocutter.png"));
         //the ':' is very important
         //binding the textures
         Minecraft.getMinecraft().renderEngine.bindTexture(textures);

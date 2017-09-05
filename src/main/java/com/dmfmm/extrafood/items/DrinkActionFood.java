@@ -32,7 +32,7 @@ public class DrinkActionFood extends StanFood{
             EntityPlayer player = (EntityPlayer) living;
             player.getFoodStats().addStats(FoodBarCount, SaturationCount);
             if (!player.capabilities.isCreativeMode) {
-                --par1.stackSize;
+                par1.shrink(1);
             }
             this.onFoodEaten(par1, world, player);
         }

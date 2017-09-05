@@ -1,11 +1,15 @@
 package com.dmfmm.extrafood.fluids;
 
-import com.dmfmm.extrafood.ExtraFood;
+
 import com.dmfmm.extrafood.init.FluidLoader;
 import com.dmfmm.extrafood.library.ItemLib;
 import com.dmfmm.extrafood.utilities.EFLog;
 import com.dmfmm.extrafood.utilities.tabs.ExtraFoodTab;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,22 +22,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by dmf444 on 3/12/2016. Code originally written
@@ -41,8 +39,9 @@ import java.util.List;
  * because that is just mean. Code is VISIBLE SOURCE, therfore
  * credit us, just don't steal large portions of this.
  */
-public class GlassFluidContainer extends Item implements IFluidContainerItem {
+public class GlassFluidContainer extends Item{
 
+    protected int capacity = 1000;
     public static ArrayList<Fluid> list = new ArrayList();
 
     public GlassFluidContainer(){
@@ -71,7 +70,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem {
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
+    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
         for (Fluid fluid : list){
             subItems.add(createFluidFilledBottle(fluid));
@@ -123,7 +122,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem {
             if(FluidRegistry.getFluid(stack.getTagCompound().getString("fluid")) instanceof EdibleFluid) {
                 EdibleFluid edibleFluid = (EdibleFluid) FluidRegistry.getFluid(stack.getTagCompound().getString("fluid"));
 
-                --stack.stackSize;
+                stack.setCount(stack.getCount() - 1);
 
                 if (entityLiving instanceof EntityPlayer)
                 {
@@ -132,7 +131,7 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem {
                     world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
                     if (!player.capabilities.isCreativeMode)
                     {
-                        if (stack.stackSize <= 0)
+                        if (stack.getCount() <= 0)
                         {
                             return new ItemStack(Items.GLASS_BOTTLE);
                         }
@@ -153,56 +152,8 @@ public class GlassFluidContainer extends Item implements IFluidContainerItem {
     }
 
     @Override
-    public FluidStack getFluid(ItemStack container) {
-        return new FluidStack(FluidRegistry.getFluid(container.getTagCompound().getString("fluid")), 1000);
-    }
-
-    @Override
-    public int getCapacity(ItemStack container) {
-        return 1000;
-    }
-
-    @Override
-    public int fill(ItemStack container, FluidStack resource, boolean doFill) {
-        if (container.getItem() != Items.GLASS_BOTTLE) {
-            return 0;
-        }
-        else {
-            if (resource.amount < 1000) {
-                return 0;
-            }
-            else {
-                if (!list.contains(resource.getFluid())) {
-                    return 0;
-                }
-                if (doFill) {
-                    container.setItem(this);
-                    container.setTagCompound(new NBTTagCompound());
-                    container.getTagCompound().setString("fluid", resource.getFluid().getName());
-                }
-                return 1000;
-            }
-        }
-    }
-
-
-    @Override
-    public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
-        if (container.getItem() != this) {
-            return null;
-        }
-        else {
-            if (maxDrain != 1000) {
-                return null;
-            }
-            else {
-                FluidStack previous = getFluid(container);
-                if (doDrain) {
-                    container.setItem(Items.GLASS_BOTTLE);
-                    container.setTagCompound(null);
-                }
-                return previous;
-            }
-        }
+    public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable NBTTagCompound nbt)
+    {
+        return new FluidHandlerItemStackSimple(stack, capacity);
     }
 }

@@ -108,8 +108,8 @@ public class ClientProxy extends CommonProxy{
 
     @SubscribeEvent
     public void renderzoverlay(RenderBlockOverlayEvent e){
-        if(e.getOverlayType() == RenderBlockOverlayEvent.OverlayType.WATER && (Minecraft.getMinecraft().theWorld.getBlockState(e.getBlockPos()).getBlock() instanceof GeneralFluid)) {
-            float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.getBlockPos()).getBlock()).getFluid());
+        if(e.getOverlayType() == RenderBlockOverlayEvent.OverlayType.WATER && (Minecraft.getMinecraft().world.getBlockState(e.getBlockPos()).getBlock() instanceof GeneralFluid)) {
+            float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().world.getBlockState(e.getBlockPos()).getBlock()).getFluid());
             if (nums == null) {
                 return;
             }

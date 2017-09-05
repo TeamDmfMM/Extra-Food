@@ -35,6 +35,11 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
     public void update() {
         if (OvenRegistry.instance.ok(items) && items[5] == null){
             if (getTime() == 0 && going == false){
@@ -78,14 +83,14 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
 
 
 
-                    items[i].stackSize -= itt.stackSize;
-                    if (items[i].stackSize <= 0){
+                    items[i].shrink(itt.getCount());
+                    if (items[i].getCount() <= 0){
                         items[i] =null;
                     }
                     ok = true;
                     break;
                 }
-                if (is.stackSize == 1 && (itt.getItem() == is.getItem()) && is.getItemDamage() == itt.getItemDamage()){
+                if (is.getCount() == 1 && (itt.getItem() == is.getItem()) && is.getItemDamage() == itt.getItemDamage()){
                     items[i] = null;
                     ok = true;
                     break;
@@ -102,16 +107,16 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
             while (sepcky.addtypes.elements().hasMoreElements()) {
                 ItemStack itemStack = sepcky.addtypes.elements().nextElement();
                 if (itemStack.getItem().equals(items[i].getItem())) {
-                    value =  itemStack.stackSize;
+                    value =  itemStack.getCount();
                     break;
                 }
             }
 
-            if (items[i].stackSize == value){
+            if (items[i].getCount() == value){
                 items[i] = null;
             }
             else {
-                items[i].stackSize -= value;
+                items[i].shrink(value);
             }
 
         }
@@ -146,11 +151,11 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
-            if (stack.stackSize <= amt) {
+            if (stack.getCount() <= amt) {
                 setInventorySlotContents(slot, null);
             } else {
                 stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
+                if (stack.getCount() == 0) {
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -190,9 +195,9 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         // TODO Auto-generated method stub
-        return worldObj.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
+        return world.getTileEntity(pos) == this && player.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ()+ 0.5) < 64;
     }
 
     @Override
@@ -241,7 +246,7 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
             NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < items.length) {
-                items[slot] = ItemStack.loadItemStackFromNBT(tag);
+                items[slot] = new ItemStack(tag);
             }
         }
     }

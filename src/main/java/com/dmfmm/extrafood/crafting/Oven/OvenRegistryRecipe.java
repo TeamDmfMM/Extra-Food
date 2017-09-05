@@ -139,7 +139,7 @@ public class OvenRegistryRecipe {
                 //EFLog.error("derp derp");
                 if (i1.getItemDamage() == i2.getItemDamage()){
                     ///EFLog.error("derp derp derp");
-                    if (i1.stackSize >= i2.stackSize){
+                    if (i1.getCount() >= i2.getCount()){
                         //EFLog.error("yaaaay");
                         return true;
                     }

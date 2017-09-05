@@ -1,6 +1,8 @@
 package com.dmfmm.extrafood.items.nbt;
 
+import com.dmfmm.extrafood.library.ModInfo;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class NBTFoodLoader {
 				continue;
 			}
 			else {
-				GameRegistry.registerItem(foods.get(food), "NBT" + food);
+				GameRegistry.register(foods.get(food), new ResourceLocation(ModInfo.MOD_ID, "NBT" + food));
 			}
 		}
 	}

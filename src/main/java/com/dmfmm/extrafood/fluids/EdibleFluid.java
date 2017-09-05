@@ -3,9 +3,7 @@ package com.dmfmm.extrafood.fluids;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
-/**
- * Created by David on 2016-10-27.
- */
+
 public class EdibleFluid extends Fluid {
 
     int hunger;

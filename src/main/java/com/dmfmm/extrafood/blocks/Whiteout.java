@@ -24,9 +24,8 @@ public class Whiteout extends Block {
 	@Override
 	 public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		if(entity instanceof EntityEnderman){
-			entity.attackEntityFrom(DamageSource.drown, 4.0F);
-		}
+		if(entity instanceof EntityEnderman)
+			entity.attackEntityFrom(DamageSource.DROWN, 4.0F);
 	}
 	@Override
 	 public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type){

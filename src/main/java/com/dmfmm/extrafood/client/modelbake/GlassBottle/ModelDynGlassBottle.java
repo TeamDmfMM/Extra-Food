@@ -23,6 +23,7 @@ import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
@@ -229,16 +230,13 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         @Override
         public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, World world, EntityLivingBase entity)
         {
-            FluidStack fluidStack = FluidContainerRegistry.getFluidForFilledItem(stack);
-            if(stack.hasTagCompound() && stack.getTagCompound().hasKey("fluid")){
-                fluidStack = new FluidStack(FluidRegistry.getFluid(stack.getTagCompound().getString("fluid")), 1);
+            FluidStack fluidStack = null;
+            if(stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.UP)){
+                fluidStack = (FluidStack) stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.UP).getTankProperties()[0];
             }
             if (fluidStack == null)
             {
-                if (stack.getItem() instanceof IFluidContainerItem)
-                {
-                    fluidStack = ((IFluidContainerItem) stack.getItem()).getFluid(stack);
-                }
+                fluidStack = new FluidStack(FluidRegistry.WATER, 1000);
             }
 
             // not a fluid item apparently
