@@ -1,5 +1,5 @@
 {
-  "parent": "ExtraFood:block/oliveLeaf_stage1",
+  "parent": "extrafood:block/oliveleaf_stage1",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

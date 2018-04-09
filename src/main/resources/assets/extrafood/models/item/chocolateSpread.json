@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "extrafood:items/chocolateSpread"
+        "layer0": "extrafood:items/chocolatespread"
     },
     "display": {
         "thirdperson": {

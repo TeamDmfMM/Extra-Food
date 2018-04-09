@@ -31,7 +31,7 @@ public class NBTFoodLoader {
 				continue;
 			}
 			else {
-				GameRegistry.register(foods.get(food), new ResourceLocation(ModInfo.MOD_ID, "NBT" + food));
+				GameRegistry.register(foods.get(food), new ResourceLocation(ModInfo.MOD_ID, "nbt_" + food));
 			}
 		}
 	}

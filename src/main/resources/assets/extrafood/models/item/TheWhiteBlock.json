@@ -1,5 +1,5 @@
 {
-	"parent": "ExtraFood:block/TheWhiteBlock",
+	"parent": "extrafood:block/thewhiteblock",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],

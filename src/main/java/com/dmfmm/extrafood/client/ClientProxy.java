@@ -99,11 +99,12 @@ public class ClientProxy extends CommonProxy{
         MinecraftForge.EVENT_BUS.register(new TextureInjector());
 
         ModelLoader.setCustomModelResourceLocation(FluidLoader.FLUID_CONTAINER, 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "EFglassBottle", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(NBTFoodLoader.getItem("pizza"), 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "NBTpizza", "inventory"));
-        ModelLoader.setCustomModelResourceLocation(NBTFoodLoader.getItem("muffin"), 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "NBTmuffin", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(NBTFoodLoader.getItem("pizza"), 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "nbt_pizza", "inventory"));
+        ModelLoader.setCustomModelResourceLocation(NBTFoodLoader.getItem("muffin"), 0, new ModelResourceLocation(ModInfo.MOD_TEXTURE_PREFIX + "nbt_muffin", "inventory"));
 
         addTextureCalls();
         registerBlockTextures();
+        registerItemTextures();
     }
 
     @SubscribeEvent
@@ -159,33 +160,22 @@ public class ClientProxy extends CommonProxy{
 
 
     private void addTextureCalls(){
-        registerItemTextures(ItemLoader.KNIFE);
-        registerItemTextures(ItemLoader.COOKBOOK);
-        registerItemTextures(ItemLoader.GRATER);
-        registerItemTextures(ItemLoader.LETTUCE_SEEDS);
-        registerItemTextures(ItemLoader.TOMATO_SEEDS);
-        registerItemTextures(ItemLoader.RAW_LETTUCE_SEEDS);
-        registerItemTextures(ItemLoader.PINEAPPLE);
-        registerItemTextures(ItemLoader.MUFFIN_PAN);
-        registerItemTextures(ItemLoader.DOUGH);
-        registerItemTextures(ItemLoader.CHOCOLATE_CAKE);
-
-        registerJuiceTexutre(BlockLoader.STRAWBERRY_JUICE_BLOCK, 0);
-        registerJuiceTexutre(BlockLoader.BANANA_JUICE_BLOCK, 1);
-        registerJuiceTexutre(BlockLoader.CARROT_JUICE_BLOCK, 2);
-        registerJuiceTexutre(BlockLoader.EGGNOG_FLUID_BLOCK, 3);
-        registerJuiceTexutre(BlockLoader.DISCUSTING_MIX_FLUID_BLOCK, 4);
-        registerJuiceTexutre(BlockLoader.APPLE_JUICE_BLOCK, 5);
-        registerJuiceTexutre(BlockLoader.ORANGE_JUICE_BLOCK, 6);
-        registerJuiceTexutre(BlockLoader.WATERMELON_JUICE_BLOCK, 7);
-        registerJuiceTexutre(BlockLoader.PINEAPPLE_JUICE_BLOCK, 8);
-        registerJuiceTexutre(BlockLoader.GRAPE_JUICE_BLOCK, 9);
-        registerJuiceTexutre(BlockLoader.CITRUS_JUICE_BLOCK, 10);
-        registerJuiceTexutre(BlockLoader.APPLE_GRAPE_JUICE_BLOCK, 11);
-        registerJuiceTexutre(BlockLoader.FRUIT_JUICE_BLOCK, 12);
-        registerJuiceTexutre(BlockLoader.MIXED_BERRY_JUICE_BLOCK, 13);
-        registerJuiceTexutre(BlockLoader.STRAWBERRY_BANANA_JUICE_BLOCK, 14);
-        registerJuiceTexutre(BlockLoader.TROPICAL_JUICE_BLOCK, 15);
+        registerJuiceTexutre(FluidLoader.STRAWBERRY_JUICE_BLOCK, 0);
+        registerJuiceTexutre(FluidLoader.BANANA_JUICE_BLOCK, 1);
+        registerJuiceTexutre(FluidLoader.CARROT_JUICE_BLOCK, 2);
+        registerJuiceTexutre(FluidLoader.EGGNOG_FLUID_BLOCK, 3);
+        registerJuiceTexutre(FluidLoader.DISCUSTING_MIX_FLUID_BLOCK, 4);
+        registerJuiceTexutre(FluidLoader.APPLE_JUICE_BLOCK, 5);
+        registerJuiceTexutre(FluidLoader.ORANGE_JUICE_BLOCK, 6);
+        registerJuiceTexutre(FluidLoader.WATERMELON_JUICE_BLOCK, 7);
+        registerJuiceTexutre(FluidLoader.PINEAPPLE_JUICE_BLOCK, 8);
+        registerJuiceTexutre(FluidLoader.GRAPE_JUICE_BLOCK, 9);
+        registerJuiceTexutre(FluidLoader.CITRUS_JUICE_BLOCK, 10);
+        registerJuiceTexutre(FluidLoader.APPLE_GRAPE_JUICE_BLOCK, 11);
+        registerJuiceTexutre(FluidLoader.FRUIT_JUICE_BLOCK, 12);
+        registerJuiceTexutre(FluidLoader.MIXED_BERRY_JUICE_BLOCK, 13);
+        registerJuiceTexutre(FluidLoader.STRAWBERRY_BANANA_JUICE_BLOCK, 14);
+        registerJuiceTexutre(FluidLoader.TROPICAL_JUICE_BLOCK, 15);
 
 
         ModelLoader.setCustomStateMapper(BlockLoader.BANANA_LEAF, new StateMapperBase() {
@@ -235,8 +225,18 @@ public class ClientProxy extends CommonProxy{
         ModelLoader.setCustomStateMapper(block, new cSM(numInJson));
     }
 
-    public static void registerItemTextures(Item item){
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName().toString(), "inventory"));
+    public static void registerItemTextures(){
+        try{
+            for(Field field : ItemLoader.class.getDeclaredFields()){
+                if(field.isAccessible() && field.get(null) instanceof Item){
+                    Item itemB = (Item) field.get(null);
+                    ModelLoader.setCustomModelResourceLocation(itemB, 0, new ModelResourceLocation(itemB.getRegistryName().toString(), "inventory"));
+
+                }
+            }
+        }catch (Exception e){
+
+        }
     }
 
     public static void registerBlockTextures() {

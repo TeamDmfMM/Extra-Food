@@ -1,5 +1,5 @@
 {
-	"parent": "extrafood:block/AutoCutterItem",
+	"parent": "extrafood:block/autocutteritem",
 	"display": {
 		"gui": {
 			"rotation": [ 30, 45, 0 ],

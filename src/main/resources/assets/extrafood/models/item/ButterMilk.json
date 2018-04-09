@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "extrafood:items/ButterMilk"
+        "layer0": "extrafood:items/buttermilk"
     },
     "display": {
         "thirdperson": {

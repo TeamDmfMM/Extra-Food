@@ -1,5 +1,5 @@
 {
-	"parent": "ExtraFood:block/CropTomato",
+	"parent": "extrafood:block/croptomato",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],

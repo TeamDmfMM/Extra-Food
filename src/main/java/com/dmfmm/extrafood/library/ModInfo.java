@@ -9,4 +9,5 @@ public class ModInfo {
     public static final String SERVER_PROXY = "com.dmfmm.extrafood.utilities.proxy.ServerProxy";
     public static final String CLIENT_PROXY = "com.dmfmm.extrafood.client.ClientProxy";
 
+    public static final String MOD_RESOURCE_FLUIDS = MOD_TEXTURE_PREFIX + "blocks/fluid/";
 }

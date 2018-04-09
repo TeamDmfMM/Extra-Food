@@ -48,10 +48,10 @@ public class BushSpawner implements IWorldGenerator {
             int ys = (random.nextInt() * 3) + 1;;
             int xx = x + random.nextInt(15);
             int zz = z + random.nextInt(15);
-            int by = world.getChunksLowestHorizon(xx, zz);//MM12 and I argued over this! //USED IN CHUNCK.recheckGaps
+            int by = world.getHeight(xx, zz);//MM12 and I argued over this! //USED IN CHUNCK.recheckGaps
             for (int xpos = 0; xpos < xs; xpos++){
                 for (int ypos = 0; ypos < ys; ypos++){
-                    by = world.getChunksLowestHorizon(xx + xpos, zz + ypos);
+                    by = world.getHeight(xx + xpos, zz + ypos);
                     IBlockState pie;
                     if(xs > 2) {
                          pie = BlockLoader.PEANUT_BUSH.getDefaultState().withProperty(BlockCrops.AGE, random.nextInt(7));

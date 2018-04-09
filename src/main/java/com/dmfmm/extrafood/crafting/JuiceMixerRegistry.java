@@ -95,14 +95,14 @@ public class JuiceMixerRegistry {
     public JuiceMixerRegistry() {
         recipes = new ArrayList<>();
         validFluids = new ArrayList<>();
-        addRecipe(4, FluidLoader.Fapplegrapejuice, dl(2, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fgrapejuice));
-        addRecipe(4, FluidLoader.Fcitusjuice, dl(1, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fgrapejuice), dl(1, FluidLoader.Forangejuice));
-        addRecipe(6, FluidLoader.Ffruitjuice, dl(2, FluidLoader.Fapplejuice), dl(2, FluidLoader.Fwatermelonjuice), dl(1, FluidLoader.Fstrawberryjuice), dl(1, FluidLoader.Fgrapejuice));
-        addRecipe(2, FluidLoader.Fmixedberryjuice, dl(1, FluidLoader.Fstrawberryjuice), dl(1, FluidLoader.Fgrapejuice));
-        addRecipe(2, FluidLoader.Fstrawberrybanana, dl(1, FluidLoader.Fbananajuice), dl(1, FluidLoader.Fstrawberryjuice));
-        addRecipe(2, FluidLoader.Ftropicaljuice, dl(1, FluidLoader.FpinappleJuice), dl(1, FluidLoader.Fcitusjuice));
+        addRecipe(4, FluidLoader.FLUID_APPLE_GRAPE_JUICE, dl(2, FluidLoader.FLUID_APPLE_JUICE), dl(2, FluidLoader.FLUID_GRAPE_JUICE));
+        addRecipe(4, FluidLoader.FLUID_CITRUS_JUICE, dl(1, FluidLoader.FLUID_APPLE_JUICE), dl(2, FluidLoader.FLUID_GRAPE_JUICE), dl(1, FluidLoader.FLUID_ORANGE_JUICE));
+        addRecipe(6, FluidLoader.FLUID_FRUIT_JUICE, dl(2, FluidLoader.FLUID_APPLE_JUICE), dl(2, FluidLoader.FLUID_WATERMELON_JUICE), dl(1, FluidLoader.FLUID_STRAWBERRY_JUICE), dl(1, FluidLoader.FLUID_GRAPE_JUICE));
+        addRecipe(2, FluidLoader.FLUID_MIXED_BERRY_JUICE, dl(1, FluidLoader.FLUID_STRAWBERRY_JUICE), dl(1, FluidLoader.FLUID_GRAPE_JUICE));
+        addRecipe(2, FluidLoader.FLUID_STRAWBERRY_BANANA_JUICE, dl(1, FluidLoader.FLUID_BANANA_JUICE), dl(1, FluidLoader.FLUID_STRAWBERRY_JUICE));
+        addRecipe(2, FluidLoader.FLUID_TROPICAL_JUICE, dl(1, FluidLoader.FLUID_PINAPPLE_JUICE), dl(1, FluidLoader.FLUID_CITRUS_JUICE));
         // Test recipe
-        //addRecipe(3, FluidLoader.Fstrawberryjuice, dl(1, FluidLoader.Fbananajuice), dl(2, FluidLoader.Fcarrotjuice));
+        //addRecipe(3, FluidLoader.FLUID_STRAWBERRY_JUICE, dl(1, FluidLoader.FLUID_BANANA_JUICE), dl(2, FluidLoader.FLUID_CARROT_JUICE));
     }
 
     public void addRecipe(int output, Fluid outputFluid, DualObjectLink<Integer, Fluid>... fluids) {
@@ -133,7 +133,7 @@ public class JuiceMixerRegistry {
         for (FluidStack fluidStack : fluidStacks) {
             total += fluidStack.amount;
         }
-        return new FluidStack(FluidLoader.FHorribleLiquid, total);
+        return new FluidStack(FluidLoader.FLUID_DISGUSTING_MIX, total);
     }
 
     public boolean validFluid(Fluid f) {

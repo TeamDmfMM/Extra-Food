@@ -14,6 +14,7 @@ import com.dmfmm.extrafood.utilities.ConfigHandler;
 import com.dmfmm.extrafood.utilities.EFLog;
 import com.dmfmm.extrafood.utilities.GuiHandler;
 import com.dmfmm.extrafood.utilities.proxy.CommonProxy;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -48,8 +49,9 @@ public class ExtraFood {
         side = event.getSide();
         ConfigHandler.init(new File(event.getModConfigurationDirectory(), ModInfo.MOD_ID + ".cfg"));
 
-        FluidLoader.initiateFluids();
-        ItemLoader.registerItems();
+        //FluidLoader.initiateFluids();
+        MinecraftForge.EVENT_BUS.register(new BlockLoader());
+        //ItemLoader.registerItems();
         NBTFoodLoader.initiateItems();
         NBTFoodLoader.register();
         EventsLoader.loadEvents();

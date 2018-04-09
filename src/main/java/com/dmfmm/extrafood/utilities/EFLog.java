@@ -26,7 +26,7 @@ public class EFLog {
     public static void tell(Object object)
     {
         log(Level.INFO, "**************************");
-        log(Level.INFO, "*" + object);
+        log(Level.INFO, "*   " + object);
         log(Level.INFO, "**************************");
     }
 

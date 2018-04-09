@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "extrafood:items/SupremeHamburgerSandwhich"
+        "layer0": "extrafood:items/supremehamburgersandwhich"
     },
     "display": {
         "thirdperson": {

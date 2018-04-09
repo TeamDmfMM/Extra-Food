@@ -1,5 +1,5 @@
 {
-	"parent": "ExtraFood:block/strawberry_stage0",
+	"parent": "extrafood:block/strawberry_stage0",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],

@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
     "textures": {
-        "layer0": "ExtraFood:blocks/ItemJuiceBlender"
+        "layer0": "extrafood:blocks/itemjuiceblender"
     },
   "display": {
     "thirdperson": {

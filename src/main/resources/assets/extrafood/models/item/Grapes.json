@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ExtraFood:blocks/Plants/grape_stage_2"
+    "layer0": "extrafood:blocks/plants/grape_stage_2"
   },
   "display": {
     "thirdperson": {

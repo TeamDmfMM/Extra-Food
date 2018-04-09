@@ -1,5 +1,5 @@
 {
-	"parent": "ExtraFood:block/peanut_stage0",
+	"parent": "extrafood:block/peanut_stage0",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],

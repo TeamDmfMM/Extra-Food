@@ -30,23 +30,23 @@ public class JuiceRegistry {
         //juicenames = new Hashtable<Fluid, String>();
         juicecolors = new Hashtable<Fluid, float[]>();
 
-        registerJuice(FluidLoader.Fstrawberryjuice, ItemLoader.STRAWBERRY);
-        registerJuice(FluidLoader.Fbananajuice, ItemLoader.BANANA);
-        registerJuice(FluidLoader.Fcarrotjuice, Items.CARROT);
-        registerJuice(FluidLoader.Fwatermelonjuice, Items.MELON);
-        registerJuice(FluidLoader.Fapplejuice, Items.APPLE);
-        registerJuice(FluidLoader.Forangejuice, ItemLoader.ORANGE);
-        registerJuice(FluidLoader.Fgrapejuice, ItemLoader.GRAPES);
-        registerJuice(FluidLoader.FpinappleJuice, ItemLoader.PINEAPPLE);
+        registerJuice(FluidLoader.FLUID_STRAWBERRY_JUICE, ItemLoader.STRAWBERRY);
+        registerJuice(FluidLoader.FLUID_BANANA_JUICE, ItemLoader.BANANA);
+        registerJuice(FluidLoader.FLUID_CARROT_JUICE, Items.CARROT);
+        registerJuice(FluidLoader.FLUID_WATERMELON_JUICE, Items.MELON);
+        registerJuice(FluidLoader.FLUID_APPLE_JUICE, Items.APPLE);
+        registerJuice(FluidLoader.FLUID_ORANGE_JUICE, ItemLoader.ORANGE);
+        registerJuice(FluidLoader.FLUID_GRAPE_JUICE, ItemLoader.GRAPES);
+        registerJuice(FluidLoader.FLUID_PINAPPLE_JUICE, ItemLoader.PINEAPPLE);
 
-        registerColor(FluidLoader.Fbananajuice, 211, 230, 78);
-        registerColor(FluidLoader.Fstrawberryjuice, 199, 0, 4);
-        registerColor(FluidLoader.Fcarrotjuice, 255, 110, 18);
-        registerColor(FluidLoader.Fwatermelonjuice, 229, 65, 46);
-        registerColor(FluidLoader.Fapplejuice, 237, 291, 98);
-        registerColor(FluidLoader.Forangejuice, 255, 140, 0);
-        registerColor(FluidLoader.Fgrapejuice, 75, 0, 130);
-        registerColor(FluidLoader.FpinappleJuice, 221, 246, 87);
+        registerColor(FluidLoader.FLUID_BANANA_JUICE, 211, 230, 78);
+        registerColor(FluidLoader.FLUID_STRAWBERRY_JUICE, 199, 0, 4);
+        registerColor(FluidLoader.FLUID_CARROT_JUICE, 255, 110, 18);
+        registerColor(FluidLoader.FLUID_WATERMELON_JUICE, 229, 65, 46);
+        registerColor(FluidLoader.FLUID_APPLE_JUICE, 237, 291, 98);
+        registerColor(FluidLoader.FLUID_ORANGE_JUICE, 255, 140, 0);
+        registerColor(FluidLoader.FLUID_GRAPE_JUICE, 75, 0, 130);
+        registerColor(FluidLoader.FLUID_PINAPPLE_JUICE, 221, 246, 87);
 
 
     }

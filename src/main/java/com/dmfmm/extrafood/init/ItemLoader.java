@@ -12,6 +12,7 @@ import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -25,12 +26,12 @@ public class ItemLoader {
     public static final Item KNIFE = new Knife();
     public static final Item COOKBOOK = new CookBook();
     public static final Item GRATER = new Grater();
-    public static final Item BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, BlockLoader.STRAWBERRY_JUICE_BLOCK, ItemLib.STRAWBERRY_BUCKET);
-    public static final Item BUCKET_BANANA = new BucketEdible(6, 0.6F, BlockLoader.BANANA_JUICE_BLOCK, ItemLib.BANANA_BUCKET);
-    public static final Item BUCKET_CARROT = new BucketEdible(6, 0.9F, BlockLoader.CARROT_JUICE_BLOCK, ItemLib.CARROT_BUCKET);
+    public static final Item BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, FluidLoader.STRAWBERRY_JUICE_BLOCK, ItemLib.STRAWBERRY_BUCKET);
+    public static final Item BUCKET_BANANA = new BucketEdible(6, 0.6F, FluidLoader.BANANA_JUICE_BLOCK, ItemLib.BANANA_BUCKET);
+    public static final Item BUCKET_CARROT = new BucketEdible(6, 0.9F, FluidLoader.CARROT_JUICE_BLOCK, ItemLib.CARROT_BUCKET);
     public static final Item BUCKET_SEA_WATER = new BucketEdible(2, 0.5F, Blocks.WATER, ItemLib.SEA_WATER_BUCKET);
     public static final Item BUCKET_PURIFIED_WATER = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.PURIFIED_WATER_BUCKET);
-    public static final Item BUCKET_EGGNOG = new BucketEdible(9, 5.0F, BlockLoader.EGGNOG_FLUID_BLOCK, ItemLib.EGGNOG);
+    public static final Item BUCKET_EGGNOG = new BucketEdible(9, 5.0F, FluidLoader.EGGNOG_FLUID_BLOCK, ItemLib.EGGNOG);
     public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.TOMATO_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.TOMATO_SEED).setRegistryName(ItemLib.TOMATO_SEED).setCreativeTab(ExtraFoodTab.INSTANCE);
     public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS);
     public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.PINEAPPLE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.PINEAPPLE).setRegistryName(ItemLib.PINEAPPLE).setCreativeTab(ExtraFoodTab.INSTANCE);
@@ -114,6 +115,7 @@ public class ItemLoader {
     public static final Item CHOCOLATE_CAKE = new ItemBlockSpecial(BlockLoader.CHOCOLATE_CAKE_BLOCK).setMaxStackSize(1).setUnlocalizedName(ItemLib.CHOCOLATE_CAKE).setRegistryName(ItemLib.CHOCOLATE_CAKE).setCreativeTab(ExtraFoodTab.INSTANCE);
 
 
+    @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> register){
         try{
             for(Field field : ItemLoader.class.getDeclaredFields()){

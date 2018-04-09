@@ -51,7 +51,7 @@ public class BucketEdible extends ItemBucket {
 
         GameRegistry.register(this);
         if(ExtraFood.side == Side.CLIENT){
-            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName().toString(), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName().toString().toLowerCase(), "inventory"));
         }
     }
 

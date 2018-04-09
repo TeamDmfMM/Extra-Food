@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "extrafood:items/pastaMeatballs"
+        "layer0": "extrafood:items/pastameatballs"
     },
     "display": {
         "thirdperson": {

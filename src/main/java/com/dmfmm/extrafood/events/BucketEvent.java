@@ -2,6 +2,7 @@ package com.dmfmm.extrafood.events;
 
 
 import com.dmfmm.extrafood.init.BlockLoader;
+import com.dmfmm.extrafood.init.FluidLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import com.dmfmm.extrafood.utilities.ConfigHandler;
 import net.minecraft.block.Block;
@@ -34,9 +35,9 @@ public class BucketEvent {
 
 
     private BucketEvent() {
-        buckets.put(BlockLoader.BANANA_JUICE_BLOCK, ItemLoader.BUCKET_BANANA);
-        buckets.put(BlockLoader.STRAWBERRY_JUICE_BLOCK, ItemLoader.BUCKET_STRAWBERRY);
-        buckets.put(BlockLoader.CARROT_JUICE_BLOCK, ItemLoader.BUCKET_CARROT);
+        buckets.put(FluidLoader.BANANA_JUICE_BLOCK, ItemLoader.BUCKET_BANANA);
+        buckets.put(FluidLoader.STRAWBERRY_JUICE_BLOCK, ItemLoader.BUCKET_STRAWBERRY);
+        buckets.put(FluidLoader.CARROT_JUICE_BLOCK, ItemLoader.BUCKET_CARROT);
         if(ConfigHandler.overrideWater){
             buckets.put(Blocks.WATER, ItemLoader.BUCKET_SEA_WATER);
         }

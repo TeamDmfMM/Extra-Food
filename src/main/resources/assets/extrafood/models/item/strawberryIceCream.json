@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "extrafood:items/strawberryIceCream"
+        "layer0": "extrafood:items/strawberryicecream"
     },
     "display": {
         "thirdperson": {

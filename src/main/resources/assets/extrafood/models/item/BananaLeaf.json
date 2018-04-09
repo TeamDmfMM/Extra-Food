@@ -1,5 +1,5 @@
 {
-  "parent": "extrafood:block/BananaLeaf",
+  "parent": "extrafood:block/bananaleaf",
   "display": {
     "thirdperson": {
       "rotation": [ 10, -45, 170 ],

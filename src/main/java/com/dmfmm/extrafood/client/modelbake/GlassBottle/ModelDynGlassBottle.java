@@ -232,7 +232,7 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         {
             FluidStack fluidStack = null;
             if(stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.UP)){
-                fluidStack = (FluidStack) stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.UP).getTankProperties()[0];
+                fluidStack = (FluidStack) stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.UP).getTankProperties()[0].getContents();
             }
             if (fluidStack == null)
             {

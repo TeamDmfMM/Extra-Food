@@ -29,10 +29,10 @@ public class BlockLib {
 
 
     //Fluids
-    public static final String FLUID_BLOCK_BANANA = "Fbananajuice";
-    public static final String FLUID_BLOCK_EGGNOG = "FEggnog";
+    public static final String FLUID_BLOCK_BANANA = "FLUID_BANANA_JUICE";
+    public static final String FLUID_BLOCK_EGGNOG = "FLUID_EGGNOG";
     public static final String FLUID_BLOCK_STRAWBERRY = "StrawberryJuice";
-    public static final String FLUID_BLOCK_CARROT = "Fcarrotjuice";
+    public static final String FLUID_BLOCK_CARROT = "FLUID_CARROT_JUICE";
     public static final String FLUID_BLOCK_DISCUSTING_MIX = "FdisgustingMix";
 
     public static final String OLIVE_TREE_SAPLING = "OliveTreeSapling";

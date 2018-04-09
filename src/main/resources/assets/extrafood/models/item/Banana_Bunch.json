@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "extrafood:blocks/BananaBunch"
+        "layer0": "extrafood:blocks/bananabunch"
     },
     "display": {
         "thirdperson": {

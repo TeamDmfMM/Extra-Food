@@ -44,23 +44,6 @@ public class BlockLoader {
     public static final Block ORANGE_SAPLING = new OrangeTreeSapling(BlockLib.ORANGE_SAPLING);
     public static final Block GRAPE_VINE = new GrapeVines(BlockLib.GRAPE_VINE);
 
-    //JUICE BLOCKS
-    public static final Block BANANA_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fbananajuice, Material.WATER, BlockLib.FLUID_BLOCK_BANANA);
-    public static final Block EGGNOG_FLUID_BLOCK = new GeneralFluid(FluidLoader.FEggnog, Material.WATER, BlockLib.FLUID_BLOCK_EGGNOG);
-    public static final Block STRAWBERRY_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fstrawberryjuice, Material.WATER, BlockLib.FLUID_BLOCK_STRAWBERRY);
-    public static final Block CARROT_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fcarrotjuice, Material.WATER, BlockLib.FLUID_BLOCK_CARROT);
-    public static final Block DISCUSTING_MIX_FLUID_BLOCK = new GeneralFluid(FluidLoader.FHorribleLiquid, Material.WATER, BlockLib.FLUID_BLOCK_DISCUSTING_MIX);
-    public static final Block APPLE_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fapplejuice, Material.WATER, BlockLib.APPLE_JUICE_BLOCK);
-    public static final Block ORANGE_JUICE_BLOCK = new GeneralFluid(FluidLoader.Forangejuice, Material.WATER, BlockLib.ORANGE_JUICE_BLOCK);
-    public static final Block WATERMELON_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fwatermelonjuice, Material.WATER, BlockLib.MELON_JUICE_BLOCK);
-    public static final Block GRAPE_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fgrapejuice, Material.WATER, BlockLib.GRAPE_JUICE_BLOCK);
-    public static final Block APPLE_GRAPE_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fapplegrapejuice, Material.WATER, BlockLib.APPLE_GRAPE_JUICE_BLOCK);
-    public static final Block CITRUS_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fcitusjuice, Material.WATER, BlockLib.CITRUS_JUICE_BLOCK);
-    public static final Block PINEAPPLE_JUICE_BLOCK = new GeneralFluid(FluidLoader.FpinappleJuice, Material.WATER, BlockLib.PINEAPPLE_JUICE_BLOCK);
-    public static final Block FRUIT_JUICE_BLOCK = new GeneralFluid(FluidLoader.Ffruitjuice, Material.WATER, BlockLib.FRUIT_JUICE_BLOCK);
-    public static final Block STRAWBERRY_BANANA_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fstrawberrybanana, Material.WATER, BlockLib.STRAWBERRY_BANANA_JUICE);
-    public static final Block MIXED_BERRY_JUICE_BLOCK = new GeneralFluid(FluidLoader.Fmixedberryjuice, Material.WATER, BlockLib.MIXED_BERRY_JUICE);
-    public static final Block TROPICAL_JUICE_BLOCK = new GeneralFluid(FluidLoader.Ftropicaljuice, Material.WATER, BlockLib.TROPICAL_JUICE);
 
 
     @SubscribeEvent

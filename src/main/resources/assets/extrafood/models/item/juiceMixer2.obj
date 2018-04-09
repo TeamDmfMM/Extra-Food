@@ -1,6 +1,6 @@
 # obj fixer output. make sure to add back in stuff like materials
-mtllib juiceMixer2.mtl
-o Cube1
+mtllib juicemixer2.mtl
+o cube1
 v 0.598615 0.224082 0.576159
 v 0.598615 0.24959 0.576159
 v 0.604991 0.24959 0.576159
@@ -7208,7 +7208,7 @@ vn 0.0 -0.0114 0.9999
 vn 0.0 -0.0038 -1.0
 vn 0.0 0.6489 0.7608
 # add usemtl and faces
-usemtl None
+usemtl none
 s off
 f 5/1/1 8/2/1 11/3/1
 f 14/4/1 15/5/1 16/6/1

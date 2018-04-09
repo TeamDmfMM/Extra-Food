@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -56,6 +57,7 @@ public class GlassFluidContainer extends Item{
         ItemStack itemStack = new ItemStack(FluidLoader.FLUID_CONTAINER);
         NBTTagCompound tagCompound = new NBTTagCompound();
         tagCompound.setString("fluid", fluid.getName());
+        tagCompound.setTag(FluidHandlerItemStackSimple.FLUID_NBT_KEY, new FluidStack(fluid, 1000).writeToNBT(new NBTTagCompound()));
         itemStack.setTagCompound(tagCompound);
         return itemStack;
     }
@@ -105,7 +107,8 @@ public class GlassFluidContainer extends Item{
         return EnumAction.DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand){
+        ItemStack stack = player.getHeldItem(hand);
         if (stack.getItem() == this && player.canEat(false)){
             player.setActiveHand(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
