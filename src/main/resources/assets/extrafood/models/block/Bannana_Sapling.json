@@ -1,6 +1,6 @@
 {
 	"parent": "block/cross",
 	"textures": {
-		"cross": "ExtraFood:blocks/Sapling_banana"
+		"cross": "extrafood:blocks/sapling_banana"
 	}
 }

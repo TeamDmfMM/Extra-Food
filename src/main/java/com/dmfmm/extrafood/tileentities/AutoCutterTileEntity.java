@@ -47,7 +47,7 @@ public class AutoCutterTileEntity extends TileEntity implements ISidedInventory 
 
 
     public ItemStack getStackInSlot(int slot) {
-        return inv[slot];
+        return inv[slot] == null ? ItemStack.EMPTY : inv[slot];
     }
 
 

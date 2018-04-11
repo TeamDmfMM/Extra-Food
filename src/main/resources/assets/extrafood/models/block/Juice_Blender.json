@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "ExtraFood:blocks/Juice_Blender"
+		"all": "extrafood:blocks/juice_blender"
 	}
 }

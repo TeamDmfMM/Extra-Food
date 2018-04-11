@@ -5,13 +5,13 @@
       "model": "extrafood:glassbottles",
       "textures": {
         "base": "minecraft:items/potion_bottle_empty",
-        "fluid": "extrafood:items/juicebottleInside",
+        "fluid": "extrafood:items/juicebottleinside",
         "cover": "minecraft:items/potion_bottle_empty"
       },
       "transform": "forge:default-item",
       "custom": {
         "fluid": "water",
-        "flipGas": false
+        "flipgas": false
       }
     }
   }

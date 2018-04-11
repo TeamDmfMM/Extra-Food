@@ -5,7 +5,8 @@ import com.dmfmm.extrafood.crafting.AutoCutterRegistry;
 import com.dmfmm.extrafood.crafting.CraftingRecipies;
 import com.dmfmm.extrafood.crafting.JuiceRegistry;
 import com.dmfmm.extrafood.crafting.Oven.OvenRegistry;
-import com.dmfmm.extrafood.init.*;
+import com.dmfmm.extrafood.init.EventsLoader;
+import com.dmfmm.extrafood.init.TileEntityLoader;
 import com.dmfmm.extrafood.items.nbt.NBTFoodLoader;
 import com.dmfmm.extrafood.library.ModInfo;
 import com.dmfmm.extrafood.network.ChannelHandler;
@@ -14,8 +15,6 @@ import com.dmfmm.extrafood.utilities.ConfigHandler;
 import com.dmfmm.extrafood.utilities.EFLog;
 import com.dmfmm.extrafood.utilities.GuiHandler;
 import com.dmfmm.extrafood.utilities.proxy.CommonProxy;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -50,7 +49,7 @@ public class ExtraFood {
         ConfigHandler.init(new File(event.getModConfigurationDirectory(), ModInfo.MOD_ID + ".cfg"));
 
         //FluidLoader.initiateFluids();
-        MinecraftForge.EVENT_BUS.register(new BlockLoader());
+        //MinecraftForge.EVENT_BUS.register(new BlockLoader());
         //ItemLoader.registerItems();
         NBTFoodLoader.initiateItems();
         NBTFoodLoader.register();

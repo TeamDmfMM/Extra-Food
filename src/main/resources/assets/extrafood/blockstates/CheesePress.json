@@ -1,12 +1,12 @@
 {
 	"variants": {
-		"normal": { "model": "ExtraFood:CheesePress" },
+		"normal": { "model": "extrafood:cheesepress" },
 		
-		"facing=north": { "model": "ExtraFood:CheesePress" },
-        "facing=south": { "model": "ExtraFood:CheesePress", "y": 180 },
-        "facing=west":  { "model": "ExtraFood:CheesePress", "y": 270 },
-        "facing=east":  { "model": "ExtraFood:CheesePress", "y": 90 },
-		"facing=down":  { "model": "ExtraFood:CheesePress", "x": 90 },
-		"facing=up":    { "model": "ExtraFood:CheesePress", "x": 270 }
+		"facing=north": { "model": "extrafood:cheesepress" },
+        "facing=south": { "model": "extrafood:cheesepress", "y": 180 },
+        "facing=west":  { "model": "extrafood:cheesepress", "y": 270 },
+        "facing=east":  { "model": "extrafood:cheesepress", "y": 90 },
+		"facing=down":  { "model": "extrafood:cheesepress", "x": 90 },
+		"facing=up":    { "model": "extrafood:cheesepress", "x": 270 }
 	}
 }

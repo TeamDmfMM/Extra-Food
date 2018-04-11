@@ -1,14 +1,14 @@
 {
 
-  "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+  "__comment": "model generated using mrcrayfish's model creator (http://mrcrayfish.com/modelcreator/)",
   "parent": "block/block",
   "ambientocclusion": false,
   "textures": {
-    "0": "extrafood:blocks/AutoCutterItem"
+    "0": "extrafood:blocks/autocutteritem"
   },
   "elements": [
     {
-      "name": "Foot1",
+      "name": "foot1",
       "from": [ 0.0, 0.0, 12.0 ],
       "to": [ 16.0, 2.0, 14.0 ],
       "faces": {
@@ -21,7 +21,7 @@
       }
     },
     {
-      "name": "Foot2",
+      "name": "foot2",
       "from": [ 0.0, 0.0, 2.0 ],
       "to": [ 16.0, 2.0, 4.0 ],
       "faces": {
@@ -34,7 +34,7 @@
       }
     },
     {
-      "name": "Peg1",
+      "name": "peg1",
       "from": [ 2.0, 2.0, 12.0 ],
       "to": [ 4.0, 8.0, 14.0 ],
       "faces": {
@@ -47,7 +47,7 @@
       }
     },
     {
-      "name": "Peg2",
+      "name": "peg2",
       "from": [ 12.0, 2.0, 12.0 ],
       "to": [ 14.0, 8.0, 14.0 ],
       "faces": {
@@ -60,7 +60,7 @@
       }
     },
     {
-      "name": "Peg3",
+      "name": "peg3",
       "from": [ 12.0, 2.0, 2.0 ],
       "to": [ 14.0, 8.0, 4.0 ],
       "faces": {
@@ -73,7 +73,7 @@
       }
     },
     {
-      "name": "Peg4",
+      "name": "peg4",
       "from": [ 2.0, 2.0, 2.0 ],
       "to": [ 4.0, 8.0, 4.0 ],
       "faces": {
@@ -86,7 +86,7 @@
       }
     },
     {
-      "name": "CrossLeg1",
+      "name": "crossleg1",
       "from": [ 2.0, 4.0, 4.0 ],
       "to": [ 3.0, 5.0, 12.0 ],
       "faces": {
@@ -99,7 +99,7 @@
       }
     },
     {
-      "name": "CrossLeg2",
+      "name": "crossleg2",
       "from": [ 13.0, 4.0, 4.0 ],
       "to": [ 14.0, 5.0, 12.0 ],
       "faces": {
@@ -112,7 +112,7 @@
       }
     },
     {
-      "name": "TableTop",
+      "name": "tabletop",
       "from": [ 0.0, 8.0, 0.0 ],
       "to": [ 16.0, 9.0, 16.0 ],
       "faces": {
@@ -125,7 +125,7 @@
       }
     },
     {
-      "name": "CuttingBoard",
+      "name": "cuttingboard",
       "from": [ 3.0, 9.0, 5.0 ],
       "to": [ 13.0, 10.0, 13.0 ],
       "faces": {
@@ -138,7 +138,7 @@
       }
     },
     {
-      "name": "Corner1",
+      "name": "corner1",
       "from": [ 0.0, 9.0, 0.0 ],
       "to": [ 1.0, 13.0, 3.0 ],
       "faces": {
@@ -151,7 +151,7 @@
       }
     },
     {
-      "name": "Corner2",
+      "name": "corner2",
       "from": [ 15.0, 9.0, 0.0 ],
       "to": [ 16.0, 13.0, 3.0 ],
       "faces": {
@@ -164,7 +164,7 @@
       }
     },
     {
-      "name": "IronBar",
+      "name": "ironbar",
       "from": [ 1.0, 11.0, 1.0 ],
       "to": [ 15.0, 12.0, 2.0 ],
       "faces": {
@@ -177,7 +177,7 @@
       }
     },
     {
-      "name": "KnifeHolder",
+      "name": "knifeholder",
       "from": [ 7.0, 11.0, 1.0 ],
       "to": [ 9.0, 12.0, 7.0 ],
       "faces": {
@@ -190,7 +190,7 @@
       }
     },
     {
-      "name": "Knife",
+      "name": "knife",
       "from": [ 8.0, 10.0, 5.0 ],
       "to": [ 8.0, 12.0, 10.0 ],
       "faces": {
@@ -203,7 +203,7 @@
       }
     },
     {
-      "name": "TableSkirt1",
+      "name": "tableskirt1",
       "from": [ 1.0, 6.0, 1.0 ],
       "to": [ 2.0, 8.0, 15.0 ],
       "faces": {
@@ -216,7 +216,7 @@
       }
     },
     {
-      "name": "TableSkirt2",
+      "name": "tableskirt2",
       "from": [ 14.0, 6.0, 1.0 ],
       "to": [ 15.0, 8.0, 15.0 ],
       "faces": {
@@ -229,7 +229,7 @@
       }
     },
     {
-      "name": "TableSkirt3",
+      "name": "tableskirt3",
       "from": [ 2.0, 6.0, 1.0 ],
       "to": [ 14.0, 8.0, 2.0 ],
       "faces": {
@@ -242,7 +242,7 @@
       }
     },
     {
-      "name": "TableSkirt4",
+      "name": "tableskirt4",
       "from": [ 2.0, 6.0, 14.0 ],
       "to": [ 14.0, 8.0, 15.0 ],
       "faces": {

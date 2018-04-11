@@ -1,6 +1,6 @@
 {
 	"parent": "block/leaves",
 	"textures": {
-		"all": "extrafood:blocks/Plants/olivebush_stage2"
+		"all": "extrafood:blocks/plants/olivebush_stage2"
 	}
 }

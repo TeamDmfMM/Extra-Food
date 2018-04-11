@@ -1,12 +1,12 @@
 {
 	"variants": {
-		"normal": { "model": "ExtraFood:Auto_Cutter" },
+		"normal": { "model": "extrafood:auto_cutter" },
 		
-		"facing=north": { "model": "ExtraFood:Auto_Cutter" },
-        "facing=south": { "model": "ExtraFood:Auto_Cutter", "y": 180 },
-        "facing=west":  { "model": "ExtraFood:Auto_Cutter", "y": 270 },
-        "facing=east":  { "model": "ExtraFood:Auto_Cutter", "y": 90 },
-		"facing=down":  { "model": "ExtraFood:Auto_Cutter", "x": 90 },
-		"facing=up":    { "model": "ExtraFood:Auto_Cutter", "x": 270 }
+		"facing=north": { "model": "extrafood:auto_cutter" },
+        "facing=south": { "model": "extrafood:auto_cutter", "y": 180 },
+        "facing=west":  { "model": "extrafood:auto_cutter", "y": 270 },
+        "facing=east":  { "model": "extrafood:auto_cutter", "y": 90 },
+		"facing=down":  { "model": "extrafood:auto_cutter", "x": 90 },
+		"facing=up":    { "model": "extrafood:auto_cutter", "x": 270 }
 	}
 }

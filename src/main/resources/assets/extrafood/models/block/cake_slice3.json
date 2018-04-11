@@ -1,10 +1,10 @@
 {
     "textures": {
-        "particle": "extrafood:blocks/Cho_side",
+        "particle": "extrafood:blocks/cho_side",
         "bottom": "minecraft:blocks/cake_bottom",
-        "top": "extrafood:blocks/Cho_top",
-        "side": "extrafood:blocks/Cho_side",
-        "inside": "extrafood:blocks/Cho_inner"
+        "top": "extrafood:blocks/cho_top",
+        "side": "extrafood:blocks/cho_side",
+        "inside": "extrafood:blocks/cho_inner"
     },
     "elements": [
         {   "from": [ 7, 0, 1 ],

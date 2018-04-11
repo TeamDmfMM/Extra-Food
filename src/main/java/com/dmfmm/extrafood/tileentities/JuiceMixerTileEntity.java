@@ -17,6 +17,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,*/ ITickable, IInventory {
 
@@ -428,6 +430,7 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         selected = SelectedTank.values()[pkt.getNbtCompound().getInteger("State")];

@@ -1,6 +1,6 @@
 {
 	"parent": "block/leaves",
 	"textures": {
-		"all": "extrafood:blocks/BananaLeaf"
+		"all": "extrafood:blocks/bananaleaf"
 	}
 }

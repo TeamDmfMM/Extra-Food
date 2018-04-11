@@ -1,55 +1,55 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "extrafood:crossModel"
+    "model": "extrafood:crossmodel"
   },
   "variants": {
     "age=0": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_0"
+        "cross": "extrafood:blocks/plants/pineapple_stage_0"
       }
     },
     "age=1": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_1"
+        "cross": "extrafood:blocks/plants/pineapple_stage_1"
       }
     },
     "age=2": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_2"
+        "cross": "extrafood:blocks/plants/pineapple_stage_2"
       }
     },
     "age=3": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_3"
+        "cross": "extrafood:blocks/plants/pineapple_stage_3"
       }
     },
     "age=4": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_3"
+        "cross": "extrafood:blocks/plants/pineapple_stage_3"
       }
     },
     "age=5": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_4"
+        "cross": "extrafood:blocks/plants/pineapple_stage_4"
       }
     },
     "age=6": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_5"
+        "cross": "extrafood:blocks/plants/pineapple_stage_5"
       }
     },
     "age=7": {
-      "model": "extrafood:crossModel",
+      "model": "extrafood:crossmodel",
       "textures": {
-        "cross": "extrafood:blocks/Plants/pineapple_stage_5"
+        "cross": "extrafood:blocks/plants/pineapple_stage_5"
       }
     }
   }

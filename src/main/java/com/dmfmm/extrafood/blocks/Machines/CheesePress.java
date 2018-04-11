@@ -44,7 +44,7 @@ public class CheesePress extends BlockContainerRotate {
     }
 
     //It's not a normal block, so you need this too.
-    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing side) {
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
         return false;
     }
 

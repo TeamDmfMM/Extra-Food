@@ -42,7 +42,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     @Override
     public ItemStack getStackInSlot(int slot) {
 
-        return inv[slot];
+        return inv[slot] == null ? ItemStack.EMPTY : inv[slot];
     }
 
     @Override
@@ -165,7 +165,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
             }
         }
         if (this.getStackInSlot(3) != null) {
-            if (this.getStackInSlot(3).getCount() == 64 || this.getStackInSlot(3).getItem() != ItemLoader.CHEESE_WHEEL) {
+            if (this.getStackInSlot(3).getCount() == 64) {
                 return false;
             }
         }
@@ -173,14 +173,9 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
     }
 
     public void makeCheese() {
-        this.inv[0] = null;
-        this.inv[1] = null;
-        this.inv[2] = null;
-        if (inv[0] == null && inv[1] == null && inv[2] == null) {
-            ItemStack ist = new ItemStack(Items.BUCKET, 1);
-            for (int i = 0; i < 3; i++) {
-                this.inv[i] = ist.copy();
-            }
+        ItemStack ist = new ItemStack(Items.BUCKET, 1);
+        for (int i = 0; i < 3; i++) {
+            this.inv[i] = ist.copy();
         }
         if (this.inv[3] != null) {
             this.inv[3].grow(1);
@@ -193,7 +188,7 @@ public class CheesePressTileEntity extends TileEntity implements ISidedInventory
 
     @Override
     public void update() {
-        if (this.areItemsCorrect() == true) {
+        if (this.areItemsCorrect()) {
             int ticks = this.complete * 10 + this.ttime;
             if (ticks % 2 == 0) {
                 int degrees = (int) (ticks * 1.5);

@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "extrafood:blocks/Plants/lettuce_stage_1"
+        "crop": "extrafood:blocks/plants/lettuce_stage_1"
     }
 }

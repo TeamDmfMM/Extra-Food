@@ -49,6 +49,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 
 /**
@@ -228,7 +229,7 @@ public class ClientProxy extends CommonProxy{
     public static void registerItemTextures(){
         try{
             for(Field field : ItemLoader.class.getDeclaredFields()){
-                if(field.isAccessible() && field.get(null) instanceof Item){
+                if(!Modifier.isPrivate(field.getModifiers()) && field.get(null) instanceof Item){
                     Item itemB = (Item) field.get(null);
                     ModelLoader.setCustomModelResourceLocation(itemB, 0, new ModelResourceLocation(itemB.getRegistryName().toString(), "inventory"));
 

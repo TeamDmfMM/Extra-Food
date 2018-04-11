@@ -1,9 +1,9 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "particle": "extrafood:blocks/Plants/grapeBase",
-    "vine": "extrafood:blocks/Plants/grapeBase",
-    "cross": "extrafood:blocks/Zycrafted"
+    "particle": "extrafood:blocks/plants/grapebase",
+    "vine": "extrafood:blocks/plants/grapebase",
+    "cross": "extrafood:blocks/zycrafted"
   },
   "elements": [
     {   "from": [ 0.8, 0, 8 ],

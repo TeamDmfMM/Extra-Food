@@ -1,6 +1,6 @@
 {
 	"variants": {
-        "stage=0": { "model": "extrafood:OliveTreeSapling" },
-        "stage=1": { "model": "extrafood:OliveTreeSapling" }
+        "stage=0": { "model": "extrafood:olivetreesapling" },
+        "stage=1": { "model": "extrafood:olivetreesapling" }
     }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/cross",
   "textures": {
-    "cross": "extrafood:blocks/OrangeBlock"
+    "cross": "extrafood:blocks/orangeblock"
   }
 }

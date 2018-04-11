@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "extrafood:juiceMixer2.obj",
+    "model": "extrafood:juicemixer2.obj",
     "transform": {"translation": [0.02, -0.04, 0]},
     "custom": {
       "flip-v": false
