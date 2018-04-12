@@ -36,8 +36,14 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
 
     @Override
     public boolean isEmpty() {
-        return false;
+        for(ItemStack i : items) {
+            if(i != null) {
+                return false;
+            }
+        }
+        return true;
     }
+
 
     @Override
     public void update() {
@@ -144,7 +150,7 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
 
     @Override
     public ItemStack getStackInSlot(int slot) {
-        return items[slot];
+        return items[slot] == null ? ItemStack.EMPTY : items[slot];
     }
 
     @Override

@@ -43,13 +43,13 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return items[0] == null && (items[1] == null && (items[2] == null));
     }
 
 
     @Override
-    public ItemStack getStackInSlot(int p_70301_1_) {
-        return items[p_70301_1_];
+    public ItemStack getStackInSlot(int slot) {
+        return items[slot] == null ? ItemStack.EMPTY : items[slot];
     }
 
 
@@ -180,13 +180,16 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         // EFLog.error(tank.getFluidAmount());
         if (this.ok()) {
             this.ttime += 1;
+
             if (this.ttime == 20) {
                 this.ttime = 0;
                 this.complete += 1;
+
                 if (this.complete == 20) {
                     this.ttime = 0;
                     this.complete = 0;
                     this.do_thingy();
+                    this.markDirty();
                 }
             }
         } else{

@@ -75,8 +75,7 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
                 break;
         }
     }
-    public void handleClickingRelease(int
-                                              tank) {
+    public void handleClickingRelease(int tank) {
         FluidTank toDrain = null;
         switch (tank) {
             case 0:
@@ -263,7 +262,7 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return inv[index];
+        return inv[index] == null ? ItemStack.EMPTY : inv[index];
     }
 
     @Override
