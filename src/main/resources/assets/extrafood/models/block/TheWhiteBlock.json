@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "extrafood:blocks/the whiteout"
+		"all": "extrafood:blocks/the_whiteout"
 	}
 }

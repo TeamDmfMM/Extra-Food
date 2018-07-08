@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "extrafood:juicemixer2.obj",
+    "model": "extrafood:juice_mixer",
     "transform": {"translation": [0.02, -0.04, 0]},
     "custom": {
       "flip-v": false
@@ -10,28 +10,8 @@
   "variants": {
       "normal": [{}],
       "facing=north": [{"transform": {"translation": [-0.065, -0.04, 0], "rotation":  {"y": 180}}}],
-      "facing=south": [{"transform": {"translation": [0.065, -0.04, 0], "rotation":  {"y": 0}}}],
+      "facing=south": [{"transform": {"translation": [0, 0, 0.01], "rotation":  {"y": 0}}}],
       "facing=east": [{"transform": {"translation": [0, -0.04, -0.065], "rotation":  {"y": 90}}}],
-      "facing=west": [{"transform": {"translation": [0, -0.04, 0.065], "rotation":  {"y": 270}}}],
-      "inventory": [{
-        "transform": {
-          "gui": {
-            "scale": [0.625, 0.625, 0.625],
-            "translation": [0.02, -0.1, 0],
-            "rotation": {"y": -45},
-            "rotation": {"x": 30}
-          },
-          "firstperson": {
-            "scale": [0.5, 0.5, 0.5],
-            "translation": [0.1, 0, 0]
-          },
-          "ground": {
-            "scale": [0.25, 0.25, 0.25]
-          },
-          "thirdperson":{
-            "scale": [0.5, 0.5, 0.5]
-          }
-        }
-      }]
+      "facing=west": [{"transform": {"translation": [0, -0.04, 0.065], "rotation":  {"y": 270}}}]
   }
 }

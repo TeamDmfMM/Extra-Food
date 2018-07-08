@@ -88,7 +88,7 @@ public class ItemLib {
     public static final String FRUIT_CAKE = "FruitCake";
     public static final String GINGER_BREAD = "gingerbread";
     public static final String CHESTNUTS = "chestnuts";
-    public static final String CHOCOLATE_CAKE = "ChocolateCake";
+    public static final String CHOCOLATE_CAKE = "chocolatecake";
 
     //SEASONAL
     public static final String EGGNOG = "eggnog";

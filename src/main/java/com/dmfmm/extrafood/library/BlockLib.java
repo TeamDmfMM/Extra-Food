@@ -25,7 +25,7 @@ public class BlockLib {
     public static final String JUICE_MIXER = "JuiceMixer";
     public static final String WHITE_BLOCK = "TheWhiteBlock";
     public static final String BANANA_LEAF = "BananaLeaf";
-    public static final String CAKE = "Cake";
+    public static final String CAKE = "chocolatecake";
 
 
     //Fluids

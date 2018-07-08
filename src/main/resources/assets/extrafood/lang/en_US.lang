@@ -96,7 +96,7 @@ item.FruitCake.name=Fruit Cake
 item.chestnuts.name=Chestnuts
 item.gingerbread.name=Gingerbread Cookie
 item.eggnog.name=Bucket of Eggnog
-item.ChocolateCake.name=Chocolate Cake
+item.chocolatecake.name=Chocolate Cake
 
 #Block Names
 tile.Banana_Bunch.name=Banana Bunch

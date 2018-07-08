@@ -29,7 +29,6 @@ public class BucketEdible extends ItemBucket {
 
     private int FoodStat;
     private float SaturationLvl;
-    private Block containedBlock;
 
 
     public BucketEdible(int foodBar, float saturation, Block fluidBlock, String localName){
@@ -40,19 +39,7 @@ public class BucketEdible extends ItemBucket {
 
         this.FoodStat = foodBar;
         this.SaturationLvl = saturation;
-        this.containedBlock = fluidBlock;
 
-        /*try {
-            FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
-        } catch (NullPointerException e) {
-            FluidContainerRegistryHelper.specialCases.put(Items.BUCKET, new ArrayList<IFluidContainerItem>());
-            FluidContainerRegistryHelper.specialCases.get(Items.BUCKET).add(this);
-        }*/
-
-        GameRegistry.register(this);
-        if(ExtraFood.side == Side.CLIENT){
-            ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName().toString().toLowerCase(), "inventory"));
-        }
     }
 
     @Override

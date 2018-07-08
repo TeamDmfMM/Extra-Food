@@ -2,6 +2,8 @@ package com.dmfmm.extrafood.crafting;
 
 
 import com.dmfmm.extrafood.ExtraFood;
+import com.dmfmm.extrafood.blocks.ChocolateCake;
+import com.dmfmm.extrafood.blocks.ICustomItemBlock;
 import com.dmfmm.extrafood.init.BlockLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import com.dmfmm.extrafood.utilities.DateUtils;
@@ -92,7 +94,8 @@ public class CraftingRecipies {
             GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.BUCKET_EGGNOG), ItemLoader.EGG, Items.MILK_BUCKET, ItemLoader.EGG);
         }
         if(DateUtils.isBirthDay()){
-            GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.CHOCOLATE_CAKE), Items.CAKE, ItemLoader.CHOCOLATE);
+            ICustomItemBlock block = (ICustomItemBlock) BlockLoader.CHOCOLATE_CAKE_BLOCK;
+            GameRegistry.addShapelessRecipe(new ItemStack(block.getCustomItemBlock()), Items.CAKE, ItemLoader.CHOCOLATE);
         }
 
         Cutting(new ItemStack(Items.FISH, 1), new ItemStack(ItemLoader.FISH_PIECES, 1));
