@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "extrafood:blocks/plants/tomato_stage_3"
+    }
+}

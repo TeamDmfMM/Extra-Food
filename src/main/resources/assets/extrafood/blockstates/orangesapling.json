@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "extrafood:grapemodel"
+  },
+  "variants": {
+    "stage=0": { "model": "extrafood:crossmodel",
+      "textures": {
+      "cross": "extrafood:blocks/sapling_orange"
+    }
+    },
+    "stage=1": { "model": "extrafood:crossmodel",
+      "textures": {
+        "cross": "extrafood:blocks/sapling_orange"
+      }
+    }
+  }
+}

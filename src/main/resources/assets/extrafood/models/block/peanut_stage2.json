@@ -1,0 +1,21 @@
+{
+    "textures": {
+        "particle": "extrafood:blocks/plants/peanut_stage_0",
+        "bottom": "extrafood:blocks/plants/peanut_stage_0",
+        "top": "extrafood:blocks/plants/peanut_stage_2",
+        "side": "extrafood:blocks/plants/peanut_stage_0"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 4, 16 ],
+            "faces": {
+                "down":  { "uv": [ 1, 1, 16, 16 ], "texture": "#bottom", "cullface": "down" },
+                "up":    { "uv": [ 1, 1, 16, 16 ], "texture": "#top" },
+                "north": { "uv": [ 1, 4, 15, 16 ], "texture": "#side" },
+                "south": { "uv": [ 1, 4, 15, 16 ], "texture": "#side" },
+                "west":  { "uv": [ 1, 4, 15, 16 ], "texture": "#side" },
+                "east":  { "uv": [ 1, 4, 15, 16 ], "texture": "#side" }
+            }
+        }
+    ]
+}

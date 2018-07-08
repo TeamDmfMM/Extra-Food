@@ -1,0 +1,6 @@
+{
+	"variants": {
+        "stage=0": { "model": "extrafood:bannana_sapling" },
+        "stage=1": { "model": "extrafood:bannana_sapling" }
+    }
+}

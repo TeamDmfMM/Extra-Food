@@ -1,0 +1,101 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "fluid0": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "strawberryjuice"
+      }
+    },
+    "fluid1": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "bananajuice"
+      }
+    },
+    "fluid2": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "carrotjuice"
+      }
+    },
+    "fluid3": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "eggnog"
+      }
+    },
+    "fluid4": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "disgustingmix"
+      }
+    },
+    "fluid5": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "applejuice"
+      }
+    },
+    "fluid6": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "orangejuice"
+      }
+    },
+    "fluid7": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "watermelonjuice"
+      }
+    },
+    "fluid8": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "pineapplejuice"
+      }
+    },
+    "fluid9": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "grapejuice"
+      }
+    },
+    "fluid10": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "citrusjuice"
+      }
+    },
+    "fluid11": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "applegrapejuice"
+      }
+    },
+    "fluid12": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "fruitjuice"
+      }
+    },
+    "fluid13": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "mixedberryjuice"
+      }
+    },
+    "fluid14": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "strawberrybananajuice"
+      }
+    },
+    "fluid15": {
+      "model": "forge:fluid",
+      "custom": {
+        "fluid": "tropicaljuice"
+      }
+    }
+  }
+}
