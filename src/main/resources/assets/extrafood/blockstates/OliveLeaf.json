@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "growth=0": { "model": "extrafood:oliveleaf_stage0" },
-    "growth=1": { "model": "extrafood:oliveleaf_stage0" },
-    "growth=2": { "model": "extrafood:oliveleaf_stage1" },
-    "growth=3": { "model": "extrafood:oliveleaf_stage1" },
-    "growth=4": { "model": "extrafood:oliveleaf_stage2" }
-  }
-}
