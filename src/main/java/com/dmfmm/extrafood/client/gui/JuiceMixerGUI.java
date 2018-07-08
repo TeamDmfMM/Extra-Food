@@ -75,7 +75,7 @@ public class JuiceMixerGUI extends GuiContainer {
 
         for (int i = 0; i < this.buttonList.size(); ++i)
         {
-            ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY);
+            ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY, partialTicks);
         }
 
 
@@ -245,7 +245,7 @@ public class JuiceMixerGUI extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        fontRendererObj.drawString(I18n.translateToLocal("gui.JM"), 135, 6, 4210752);
+        fontRenderer.drawString(I18n.translateToLocal("gui.JM"), 135, 6, 4210752);
         this.handleTooltips(mouseX, mouseY);
     }
 }

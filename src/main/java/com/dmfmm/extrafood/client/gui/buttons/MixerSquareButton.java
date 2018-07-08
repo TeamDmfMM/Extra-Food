@@ -24,35 +24,37 @@ public class MixerSquareButton extends GuiButton{
         isRed = red;
     }
 
-    public void drawButton(Minecraft mc, int mouseX, int mouseY){
+    @Override
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float d){
         //GlStateManager.pushMatrix();
         Minecraft.getMinecraft().renderEngine.bindTexture(GuiLib.JMgui);
-        if(mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height){
+        if(mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height){
             //EFLog.fatal("HELLO THERE!");
             if(isRed){
                 GlStateManager.color(0.8f, 0f, 0f);
-                this.drawTexturedModalRect(xPosition, yPosition, 28, 173, 27, 7);
+                this.drawTexturedModalRect(x, y, 28, 173, 27, 7);
             }else{
                 GlStateManager.color(0f, 0.8f, 0.8f);
-                this.drawTexturedModalRect(xPosition, yPosition, 28, 173, 27, 7);
+                this.drawTexturedModalRect(x, y, 28, 173, 27, 7);
             }
         } else{
             if(isRed){
                 GlStateManager.color(0.8f, 0f, 0f);
-                this.drawTexturedModalRect(xPosition, yPosition, 0, 173, 27, 7);
+                this.drawTexturedModalRect(x, y, 0, 173, 27, 7);
             }else {
                 GlStateManager.color(0f, 0.8f, 0.8f);
-                this.drawTexturedModalRect(xPosition, yPosition, 0, 173, 27, 7);
+                this.drawTexturedModalRect(x, y, 0, 173, 27, 7);
             }
         }
         //GlStateManager.popMatrix();
-        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         fontRenderer.setUnicodeFlag(true);
-        fontRenderer.drawString(text, (xPosition + width/2) - (fontRenderer.getStringWidth(text)/2) + 1, yPosition-1, 0);
+        fontRenderer.drawString(text, (x + width/2) - (fontRenderer.getStringWidth(text)/2) + 1, y-1, 0);
         fontRenderer.setUnicodeFlag(false);
 
     }
 
+    @Override
     public void playPressSound(SoundHandler soundHandlerIn)
     {
         //soundHandlerIn.playSound(PositionedSoundRecord.create(new ResourceLocation("starvationahoy:pageFlip"), 1.0F));

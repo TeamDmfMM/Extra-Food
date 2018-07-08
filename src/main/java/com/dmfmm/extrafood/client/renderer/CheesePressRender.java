@@ -19,7 +19,7 @@ public class CheesePressRender extends TileEntitySpecialRenderer {
 
 
     @Override
-    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale, int a) {
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         CheesePressTileEntity cheesePressTileEntity = (CheesePressTileEntity) te;
         //The PushMatrix tells the renderer to "start" doing something.
         GL11.glPushMatrix();

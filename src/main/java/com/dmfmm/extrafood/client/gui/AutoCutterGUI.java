@@ -25,9 +25,9 @@ public class AutoCutterGUI extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
-        fontRendererObj.drawString(I18n.format("gui.AC"), 8, 6, 4210752);
+        fontRenderer.drawString(I18n.format("gui.AC"), 8, 6, 4210752);
         //draws "Inventory" or your regional equivalent
-        fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
     @Override

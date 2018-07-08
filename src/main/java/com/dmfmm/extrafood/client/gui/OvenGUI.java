@@ -36,9 +36,9 @@ public class OvenGUI extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
-        fontRendererObj.drawString(I18n.translateToLocal("gui.OV"), 7, 5, 4210752);
+        fontRenderer.drawString(I18n.translateToLocal("gui.OV"), 7, 5, 4210752);
         //draws "Inventory" or your regional equivalent
-        fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRenderer.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
         this.drawCookItem();
         this.drawProgressBar();
         this.drawInGlass();
@@ -83,7 +83,7 @@ public class OvenGUI extends GuiContainer {
                 ItemStack output2 = output.getRecipeOutput(OvenRegistry.instance.getArrayList(bob));
                 if(output2 != null){
                     //EFLog.error("IMAGE MADE");
-                    this.renders.renderItemOverlayIntoGUI(this.fontRendererObj, new ItemStack(output2.getItem()), 80, 43, null);
+                    this.renders.renderItemOverlayIntoGUI(this.fontRenderer, new ItemStack(output2.getItem()), 80, 43, null);
                     this.renders.renderItemIntoGUI(new ItemStack(output2.getItem()), 80, 43);
                 }
             } catch(NullPointerException e){}

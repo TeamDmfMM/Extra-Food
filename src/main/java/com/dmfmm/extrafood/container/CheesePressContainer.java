@@ -38,7 +38,7 @@ public class CheesePressContainer extends Container {
     public void addListener(IContainerListener listener)
     {
         super.addListener(listener);
-        listener.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
+        listener.sendWindowProperty(this, 0, this.tileEntity.complete);
     }
 
     /**
@@ -55,7 +55,7 @@ public class CheesePressContainer extends Container {
 
             if (this.localTime != this.tileEntity.getTotalTime())
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.tileEntity.getTotalTime());
+                icrafting.sendWindowProperty(this, 0, this.tileEntity.getTotalTime());
             }
         }
 

@@ -91,7 +91,7 @@ public class ClickTab extends GuiButton{
         m.getTextureManager().bindTexture(GuiLib.COOKBOOK_BORDER);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_BLEND);
-        this.drawTexturedModalRect(xPosition, yPosition, 2, 204, 22, 22);
+        this.drawTexturedModalRect(x, y, 2, 204, 22, 22);
         GL11.glPopMatrix();
 
         GL11.glPushMatrix();
@@ -102,9 +102,9 @@ public class ClickTab extends GuiButton{
         RenderHelper.enableStandardItemLighting();
         RenderHelper.enableGUIStandardItemLighting();
         if (stack == null){
-            this.rinder.renderItemIntoGUI(new ItemStack(this.item), xPosition + 3, yPosition + 2);
+            this.rinder.renderItemIntoGUI(new ItemStack(this.item), x + 3, y + 2);
         }else{
-            this.rinder.renderItemIntoGUI(stack, xPosition + 3, yPosition + 2);
+            this.rinder.renderItemIntoGUI(stack, x + 3, y + 2);
         }
 
         GL11.glPopMatrix();

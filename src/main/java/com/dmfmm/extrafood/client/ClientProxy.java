@@ -76,7 +76,7 @@ public class ClientProxy extends CommonProxy{
         }, BlockLoader.BANANA_LEAF);
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
-            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+            public int colorMultiplier(ItemStack stack, int tintIndex) {
                 return 4557568;
             }
         }, BlockLoader.BANANA_LEAF);
@@ -118,8 +118,8 @@ public class ClientProxy extends CommonProxy{
             e.setCanceled(true);
             Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/misc/underwater.png"));
             Tessellator tessellator = Tessellator.getInstance();
-            VertexBuffer worldrenderer = tessellator.getBuffer();
-            float f = e.getPlayer().getBrightness(e.getRenderPartialTicks());
+            BufferBuilder worldrenderer = tessellator.getBuffer();
+            float f = e.getPlayer().getBrightness();
             GlStateManager.color(f, f, f, 0.5F);
             //float[] nums = JuiceRegistry.instance.getColor(((GeneralFluid)Minecraft.getMinecraft().theWorld.getBlockState(e.blockPos).getBlock()).getFluid());
             GlStateManager.color(nums[0], nums[1], nums[2], 0.5f);

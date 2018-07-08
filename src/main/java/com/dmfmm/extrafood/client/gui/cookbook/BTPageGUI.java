@@ -102,7 +102,7 @@ public class BTPageGUI extends GuiScreen {
 
     public int drawElementTextBlock(ArrayList<Object> args, int x, int y, int flag){
         //System.out.println(args.size());
-        this.fontRendererObj.setUnicodeFlag(true);
+        this.fontRenderer.setUnicodeFlag(true);
         //System.out.println("Magical Calling");
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -111,11 +111,11 @@ public class BTPageGUI extends GuiScreen {
         int j = (this.height - CookBookGUI.achievementsPaneHeight) / 2;
         // Check height of block
         int w = 93;
-        int h = this.fontRendererObj.getWordWrappedHeight((String) args.get(0), w);
+        int h = this.fontRenderer.getWordWrappedHeight((String) args.get(0), w);
         if (h + y > j + 155){
             //System.out.println("render" + args.get(0));
             // do splitting stuff
-            this.fontRendererObj.setUnicodeFlag(true);
+            this.fontRenderer.setUnicodeFlag(true);
             String p1 = (String) args.get(0);
 
             StringBuilder p2 = new StringBuilder();
@@ -127,13 +127,13 @@ public class BTPageGUI extends GuiScreen {
                 p1 = p1.substring(0, p1.length() - 1
                 );
                 ii--;
-                h = this.fontRendererObj.getWordWrappedHeight((String) p1, w);
+                h = this.fontRenderer.getWordWrappedHeight((String) p1, w);
             }
-            h = this.fontRendererObj.getWordWrappedHeight((String) p1, w);
+            h = this.fontRenderer.getWordWrappedHeight((String) p1, w);
 
             if (flag == 0){
-                this.fontRendererObj.drawSplitString(p1, x, y, 93, 0x0000000);
-                this.fontRendererObj.setUnicodeFlag(false);
+                this.fontRenderer.drawSplitString(p1, x, y, 93, 0x0000000);
+                this.fontRenderer.setUnicodeFlag(false);
                 //GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL11.GL_BLEND);
                 GL11.glPopMatrix();
@@ -141,8 +141,8 @@ public class BTPageGUI extends GuiScreen {
             }
             else {
                 String p2r = p2.substring(1, p2.length());
-                this.fontRendererObj.drawSplitString(p2r, x, y, 93, 0x0000000);
-                this.fontRendererObj.setUnicodeFlag(false);
+                this.fontRenderer.drawSplitString(p2r, x, y, 93, 0x0000000);
+                this.fontRenderer.setUnicodeFlag(false);
                 //GL11.glEnable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL11.GL_BLEND);
                 GL11.glPopMatrix();
@@ -151,8 +151,8 @@ public class BTPageGUI extends GuiScreen {
         }
         else {
             //System.out.println("render" + args.get(0));
-            this.fontRendererObj.drawSplitString((String) args.get(0), x, y, 93, 0x0000000);
-            this.fontRendererObj.setUnicodeFlag(false);
+            this.fontRenderer.drawSplitString((String) args.get(0), x, y, 93, 0x0000000);
+            this.fontRenderer.setUnicodeFlag(false);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glPopMatrix();
             return h;
@@ -193,7 +193,7 @@ public class BTPageGUI extends GuiScreen {
         }
         int x1 = x +20;
         int y1 = y + 50;
-        this.fontRendererObj.setUnicodeFlag(false);
+        this.fontRenderer.setUnicodeFlag(false);
         this.mc.getTextureManager().bindTexture(GuiLib.COOKBOOK_FURNACE);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_BLEND);
@@ -215,7 +215,7 @@ public class BTPageGUI extends GuiScreen {
                 if (items[9] != null){
                     RenderHelper.enableStandardItemLighting();
                     this.irender.renderItemIntoGUI(items[9], x1 + 16, y1 - 33);
-                    this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 16, y1 - 33, null);
+                    this.irender.renderItemOverlayIntoGUI(this.fontRenderer, items[9], x1 + 16, y1 - 33, null);
                 }
                 RenderHelper.enableStandardItemLighting();
                 this.irender.renderItemIntoGUI(new ItemStack(Items.COAL), x1 + 16, y1 + 49);
@@ -231,7 +231,7 @@ public class BTPageGUI extends GuiScreen {
         }
         int x1 = x + 20;
         int y1 = y + 50;
-        this.fontRendererObj.setUnicodeFlag(false);
+        this.fontRenderer.setUnicodeFlag(false);
         this.mc.getTextureManager().bindTexture(GuiLib.COOKBOOK_OVEN);
         //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_BLEND);
@@ -280,7 +280,7 @@ public class BTPageGUI extends GuiScreen {
         if(i != null){
             RenderHelper.enableStandardItemLighting();
             this.irender.renderItemIntoGUI(i, x, y);
-            this.irender.renderItemOverlayIntoGUI(fontRendererObj, i, x, y, null);
+            this.irender.renderItemOverlayIntoGUI(fontRenderer, i, x, y, null);
         }
     }
     private ItemStack conversioncheck(ItemStack i){
@@ -300,7 +300,7 @@ public class BTPageGUI extends GuiScreen {
         }
         int x1 = x + 20;
         int y1 = y + 50;
-        this.fontRendererObj.setUnicodeFlag(false);
+        this.fontRenderer.setUnicodeFlag(false);
         this.mc.getTextureManager().bindTexture(GuiLib.COOKBOOK_CRAFTING_GRID);
         //GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(GL11.GL_BLEND);
@@ -366,7 +366,7 @@ public class BTPageGUI extends GuiScreen {
                 if (items[9] != null){
                     GL11.glDisable(GL11.GL_LIGHTING);
                     this.irender.renderItemIntoGUI(items[9], x1 + 19, y1 - 44);
-                    this.irender.renderItemOverlayIntoGUI(this.fontRendererObj, items[9], x1 + 19, y1 - 44, null);
+                    this.irender.renderItemOverlayIntoGUI(this.fontRenderer, items[9], x1 + 19, y1 - 44, null);
                     GL11.glEnable(GL11.GL_LIGHTING);
                 }
 
@@ -398,7 +398,7 @@ public class BTPageGUI extends GuiScreen {
             GL11.glPopMatrix();
 
             GL11.glDisable(GL11.GL_LIGHTING);
-            FontRenderer fontr = this.fontRendererObj;
+            FontRenderer fontr = this.fontRenderer;
             fontr.setUnicodeFlag(true);
             fontr.drawStringWithShadow("Hunger Stats:", x + 19, y, 0x3333FF);
             if (args.size() > 2){
@@ -436,7 +436,7 @@ public class BTPageGUI extends GuiScreen {
             }
         }
         if (button.id == 2){
-            this.fontRendererObj.setUnicodeFlag(false);
+            this.fontRenderer.setUnicodeFlag(false);
             this.mc.displayGuiScreen(new CookBookGUI());
 
         }
@@ -1160,7 +1160,7 @@ public class BTPageGUI extends GuiScreen {
     {
         if (p_73869_2_ == 1)
         {
-            this.fontRendererObj.setUnicodeFlag(false);
+            this.fontRenderer.setUnicodeFlag(false);
             this.mc.displayGuiScreen((GuiScreen)null);
             this.mc.setIngameFocus();
         }

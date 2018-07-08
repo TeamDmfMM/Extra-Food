@@ -1,7 +1,6 @@
 package com.dmfmm.extrafood.container.Slot;
 
 
-import com.dmfmm.extrafood.utilities.EFAchievementPage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -17,7 +16,6 @@ public class SlotCheesePressOutput extends Slot {
 
     @Override
     public ItemStack onTake(EntityPlayer player, ItemStack stack){
-        player.addStat(EFAchievementPage.AQUIRE_CHEESE, 1);
         return super.onTake(player, stack);
     }
 

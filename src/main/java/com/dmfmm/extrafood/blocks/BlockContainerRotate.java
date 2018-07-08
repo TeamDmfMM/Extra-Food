@@ -137,7 +137,7 @@ public class BlockContainerRotate extends Block implements ITileEntityProvider {
                         new ItemStack(item.getItem(), item.getCount(), item.getItemDamage()));
 
                 if (item.hasTagCompound()) {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
+                    entityItem.getItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
                 }
 
                 float factor = 0.05F;

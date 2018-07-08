@@ -61,9 +61,9 @@ public class JuiceBlenderGUI extends GuiContainer {
         int y = (height - ySize) / 2;
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
-        fontRendererObj.drawString(I18n.translateToLocal("gui.JB"), 8, 6, 4210752);
+        fontRenderer.drawString(I18n.translateToLocal("gui.JB"), 8, 6, 4210752);
         //draws "Inventory" or your regional equivalent
-        fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRenderer.drawString(I18n.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class JuiceBlenderGUI extends GuiContainer {
             List<String> list = new ArrayList<String>();
             list.add("Fluid: " + this.te.tank.getFluid().getFluid().getLocalizedName(this.te.tank.getFluid()));
             list.add("Amount: " + te.tank.getFluidAmount() + "mB");
-            this.drawHoveringText(list, x + this.mousex, y + this.mousey, fontRendererObj);
+            this.drawHoveringText(list, x + this.mousex, y + this.mousey, fontRenderer);
         }
 
 

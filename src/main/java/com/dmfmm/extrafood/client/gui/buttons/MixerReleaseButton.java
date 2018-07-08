@@ -22,18 +22,18 @@ public class MixerReleaseButton extends GuiButton{
     }
 
     public void drawButton(Minecraft mc, int mouseX, int mouseY){
-        if(mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height){
+        if(mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height){
             //EFLog.fatal("HELLO THERE!");
             GlStateManager.pushMatrix();
             Minecraft.getMinecraft().renderEngine.bindTexture(GuiLib.JMgui);
             GlStateManager.color(1f, 1f, 1.0f);
-            this.drawTexturedModalRect(xPosition, yPosition, 6, 166, 6, 6);
+            this.drawTexturedModalRect(x, y, 6, 166, 6, 6);
             GlStateManager.popMatrix();
         } else{
             GlStateManager.pushMatrix();
             Minecraft.getMinecraft().renderEngine.bindTexture(GuiLib.JMgui);
             GlStateManager.color(1f, 1f, 1.0f);
-            this.drawTexturedModalRect(xPosition, yPosition, 0, 166, 6, 6);
+            this.drawTexturedModalRect(x, y, 0, 166, 6, 6);
             GlStateManager.popMatrix();
         }
 

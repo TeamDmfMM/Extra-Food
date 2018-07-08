@@ -20,6 +20,7 @@ public class CraftingRecipies {
 
     public static void craftering()
     {
+        /*
         //Blocks
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.CHEESE_PRESS, 1), new Object[] {"ipi", "ibi", "sss", 'i', "ingotIron", 'p', "plankWood", 'b', Items.BUCKET, 's', new ItemStack(Blocks.STONE_SLAB, 1, 0)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.AUTO_CUTTER, 1), new Object[] {"pki", "psp", "p p", 'p', "plankWood", 'k', ItemLoader.KNIFE, 'i', "ingotIron", 's', "slabWood"}));
@@ -97,7 +98,7 @@ public class CraftingRecipies {
             ICustomItemBlock block = (ICustomItemBlock) BlockLoader.CHOCOLATE_CAKE_BLOCK;
             GameRegistry.addShapelessRecipe(new ItemStack(block.getCustomItemBlock()), Items.CAKE, ItemLoader.CHOCOLATE);
         }
-
+        */
         Cutting(new ItemStack(Items.FISH, 1), new ItemStack(ItemLoader.FISH_PIECES, 1));
         Cutting(new ItemStack(ItemLoader.COOKED_HAMBURGER, 1), new ItemStack(ItemLoader.MEATBALLS, 3));
         Cutting(new ItemStack(ItemLoader.CHEESE_WHEEL, 1), new ItemStack(ItemLoader.CHEESE_SLICE, 8));
@@ -130,7 +131,8 @@ public class CraftingRecipies {
      */
     public static void Cutting(ItemStack input, ItemStack output){
         ExtraFood.INSTANCE.registryCutter.registerRecipe(input, output);
-        GameRegistry.addShapelessRecipe(output, new ItemStack(ItemLoader.KNIFE, 1, 32767), input);
+
+        //GameRegistry.addShapelessRecipe(output, new ItemStack(ItemLoader.KNIFE, 1, 32767), input);
     }
 
 }

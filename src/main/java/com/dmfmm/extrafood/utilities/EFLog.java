@@ -3,12 +3,17 @@ package com.dmfmm.extrafood.utilities;
 import com.dmfmm.extrafood.library.ModInfo;
 import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
 
 public class EFLog {
 
+    private static Logger modLogger = null;
+
     public static void log(Level logLevel, Object object)
     {
-        FMLLog.log(ModInfo.MOD_ID, logLevel, String.valueOf(object));
+        if(modLogger != null)
+            modLogger.log(logLevel, String.valueOf(object));
+        //FMLLog.log(ModInfo.MOD_ID, logLevel, String.valueOf(object));
     }
 
 
@@ -63,5 +68,9 @@ public class EFLog {
     public static void warn(Object object)
     {
         log(Level.WARN, object);
+    }
+
+    public static void setModLog(Logger modLog){
+        modLogger = modLog;
     }
 }

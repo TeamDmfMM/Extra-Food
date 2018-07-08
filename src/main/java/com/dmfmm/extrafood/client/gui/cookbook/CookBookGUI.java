@@ -195,7 +195,7 @@ public class CookBookGUI extends GuiScreen {
         int i = (this.width - this.achievementsPaneWidth) / 2;
         int j = (this.height - this.achievementsPaneHeight) / 2;
         GL11.glDisable(GL11.GL_LIGHTING);
-        this.fontRendererObj.drawString(mainGUI, i + 6, j + 5, 0xFFFFFFFF); //i + 15 original
+        this.fontRenderer.drawString(mainGUI, i + 6, j + 5, 0xFFFFFFFF); //i + 15 original
         GL11.glEnable(GL11.GL_LIGHTING);
     }
 
@@ -226,8 +226,8 @@ public class CookBookGUI extends GuiScreen {
         for (ClickTab tab : CookbookButtonLoader.bookButton.getButtons(this.tab)){
             if (tab.x * 22 > iox - 4 /*LEFT*/ && tab.x * 22 < this.achievementsPaneWidth - 23 /*RIGHT*/ + iox){
                 if (tab.y * 22 > yox - 4 /*TOP*/  && tab.y * 22 < this.achievementsPaneHeight - 23 /*BOTTOM*/ + yox){ //2
-                    tab.xPosition = i1 + 2 + (tab.x * 22) + -iox;
-                    tab.yPosition = j1 + 2 + (tab.y * 22) + -yox;
+                    tab.x = i1 + 2 + (tab.x * 22) + -iox;
+                    tab.y = j1 + 2 + (tab.y * 22) + -yox;
 
                     tab.drawButton(mc, 0, 0);
                 }

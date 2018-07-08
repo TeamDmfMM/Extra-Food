@@ -36,7 +36,7 @@ public class AutoCutterContainer extends Container {
     public void addListener(IContainerListener crafters)
     {
         super.addListener(crafters);
-        crafters.sendProgressBarUpdate(this, 0, this.tileEntity.complete);
+        crafters.sendWindowProperty(this, 0, this.tileEntity.complete);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AutoCutterContainer extends Container {
 
             if (this.localTime != this.tileEntity.getTotalTime())
             {
-                icrafting.sendProgressBarUpdate(this, 0, this.tileEntity.getTotalTime());
+                icrafting.sendWindowProperty(this, 0, this.tileEntity.getTotalTime());
             }
         }
 

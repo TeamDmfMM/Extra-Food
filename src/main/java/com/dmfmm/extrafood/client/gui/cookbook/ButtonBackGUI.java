@@ -26,7 +26,7 @@ public class ButtonBackGUI extends GuiButton
     {
         if (this.visible)
         {
-            boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
+            boolean flag = par2 >= this.x && par3 >= this.y && par2 < this.x + this.width && par3 < this.y + this.height;
             GL11.glPushMatrix();
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glEnable(GL11.GL_LIGHTING);
@@ -39,7 +39,7 @@ public class ButtonBackGUI extends GuiButton
                 k += 23;
             }
 
-            this.drawTexturedModalRect(this.xPosition, this.yPosition, k, l, 23, 16);
+            this.drawTexturedModalRect(this.x, this.y, k, l, 23, 16);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glPopMatrix();

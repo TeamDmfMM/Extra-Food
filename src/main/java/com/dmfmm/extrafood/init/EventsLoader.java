@@ -1,10 +1,8 @@
 package com.dmfmm.extrafood.init;
 
-import com.dmfmm.extrafood.events.AchievementsEvent;
 import com.dmfmm.extrafood.events.BucketEvent;
 import com.dmfmm.extrafood.events.ConfigChangeEvent;
 import com.dmfmm.extrafood.events.EFBonemealEvent;
-import com.dmfmm.extrafood.utilities.EFAchievementPage;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -40,9 +38,6 @@ public class EventsLoader {
         //ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.cookBook), 1, 1, 50));
         //ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH).addItem(new WeightedRandomChestContent(new ItemStack(ItemLoader.pineapple), 1, 1, 50));
 
-        //Load the Achivements
-        EFAchievementPage.loadAc();
-        MinecraftForge.EVENT_BUS.register(new AchievementsEvent());
 
     }
 }

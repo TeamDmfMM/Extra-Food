@@ -110,10 +110,11 @@ public class CRPageCraftGet {
         if (recipesShaped.get(itemname) != null){
             ItemStack[] items = new ItemStack[10];
             int co = 0;
-            for (ItemStack i : this.recipesShaped.get(itemname).recipeItems){
+            //TODO: Fix me!
+            /*for (ItemStack i : this.recipesShaped.get(itemname).recipeItems){
                 items[co] = i;
                 co++;
-            }
+            }*/
             items[9] = this.recipesShaped.get(itemname).getRecipeOutput();
             return items;
         }
@@ -210,9 +211,9 @@ public class CRPageCraftGet {
         }
 
 
-        ShapedRecipes shapedrecipes = new ShapedRecipes(j, k, aitemstack, out);
+        //ShapedRecipes shapedrecipes = new ShapedRecipes(j, k, aitemstack, out);
 
-        this.recipesShaped.put(itemname, shapedrecipes);
+        //this.recipesShaped.put(itemname, shapedrecipes);
 
 
     }
@@ -247,8 +248,8 @@ public class CRPageCraftGet {
             }
         }
 
-        ShapelessRecipes shaplessR = new ShapelessRecipes(out, arraylist);
-        this.recipesShapeless.put(itemname, shaplessR);
+        //ShapelessRecipes shaplessR = new ShapelessRecipes(out, arraylist);
+        //this.recipesShapeless.put(itemname, shaplessR);
     }
 
 

@@ -43,6 +43,7 @@ public class ExtraFood {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        EFLog.setModLog(event.getModLog());
         EFLog.tell("Extra Food has begun Pre-init");
 
         side = event.getSide();
