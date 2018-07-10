@@ -27,11 +27,7 @@ public class TextureInjector {
 
             event.getMap().registerSprite(new ResourceLocation(spec.defualtIcon));
 
-            Enumeration<String> enumt = spec.additives.elements();
-
-            while (enumt.hasMoreElements()) {
-                String s = enumt.nextElement();
-
+            for (String s : spec.additives.values()) {
                 event.getMap().registerSprite(new ResourceLocation(s));
             }
 

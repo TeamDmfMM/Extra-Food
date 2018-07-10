@@ -137,25 +137,24 @@ public class FluidLoader {
         registerFluid();
     }
     private static void registerFluid(){
-            FluidRegistry.registerFluid(FLUID_BANANA_JUICE);
-            FluidRegistry.registerFluid(FLUID_STRAWBERRY_JUICE);
-            FluidRegistry.registerFluid(FLUID_CARROT_JUICE);
-            FluidRegistry.registerFluid(FLUID_EGGNOG);
+            FluidRegistry.addBucketForFluid(FLUID_BANANA_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_STRAWBERRY_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_CARROT_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_EGGNOG);
             FluidRegistry.registerFluid(FLUID_DISGUSTING_MIX);
-            FluidRegistry.registerFluid(FLUID_WATERMELON_JUICE);
-            FluidRegistry.registerFluid(FLUID_APPLE_JUICE);
-            FluidRegistry.registerFluid(FLUID_ORANGE_JUICE);
-            FluidRegistry.registerFluid(FLUID_GRAPE_JUICE);
-            FluidRegistry.registerFluid(FLUID_APPLE_GRAPE_JUICE);
-            FluidRegistry.registerFluid(FLUID_CITRUS_JUICE);
-            FluidRegistry.registerFluid(FLUID_PINAPPLE_JUICE);
-            FluidRegistry.registerFluid(FLUID_FRUIT_JUICE);
-            FluidRegistry.registerFluid(FLUID_MIXED_BERRY_JUICE);
-            FluidRegistry.registerFluid(FLUID_STRAWBERRY_BANANA_JUICE);
-            FluidRegistry.registerFluid(FLUID_TROPICAL_JUICE);
-
+            FluidRegistry.addBucketForFluid(FLUID_WATERMELON_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_APPLE_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_ORANGE_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_GRAPE_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_APPLE_GRAPE_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_CITRUS_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_PINAPPLE_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_FRUIT_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_MIXED_BERRY_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_STRAWBERRY_BANANA_JUICE);
+            FluidRegistry.addBucketForFluid(FLUID_TROPICAL_JUICE);
+     
             GameRegistry.register(FLUID_CONTAINER);
-            GlassFluidContainer.createGlassBottles();
     }
 
 }

@@ -1,9 +1,13 @@
 package com.dmfmm.extrafood.tileentities;
 
+import com.dmfmm.extrafood.blocks.BlockContainerRotate;
 import com.dmfmm.extrafood.container.JuiceMixerContainer;
 import com.dmfmm.extrafood.crafting.JuiceMixerRegistry;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Objects;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -12,15 +16,80 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,*/ ITickable, IInventory {
+import javax.annotation.Nullable;
+
+import static com.dmfmm.extrafood.blocks.BlockContainerRotate.RelativeDirection.DOWN;
+
+public class JuiceMixerTileEntity extends TileEntity implements ITickable, IInventory {
+
+    public static class JuiceMixerFluidHandler implements IFluidHandler {
+
+        JuiceMixerTileEntity jte;
+        EnumFacing facing;
+
+        public JuiceMixerFluidHandler(JuiceMixerTileEntity jte, EnumFacing facing) {
+            this.jte = jte;
+            this.facing = facing;
+        }
+
+        @Override
+        public IFluidTankProperties[] getTankProperties() {
+            IFluidTankProperties prop;
+            switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(facing, BlockContainerRotate.getFacing(jte.world, jte.pos))) {
+                case LEFT:
+                    prop = new FluidTankProperties(jte.input1.getFluid(), jte.input1.getCapacity(), true, false);
+                    break;
+                case RIGHT:
+                    prop = new FluidTankProperties(jte.input3.getFluid(), jte.input3.getCapacity(), true, false);
+                    break;
+                case BACK:
+                    prop = new FluidTankProperties(jte.input2.getFluid(), jte.input2.getCapacity(), true, false);
+                    break;
+                case DOWN:
+                    if (jte.outputState.size() == 0) {
+                        prop = new FluidTankProperties(null, 1000, false, false);
+                    } else if (jte.outputState.size() == 1) {
+                        prop = new FluidTankProperties(jte.outputState.get(0), jte.outputState.get(0).amount, false, true);
+                    } else {
+                        prop = new FluidTankProperties(jte.outputState.get(0), jte.outputState.get(0).amount, false, false);
+                    }
+                    break;
+                default:
+                    return new IFluidTankProperties[0];
+            }
+
+            return new IFluidTankProperties[] {prop};
+        }
+
+        @Override
+        public int fill(FluidStack resource, boolean doFill) {
+            return jte.fill(facing, resource, doFill);
+        }
+
+        @Nullable
+        @Override
+        public FluidStack drain(FluidStack resource, boolean doDrain) {
+            return jte.drain(facing, resource, doDrain);
+        }
+
+        @Nullable
+        @Override
+        public FluidStack drain(int maxDrain, boolean doDrain) {
+            return jte.drain(facing, maxDrain, doDrain);
+        }
+
+    }
 
     public enum SelectedTank {
         LEFT(0),
@@ -57,7 +126,13 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
     private ItemStack[] inv;
 
     public JuiceMixerTileEntity() {
-        inv = new ItemStack[4];
+        inv = new ItemStack[] {
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY,
+                ItemStack.EMPTY
+        };
+
         selected = SelectedTank.LEFT;
         input1 = new FluidTank(2000);
         input2 = new FluidTank(2000);
@@ -68,7 +143,7 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
     public void handleMakeDestroy(int id) {
         switch (id){
             case 0:
-                this.outputState = new ArrayList<>(Arrays.asList(JuiceMixerRegistry.instance.getOutputForCurrent(outputState)));
+                this.outputState = new ArrayList<>(Collections.singletonList(JuiceMixerRegistry.instance.getOutputForCurrent(outputState)));
                 break;
             case 1:
                 this.outputState = new ArrayList<>();
@@ -127,7 +202,6 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
         selected = tank;
     }
 
-    /*@Override
     public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
         switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
@@ -143,37 +217,6 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
         }
         return 0;
     }
-
-    @Override
-    public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
-            case LEFT:
-                if (input1.getFluid().isFluidEqual(resource)) {
-                    return input1.drain(resource.amount, doDrain);
-                }
-                return null;
-            case RIGHT:
-                if (input3.getFluid().isFluidEqual(resource)) {
-                    return input3.drain(resource.amount, doDrain);
-                }
-                return null;
-            case BACK:
-                if (input2.getFluid().isFluidEqual(resource)) {
-                    return input2.drain(resource.amount, doDrain);
-                }
-                return null;
-            case DOWN:
-                if (outputState.size() == 1) {
-                    if (resource.isFluidEqual(outputState.get(0))) {
-                        return drainOutput(resource.amount, doDrain);
-                    }
-                }
-                return null;
-            default:
-                return null;
-
-        }
-    }*/
 
     public FluidStack drainOutput(int maxDrain, boolean doDrain) {
         FluidStack fluid = outputState.get(0);
@@ -200,7 +243,6 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
         return stack;
     }
 
-    /*@Override
     public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain) {
         switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
@@ -216,39 +258,35 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
         }
     }
 
-    @Override
-    public boolean canFill(EnumFacing from, Fluid fluid) {
+    public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
         switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
             case LEFT:
-            case BACK:
-            case RIGHT:
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean canDrain(EnumFacing from, Fluid fluid) {
-        switch (BlockContainerRotate.RelativeDirection.getRelativeDirection(from, BlockContainerRotate.getFacing(world, pos))) {
-            case LEFT:
-            case BACK:
-            case RIGHT:
-                return true;
-            case DOWN:
-                if (outputState.size() == 1){
-                    return true;
+                if (input1.getFluid() != null && input1.getFluid().isFluidEqual(resource)) {
+                    return input1.drain(resource.amount, doDrain);
                 }
-                return false;
+                return null;
+            case RIGHT:
+                if (input3.getFluid() != null && input3.getFluid().isFluidEqual(resource)) {
+                    return input3.drain(resource.amount, doDrain);
+                }
+                return null;
+            case BACK:
+                if (input2.getFluid() != null && input2.getFluid().isFluidEqual(resource)) {
+                    return input2.drain(resource.amount, doDrain);
+                }
+                return null;
+            case DOWN:
+                if (outputState.size() == 1) {
+                    if (resource.isFluidEqual(outputState.get(0))) {
+                        return drainOutput(resource.amount, doDrain);
+                    }
+                }
+                return null;
             default:
-                return false;
+                return null;
+
         }
     }
-
-    @Override
-    public IFluidTankProperties[] getTankProperties() {
-        return new IFluidTankProperties[] {new FluidTankProperties(input1.getFluid(), input1.getFluidAmount()), new FluidTankProperties(input2.getFluid(), input2.getFluidAmount()), new FluidTankProperties(input3.getFluid(), input3.getFluidAmount())};
-    }*/
 
     @Override
     public int getSizeInventory() {
@@ -262,19 +300,19 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return inv[index] == null ? ItemStack.EMPTY : inv[index];
+        return inv[index];
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
-        if (stack != null) {
+        if (stack != ItemStack.EMPTY) {
             if (stack.getCount() <= amt) {
-                setInventorySlotContents(slot, null);
+                setInventorySlotContents(slot, ItemStack.EMPTY);
             } else {
                 stack = stack.splitStack(amt);
                 if (stack.getCount() == 0) {
-                    setInventorySlotContents(slot, null);
+                    setInventorySlotContents(slot, ItemStack.EMPTY);
                 }
             }
         }
@@ -284,16 +322,34 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
     @Override
     public ItemStack removeStackFromSlot(int slot) {
         ItemStack stack = getStackInSlot(slot);
-        if (stack != null) {
-            setInventorySlotContents(slot, null);
+        if (stack != ItemStack.EMPTY) {
+            setInventorySlotContents(slot, ItemStack.EMPTY);
         }
         return stack;
     }
 
     @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return (T) new JuiceMixerTileEntity.JuiceMixerFluidHandler(this, facing);
+        }
+
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         inv[index] = stack;
-        if (stack != null && stack.getCount() > getInventoryStackLimit()) {
+        if (stack != ItemStack.EMPTY && stack.getCount() > getInventoryStackLimit()) {
             stack.setCount(getInventoryStackLimit());
         }
     }
@@ -345,46 +401,60 @@ public class JuiceMixerTileEntity extends TileEntity implements /*IFluidHandler,
 
     @Override
     public void update() {
-        if (getStackInSlot(JuiceMixerContainer.INPUT_1) != null) {
-            /*if (FluidContainerRegistryHelper.isFilledContainer(getStackInSlot(JuiceMixerContainer.INPUT_1))) {
-                FluidStack toAdd = FluidContainerRegistryHelper.getFluidForFilledItem(getStackInSlot(JuiceMixerContainer.INPUT_1));
-
-                if (toAdd != null) {
-                    if (JuiceMixerRegistry.instance.validFluid(toAdd.getFluid())) {
-                        FluidTank toFill = null;
-                        switch (selected) {
-                            case LEFT:
-                                toFill = input1;
-                                break;
-                            case MIDDLE:
-                                toFill = input2;
-                                break;
-                            case RIGHT:
-                                toFill = input3;
-                                break;
-                        }
-                        if (toFill.fill(toAdd, false) == toAdd.amount && this.getStackInSlot(JuiceMixerContainer.OUTPUT_1) == null) {
-                            this.setInventorySlotContents(JuiceMixerContainer.OUTPUT_1, FluidContainerRegistryHelper.drainFluidContainer(getStackInSlot(JuiceMixerContainer.INPUT_1)));
-                            this.setInventorySlotContents(JuiceMixerContainer.INPUT_1, null);
-                            toFill.fill(toAdd, true);
+        if (getStackInSlot(JuiceMixerContainer.INPUT_1) != ItemStack.EMPTY) {
+            ItemStack i = getStackInSlot(JuiceMixerContainer.INPUT_1);
+            if (i.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
+                IFluidHandlerItem cap = Objects.requireNonNull(i.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null));
+                if (cap.getTankProperties().length != 0) {
+                    IFluidTankProperties iftp = cap.getTankProperties()[0];
+                    if (iftp.getContents().amount != 0) {
+                        FluidStack toAdd = iftp.getContents();
+                        if (toAdd != null) {
+                            if (JuiceMixerRegistry.instance.validFluid(toAdd.getFluid())) {
+                                FluidTank toFill = null;
+                                switch (selected) {
+                                    case LEFT:
+                                        toFill = input1;
+                                        break;
+                                    case MIDDLE:
+                                        toFill = input2;
+                                        break;
+                                    case RIGHT:
+                                        toFill = input3;
+                                        break;
+                                }
+                                if (toFill.fill(toAdd, false) == toAdd.amount && this.getStackInSlot(JuiceMixerContainer.OUTPUT_1) == ItemStack.EMPTY) {
+                                    cap.drain(toAdd.amount, true);
+                                    this.setInventorySlotContents(JuiceMixerContainer.OUTPUT_1, cap.getContainer());
+                                    this.setInventorySlotContents(JuiceMixerContainer.INPUT_1, ItemStack.EMPTY);
+                                    toFill.fill(toAdd, true);
+                                }
+                            }
                         }
                     }
                 }
-
             }
         }
-        if (getStackInSlot(JuiceMixerContainer.INPUT_2) != null) {
-            if (FluidContainerRegistryHelper.isEmptyContainer(getStackInSlot(JuiceMixerContainer.INPUT_2))) {
-                if (outputState.size() == 1) {
-                    int amount = FluidContainerRegistryHelper.getContainerCapacity(outputState.get(0), getStackInSlot(JuiceMixerContainer.INPUT_2));
-                    if (drainOutput(amount, false).amount == amount && amount > 0) {
-                        if (getStackInSlot(JuiceMixerContainer.OUTPUT_2) == null) {
-                            setInventorySlotContents(JuiceMixerContainer.OUTPUT_2, FluidContainerRegistryHelper.fillFluidContainer(drainOutput(amount, true), getStackInSlot(JuiceMixerContainer.INPUT_2)));
-                            setInventorySlotContents(JuiceMixerContainer.INPUT_2, null);
+        if (getStackInSlot(JuiceMixerContainer.INPUT_2) != ItemStack.EMPTY) {
+            ItemStack i = getStackInSlot(JuiceMixerContainer.INPUT_2);
+            if (i.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
+                IFluidHandlerItem cap = Objects.requireNonNull(i.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null));
+                if (cap.getTankProperties().length != 0) {
+                    IFluidTankProperties iftp = cap.getTankProperties()[0];
+                    if (outputState.size() == 1) {
+                        if (iftp.canFillFluidType(outputState.get(0))) {
+                            int amount = cap.fill(this.outputState.get(0), false);
+                            if (drainOutput(amount, false).amount == amount && amount > 0) {
+                                if (getStackInSlot(JuiceMixerContainer.OUTPUT_2) == ItemStack.EMPTY) {
+                                    cap.fill(drainOutput(amount, true), true);
+                                    setInventorySlotContents(JuiceMixerContainer.OUTPUT_2, cap.getContainer());
+                                    setInventorySlotContents(JuiceMixerContainer.INPUT_2, ItemStack.EMPTY);
+                                }
+                            }
                         }
                     }
                 }
-            }*/
+            }
         }
     }
 

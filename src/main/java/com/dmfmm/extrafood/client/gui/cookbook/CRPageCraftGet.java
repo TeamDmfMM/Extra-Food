@@ -95,7 +95,6 @@ public class CRPageCraftGet {
         this.putRecipe("CookedBacon", new ItemStack(ItemLoader.COOKED_BACON), new ItemStack(ItemLoader.BACON));
         this.putRecipe("toast", new ItemStack(ItemLoader.TOAST), new ItemStack(ItemLoader.SLICED_BREAD));
         this.putRecipe("egg", new ItemStack(ItemLoader.EGG), new ItemStack(Items.EGG));
-        this.putRecipe("pureH2O", new ItemStack(ItemLoader.BUCKET_PURIFIED_WATER), new ItemStack(ItemLoader.BUCKET_SEA_WATER));
         this.putRecipe("cookedHamburger", new ItemStack(ItemLoader.COOKED_HAMBURGER), new ItemStack(ItemLoader.RAW_HAMBURGER));
         this.putRecipe("butterMilk", new ItemStack(ItemLoader.BUTTER_MILK), new ItemStack(Items.MILK_BUCKET));
         this.putRecipe("dough", new ItemStack(ItemLoader.DOUGH), new ItemStack(Items.WHEAT), new ItemStack(Items.WATER_BUCKET));

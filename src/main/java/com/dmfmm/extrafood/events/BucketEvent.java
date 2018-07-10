@@ -12,7 +12,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -30,16 +32,20 @@ import java.util.Map;
 public class BucketEvent {
 
 
+    /*
+    TODO: THIS DOES NOT EXIST
+
     public static BucketEvent INSTANCE = new BucketEvent();
+
     public Map<Block, Item> buckets = new HashMap<Block, Item>();
 
 
     private BucketEvent() {
-        buckets.put(FluidLoader.BANANA_JUICE_BLOCK, ItemLoader.BUCKET_BANANA);
-        buckets.put(FluidLoader.STRAWBERRY_JUICE_BLOCK, ItemLoader.BUCKET_STRAWBERRY);
-        buckets.put(FluidLoader.CARROT_JUICE_BLOCK, ItemLoader.BUCKET_CARROT);
-        if(ConfigHandler.overrideWater){
-            buckets.put(Blocks.WATER, ItemLoader.BUCKET_SEA_WATER);
+        buckets.put(FluidLoader.BANANA_JUICE_BLOCK, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_BANANA_JUICE));
+        buckets.put(FluidLoader.STRAWBERRY_JUICE_BLOCK, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_STRAWBERRY_JUICE));
+        buckets.put(FluidLoader.CARROT_JUICE_BLOCK, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_CARROT_JUICE));
+        /*if(ConfigHandler.overrideWater){
+            buckets.put(Blocks.WATER, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_SEA_JUICE)_WATER);
         }
     }
 
@@ -74,5 +80,5 @@ public class BucketEvent {
             return null;
 
 
-    }
+    }*/
 }

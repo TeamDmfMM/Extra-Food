@@ -110,8 +110,7 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
             NBTFoodSpecs sepcky = NBTFoodRegistry.food.getSpecs(recipet.food);
 
             int value = 0;
-            while (sepcky.addtypes.elements().hasMoreElements()) {
-                ItemStack itemStack = sepcky.addtypes.elements().nextElement();
+            for (ItemStack itemStack : sepcky.addtypes.values()) {
                 if (itemStack.getItem().equals(items[i].getItem())) {
                     value =  itemStack.getCount();
                     break;
@@ -141,7 +140,7 @@ public class OvenTileEntity extends TileEntity implements ISidedInventory, ITick
 
     public int getTimeTicks(){
         if (recipet != null){
-            return recipet.getTime(OvenRegistry.instance.getArrayList(items));
+            return maxtime;
         }
         else {
             return 0;

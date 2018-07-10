@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import java.util.*;
 
 public class NBTFoodSpecs {
-	public Dictionary<String, ItemStack> addtypes;
-	public Dictionary<String, String> additives;
-	public Dictionary<ArrayList<String>, ArrayList<Object>> info = new Hashtable<ArrayList<String>, ArrayList<Object>>();
+	public HashMap<String, ItemStack> addtypes;
+	public HashMap<String, String> additives;
+	public HashMap<ArrayList<String>, ArrayList<Object>> info = new HashMap<ArrayList<String>, ArrayList<Object>>();
 	public String name;
 	public String defualtIcon;
 	public float[] defualtHunger;
@@ -31,14 +31,11 @@ public class NBTFoodSpecs {
 
 		setupModelName();
 
-		Enumeration<String> enu = additives.keys();
-		ArrayList<String> dohicker = new ArrayList<String>();
-		for (String i : Collections.list(enu)){
-			dohicker.add(i);
-		}
+		Set<String> enu = additives.keySet();
+		ArrayList<String> dohicker = new ArrayList<String>(enu);
 		ArrayList<ArrayList<String>> combinations = PowerSetGen.combinationsOf(dohicker);
 		//EFLog.error(combinations);
-		Dictionary<String, float[]> addvals = new Hashtable<String, float[]>();
+		HashMap<String, float[]> addvals = new HashMap<String, float[]>();
 		for (String i : dohicker){
 			ItemStack t = addtypes.get(i);
 			if (t.getItem() == Items.REDSTONE){

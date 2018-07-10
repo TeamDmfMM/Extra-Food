@@ -46,7 +46,7 @@ public class OvenRegistryRecipe {
             if ( i == null){
                 continue;
             }
-            for (String tester : Collections.list(specs.addtypes.keys())){
+            for (String tester : specs.addtypes.keySet()){
                 if (ok(i,specs.addtypes.get(tester))){
                     //EFLog.error("Were good here cap'n");
                     if (istack.getTagCompound() == null){
@@ -89,7 +89,7 @@ public class OvenRegistryRecipe {
         boolean fine;
         for (ItemStack i : inventory){
             fine = false;
-            for (String tester : Collections.list(specs.addtypes.keys())){
+            for (String tester : specs.addtypes.keySet()){
                 if (ok(i,specs.addtypes.get(tester))){
                     things.add(tester);
                     fine = true;
@@ -97,7 +97,7 @@ public class OvenRegistryRecipe {
             }
 
         }
-        return (time + things.size() * 15) * 20;
+        return (time + things.size()) * 15 * 20;
     }
     public boolean isRecipePossible(ArrayList<ItemStack> inventory, ItemStack pan){
         //EFLog.error("Hi");

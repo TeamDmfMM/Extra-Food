@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 /**
  * Created by dmf444 on 3/14/2016. <-- PI DAY WOOT! Code originally written
  * for ExtraFood1.7. Do not copy without permission,
- * because that is just mean. Code is VISIBLE SOURCE, therfore
+ * because that is just mean. Code is VISIBLE SOURCE, therefore
  * credit us, just don't steal large portions of this.
  */
 public class SlotBetter extends Slot {

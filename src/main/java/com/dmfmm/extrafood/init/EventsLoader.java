@@ -26,7 +26,6 @@ public class EventsLoader {
         //GameRegistry.registerWorldGenerator(TreeSpawner.INSTANCE, 0);
 
         //Bucket Pickup Handler
-        MinecraftForge.EVENT_BUS.register(BucketEvent.INSTANCE);
 
         //Add Seeds to the grass list
         MinecraftForge.addGrassSeed(new ItemStack(ItemLoader.TOMATO_SEEDS), 20);

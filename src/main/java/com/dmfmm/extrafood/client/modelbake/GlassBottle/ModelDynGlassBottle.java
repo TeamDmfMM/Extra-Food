@@ -2,10 +2,7 @@ package com.dmfmm.extrafood.client.modelbake.GlassBottle;
 
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
+import com.google.common.collect.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.*;
@@ -19,6 +16,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.*;
+import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.IModelPart;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
@@ -34,11 +32,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static net.minecraftforge.client.model.ItemTextureQuadConverter.genQuad;
+
 @SideOnly(Side.CLIENT)
 public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRetexturableModel
 {
-    public static final ModelResourceLocation LOCATION = new ModelResourceLocation(new ResourceLocation("forge", "dynbucket"), "inventory");
-
     // minimal Z offset to prevent depth-fighting
     private static final float NORTH_Z_BASE = 7.496f / 16f;
     private static final float SOUTH_Z_BASE = 8.504f / 16f;
@@ -53,25 +51,29 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
 
     private final Fluid fluid;
     private final boolean flipGas;
+    private final QuadConverter qc;
+
+    private IModel empty;
 
     public ModelDynGlassBottle()
     {
-        this(null, null, null, null, false);
+        this(null, null, null, null, false, QuadConverter.NONE);
     }
 
-    public ModelDynGlassBottle(ResourceLocation baseLocation, ResourceLocation liquidLocation, ResourceLocation coverLocation, Fluid fluid, boolean flipGas)
+    public ModelDynGlassBottle(ResourceLocation baseLocation, ResourceLocation liquidLocation, ResourceLocation coverLocation, Fluid fluid, boolean flipGas, QuadConverter qc)
     {
         this.baseLocation = baseLocation;
         this.liquidLocation = liquidLocation;
         this.coverLocation = coverLocation;
         this.fluid = fluid;
         this.flipGas = flipGas;
+        this.qc = qc == null ? QuadConverter.ONE : qc;
     }
 
     @Override
     public Collection<ResourceLocation> getDependencies()
     {
-        return ImmutableList.of();
+        return ImmutableList.of(new ResourceLocation("extrafood:item/glassbottle"));
     }
 
     @Override
@@ -104,34 +106,29 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         TRSRTransformation transform = state.apply(Optional.<IModelPart>absent()).or(TRSRTransformation.identity());
         TextureAtlasSprite fluidSprite = null;
         ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
-
-        if(fluid != null) {
+        if (fluid != null) {
             fluidSprite = bakedTextureGetter.apply(fluid.getStill());
         }
-
-        if (baseLocation != null)
-        {
+        if (baseLocation != null) {
             // build base (insidest)
             IBakedModel model = (new ItemLayerModel(ImmutableList.of(baseLocation))).bake(state, format, bakedTextureGetter);
             builder.addAll(model.getQuads(null, null, 0));
         }
-        if (liquidLocation != null && fluidSprite != null)
-        {
+        if (liquidLocation != null && fluidSprite != null) {
             TextureAtlasSprite liquid = bakedTextureGetter.apply(liquidLocation);
             // build liquid layer (inside)
-            builder.addAll(ItemTextureQuadConverter.convertTexture(format, transform, liquid, fluidSprite, NORTH_Z_FLUID, EnumFacing.NORTH, fluid.getColor()));
-            builder.addAll(ItemTextureQuadConverter.convertTexture(format, transform, liquid, fluidSprite, SOUTH_Z_FLUID, EnumFacing.SOUTH, fluid.getColor()));
+            builder.addAll(qc.convertTextureHorizontal(format, transform, liquid, fluidSprite, NORTH_Z_FLUID, EnumFacing.NORTH, fluid.getColor()));
+            builder.addAll(qc.convertTextureHorizontal(format, transform, liquid, fluidSprite, SOUTH_Z_FLUID, EnumFacing.SOUTH, fluid.getColor()));
         }
-        if (coverLocation != null)
-        {
+        if (coverLocation != null) {
             // cover (the actual item around the other two)
             TextureAtlasSprite base = bakedTextureGetter.apply(coverLocation);
-            builder.add(ItemTextureQuadConverter.genQuad(format, transform, 0, 0, 16, 16, NORTH_Z_BASE, base, EnumFacing.NORTH, 0xffffffff));
-            builder.add(ItemTextureQuadConverter.genQuad(format, transform, 0, 0, 16, 16, SOUTH_Z_BASE, base, EnumFacing.SOUTH, 0xffffffff));
+            builder.add(genQuad(format, transform, 0, 0, 16, 16, NORTH_Z_BASE, base, EnumFacing.NORTH, 0xffffffff));
+            builder.add(genQuad(format, transform, 0, 0, 16, 16, SOUTH_Z_BASE, base, EnumFacing.SOUTH, 0xffffffff));
         }
 
 
-        return new BakedDynBucketz(this, builder.build(), fluidSprite, format, Maps.immutableEnumMap(transformMap), Maps.<String, IBakedModel>newHashMap());
+        return new BakedBottle(this, builder.build(), fluidSprite, format, Maps.immutableEnumMap(transformMap), Maps.<String, IBakedModel>newHashMap());
     }
 
     @Override
@@ -165,8 +162,20 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
                 throw new IllegalArgumentException(String.format("DynBucket custom data \"flipGas\" must have value \'true\' or \'false\' (was \'%s\')", flipStr));
         }
 
+        QuadConverter qc = QuadConverter.FULL;
+
+        if (customData.containsKey("amt")) {
+            int amt = Integer.parseInt(customData.get("amt"));
+            if (amt >= 1000) qc = QuadConverter.FULL;
+            else if (amt >= 665) qc = QuadConverter.MID;
+            else if (amt != 0) qc = QuadConverter.ONE;
+            else {
+                qc = QuadConverter.NONE;
+            }
+        }
+
         // create new model with correct liquid
-        return new ModelDynGlassBottle(baseLocation, liquidLocation, coverLocation, fluid, flip);
+        return new ModelDynGlassBottle(baseLocation, liquidLocation, coverLocation, fluid, flip, qc);
     }
 
     /**
@@ -193,10 +202,97 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         if (textures.containsKey("cover"))
             cover = new ResourceLocation(textures.get("cover"));
 
-        return new ModelDynGlassBottle(base, liquid, cover, fluid, flipGas);
+        return new ModelDynGlassBottle(base, liquid, cover, fluid, flipGas, qc);
     }
 
-    public enum LoaderDynBucketz implements ICustomModelLoader
+    private enum QuadConverter {
+        FULL(1),
+        MID(127),
+        ONE(200),
+        NONE(300);
+
+        private int thresh;
+
+        QuadConverter(int thresh) {
+            this.thresh = thresh;
+        }
+
+        private boolean isVisible(int color) {
+            return (color >> 24 & 255) >= thresh;
+        }
+
+        public List<UnpackedBakedQuad> convertTextureHorizontal(VertexFormat format, TRSRTransformation transform, TextureAtlasSprite template, TextureAtlasSprite sprite, float z, EnumFacing facing, int color)
+        {
+            int w = template.getIconWidth();
+            int h = template.getIconHeight();
+            float wScale = 16f / (float)w;
+            float hScale = 16f / (float)h;
+            int[] data = template.getFrameTextureData(0)[0];
+            List<UnpackedBakedQuad> quads = Lists.newArrayList();
+
+            // the upper left x-position of the current quad
+            int start = -1;
+            for (int y = 0; y < h; y++)
+            {
+                for (int x = 0; x < w; x++)
+                {
+                    // current pixel
+                    int pixel = data[y * w + x];
+
+                    // no current quad but found a new one
+                    if (start < 0 && isVisible(pixel))
+                    {
+                        start = x;
+                    }
+                    // got a current quad, but it ends here
+                    if (start >= 0 && !isVisible(pixel))
+                    {
+                        // we now check if the visibility of the next row matches the one fo the current row
+                        // if they are, we can extend the quad downwards
+                        int endY = y + 1;
+                        boolean sameRow = true;
+                        while (sameRow)
+                        {
+                            for (int i = 0; i < w; i++)
+                            {
+                                int px1 = data[y * w + i];
+                                int px2 = data[endY * w + i];
+                                if (isVisible(px1) != isVisible(px2))
+                                {
+                                    sameRow = false;
+                                    break;
+                                }
+                            }
+                            if (sameRow)
+                            {
+                                endY++;
+                            }
+                        }
+
+                        // create the quad
+                        quads.add(genQuad(format, transform,
+                                (float)start * wScale,
+                                (float)y * hScale,
+                                (float)x * wScale,
+                                (float)endY * hScale,
+                                z, sprite, facing, color));
+
+                        // update Y if all the rows match. no need to rescan
+                        if (endY - y > 1)
+                        {
+                            y = endY - 1;
+                        }
+                        // clear current quad
+                        start = -1;
+                    }
+                }
+            }
+
+            return quads;
+        }
+    }
+
+    public enum LoaderBottle implements ICustomModelLoader
     {
         instance;
 
@@ -219,10 +315,12 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         }
     }
 
-    private static final class BakedDynBucketOverrideHandlerz extends ItemOverrideList
+    private static final class BakedBottleOverrideHandler extends ItemOverrideList
     {
-        public static final BakedDynBucketOverrideHandlerz INSTANCE = new BakedDynBucketOverrideHandlerz();
-        private BakedDynBucketOverrideHandlerz()
+        public static final BakedBottleOverrideHandler INSTANCE = new BakedBottleOverrideHandler();
+        private IBakedModel empty= null;
+
+        private BakedBottleOverrideHandler()
         {
             super(ImmutableList.<ItemOverride>of());
         }
@@ -236,24 +334,17 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
             }
             if (fluidStack == null)
             {
-                fluidStack = new FluidStack(FluidRegistry.WATER, 1000);
-            }
-
-            // not a fluid item apparently
-            if (fluidStack == null)
-            {
-                // empty bucket
                 return originalModel;
             }
 
-            BakedDynBucketz model = (BakedDynBucketz)originalModel;
+            BakedBottle model = (BakedBottle)originalModel;
 
             Fluid fluid = fluidStack.getFluid();
             String name = fluid.getName();
 
-            if (!model.cache.containsKey(name))
+            if (!model.cache.containsKey(name + String.valueOf(fluidStack.amount)))
             {
-                IModel parent = model.parent.process(ImmutableMap.of("fluid", name));
+                IModel parent = model.parent.process(ImmutableMap.of("fluid", name, "amt", String.valueOf(fluidStack.amount)));
                 Function<ResourceLocation, TextureAtlasSprite> textureGetter;
                 textureGetter = new Function<ResourceLocation, TextureAtlasSprite>()
                 {
@@ -264,16 +355,16 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
                 };
 
                 IBakedModel bakedModel = parent.bake(new SimpleModelState(model.transforms), model.format, textureGetter);
-                model.cache.put(name, bakedModel);
+                model.cache.put(name + String.valueOf(fluidStack.amount), bakedModel);
                 return bakedModel;
             }
 
-            return model.cache.get(name);
+            return model.cache.get(name + String.valueOf(fluidStack.amount));
         }
     }
 
     // the dynamic bucket is based on the empty bucket
-    private static final class BakedDynBucketz implements IPerspectiveAwareModel
+    private static final class BakedBottle implements IPerspectiveAwareModel
     {
 
         private final ModelDynGlassBottle parent;
@@ -284,9 +375,9 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         private final TextureAtlasSprite particle;
         private final VertexFormat format;
 
-        public BakedDynBucketz(ModelDynGlassBottle parent,
-                               ImmutableList<BakedQuad> quads, TextureAtlasSprite particle, VertexFormat format, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms,
-                               Map<String, IBakedModel> cache)
+        public BakedBottle(ModelDynGlassBottle parent,
+                           ImmutableList<BakedQuad> quads, TextureAtlasSprite particle, VertexFormat format, ImmutableMap<ItemCameraTransforms.TransformType, TRSRTransformation> transforms,
+                           Map<String, IBakedModel> cache)
         {
             this.quads = quads;
             this.particle = particle;
@@ -299,7 +390,7 @@ public final class ModelDynGlassBottle implements IModel, IModelCustomData, IRet
         @Override
         public ItemOverrideList getOverrides()
         {
-            return BakedDynBucketOverrideHandlerz.INSTANCE;
+            return BakedBottleOverrideHandler.INSTANCE;
         }
 
         @Override

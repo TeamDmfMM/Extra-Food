@@ -2,10 +2,13 @@ package com.dmfmm.extrafood.client.gui.cookbook;
 
 
 import com.dmfmm.extrafood.init.BlockLoader;
+import com.dmfmm.extrafood.init.FluidLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import com.dmfmm.extrafood.items.nbt.NBTFoodRegistry;
 import com.dmfmm.extrafood.utilities.ConfigHandler;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.fluids.UniversalBucket;
 
 import java.util.*;
 
@@ -18,9 +21,9 @@ public class CookbookButtonLoader {
 
     public CookbookButtonLoader() {
         // TODO Auto-generated constructor stub
-        this.buttons = new ArrayList<CookbookTab>();
-        this.truth = new Hashtable<String, Boolean>();
-        this.multiNum = new Hashtable<String, Integer>();
+        this.buttons = new ArrayList<>();
+        this.truth = new Hashtable<>();
+        this.multiNum = new Hashtable<>();
 
         CookbookTab t = new CookbookTab("GettingStarted");
         t.buttons.add(new ClickTab(6, 4, ItemLoader.COOKBOOK, "basicKnowlege"));
@@ -79,12 +82,12 @@ public class CookbookButtonLoader {
 
         t = new CookbookTab("juiceBlender");
         t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 6, 6, new ItemStack(BlockLoader.JUICE_BLENDER), "juiceblender", 1));
-        t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 6, 3, ItemLoader.BUCKET_STRAWBERRY, "StrawberryJuice", 1, "juiceblender"));
-        t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 5, 8, ItemLoader.BUCKET_CARROT, "CarrotJuice", 1, "juiceblender"));
-        t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 10, 8, ItemLoader.BUCKET_BANANA, "BananaJuice", 1, "juiceblender"));
-        if(ConfigHandler.overrideWater){
-            t.buttons.add(new ClickTab(2, 4, ItemLoader.BUCKET_SEA_WATER, "SeaWater"));
-            t.buttons.add(new ClickTab(2, 8, ItemLoader.BUCKET_PURIFIED_WATER, "purifiedWater", "SeaWater"));}
+        t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 6, 3, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_STRAWBERRY_JUICE), "StrawberryJuice", 1, "juiceblender"));
+        t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 5, 8, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_CARROT_JUICE), "CarrotJuice", 1, "juiceblender"));
+        t.buttons.add(new ClickTab(0, 0, 0, 22, 22, "", 10, 8, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_BANANA_JUICE), "BananaJuice", 1, "juiceblender"));
+        /*if(ConfigHandler.overrideWater){
+            t.buttons.add(new ClickTab(2, 4, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_SEA_JUICE)_WATER, "SeaWater"));
+            t.buttons.add(new ClickTab(2, 8, UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_PURIFIED_JUICE)_WATER, "purifiedWater", "SeaWater"));}*/
         t.display = new ItemStack(BlockLoader.JUICE_BLENDER);
         this.buttons.add(t);
 
@@ -156,15 +159,15 @@ public class CookbookButtonLoader {
 
     public ArrayList<ArrayList<int[]>> getXYCoordsOfLineForButton(String name, String pagename){
         try {
-            ArrayList<ArrayList<int[]>> xys = new ArrayList<ArrayList<int[]>>();
+            ArrayList<ArrayList<int[]>> xys = new ArrayList<>();
             ClickTab ctr = this.find(name, pagename);
             List<String> pre = Arrays.asList(ctr.pre);
-            ArrayList<ClickTab> prectr = new ArrayList<ClickTab>();
+            ArrayList<ClickTab> prectr = new ArrayList<>();
             for (String p : pre){
                 prectr.add(this.find(p, pagename));
             }
             for (ClickTab ct : prectr){
-                ArrayList<int[]> arraytemp = new ArrayList<int[]>();
+                ArrayList<int[]> arraytemp = new ArrayList<>();
                 arraytemp.add(new int[]{ctr.x, ctr.y});
                 arraytemp.add(new int[]{ct.x, ct.y});
                 xys.add(arraytemp);

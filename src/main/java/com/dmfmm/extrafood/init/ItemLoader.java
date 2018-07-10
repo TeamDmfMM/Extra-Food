@@ -28,7 +28,6 @@ public class ItemLoader {
     public static final Item KNIFE = new Knife();
     public static final Item COOKBOOK = new CookBook();
     public static final Item GRATER = new Grater();
-    public static Item BUCKET_STRAWBERRY, BUCKET_BANANA, BUCKET_CARROT, BUCKET_SEA_WATER, BUCKET_PURIFIED_WATER, BUCKET_EGGNOG;
     public static final Item TOMATO_SEEDS = (ItemSeeds) new ItemSeeds(BlockLoader.TOMATO_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.TOMATO_SEED).setRegistryName(ItemLib.TOMATO_SEED).setCreativeTab(ExtraFoodTab.INSTANCE);
     public static final Item RAW_LETTUCE_SEEDS = new GenericItem(ItemLib.USELESS_LETTUCE_SEEDS);
     public static final Item PINEAPPLE = new ItemSeedFood(8, 3.0F, BlockLoader.PINEAPPLE_CROP, Blocks.FARMLAND).setUnlocalizedName(ItemLib.PINEAPPLE).setRegistryName(ItemLib.PINEAPPLE).setCreativeTab(ExtraFoodTab.INSTANCE);
@@ -114,7 +113,6 @@ public class ItemLoader {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> register){
         IForgeRegistry<Item> registry = register.getRegistry();
-        registerBuckets();
         Field[] fields = null;
         try {
             fields = ItemLoader.class.getDeclaredFields();
@@ -129,15 +127,6 @@ public class ItemLoader {
                 EFLog.fatal("unable to register " + field.toString());
             }
         }
-    }
-
-    public static void registerBuckets(){
-        BUCKET_STRAWBERRY = new BucketEdible(6, 0.8F, FluidLoader.STRAWBERRY_JUICE_BLOCK, ItemLib.STRAWBERRY_BUCKET);
-        BUCKET_BANANA = new BucketEdible(6, 0.6F, FluidLoader.BANANA_JUICE_BLOCK, ItemLib.BANANA_BUCKET);
-        BUCKET_CARROT = new BucketEdible(6, 0.9F, FluidLoader.CARROT_JUICE_BLOCK, ItemLib.CARROT_BUCKET);
-        BUCKET_SEA_WATER = new BucketEdible(2, 0.5F, Blocks.WATER, ItemLib.SEA_WATER_BUCKET);
-        BUCKET_PURIFIED_WATER = new BucketEdible(4, 0.5F, Blocks.WATER, ItemLib.PURIFIED_WATER_BUCKET);
-        BUCKET_EGGNOG = new BucketEdible(9, 5.0F, FluidLoader.EGGNOG_FLUID_BLOCK, ItemLib.EGGNOG);
     }
 
     public static void registerOreDictionary() {

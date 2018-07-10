@@ -5,11 +5,15 @@ import com.dmfmm.extrafood.ExtraFood;
 import com.dmfmm.extrafood.blocks.ChocolateCake;
 import com.dmfmm.extrafood.blocks.ICustomItemBlock;
 import com.dmfmm.extrafood.init.BlockLoader;
+import com.dmfmm.extrafood.init.FluidLoader;
 import com.dmfmm.extrafood.init.ItemLoader;
 import com.dmfmm.extrafood.utilities.DateUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -91,7 +95,7 @@ public class CraftingRecipies {
             GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.SHORTBREAD_COOKIES, 2), Items.SUGAR, Items.WHEAT, ItemLoader.BUTTER);
             GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.GINGER_BREAD, 2), Items.SUGAR, Items.WHEAT, ItemLoader.BUTTER, Items.EGG);
             GameRegistry.addSmelting(ItemLoader.PEANUT, new ItemStack(ItemLoader.CHESTNUTS), 1F);
-            GameRegistry.addShapelessRecipe(new ItemStack(ItemLoader.BUCKET_EGGNOG), ItemLoader.EGG, Items.MILK_BUCKET, ItemLoader.EGG);
+            GameRegistry.addShapelessRecipe(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidLoader.FLUID_EGGNOG), ItemLoader.EGG, Items.MILK_BUCKET, ItemLoader.EGG);
         }
         if(DateUtils.isBirthDay()){
             ICustomItemBlock block = (ICustomItemBlock) BlockLoader.CHOCOLATE_CAKE_BLOCK;
@@ -115,8 +119,8 @@ public class CraftingRecipies {
         GameRegistry.addSmelting(ItemLoader.BACON, new ItemStack(ItemLoader.COOKED_BACON, 1), 0.2F);
         GameRegistry.addSmelting(ItemLoader.SLICED_BREAD, new ItemStack(ItemLoader.TOAST, 1), 0.1F);
         GameRegistry.addSmelting(Items.EGG, new ItemStack(ItemLoader.EGG), 0.1F);
-        GameRegistry.addSmelting(ItemLoader.BUCKET_SEA_WATER, new ItemStack(ItemLoader.BUCKET_PURIFIED_WATER, 1), 0.5F);
-        GameRegistry.addSmelting(ItemLoader.BUCKET_PURIFIED_WATER, new ItemStack(Items.WATER_BUCKET, 1), 0.5F);
+        /*GameRegistry.addSmelting(ItemLoader.BUCKET_SEA_WATER, new ItemStack(ItemLoader.BUCKET_PURIFIED_WATER, 1), 0.5F);
+        GameRegistry.addSmelting(ItemLoader.BUCKET_PURIFIED_WATER, new ItemStack(Items.WATER_BUCKET, 1), 0.5F);*/
         GameRegistry.addSmelting(ItemLoader.RAW_HAMBURGER, new ItemStack(ItemLoader.COOKED_HAMBURGER), 0.7F);
         GameRegistry.addSmelting(Items.MILK_BUCKET, new ItemStack(ItemLoader.BUTTER_MILK), 0.9F);
     }

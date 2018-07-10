@@ -55,18 +55,8 @@ public class NBTFood extends ItemFood {
 		NBTTagCompound comp = stack.getTagCompound();
 		String key;
     	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.getKeySet().toArray()){
-    		key = (String)keyb;
-    		if (!Collections.list(specs.additives.keys()).contains(key)){
-    			continue;
-    		}
-    		if (comp.hasKey(key)){
-    			if (comp.getBoolean(key)){
-    				things.add(key);
-    			}
-    		}
-    	}
-    	if (specs.info.get(things) != null){
+		getAdditives(comp, things);
+		if (specs.info.get(things) != null){
             try {
                 return (int) specs.info.get(things).get(0);
             }catch (Exception e){}
@@ -85,18 +75,8 @@ public class NBTFood extends ItemFood {
 		NBTTagCompound comp = stack.getTagCompound();
 		String key;
     	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.getKeySet().toArray()){
-    		key = (String)keyb;
-    		if (!Collections.list(specs.additives.keys()).contains(key)){
-    			continue;
-    		}
-    		if (comp.hasKey(key)){
-    			if (comp.getBoolean(key)){
-    				things.add(key);
-    			}
-    		}
-    	}
-    	if (specs.info.get(things) != null){
+		getAdditives(comp, things);
+		if (specs.info.get(things) != null){
     		return (float) specs.info.get(things).get(1);
     	}
     	else {
@@ -112,18 +92,8 @@ public class NBTFood extends ItemFood {
     		return;
     	}
     	ArrayList<String> things = new ArrayList<String>();
-    	for (Object keyb : comp.getKeySet().toArray()){
-    		key = (String)keyb;
-    		if (!Collections.list(specs.additives.keys()).contains(key)){
-    			continue;
-    		}
-    		if (comp.hasKey(key)){
-    			if (comp.getBoolean(key)){
-    				things.add(key);
-    			}
-    		}
-    	}
-    	for (String i : things){
+		getAdditives(comp, things);
+		for (String i : things){
     		if (I18n.canTranslate("add." + name + "." + i)){
     			text.add("- " + TextFormatting.GREEN.toString() + I18n.translateToLocal("add." + name + "." + i));
     		}
@@ -133,6 +103,21 @@ public class NBTFood extends ItemFood {
     	}
 	}
 
+	private void getAdditives(NBTTagCompound comp, ArrayList<String> things) {
+		String key;
+		for (Object keyb : comp.getKeySet().toArray()){
+			key = (String)keyb;
+			if (specs.addtypes.containsKey(key)){
+				continue;
+			}
+			if (comp.hasKey(key)){
+				if (comp.getBoolean(key)){
+					things.add(key);
+				}
+			}
+		}
+	}
+
 
 	public ArrayList<String> getIconNames(ItemStack t) {
 
@@ -140,7 +125,7 @@ public class NBTFood extends ItemFood {
 
 		Map<String, String> possibleicons = new HashMap<>();
 
-		ArrayList<String> keys = Collections.list(specs.additives.keys());
+		Set<String> keys = specs.additives.keySet();
 		//System.out.println(keys);
 		for (String key : keys){
 			String iconstring = specs.additives.get(key);
@@ -154,7 +139,7 @@ public class NBTFood extends ItemFood {
 		if(comp != null) {
 			for (Object keyb : comp.getKeySet().toArray()) {
 				key = (String) keyb;
-				if (!Collections.list(specs.additives.keys()).contains(key)) {
+				if (specs.addtypes.containsKey(key)) {
 
 					continue;
 				}
@@ -193,7 +178,7 @@ public class NBTFood extends ItemFood {
 	}
     
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> things){
-		for (ArrayList<String> i: Collections.list(specs.info.keys())){
+		for (ArrayList<String> i: specs.info.keySet()){
 			//System.out.println("Here's my value of i: " + i );
 			ItemStack toAdd = new ItemStack(item);
 			toAdd.setTagCompound(getNBT(i));

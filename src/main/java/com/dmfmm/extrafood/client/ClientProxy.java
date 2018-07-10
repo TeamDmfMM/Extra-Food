@@ -94,7 +94,7 @@ public class ClientProxy extends CommonProxy{
     public void preInit() {
         //OBJLoader.INSTANCE.addDomain(ModInfo.MId);
         //ModelLoaderRegistry.registerLoader(ModelLoaderz.INSTANCE);
-        ModelLoaderRegistry.registerLoader(ModelDynGlassBottle.LoaderDynBucketz.instance);
+        ModelLoaderRegistry.registerLoader(ModelDynGlassBottle.LoaderBottle.instance);
         ModelLoaderRegistry.registerLoader(NBTFoodModel.ModelLodaer.instance);
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new TextureInjector());

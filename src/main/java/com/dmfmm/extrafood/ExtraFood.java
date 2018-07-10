@@ -15,6 +15,7 @@ import com.dmfmm.extrafood.utilities.ConfigHandler;
 import com.dmfmm.extrafood.utilities.EFLog;
 import com.dmfmm.extrafood.utilities.GuiHandler;
 import com.dmfmm.extrafood.utilities.proxy.CommonProxy;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -36,6 +37,9 @@ public class ExtraFood {
     @SidedProxy(clientSide= ModInfo.CLIENT_PROXY, serverSide= ModInfo.SERVER_PROXY)
     public static CommonProxy proxy;
 
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
 
     public static Side side;
     public static CRPageCraftGet crafterPage;

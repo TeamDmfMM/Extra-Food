@@ -2,6 +2,8 @@ package com.dmfmm.extrafood.tileentities;
 
 import com.dmfmm.extrafood.crafting.JuiceRegistry;
 import com.dmfmm.extrafood.init.ItemLoader;
+import com.dmfmm.extrafood.network.ChannelHandler;
+import com.dmfmm.extrafood.network.packets.PacketJBTank;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -12,8 +14,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.common.ForgeModContainer;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+
+import javax.annotation.Nullable;
 
 
 public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventory, /*IFluidHandler,*/ITickable {
@@ -195,18 +204,21 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
         } else{
             this.complete = 0;
         }
-        if (this.items[1] != null) {
+        if (this.items[1] != null && this.items[1].hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
             // FILL THE BUCKET
-            /*if (FluidContainerRegistryHelper.isEmptyContainer(this.items[1])) {
-                int amount = FluidContainerRegistryHelper.getContainerCapacity(this.tank.getFluid(), this.items[1]);
-                if (amount == tank.drain(amount, false).amount) {
-                    setInventorySlotContents(2, FluidContainerRegistryHelper.fillFluidContainer(tank.drain(amount, true), getStackInSlot(1)));
+            IFluidHandlerItem ifhi = this.items[1].getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+
+            if (ifhi.getTankProperties().length > 0 && ifhi.getTankProperties()[0].canFill()) {
+                int amount = ifhi.fill(tank.getFluid(), false);
+                if (amount <= tank.drain(amount, false).amount) {
+                    ifhi.fill(tank.drain(amount, true), true);
+                    setInventorySlotContents(2, ifhi.getContainer());
                     setInventorySlotContents(1, null);
                     if (!getWorld().isRemote) {
                         ChannelHandler.EFchannel.sendToAllAround(new PacketJBTank(this.tank.getFluidAmount(), null, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()), new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 10));
                     }
                 }
-            }*/
+            }
         }
     }
 
@@ -340,8 +352,25 @@ public class JuiceBlenderTileEntity extends TileEntity implements ISidedInventor
 
     @Override
     public boolean canExtractItem(int slot, ItemStack item, EnumFacing direction) {
-        return direction != EnumFacing.DOWN || slot != 1 || item.getItem() == ItemLoader.BUCKET_CARROT || item.getItem() == ItemLoader.BUCKET_BANANA || item.getItem() == ItemLoader.BUCKET_STRAWBERRY;
+        return direction != EnumFacing.DOWN || slot != 1 || item.getItem() == ForgeModContainer.getInstance().universalBucket;
     }
 
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+        if (facing == EnumFacing.DOWN && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return true;
+        }
 
+        return super.hasCapability(capability, facing);
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (facing == EnumFacing.DOWN && capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return (T) this.tank;
+        }
+
+        return super.getCapability(capability, facing);
+    }
 }

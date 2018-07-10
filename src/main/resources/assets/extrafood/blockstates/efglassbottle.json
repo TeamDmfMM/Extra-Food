@@ -4,9 +4,9 @@
     "inventory": {
       "model": "extrafood:glassbottles",
       "textures": {
-        "base": "minecraft:items/potion_bottle_empty",
+        "base": "extrafood:items/juicebottle",
         "fluid": "extrafood:items/juicebottleinside",
-        "cover": "minecraft:items/potion_bottle_empty"
+        "cover": "extrafood:items/juicebottle"
       },
       "transform": "forge:default-item",
       "custom": {
