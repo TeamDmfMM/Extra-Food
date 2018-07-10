@@ -169,6 +169,7 @@ item.EFbottle.mixedberryjuice.name=Bottle of Mixed Berry Juice
 item.EFbottle.watermelonjuice.name=Bottle of Melon Juice
 item.EFbottle.strawberrybananajuice.name=Bottle of Strawberry-Banana Juice
 item.EFbottle.tropicaljuice.name=Bottle of Tropical Juice
+item.EFbottle.name=Empty Juice Bottle
 
 #Banner Names
 item.banner.extrafood_cheese.white=White Cheese Wheel
@@ -214,6 +215,7 @@ cookbook.tabname.oven=Oven
 
 #--Page Name Conventions
 # To h
+# -1, -1 emeans auto x&y
 #Text on page = <TextBlock|-1|-1|0|*USER SEEN TEXT*>
 #<Crafting|-1|-1|PAGE BY HALFS|pgNameInCRPageCraftGet>
 #<HungerStats|-1|-1|PAGE BY HALFS|HungerBar|Saturation>

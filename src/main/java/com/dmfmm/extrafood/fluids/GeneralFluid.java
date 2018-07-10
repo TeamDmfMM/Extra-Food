@@ -38,10 +38,10 @@ public class GeneralFluid extends BlockFluidClassic {
         return super.displaceIfPossible(world, pos);
     }
 
-    @Override
+    /*@Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
-    }
+    }*/
 
     @Override
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {

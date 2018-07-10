@@ -175,7 +175,7 @@ public class GlassFluidContainer extends Item{
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         if(stack.hasTagCompound() && stack.getTagCompound().hasKey("fluid")){
-            return "item.EFbottle." + stack.getTagCompound().getString("fluid") + ".name";
+            return "item.EFbottle." + stack.getTagCompound().getString("fluid");
         }
         else {
             return "item.EFbottle";
