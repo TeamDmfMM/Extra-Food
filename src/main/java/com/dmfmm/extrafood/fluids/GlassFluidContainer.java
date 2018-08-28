@@ -40,7 +40,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * because that is just mean. Code is VISIBLE SOURCE, therfore
  * credit us, just don't steal large portions of this.
  */
-public class GlassFluidContainer extends Item{
+public class GlassFluidContainer extends Item {
 
     protected int capacity = 1000;
     public static ArrayList<Fluid> list = new ArrayList();
